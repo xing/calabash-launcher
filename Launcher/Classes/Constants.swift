@@ -1,0 +1,47 @@
+//
+//  Constants.swift
+//  Calabash Launcher
+//
+//  Created by Bas Thomas Broek on 12/10/2017.
+//  Copyright © 2017 XING. All rights reserved.
+//
+
+import Foundation
+
+enum Constants {
+    enum Strings {
+        static let noDevicesConnected = "There are no connected devices.".localized
+        static let noSimulatorsConnected = "There are no connected simulators.".localized
+        static let pluginDevice = "Please plug-in your device.".localized
+        static let installSimulator = "Please install an iOS simulator.".localized
+        static let installSimulatorOrPluginDevice = "Please install a simulator or plug-in your device.".localized
+        static let notCompatibleWithDeviceType = "not compatible with chosen device type."
+    }
+    
+    enum FilePaths {
+        private static let main = Bundle.main
+        enum Bash {
+            static let startDevice = main.path(forResource: "start_device", ofType: .bash)
+            static let buildScript = main.path(forResource: "BuildScript", ofType: .bash)
+            static let killProcess = main.path(forResource: "kill_process", ofType: .bash)
+            static let flash = main.path(forResource: "flash", ofType: .bash)
+            
+            // Interactive Ruby Shell
+            static let createIRBSession = main.path(forResource: "create_irb_session", ofType: .bash)
+            static let sendToIRB = main.path(forResource: "send_to_irb", ofType: .bash)
+            static let quitIRBSession = main.path(forResource: "quit_irb_session", ofType: .bash)
+            
+            // Getters
+            static let tags = main.path(forResource: "get_tags", ofType: .bash)
+            static let elements = main.path(forResource: "get_elements", ofType: .bash)
+            static let elementsByOffset = main.path(forResource: "get_elements_by_offset", ofType: .bash)
+            static let screen = main.path(forResource: "get_screen", ofType: .bash)
+            static let localized = main.path(forResource: "get_localized", ofType: .bash)
+            static let uniqueElements = main.path(forResource: "get_uniq_elements", ofType: .bash)
+            static let simulators = main.path(forResource: "get_sim_list", ofType: .bash)
+        }
+        enum Ruby {
+            static let helpers = main.path(forResource: "helpers", ofType: .ruby)
+        }
+    }
+}
