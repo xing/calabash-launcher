@@ -169,18 +169,6 @@ def get_elements_by_offset(x, y)
     end
 end
 
-def search_localization_files(lang)
-    your_path = ''
-    paths = `find . -mindepth 3 -maxdepth 6 -type d -name "#{lang}.lproj"`
-    paths.split("\n").each do |path|
-        if path.include? 'XNGLocalizedString'
-            your_path = path
-            break
-        end
-    end
-    your_path + '/Localizable.strings'
-end
-
 def flash_utf(qu)
     qu = qu.to_s.encode('UTF-8', {
         :invalid => :replace,
@@ -188,41 +176,6 @@ def flash_utf(qu)
         :replace => '?'
     })
     flash qu
-end
-    
-def get_localized(string)
-
-    string = string.to_s.encode('UTF-8', {
-        :invalid => :replace,
-        :undef   => :replace,
-        :replace => '?'
-    })
-
-    check_clones = []
-    check_clones = query(string)
-    if string.include? 'marked'
-        new_string = string.split("marked:'").last[0...-1]
-        key = get_element_key new_string
-        if key == new_string
-            string
-        else
-            string = string.gsub(new_string, '#{get_element_text(' + "'" + key + "'" + ')}')
-        end
-    elsif string.include? 'text'
-        new_string = string.split("text:'").last[0...-1]
-        key = get_element_key new_string
-        if key == new_string
-            string
-        else
-            string = string.gsub(new_string, '#{get_element_text(' + "'" + key + "'" + ')}')
-        end
-    end
-
-    File.open('/tmp/localized.txt', 'w+') do |f|
-        f.puts "\"#{string}\""
-
-        f.puts 'Clone Found' if check_clones.size > 1
-    end
 end
 
 def screenshot_with_no_output
@@ -393,81 +346,14 @@ def get_elements_from_screen(kind = nil, filename = nil)
     for i in 0..n - 1 do
         postfix = ''
         text_clone = labels[i].clone
-
-        localized_key = get_element_key labels[i]
-        postfix = ' ￼' if text_clone.include? '￼'
-        
-        string = "#{classes[i]} #{acc_method}'\#{element_text}#{postfix}'"
+        string = "#{classes[i]} #{acc_method}'#{text_clone}'"
 
         output.puts "\n"
-        output.puts "def #{localized_key}"
-        output.puts "  element_text = get_element_text '#{localized_key}'"
-        output.puts "  #element_text is '#{labels[i]}'"
+        output.puts "def #{text_clone}"
         output.puts "  \"#{string}\""
         output.puts 'end'
     end
     output.close if filename
-end
-
-def get_element_text(string)
-    paths_array = [search_localization_files('en'), 'config/text_resources/ev/en.yml', 'config/text_resources/content/en.yml', 'config/text_resources/mit/en.yml', 'config/text_resources/feedy/en.yml', 'config/text_resources/pm/en.yml']
-
-    n = paths_array.size
-
-    for i in 0..n - 1 do
-        path = paths_array[i]
-        contents_array = IO.readlines(path)
-
-        string = if i == 0
-                     "\"#{string}\""
-                 else
-                     string.remove('"')
-                 end
-
-        array_index = contents_array.index { |s| s.include?(string) }
-        break if array_index
-    end
-
-    searchable_string = contents_array[array_index]
-    final_string = ''
-    if searchable_string.include? '='
-        final_string = searchable_string.strip.split('"')[3]
-    elsif searchable_string.include? ':'
-        final_string = if searchable_string.split(':').size > 2
-                           searchable_string.split(':')[1].strip + ': ' + searchable_string.split(':')[2].strip
-                       else
-                           searchable_string.split(':')[1].strip
-                       end
-    end
-    final_string.gsub("'", "\\\\'")
-end
-
-def get_element_key(string)
-    TextResources::Importer.phrase_import if Dir['config/text_resources/*'].empty?
-
-    paths_array = [search_localization_files('en'), 'config/text_resources/ev/en.yml', 'config/text_resources/content/en.yml', 'config/text_resources/mit/en.yml', 'config/text_resources/feedy/en.yml', 'config/text_resources/pm/en.yml']
-
-    n = paths_array.size
-
-    for i in 0..n - 1 do
-        path = paths_array[i]
-        contents_array = IO.readlines(path)
-        array_index = search_string_in_file(contents_array, string)
-        break if array_index
-    end
-
-    if array_index
-        searchable_string = contents_array[array_index]
-        if searchable_string.include? '='
-            new_string = searchable_string.split('"')[1].strip
-        else
-           new_string = searchable_string.split(': ').first.strip
-        end
-    else
-        new_string = string
-    end
-    
-    new_string
 end
 
 def search_string_in_file(contents_array, string)
