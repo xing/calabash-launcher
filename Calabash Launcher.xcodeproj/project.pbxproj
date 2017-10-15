@@ -36,7 +36,6 @@
 		EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC551E51DB36F0C00293935 /* StreamReader.swift */; };
 		EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5651E1AA3ED00738F91 /* helpers.rb */; };
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
-		EDCDF56A1E1AB20500738F91 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5691E1AB20500738F91 /* Gemfile.lock */; };
 		EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE3851E0BD2D60069B9BC /* clicked_2.png */; };
 		EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */; };
 		EDEBE3A01E0C266F0069B9BC /* yourad.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39F1E0C266F0069B9BC /* yourad.png */; };
@@ -90,7 +89,6 @@
 		EDC551E51DB36F0C00293935 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		EDCDF5651E1AA3ED00738F91 /* helpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = helpers.rb; sourceTree = "<group>"; };
 		EDCDF5671E1AAC9F00738F91 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
-		EDCDF5691E1AB20500738F91 /* Gemfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		EDEBE3851E0BD2D60069B9BC /* clicked_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicked_2.png; sourceTree = "<group>"; };
 		EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				EDCDF5671E1AAC9F00738F91 /* Gemfile */,
-				EDCDF5691E1AB20500738F91 /* Gemfile.lock */,
 				EDCDF5651E1AA3ED00738F91 /* helpers.rb */,
 			);
 			path = ruby;
@@ -264,6 +261,7 @@
 				TargetAttributes = {
 					ED4C14DC1DB29FB700A1190E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 677393NEQ3;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -312,7 +310,6 @@
 				ED66FA851E0AED5E0081A30D /* get_localized.command in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
 				EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */,
-				EDCDF56A1E1AB20500738F91 /* Gemfile.lock in Resources */,
 				ED7045051DD61B9000272059 /* get_screen.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +467,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 677393NEQ3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -491,7 +488,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 677393NEQ3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

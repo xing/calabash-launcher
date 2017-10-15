@@ -84,9 +84,9 @@ class TasksViewController: NSViewController {
         
         killProcessScreenshot()
         // removes NSUserDefaults for test
-        //        if let appDomain = Bundle.main.bundleIdentifier {
-        //            UserDefaults.standard.removePersistentDomain(forName: appDomain)
-        //        }
+//                if let appDomain = Bundle.main.bundleIdentifier {
+//                    UserDefaults.standard.removePersistentDomain(forName: appDomain)
+//                }
         
         outputText.backgroundColor = .darkAquamarine
         outputText.textColor = .white
