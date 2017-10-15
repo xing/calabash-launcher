@@ -26,7 +26,6 @@
 		ED5DB5FD1E01534A00B0FADC /* create_irb_session.command in Resources */ = {isa = PBXBuildFile; fileRef = ED5DB5FC1E01534A00B0FADC /* create_irb_session.command */; };
 		ED66FA801E098E3F0081A30D /* flash.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA7F1E098E3F0081A30D /* flash.command */; };
 		ED66FA821E0AB8570081A30D /* quit_irb_session.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA811E0AB8570081A30D /* quit_irb_session.command */; };
-		ED66FA851E0AED5E0081A30D /* get_localized.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA841E0AED5E0081A30D /* get_localized.command */; };
 		ED7045051DD61B9000272059 /* get_screen.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045041DD61B9000272059 /* get_screen.command */; };
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructor.swift */; };
@@ -80,7 +79,6 @@
 		ED5DB5FC1E01534A00B0FADC /* create_irb_session.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = create_irb_session.command; sourceTree = "<group>"; };
 		ED66FA7F1E098E3F0081A30D /* flash.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = flash.command; sourceTree = "<group>"; };
 		ED66FA811E0AB8570081A30D /* quit_irb_session.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quit_irb_session.command; sourceTree = "<group>"; };
-		ED66FA841E0AED5E0081A30D /* get_localized.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_localized.command; sourceTree = "<group>"; };
 		ED7045041DD61B9000272059 /* get_screen.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_screen.command; sourceTree = "<group>"; };
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructor.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
-				ED66FA841E0AED5E0081A30D /* get_localized.command */,
 				ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */,
 				ED66FA811E0AB8570081A30D /* quit_irb_session.command */,
 				ED66FA7F1E098E3F0081A30D /* flash.command */,
@@ -311,7 +308,6 @@
 				EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */,
 				EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */,
 				ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */,
-				ED66FA851E0AED5E0081A30D /* get_localized.command in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
 				EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */,
 				ED7045051DD61B9000272059 /* get_screen.command in Resources */,

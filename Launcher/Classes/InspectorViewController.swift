@@ -521,27 +521,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
     }
     
-    func localizeItNow(feedItem: String) {
-        
-        
-        let taskQueueNew34 = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew34.sync {
-            
-            let path = Constants.FilePaths.Bash.localized
-            self.buildTaskNew34 = Process()
-            self.buildTaskNew34.launchPath = path
-            
-            var arguments:[String] = []
-            arguments.append(feedItem)
-            
-            self.buildTaskNew34.arguments = arguments
-
-            self.buildTaskNew34.launch()
-            self.buildTaskNew34.waitUntilExit()
-        }
-    }
-    
     func getElementsFromFile() {
         self.disableAllElements()
         let filePath = "/tmp/get_all_elements_inspector.txt"
@@ -664,63 +643,8 @@ extension InspectorViewController: NSOutlineViewDelegate {
             
             self.elementTextField.stringValue = feedItem
             if elements_list.count != 0 {
-            self.localizeItNow(feedItem: feedItem)
-                
-                
-                waitingForFile(fileName: "/tmp/localized.txt", numberOfRetries: 60) {
-                     DispatchQueue.main.async {
-                    
-                    if let cStreamReader = StreamReader(path: filePath4) {
-                        defer {
-                            cStreamReader.close()
-                        }
-                        while let localizedItem = cStreamReader.nextLine() {
-                            if localizedItem == "Clone Found" {
-                               
-                                    self.cloneButton.isHidden = false
-                                    self.cloneLabel.stringValue = "The Element is not unique"
-                                    self.cloneLabel.textColor = NSColor.red
-                                continue
-                            }
-                            self.localizedTextField.stringValue = localizedItem
-                            Shared.shared.stringValue = localizedItem
-                        }
-                    }
-                    
-                    self.enableAllElements()
-                    
-                    do {
-                        try self.fileManager.removeItem(atPath: filePath4)
-                    } catch _ as NSError {
-                    }
-                    }
-                }
-
-            }
         }
         
-        func localizeItNow(feedItem: String) {
-            let taskQueueNew = DispatchQueue.global(qos: .background)
-            
-            taskQueueNew.sync {
-                
-                let path = Constants.FilePaths.Bash.localized
-                self.buildTaskNew = Process()
-                self.buildTaskNew.launchPath = path
-                
-                var arguments:[String] = []
-                arguments.append(feedItem)
-                
-                self.buildTaskNew.arguments = arguments
-                
-                self.buildTaskNew.terminationHandler = {
-                    task in
-                    DispatchQueue.main.sync(execute: {
-                    })
-                }
-                self.buildTaskNew.launch()
-                self.buildTaskNew.waitUntilExit()
-            }
         }
     }
 }
