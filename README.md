@@ -29,7 +29,7 @@ This project is actively under development, and it is used at XING.
 
 ## Installation
 
-> Add installation instructions here.
+cd "Calabash Launcher Core" && swift build
 
 ## Usage
 
