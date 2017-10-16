@@ -29,7 +29,9 @@ This project is actively under development, and it is used at XING.
 
 ## Installation
 
+```bash
 cd "Calabash Launcher Core" && swift build
+```
 
 ## Usage
 
