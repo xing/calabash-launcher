@@ -11,6 +11,10 @@ import Foundation
 enum Language: String {
     case english = "English"
     case german = "German"
+    case russian = "Russian"
+    case italian = "Italian"
+    case french = "French"
+    case polish = "Polish"
 }
 
 extension Language {
@@ -20,6 +24,14 @@ extension Language {
             return "en"
         case .german:
             return "de"
+        case .russian:
+            return "ru"
+        case .italian:
+            return "it"
+        case .french:
+            return "fr"
+        case .polish:
+            return "pl"
         }
     }
 }

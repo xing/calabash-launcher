@@ -29,6 +29,8 @@
 		ED66FA821E0AB8570081A30D /* quit_irb_session.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA811E0AB8570081A30D /* quit_irb_session.command */; };
 		ED7045051DD61B9000272059 /* get_screen.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045041DD61B9000272059 /* get_screen.command */; };
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
+		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
+		ED85D2F01F950A9400E5E2D8 /* LanguageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructor.swift */; };
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
@@ -83,6 +85,8 @@
 		ED66FA811E0AB8570081A30D /* quit_irb_session.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quit_irb_session.command; sourceTree = "<group>"; };
 		ED7045041DD61B9000272059 /* get_screen.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_screen.command; sourceTree = "<group>"; };
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
+		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
+		ED85D2EF1F950A9400E5E2D8 /* LanguageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructor.swift; sourceTree = "<group>"; };
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				5D948C931F8F556D0001BC50 /* Language.swift */,
 				ED51B7171F8FC2F500759547 /* PlistOperations.swift */,
 				ED51B7191F90BE5300759547 /* PathWarningViewController.swift */,
+				ED85D2EF1F950A9400E5E2D8 /* LanguageController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
+				ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */,
 				ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */,
 				ED66FA811E0AB8570081A30D /* quit_irb_session.command */,
 				ED66FA7F1E098E3F0081A30D /* flash.command */,
@@ -273,6 +279,7 @@
 				TargetAttributes = {
 					ED4C14DC1DB29FB700A1190E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 677393NEQ3;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -312,6 +319,7 @@
 				D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */,
 				ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */,
 				ED399A461DBA0447000FA4AA /* console.command in Resources */,
+				ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */,
 				EDFF031A1DD4A245000CA17C /* start_device.command in Resources */,
 				EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */,
 				ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */,
@@ -341,6 +349,7 @@
 				ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */,
 				EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */,
 				5D948C941F8F556D0001BC50 /* Language.swift in Sources */,
+				ED85D2F01F950A9400E5E2D8 /* LanguageController.swift in Sources */,
 				EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */,
 				5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */,
 				ED4C14E11DB29FB700A1190E /* AppDelegate.swift in Sources */,
@@ -478,7 +487,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 677393NEQ3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -499,7 +508,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 677393NEQ3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

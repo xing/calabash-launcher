@@ -36,7 +36,7 @@ enum Constants {
             static let elements = main.path(forResource: "get_elements", ofType: .bash)
             static let elementsByOffset = main.path(forResource: "get_elements_by_offset", ofType: .bash)
             static let screen = main.path(forResource: "get_screen", ofType: .bash)
-            static let localized = main.path(forResource: "get_localized", ofType: .bash)
+            static let changeLang = main.path(forResource: "change_sim_language", ofType: .bash)
             static let uniqueElements = main.path(forResource: "get_uniq_elements", ofType: .bash)
             static let simulators = main.path(forResource: "get_sim_list", ofType: .bash)
         }

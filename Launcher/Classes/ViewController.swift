@@ -1,6 +1,7 @@
 import Cocoa
 import Foundation
 import AppKit
+import CommandsCore
 
 class TasksViewController: NSViewController {
     
@@ -66,7 +67,6 @@ class TasksViewController: NSViewController {
         
         // Disable these elements for the moment, as it cannot work for people outside XING
         buildPicker.isEnabled = false
-        languagePopUpButton.isEnabled = false
         get_device.isEnabled = false
         phys_radio.isEnabled = false
         simulator_radio.state = .on
@@ -160,7 +160,7 @@ class TasksViewController: NSViewController {
         phoneComboBox.removeAllItems()
         
         if simulator_radio.state == .on {
-            // languagePopUpButton.isEnabled = true
+            languagePopUpButton.isEnabled = true
             phoneComboBox.addItems(withTitles: simulators)
         } else {
             get_device.isEnabled = true
@@ -216,6 +216,9 @@ class TasksViewController: NSViewController {
         if let debugState = applicationStateHandler.debugState {
             debugCheckbox.state = NSControl.StateValue(rawValue: debugState)
         }
+        
+        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
+        applicationStateHandler.phoneUdid = getCurrentDeviceUDID()
     }
     
     private func setupTagSelection() {
@@ -303,7 +306,7 @@ class TasksViewController: NSViewController {
     @IBAction func simulator_radio(_ sender: Any) {
         phys_radio.state = .off
         get_device.isEnabled = false
-        // languagePopUpButton.isEnabled = true
+        languagePopUpButton.isEnabled = true
         
         phoneComboBox.removeAllItems()
         
@@ -399,14 +402,6 @@ class TasksViewController: NSViewController {
         } else {
             arguments.append("DEBUG=0")
         }
-        if !newOne.stringValue.isEmpty {
-            arguments.append("--t @\(newOne.stringValue)")
-        }
-        
-        
-        let simulatorUDIDs = "\(phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))"
-            .split(separators: "[]")
-            .map(String.init)
         
         if phys_radio.state == .on {
             //arguments.append("DEVICE_IP=http://\(device_name.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: "\'", with: "")).xing.hh:37265")
@@ -415,23 +410,19 @@ class TasksViewController: NSViewController {
                 // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
                 applicationStateHandler.isLaunched = true
             }
-        } else if simulatorUDIDs.count >= 2 {
-            arguments.append("DEVICE_TARGET=\(simulatorUDIDs[1])")
-        }
-        
-        switch languagePopUpButton.title {
-        case Language.english.rawValue:
-            arguments.append("TEST_LANGUAGE=\(Language.english.identifier)")
-        case Language.german.rawValue:
-            arguments.append("TEST_LANGUAGE=\(Language.english.identifier)")
-        default:
-            print("Unknown language")
+        } else {
+            let simulatorUDID = getCurrentDeviceUDID()
+            arguments.append("DEVICE_TARGET=\(simulatorUDID)")
         }
         
         arguments.append(pathToCalabashFolder)
 
         if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
+        }
+        
+        if !newOne.stringValue.isEmpty {
+            arguments.append("--t @\(newOne.stringValue)")
         }
         
         buildButton.isEnabled = false
@@ -482,6 +473,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
+        
         do {
             try fileManager.removeItem(atPath: file
                 .replacingOccurrences(of: "file://", with: "")
@@ -491,6 +483,26 @@ class TasksViewController: NSViewController {
         if isRunning {
             buildProcess.terminate()
         }
+    }
+
+    @IBAction func clickPhoneChooser(_ sender: Any) {
+        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
+        applicationStateHandler.phoneUdid = getCurrentDeviceUDID()
+    }
+    
+    @IBAction func languageOptionsButton(_ sender: Any) {
+        applicationStateHandler.language = languagePopUpButton.title
+        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "languagesettings")) as? NSViewController {
+            presentViewControllerAsModalWindow(controller)
+        }
+    }
+    
+    @IBAction func languageSwitchButton(_ sender: Any) {
+        changeLocale()
+    }
+    
+    @IBAction func languagePopUp(_ sender: Any) {
+        applicationStateHandler.language = languagePopUpButton.title
     }
     
     func captureStandardOutputAndRouteToTextView(_ task: Process, outputPipe: Pipe) {
@@ -682,6 +694,46 @@ class TasksViewController: NSViewController {
             }
             strongSelf.createIRBSessionTask.launch()
             strongSelf.createIRBSessionTask.waitUntilExit()
+        }
+    }
+    
+    func getCurrentDeviceUDID() -> String {
+        let simulatorUDIDs = "\(phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))"
+            .split(separators: "[]")
+            .map(String.init)
+        if simulatorUDIDs.count >= 2 {
+            return simulatorUDIDs[1]
+        }
+        return ""
+    }
+    
+    func changeLocale() {
+        var locale = "en"
+        var willRun = true
+        switch languagePopUpButton.title {
+        case Language.english.rawValue:
+            locale = Language.english.identifier
+        case Language.german.rawValue:
+             locale = Language.german.identifier
+        case Language.russian.rawValue:
+            locale = Language.russian.identifier
+        case Language.italian.rawValue:
+            locale = Language.italian.identifier
+        case Language.french.rawValue:
+            locale = Language.french.identifier
+        case Language.polish.rawValue:
+            locale = Language.polish.identifier
+        case "Other":
+            willRun = false
+        default:
+            print("Unknown language")
+        }
+        
+        if willRun {
+            let simUDID = getCurrentDeviceUDID()
+            let arguments = ["Commands", Constants.FilePaths.Bash.changeLang!, simUDID, locale]
+            let commands = Commands(arguments: arguments)
+            try? commands.run()
         }
     }
 }

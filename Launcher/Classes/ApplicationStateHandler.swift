@@ -60,12 +60,21 @@ class ApplicationStateHandler {
         }
     }
     
+    var phoneUdid: String? {
+        get {
+            return defaults.string(forKey: "PhoneUdid")
+        }
+        set {
+            defaults.set(newValue, forKey:"PhoneUdid")
+        }
+    }
+    
     var language: String? {
         get {
             return defaults.string(forKey: "Language")
         }
         set {
-            defaults.set(language, forKey:"Language")
+            defaults.set(newValue, forKey:"Language")
         }
     }
     

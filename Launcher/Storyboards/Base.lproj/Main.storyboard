@@ -181,25 +181,25 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="textField:" target="XfG-lQ-9wD" id="jmI-4w-F6Z"/>
+                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="jmI-4w-F6Z"/>
                                 </connections>
                             </textField>
                             <box fixedFrame="YES" title="Setup Your Launcher:" translatesAutoresizingMaskIntoConstraints="NO" id="fMH-ej-SOh">
-                                <rect key="frame" x="1123" y="641" width="227" height="45"/>
+                                <rect key="frame" x="1187" y="641" width="163" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="i7W-cp-TLS">
-                                    <rect key="frame" x="2" y="2" width="223" height="25"/>
+                                    <rect key="frame" x="2" y="2" width="159" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hy-YZ-NtT">
-                                            <rect key="frame" x="-1" y="-5" width="225" height="32"/>
+                                            <rect key="frame" x="3" y="-5" width="153" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTX-Q3-Cbw">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="settingsButton:" target="XfG-lQ-9wD" id="ZS4-DD-XLM"/>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="ZS4-DD-XLM"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -221,7 +221,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="startTask:" target="XfG-lQ-9wD" id="VJu-Fs-Yn3"/>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="VJu-Fs-Yn3"/>
                                             </connections>
                                         </button>
                                         <button toolTip="Stop building the project" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0X-ya-sxT" userLabel="Stop Button">
@@ -232,7 +232,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="stopTask:" target="XfG-lQ-9wD" id="U6k-1h-Lil"/>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="U6k-1h-Lil"/>
                                                 <binding destination="XfG-lQ-9wD" name="enabled" keyPath="isRunning" id="zNi-ef-zuJ"/>
                                             </connections>
                                         </button>
@@ -244,33 +244,8 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
-                            <box fixedFrame="YES" title="Language Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="BBv-e5-cZl">
-                                <rect key="frame" x="747" y="641" width="173" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="i4x-Ev-A0f">
-                                    <rect key="frame" x="2" y="2" width="169" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uw-cW-J8s">
-                                            <rect key="frame" x="11" y="-1" width="108" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="English" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dFM-5q-JNZ" id="5AW-QL-40l">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="Y6o-wI-hJv">
-                                                    <items>
-                                                        <menuItem title="English" state="on" id="dFM-5q-JNZ"/>
-                                                        <menuItem title="German" id="gvD-Bh-4xM"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                        </popUpButton>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
-                            </box>
                             <box fixedFrame="YES" title="Enable Debug Output:" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-JN-AeK">
-                                <rect key="frame" x="934" y="641" width="169" height="45"/>
+                                <rect key="frame" x="1016" y="641" width="169" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="YzF-ea-vPb">
                                     <rect key="frame" x="2" y="2" width="165" height="25"/>
@@ -284,7 +259,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="toggleDebug:" target="XfG-lQ-9wD" id="a2q-rM-DR0"/>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="a2q-rM-DR0"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -306,7 +281,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="simulator_radio:" target="XfG-lQ-9wD" id="9MI-Xg-phE"/>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="9MI-Xg-phE"/>
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9k-ER-WQ4">
@@ -316,7 +291,7 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <connections>
-                                                    <action selector="phys_radio:" target="XfG-lQ-9wD" id="2dd-nt-b8Q"/>
+                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="2dd-nt-b8Q"/>
                                                 </connections>
                                             </buttonCell>
                                         </button>
@@ -328,6 +303,9 @@
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="iSW-q2-iUM"/>
                                             </popUpButtonCell>
+                                            <connections>
+                                                <action selector="clickPhoneChooser:" target="XfG-lQ-9wD" id="1ae-pA-gHq"/>
+                                            </connections>
                                         </popUpButton>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-Cx-9Gj">
                                             <rect key="frame" x="252" y="32" width="124" height="32"/>
@@ -336,7 +314,7 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <connections>
-                                                    <action selector="get_device:" target="XfG-lQ-9wD" id="MMe-ra-MzS"/>
+                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="MMe-ra-MzS"/>
                                                 </connections>
                                             </buttonCell>
                                         </button>
@@ -365,7 +343,7 @@
                                                     </items>
                                                 </menu>
                                                 <connections>
-                                                    <action selector="buildPicker:" target="XfG-lQ-9wD" id="oto-Pk-kwd"/>
+                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="oto-Pk-kwd"/>
                                                 </connections>
                                             </popUpButtonCell>
                                         </popUpButton>
@@ -411,15 +389,15 @@
                                 <rect key="frame" x="21" y="60" width="1356" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="HuI-bt-NDk">
-                                    <rect key="frame" x="1" y="1" width="1354" height="557"/>
+                                    <rect key="frame" x="1" y="1" width="1339" height="557"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" linkDetection="YES" dataDetection="YES" dashSubstitution="YES" textReplacement="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="QWs-YP-tY6">
-                                            <rect key="frame" x="0.0" y="0.0" width="1354" height="557"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1339" height="557"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.074509803920000006" green="0.84705882349999995" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="1354" height="557"/>
+                                            <size key="minSize" width="1339" height="557"/>
                                             <size key="maxSize" width="1373" height="10000000"/>
                                             <color key="insertionPointColor" red="0.074509803921568626" green="0.84705882352941175" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                         </textView>
@@ -431,7 +409,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RE2-jl-f8t">
-                                    <rect key="frame" x="1339" y="1" width="16" height="557"/>
+                                    <rect key="frame" x="1340" y="1" width="15" height="557"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -443,9 +421,57 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="clearBufferButton:" target="XfG-lQ-9wD" id="BAF-gX-vc1"/>
+                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="BAF-gX-vc1"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Language Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="BBv-e5-cZl">
+                                <rect key="frame" x="747" y="641" width="267" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="i4x-Ev-A0f">
+                                    <rect key="frame" x="2" y="2" width="263" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uw-cW-J8s">
+                                            <rect key="frame" x="4" y="-1" width="108" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="English" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dFM-5q-JNZ" id="5AW-QL-40l">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="Y6o-wI-hJv">
+                                                    <items>
+                                                        <menuItem title="English" state="on" id="dFM-5q-JNZ"/>
+                                                        <menuItem title="German" id="gvD-Bh-4xM"/>
+                                                        <menuItem title="Russian" id="nbp-I2-wbv" userLabel="Russian"/>
+                                                        <menuItem title="Italian" id="G4F-HC-47T" userLabel="Italian"/>
+                                                        <menuItem title="French" id="mxP-0K-qzX" userLabel="French"/>
+                                                        <menuItem title="Polish" id="bUe-BB-M4s" userLabel="Polish"/>
+                                                        <menuItem title="Other" id="Jeu-sH-uf0" userLabel="Other">
+                                                            <connections>
+                                                                <action selector="languageOptionsButton:" target="XfG-lQ-9wD" id="OeY-TX-AEP"/>
+                                                            </connections>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="languagePopUp:" target="XfG-lQ-9wD" id="kkZ-oo-qv6"/>
+                                            </connections>
+                                        </popUpButton>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-K0-HKy">
+                                            <rect key="frame" x="117" y="-5" width="152" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Switch Language" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEq-29-y9Q">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="Mlj-dz-EMF"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -587,11 +613,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="prg-h9-vN6">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xfg-QU-paq">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -646,14 +672,14 @@
                                 <rect key="frame" x="9" y="44" width="471" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="69F-Ax-yx7">
-                                    <rect key="frame" x="1" y="1" width="469" height="665"/>
+                                    <rect key="frame" x="1" y="1" width="454" height="665"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="GVN-mL-6hQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="469" height="665"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="454" height="665"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="469" height="665"/>
+                                            <size key="minSize" width="454" height="665"/>
                                             <size key="maxSize" width="899" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -686,7 +712,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YKc-Xf-nPO">
-                                    <rect key="frame" x="454" y="1" width="16" height="665"/>
+                                    <rect key="frame" x="455" y="1" width="15" height="665"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -832,11 +858,11 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="65t-gM-Mzo">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="G8Q-yt-oSe">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1167,6 +1193,55 @@ DQ
                 <customObject id="HNn-9q-lJz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1425" y="-303.5"/>
+        </scene>
+        <!--Language Controller-->
+        <scene sceneID="yAI-3E-L1W">
+            <objects>
+                <viewController storyboardIdentifier="languagesettings" id="3ua-6r-l7O" customClass="LanguageController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="1xx-aX-Gle">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="114"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" title="Language Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="Mbz-h2-CAz">
+                                <rect key="frame" x="10" y="41" width="283" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="cO2-jx-t8U">
+                                    <rect key="frame" x="2" y="2" width="279" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vxu-Nf-YBu">
+                                            <rect key="frame" x="20" y="7" width="245" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="12" id="3om-rg-on0">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </comboBoxCell>
+                                        </comboBox>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHq-oK-gbx">
+                                <rect key="frame" x="79" y="6" width="152" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Switch Language" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LYk-WP-GCv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickLanguageButton:" target="3ua-6r-l7O" id="rh7-vB-xaR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="languagePicker" destination="Vxu-Nf-YBu" id="Rf8-ss-o4O"/>
+                    </connections>
+                </viewController>
+                <customObject id="8HF-0b-kkv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-528" y="-97"/>
         </scene>
     </scenes>
     <resources>
