@@ -35,49 +35,49 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ED8C7D631F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E4FD1F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::Commands";
 			remoteInfo = Commands;
 		};
-		ED8C7D641F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E4FE1F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::CommandsCore";
 			remoteInfo = CommandsCore;
 		};
-		ED8C7D651F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E4FF1F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::CommandsCore";
 			remoteInfo = CommandsCore;
 		};
-		ED8C7D661F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E5001F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Calabash Launcher Core::Calabash Launcher Core";
 			remoteInfo = "Calabash Launcher Core";
 		};
-		ED8C7D671F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E5011F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::Commands";
 			remoteInfo = Commands;
 		};
-		ED8C7D681F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E5021F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::CommandsCore";
 			remoteInfo = CommandsCore;
 		};
-		ED8C7D691F94B06700FEE6DE /* PBXContainerItemProxy */ = {
+		ED13E5031F94B4AF005B066B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -87,7 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"Calabash Launcher Core::Calabash Launcher Core::Product" /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Calabash Launcher Core::Calabash Launcher Core::Product" /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Calabash Launcher Core::Calabash Launcher CoreTests::Product" /* Calabash_Launcher_CoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = Calabash_Launcher_CoreTests.xctest; path = "Calabash Launcher CoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Commands::Commands::Product" /* Commands */ = {isa = PBXFileReference; lastKnownFileType = text; path = Commands; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Commands::CommandsCore::Product" /* CommandsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,37 +418,37 @@
 		OBJ_47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Calabash Launcher Core::Calabash Launcher Core" /* Calabash Launcher Core */;
-			targetProxy = ED8C7D661F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E5001F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::Commands" /* Commands */;
-			targetProxy = ED8C7D671F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E5011F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::CommandsCore" /* CommandsCore */;
-			targetProxy = ED8C7D681F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E5021F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::Commands" /* Commands */;
-			targetProxy = ED8C7D631F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E4FD1F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::CommandsCore" /* CommandsCore */;
-			targetProxy = ED8C7D641F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E4FE1F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::CommandsCore" /* CommandsCore */;
-			targetProxy = ED8C7D651F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E4FF1F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 		OBJ_81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Calabash Launcher Core::Calabash Launcher CoreTests" /* Calabash Launcher CoreTests */;
-			targetProxy = ED8C7D691F94B06700FEE6DE /* PBXContainerItemProxy */;
+			targetProxy = ED13E5031F94B4AF005B066B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
