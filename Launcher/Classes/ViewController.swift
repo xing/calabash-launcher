@@ -76,6 +76,8 @@ class TasksViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let languageValues = [Language.english.rawValue, Language.german.rawValue, Language.russian.rawValue, Language.italian.rawValue, Language.french.rawValue, Language.polish.rawValue, Language.other.rawValue]
+        languagePopUpButton.addItems(withTitles: languageValues)
         
         if let filePath = applicationStateHandler.filePath {
             pathToCalabashFolder = filePath.absoluteString.replacingOccurrences(of: "file://", with: "")
@@ -490,19 +492,15 @@ class TasksViewController: NSViewController {
         applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
-    @IBAction func languageOptionsButton(_ sender: Any) {
-        applicationStateHandler.language = languagePopUpButton.title
-        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "languagesettings")) as? NSViewController {
-            presentViewControllerAsModalWindow(controller)
-        }
-    }
-    
     @IBAction func languageSwitchButton(_ sender: Any) {
         localization.changeDefaultLocale(language: languagePopUpButton.title)
     }
     
     @IBAction func languagePopUp(_ sender: Any) {
         applicationStateHandler.language = languagePopUpButton.title
+        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "languagesettings")) as? NSViewController, languagePopUpButton.title == Language.other.rawValue {
+            presentViewControllerAsModalWindow(controller)
+        }
     }
     
     func captureStandardOutputAndRouteToTextView(_ task: Process, outputPipe: Pipe) {

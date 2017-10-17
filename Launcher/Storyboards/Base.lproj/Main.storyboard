@@ -434,24 +434,10 @@
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uw-cW-J8s">
                                             <rect key="frame" x="4" y="-1" width="108" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="English" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dFM-5q-JNZ" id="5AW-QL-40l">
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="5AW-QL-40l">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="Y6o-wI-hJv">
-                                                    <items>
-                                                        <menuItem title="English" state="on" id="dFM-5q-JNZ"/>
-                                                        <menuItem title="German" id="gvD-Bh-4xM"/>
-                                                        <menuItem title="Russian" id="nbp-I2-wbv" userLabel="Russian"/>
-                                                        <menuItem title="Italian" id="G4F-HC-47T" userLabel="Italian"/>
-                                                        <menuItem title="French" id="mxP-0K-qzX" userLabel="French"/>
-                                                        <menuItem title="Polish" id="bUe-BB-M4s" userLabel="Polish"/>
-                                                        <menuItem title="Other" id="Jeu-sH-uf0" userLabel="Other">
-                                                            <connections>
-                                                                <action selector="languageOptionsButton:" target="XfG-lQ-9wD" id="OeY-TX-AEP"/>
-                                                            </connections>
-                                                        </menuItem>
-                                                    </items>
-                                                </menu>
+                                                <menu key="menu" id="Y6o-wI-hJv"/>
                                             </popUpButtonCell>
                                             <connections>
                                                 <action selector="languagePopUp:" target="XfG-lQ-9wD" id="kkZ-oo-qv6"/>
