@@ -15,6 +15,7 @@ class LanguageViewController: NSViewController {
     
     @IBOutlet weak var languagePicker: NSComboBox!
     let applicationStateHandler = ApplicationStateHandler()
+    let language = Localization()
     
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -23,15 +24,6 @@ class LanguageViewController: NSViewController {
     }
     
     @IBAction func clickLanguageButton(_ sender: Any) {
-        changeLocale(locale: languagePicker.stringValue)
+        language.changeLocale(locale: languagePicker.stringValue)
     }
-    
-    func changeLocale(locale : String) {
-        if let simUDID = applicationStateHandler.phoneUDID {
-            let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
-            let commands = Commands(arguments: arguments as! [String])
-            try? commands.run()
-        }
-    }
-        
 }

@@ -12,7 +12,7 @@ import CommandsCore
 class Localization {
     let applicationStateHandler = ApplicationStateHandler()
     
-    func changeLocale(language: String) {
+    func changeDefaultLocale(language: String) {
         var locale = "en"
         var willRun = true
         let titleLanguage = Language(rawValue: language)
@@ -36,7 +36,12 @@ class Localization {
         }
         
         if willRun {
-            let simUDID = applicationStateHandler.phoneUDID
+            changeLocale(locale: locale)
+        }
+    }
+    
+    func changeLocale(locale : String) {
+        if let simUDID = applicationStateHandler.phoneUDID {
             let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
             let commands = Commands(arguments: arguments as! [String])
             try? commands.run()

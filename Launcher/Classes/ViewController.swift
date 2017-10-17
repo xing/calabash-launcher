@@ -498,7 +498,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func languageSwitchButton(_ sender: Any) {
-        localization.changeLocale(language: languagePopUpButton.title)
+        localization.changeDefaultLocale(language: languagePopUpButton.title)
     }
     
     @IBAction func languagePopUp(_ sender: Any) {
