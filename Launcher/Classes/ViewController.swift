@@ -13,7 +13,7 @@ class TasksViewController: NSViewController {
     @IBOutlet var phoneComboBox: NSPopUpButton!
     @IBOutlet var languagePopUpButton: NSPopUpButton!
     @IBOutlet var buildPicker: NSPopUpButtonCell!
-    @IBOutlet var newOne: NSComboBox!
+    @IBOutlet var tagPicker: NSComboBox!
     @IBOutlet var simulator_radio: NSButton!
     @IBOutlet var phys_radio: NSButton!
     @IBOutlet var get_device: NSButtonCell!
@@ -112,7 +112,7 @@ class TasksViewController: NSViewController {
         buildPicker.addItem(withTitle: "3. (release) For simulator(tracking enabled)")
         buildPicker.addItem(withTitle: "0. Don't download the APP and use the APP from build folder")
         
-        newOne.completes = true
+        tagPicker.completes = true
         killIrbSession()
         runGeneralIrbSession()
         getSimulators()
@@ -210,7 +210,7 @@ class TasksViewController: NSViewController {
         }
         
         if let tag = applicationStateHandler.tag {
-            newOne.selectItem(withObjectValue: tag)
+            tagPicker.selectItem(withObjectValue: tag)
         }
         
         if let debugState = applicationStateHandler.debugState {
@@ -223,7 +223,7 @@ class TasksViewController: NSViewController {
     
     private func setupTagSelection() {
         tagsController.tags(in: pathToCalabashFolder).forEach({ (tag) in
-            self.newOne.addItem(withObjectValue: tag)
+            self.tagPicker.addItem(withObjectValue: tag)
         })
     }
 
@@ -421,8 +421,8 @@ class TasksViewController: NSViewController {
             arguments.append("-p \(cucumberProfile)")
         }
         
-        if !newOne.stringValue.isEmpty {
-            arguments.append("--t @\(newOne.stringValue)")
+        if !tagPicker.stringValue.isEmpty {
+            arguments.append("--t @\(tagPicker.stringValue)")
         }
         
         buildButton.isEnabled = false
@@ -626,7 +626,7 @@ class TasksViewController: NSViewController {
         applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
-        applicationStateHandler.tag = newOne.stringValue
+        applicationStateHandler.tag = tagPicker.stringValue
         applicationStateHandler.debugState = debugCheckbox.state.rawValue
     }
     
