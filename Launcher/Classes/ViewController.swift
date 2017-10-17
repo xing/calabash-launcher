@@ -22,6 +22,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     
+    let localization = Localization()
     let deviceCollector = DeviceCollector()
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
@@ -218,7 +219,7 @@ class TasksViewController: NSViewController {
         }
         
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUDID = getCurrentDeviceUDID()
+        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
     private func setupTagSelection() {
@@ -411,8 +412,7 @@ class TasksViewController: NSViewController {
                 applicationStateHandler.isLaunched = true
             }
         } else {
-            let simulatorUDID = getCurrentDeviceUDID()
-            arguments.append("DEVICE_TARGET=\(simulatorUDID)")
+            arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
         }
         
         arguments.append(pathToCalabashFolder)
@@ -487,7 +487,7 @@ class TasksViewController: NSViewController {
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUDID = getCurrentDeviceUDID()
+        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
     @IBAction func languageOptionsButton(_ sender: Any) {
@@ -498,7 +498,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func languageSwitchButton(_ sender: Any) {
-        changeLocale()
+        localization.changeLocale(language: languagePopUpButton.title)
     }
     
     @IBAction func languagePopUp(_ sender: Any) {
@@ -694,47 +694,6 @@ class TasksViewController: NSViewController {
             }
             strongSelf.createIRBSessionTask.launch()
             strongSelf.createIRBSessionTask.waitUntilExit()
-        }
-    }
-    
-    func getCurrentDeviceUDID() -> String {
-        let simulatorUDIDs = phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem)
-            .split(separators: "[]")
-            .map(String.init)
-        if simulatorUDIDs.count >= 2 {
-            return simulatorUDIDs[1]
-        }
-        return ""
-    }
-    
-    func changeLocale() {
-        var locale = "en"
-        var willRun = true
-        let titleLanguage = Language(rawValue: languagePopUpButton.title )
-        switch titleLanguage {
-        case .english?:
-            locale = Language.english.identifier
-        case .german?:
-             locale = Language.german.identifier
-        case .russian?:
-            locale = Language.russian.identifier
-        case .italian?:
-            locale = Language.italian.identifier
-        case .french?:
-            locale = Language.french.identifier
-        case .polish?:
-            locale = Language.polish.identifier
-        case .other?:
-            willRun = false
-        default:
-            print("Unknown language")
-        }
-        
-        if willRun {
-            let simUDID = getCurrentDeviceUDID()
-            let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
-            let commands = Commands(arguments: arguments as! [String])
-            try? commands.run()
         }
     }
 }

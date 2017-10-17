@@ -1,0 +1,45 @@
+//
+//  Localization.swift
+//  Calabash Launcher
+//
+//  Created by new mac on 17.10.17.
+//  Copyright © 2017 XING. All rights reserved.
+//
+
+import Foundation
+import CommandsCore
+
+class Localization {
+    let applicationStateHandler = ApplicationStateHandler()
+    
+    func changeLocale(language: String) {
+        var locale = "en"
+        var willRun = true
+        let titleLanguage = Language(rawValue: language)
+        switch titleLanguage {
+        case .english?:
+            locale = Language.english.identifier
+        case .german?:
+            locale = Language.german.identifier
+        case .russian?:
+            locale = Language.russian.identifier
+        case .italian?:
+            locale = Language.italian.identifier
+        case .french?:
+            locale = Language.french.identifier
+        case .polish?:
+            locale = Language.polish.identifier
+        case .other?:
+            willRun = false
+        default:
+            print("Unknown language")
+        }
+        
+        if willRun {
+            let simUDID = applicationStateHandler.phoneUDID
+            let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
+            let commands = Commands(arguments: arguments as! [String])
+            try? commands.run()
+        }
+    }
+}
