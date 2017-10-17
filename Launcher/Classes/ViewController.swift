@@ -698,7 +698,7 @@ class TasksViewController: NSViewController {
     }
     
     func getCurrentDeviceUDID() -> String {
-        let simulatorUDIDs = "\(phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))"
+        let simulatorUDIDs = phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem)
             .split(separators: "[]")
             .map(String.init)
         if simulatorUDIDs.count >= 2 {
