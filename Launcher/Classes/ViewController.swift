@@ -218,7 +218,7 @@ class TasksViewController: NSViewController {
         }
         
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUdid = getCurrentDeviceUDID()
+        applicationStateHandler.phoneUDID = getCurrentDeviceUDID()
     }
     
     private func setupTagSelection() {
@@ -487,7 +487,7 @@ class TasksViewController: NSViewController {
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUdid = getCurrentDeviceUDID()
+        applicationStateHandler.phoneUDID = getCurrentDeviceUDID()
     }
     
     @IBAction func languageOptionsButton(_ sender: Any) {
@@ -731,7 +731,7 @@ class TasksViewController: NSViewController {
         
         if willRun {
             let simUDID = getCurrentDeviceUDID()
-            let arguments = ["Commands", Constants.FilePaths.Bash.changeLang, simUDID, locale]
+            let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
             let commands = Commands(arguments: arguments as! [String])
             try? commands.run()
         }

@@ -27,9 +27,9 @@ class LanguageViewController: NSViewController {
     }
     
     func changeLocale(locale : String) {
-        if let simUDID = applicationStateHandler.phoneUdid {
-            let arguments = ["Commands", Constants.FilePaths.Bash.changeLang!, simUDID, locale]
-            let commands = Commands(arguments: arguments)
+        if let simUDID = applicationStateHandler.phoneUDID {
+            let arguments = ["Commands", Constants.FilePaths.Bash.changeLanguage, simUDID, locale]
+            let commands = Commands(arguments: arguments as! [String])
             try? commands.run()
         }
     }
