@@ -731,8 +731,8 @@ class TasksViewController: NSViewController {
         
         if willRun {
             let simUDID = getCurrentDeviceUDID()
-            let arguments = ["Commands", Constants.FilePaths.Bash.changeLang!, simUDID, locale]
-            let commands = Commands(arguments: arguments)
+            let arguments = ["Commands", Constants.FilePaths.Bash.changeLang, simUDID, locale]
+            let commands = Commands(arguments: arguments as! [String])
             try? commands.run()
         }
     }
