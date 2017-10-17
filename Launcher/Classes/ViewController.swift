@@ -710,20 +710,21 @@ class TasksViewController: NSViewController {
     func changeLocale() {
         var locale = "en"
         var willRun = true
-        switch languagePopUpButton.title {
-        case Language.english.rawValue:
+        let titleLanguage = Language(rawValue: languagePopUpButton.title )
+        switch titleLanguage {
+        case .english?:
             locale = Language.english.identifier
-        case Language.german.rawValue:
+        case .german?:
              locale = Language.german.identifier
-        case Language.russian.rawValue:
+        case .russian?:
             locale = Language.russian.identifier
-        case Language.italian.rawValue:
+        case .italian?:
             locale = Language.italian.identifier
-        case Language.french.rawValue:
+        case .french?:
             locale = Language.french.identifier
-        case Language.polish.rawValue:
+        case .polish?:
             locale = Language.polish.identifier
-        case "Other":
+        case .other?:
             willRun = false
         default:
             print("Unknown language")

@@ -15,6 +15,7 @@ enum Language: String {
     case italian = "Italian"
     case french = "French"
     case polish = "Polish"
+    case other = "Other"
 }
 
 extension Language {
@@ -32,6 +33,8 @@ extension Language {
             return "fr"
         case .polish:
             return "pl"
+        case .other:
+            return "other"
         }
     }
 }
