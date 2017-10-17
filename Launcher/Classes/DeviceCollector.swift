@@ -46,15 +46,10 @@ class DeviceCollector {
         self.outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
     }
     
-    // FIXME: Use regular expression here
     func getDeviceUDID(device : String) -> String {
-        let simulatorUDIDs = device
-            .split(separators: "[]")
-            .map(String.init)
-        if simulatorUDIDs.count >= 2 {
-            return simulatorUDIDs[1]
-        }
-        return ""
+        let regex = "\\[(.*?)\\]"
+        let match = RegexHandler().matchesForRegexInText(regex: regex, text: device)
+        return match.first?.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "") ?? ""
     }
     
 }

@@ -13,6 +13,7 @@
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
 		D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */; };
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
+		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
 		ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */; };
 		ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */; };
 		ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */ = {isa = PBXBuildFile; fileRef = ED2C34771E16C969006AF7B4 /* send_to_irb.command */; };
@@ -69,6 +70,7 @@
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeBashOutput.swift; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				ED51B7191F90BE5300759547 /* PathWarningViewController.swift */,
 				ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */,
 				D7E21B491F969FDD0044169A /* Localization.swift */,
+				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				ED51B7181F8FC2F500759547 /* PlistOperations.swift in Sources */,
 				ED51B71A1F90BE5300759547 /* PathWarningViewController.swift in Sources */,
 				5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */,
+				D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
