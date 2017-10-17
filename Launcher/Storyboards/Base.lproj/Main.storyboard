@@ -1194,10 +1194,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="1425" y="-303.5"/>
         </scene>
-        <!--Language Controller-->
+        <!--Language View Controller-->
         <scene sceneID="yAI-3E-L1W">
             <objects>
-                <viewController storyboardIdentifier="languagesettings" id="3ua-6r-l7O" customClass="LanguageController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="languagesettings" id="3ua-6r-l7O" customClass="LanguageViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1xx-aX-Gle">
                         <rect key="frame" x="0.0" y="0.0" width="310" height="114"/>
                         <autoresizingMask key="autoresizingMask"/>

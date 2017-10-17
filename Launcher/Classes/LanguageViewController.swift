@@ -11,7 +11,7 @@ import Foundation
 import AppKit
 import CommandsCore
 
-class LanguageController: NSViewController {
+class LanguageViewController: NSViewController {
     
     @IBOutlet weak var languagePicker: NSComboBox!
     let applicationStateHandler = ApplicationStateHandler()
