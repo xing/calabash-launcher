@@ -181,7 +181,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="jmI-4w-F6Z"/>
+                                    <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
                                 </connections>
                             </textField>
                             <box fixedFrame="YES" title="Setup Your Launcher:" translatesAutoresizingMaskIntoConstraints="NO" id="fMH-ej-SOh">
@@ -221,7 +221,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="VJu-Fs-Yn3"/>
+                                                <action selector="startTask:" target="XfG-lQ-9wD" id="srj-pJ-TM8"/>
                                             </connections>
                                         </button>
                                         <button toolTip="Stop building the project" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0X-ya-sxT" userLabel="Stop Button">
@@ -232,7 +232,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="U6k-1h-Lil"/>
+                                                <action selector="stopTask:" target="XfG-lQ-9wD" id="cV6-aI-ETh"/>
                                                 <binding destination="XfG-lQ-9wD" name="enabled" keyPath="isRunning" id="zNi-ef-zuJ"/>
                                             </connections>
                                         </button>
@@ -259,7 +259,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="a2q-rM-DR0"/>
+                                                <action selector="toggleDebug:" target="XfG-lQ-9wD" id="jMY-Xw-XyJ"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -281,7 +281,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="9MI-Xg-phE"/>
+                                                <action selector="simulator_radio:" target="XfG-lQ-9wD" id="SiW-TS-bPu"/>
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9k-ER-WQ4">
@@ -290,10 +290,10 @@
                                             <buttonCell key="cell" type="radio" title="Physical Device" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hyY-B2-8Td">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <connections>
-                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="2dd-nt-b8Q"/>
-                                                </connections>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="phys_radio:" target="XfG-lQ-9wD" id="pW2-7w-6l6"/>
+                                            </connections>
                                         </button>
                                         <popUpButton horizontalHuggingPriority="1000" verticalHuggingPriority="1000" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="21" translatesAutoresizingMaskIntoConstraints="NO" id="2d7-eQ-bCS">
                                             <rect key="frame" x="6" y="7" width="585" height="26"/>
@@ -313,10 +313,10 @@
                                             <buttonCell key="cell" type="push" title="Detect device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZC-Bd-bFC">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <connections>
-                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="MMe-ra-MzS"/>
-                                                </connections>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="get_device:" target="XfG-lQ-9wD" id="wGt-Fz-inG"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -342,10 +342,10 @@
                                                         <menuItem title="Item 3" id="amt-fI-xjk"/>
                                                     </items>
                                                 </menu>
-                                                <connections>
-                                                    <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="oto-Pk-kwd"/>
-                                                </connections>
                                             </popUpButtonCell>
+                                            <connections>
+                                                <action selector="buildPicker:" target="XfG-lQ-9wD" id="IwR-po-4H7"/>
+                                            </connections>
                                         </popUpButton>
                                     </subviews>
                                 </view>
@@ -613,11 +613,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="prg-h9-vN6">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xfg-QU-paq">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -858,11 +858,11 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="65t-gM-Mzo">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="G8Q-yt-oSe">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
