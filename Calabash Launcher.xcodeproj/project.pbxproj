@@ -74,7 +74,7 @@
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeBashOutput.swift; sourceTree = "<group>"; };
-		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommandsCore.framework; path = Launcher/Frameworks/CommandsCore.framework; sourceTree = "<group>"; };
+		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
@@ -125,21 +125,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B9639FB1F93C4DA006E86C5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ED1762DC1F975B4500C84290 /* CommandsCore.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		ED4C14D41DB29FB700A1190E = {
 			isa = PBXGroup;
 			children = (
 				EDD303971F8F88400042E27F /* Launcher */,
 				EDD303931F8F869B0042E27F /* Scripts */,
 				ED4C14DE1DB29FB700A1190E /* Products */,
-				3B9639FB1F93C4DA006E86C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +242,7 @@
 		EDD645CE1F975789009E9D8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED1762DC1F975B4500C84290 /* CommandsCore.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
