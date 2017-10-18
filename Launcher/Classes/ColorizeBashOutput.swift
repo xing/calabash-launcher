@@ -37,27 +37,6 @@ func getCode(key: Int) -> Any? {
     return nil
 }
 
-
-
-func matchesForRegexInText(regex: String, text: String, global: Bool = false) -> [String] {
-    guard let regex = try? NSRegularExpression(pattern: regex) else { return [] }
-    let nsString = text as NSString
-    let results = regex.matches(in: text, range: NSRange(location: 0, length: text.count))
-    
-    if !global && results.count == 1 {
-        var result: [String] = []
-        
-        for i in 0..<results[0].numberOfRanges {
-            result.append(nsString.substring(with: results[0].range(at: i)))
-        }
-        
-        return result
-    }
-    else {
-        return results.map { nsString.substring(with: $0.range) }
-    }
-}
-
 struct ANSIGroup {
     var codes:[Int]
     var string:String
@@ -70,14 +49,14 @@ struct ANSIGroup {
 
 func parseExistingANSI(string: String) -> [ANSIGroup] {
     var results:[ANSIGroup] = []
-    
-    let matches = matchesForRegexInText(regex: "\\u001B\\[([^m]*)m(.+?)\\u001B\\[0m", text: string, global: true)
+    let regex = RegexHandler()
+    let matches = regex.matchesForRegexInText(regex: "\\u001B\\[([^m]*)m(.+?)\\u001B\\[0m", text: string, global: true)
     
     for try_mathc in matches {
-        let mutliple_match = matchesForRegexInText(regex: "\\u001B\\[([^m]*)m", text: try_mathc, global: true)
+        let mutliple_match = regex.matchesForRegexInText(regex: "\\u001B\\[([^m]*)m", text: try_mathc, global: true)
         if mutliple_match.count > 2 {
             for i in 0...mutliple_match.count - 2 {
-                var multiple_parts = matchesForRegexInText(regex: "\\u001B\\[(\(mutliple_match[i].replacingOccurrences(of: "\u{1B}[", with: "").replacingOccurrences(of: "m", with: "")))m(.+?)\\u001B\\[0m", text: try_mathc)
+                var multiple_parts = regex.matchesForRegexInText(regex: "\\u001B\\[(\(mutliple_match[i].replacingOccurrences(of: "\u{1B}[", with: "").replacingOccurrences(of: "m", with: "")))m(.+?)\\u001B\\[0m", text: try_mathc)
                 
                 if multiple_parts.count == 0 {
                     continue
@@ -89,7 +68,7 @@ func parseExistingANSI(string: String) -> [ANSIGroup] {
                 results.append(ANSIGroup(codes: codes.filter { Int($0) != nil }.map { Int($0)! }, string: string))
             }
         } else {
-            var parts = matchesForRegexInText(regex: "\\u001B\\[([^m]*)m(.+?)\\u001B\\[0m", text: try_mathc),
+            var parts = regex.matchesForRegexInText(regex: "\\u001B\\[([^m]*)m(.+?)\\u001B\\[0m", text: try_mathc),
             codes = parts[1].split {$0 == ";"}.map { String($0) },
                                                               string = parts[2].replacingOccurrences(of: "\u{1B}", with: "")
             string.removingRegexMatches(pattern: "\\[(?<=\\[)(\\d)(.*?)(?=\\m)\\m")
