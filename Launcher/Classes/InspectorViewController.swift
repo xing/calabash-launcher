@@ -35,7 +35,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     @IBOutlet var gestureRecognizer: NSClickGestureRecognizer!
     @IBOutlet var gestureRecognizableView: NSImageView!
     @IBOutlet var window: NSView!
-    @IBOutlet var getScreen: NSButtonCell!
     @IBOutlet var coordinatesMarker: NSImageView!
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet var elementTextField: NSTextField!
@@ -51,9 +50,8 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.getElementsButton.isEnabled = false
         self.spinner.startAnimation(self)
         self.gestureRecognizer.isEnabled = false
-        self.getScreen.isEnabled = false
         }
-        }
+    }
 
     func enableAllElements() {
         isRunning = false
@@ -62,8 +60,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.getElementsButton.isEnabled = true
         self.spinner.stopAnimation(self)
         self.gestureRecognizer.isEnabled = true
-        self.getScreen.isEnabled = true
-    }
+        }
     }
     
     override func viewDidAppear() {
@@ -82,13 +79,10 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.getHomeDirectoryPath()
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
-        
-        
-            self.getScreen.isEnabled = true
-            self.getElementsButton.isEnabled = true
-            self.startDeviceButton.isEnabled = true
-            self.gestureRecognizer.isEnabled = true
-            self.cloneButton.isHidden = true
+        self.getElementsButton.isEnabled = true
+        self.startDeviceButton.isEnabled = true
+        self.gestureRecognizer.isEnabled = true
+        self.cloneButton.isHidden = true
     }
 
     func setUserDefaultsListener(){
@@ -98,12 +92,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
    override func observeValue(forKeyPath: String?, of: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
        if forKeyPath == "FilePath" {
             self.getHomeDirectoryPath()
-        
-                self.getScreen.isEnabled = true
-                self.getElementsButton.isEnabled = true
-                self.startDeviceButton.isEnabled = true
-                self.gestureRecognizer.isEnabled = true
-        
+            self.getElementsButton.isEnabled = true
+            self.startDeviceButton.isEnabled = true
+            self.gestureRecognizer.isEnabled = true
         }
     }
     
