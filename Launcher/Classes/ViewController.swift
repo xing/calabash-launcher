@@ -569,10 +569,12 @@ class TasksViewController: NSViewController {
         deviceCollector.simulators(completion: {
             DispatchQueue.global(qos: .background).async { [weak self] in
                 guard let strongSelf = self else { return }
-                strongSelf.buildButton.isEnabled = true
-                strongSelf.get_device.isEnabled = true
-                strongSelf.spinner.stopAnimation(strongSelf)
-                strongSelf.progressBar.stopAnimation(strongSelf)
+                DispatchQueue.main.async {
+                    strongSelf.buildButton.isEnabled = true
+                    strongSelf.spinner.stopAnimation(strongSelf)
+                    strongSelf.get_device.isEnabled = true
+                    strongSelf.progressBar.stopAnimation(strongSelf)
+                }
                 strongSelf.isRunning = false
             }
         }) { output in
@@ -591,10 +593,12 @@ class TasksViewController: NSViewController {
         
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.buildButton.isEnabled = true
-            strongSelf.get_device.isEnabled = true
-            strongSelf.spinner.stopAnimation(strongSelf)
-            strongSelf.progressBar.stopAnimation(strongSelf)
+            DispatchQueue.main.async {
+                strongSelf.buildButton.isEnabled = true
+                strongSelf.get_device.isEnabled = true
+                strongSelf.spinner.stopAnimation(strongSelf)
+                strongSelf.progressBar.stopAnimation(strongSelf)
+            }
             strongSelf.isRunning = false
         }
     }
