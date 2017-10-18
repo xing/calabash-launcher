@@ -12,21 +12,17 @@ import CommandsCore
 class TagsController {
     
     func tags(in folderPath: String) -> [String] {
-        let pipe = Pipe()
-        let tagsProcess = Process()
-        tagsProcess.standardOutput = pipe
-        tagsProcess.launchPath = Constants.FilePaths.Bash.tags
-        tagsProcess.arguments = [folderPath]
+        var tags = [String]()
         
-        tagsProcess.launch()
-        tagsProcess.waitUntilExit()
+        if let launchPath = Constants.FilePaths.Bash.tags {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = {text in
+                tags.append(contentsOf: text.components(separatedBy: "\n"))
+            }
 
-        let output = pipe.fileHandleForReading.readDataToEndOfFile()
-        if let outputString = String(data: output, encoding: String.Encoding.utf8), outputString != "" {
-            let components = outputString.components(separatedBy: "\n")
-            return components
+            let commands = CommandsCore.CommandExecutor()
+            commands.executeCommand(at: launchPath, arguments: [folderPath], outputStream: outputStream)
         }
-        
-        return []
+        return tags
     }
 }
