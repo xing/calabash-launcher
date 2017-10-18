@@ -1,9 +1,10 @@
 import Cocoa
 import Foundation
 import AppKit
+import CommandsCore
 
 class InspectorViewController: NSViewController, NSTableViewDataSource {
-
+    let commands = CommandsCore.CommandExecutor()
     var runDeviceTask:Process!
     var runDeviceTask1:Process!
     var runDeviceTask2:Process!
@@ -114,10 +115,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         let item = sender.item(atRow: sender.clickedRow)
         if item != nil {
-            flashElement(element: item as! String)
+            commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item as! String])
         }
     }
-
     
     @IBAction func getScreen(_ sender: Any) {
         timer.invalidate()
@@ -505,20 +505,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 self.enableAllElements()
         }
         
-    }
-    
-    func flashElement(element : String) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.async {
-            let path = Constants.FilePaths.Bash.flash
-            self.buildTaskNew12 = Process()
-            self.buildTaskNew12.launchPath = path
-            var arguments:[String] = []
-            arguments.append(element)
-            self.buildTaskNew12.arguments = arguments
-            self.buildTaskNew12.launch()
-        }
     }
     
     func getElementsFromFile() {
