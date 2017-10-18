@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B9639FC1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */; };
 		5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */; };
 		5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C911F8F4FC40001BC50 /* Constants.swift */; };
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
@@ -41,6 +40,7 @@
 		EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC551E51DB36F0C00293935 /* StreamReader.swift */; };
 		EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5651E1AA3ED00738F91 /* helpers.rb */; };
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
+		EDD645D01F97579C009E9D8C /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD645CF1F97579C009E9D8C /* CommandsCore.framework */; };
 		EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE3851E0BD2D60069B9BC /* clicked_2.png */; };
 		EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */; };
 		EDEBE3A01E0C266F0069B9BC /* yourad.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39F1E0C266F0069B9BC /* yourad.png */; };
@@ -64,7 +64,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D948C911F8F4FC40001BC50 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		EDC551E51DB36F0C00293935 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		EDCDF5651E1AA3ED00738F91 /* helpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = helpers.rb; sourceTree = "<group>"; };
 		EDCDF5671E1AAC9F00738F91 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
+		EDD645CF1F97579C009E9D8C /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		EDEBE3851E0BD2D60069B9BC /* clicked_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicked_2.png; sourceTree = "<group>"; };
 		EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9639FC1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework in Frameworks */,
+				EDD645D01F97579C009E9D8C /* CommandsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +125,6 @@
 		3B9639FB1F93C4DA006E86C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +227,7 @@
 		EDD303971F8F88400042E27F /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				EDD645CE1F975789009E9D8C /* Frameworks */,
 				EDD303981F8F88AB0042E27F /* Storyboards */,
 				ED4C14E91DB29FB700A1190E /* Info.plist */,
 				EDD303961F8F879C0042E27F /* Assets */,
@@ -242,6 +242,14 @@
 				ED4C14E61DB29FB700A1190E /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		EDD645CE1F975789009E9D8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDD645CF1F97579C009E9D8C /* CommandsCore.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		FD1047061F90AB2100A89D1C /* Controllers */ = {
@@ -285,6 +293,7 @@
 				TargetAttributes = {
 					ED4C14DC1DB29FB700A1190E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 677393NEQ3;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -494,8 +503,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				DEVELOPMENT_TEAM = 677393NEQ3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Launcher/Frameworks",
+				);
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -515,8 +527,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				DEVELOPMENT_TEAM = 677393NEQ3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Launcher/Frameworks",
+				);
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
