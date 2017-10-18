@@ -14,6 +14,8 @@
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
 		ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */; };
+		ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; };
+		ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */; };
 		ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */ = {isa = PBXBuildFile; fileRef = ED2C34771E16C969006AF7B4 /* send_to_irb.command */; };
 		ED399A461DBA0447000FA4AA /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = ED399A451DBA0447000FA4AA /* console.command */; };
@@ -40,7 +42,6 @@
 		EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC551E51DB36F0C00293935 /* StreamReader.swift */; };
 		EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5651E1AA3ED00738F91 /* helpers.rb */; };
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
-		EDD645D01F97579C009E9D8C /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD645CF1F97579C009E9D8C /* CommandsCore.framework */; };
 		EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE3851E0BD2D60069B9BC /* clicked_2.png */; };
 		EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */; };
 		EDEBE3A01E0C266F0069B9BC /* yourad.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39F1E0C266F0069B9BC /* yourad.png */; };
@@ -52,13 +53,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ED4321041E157048007B5025 /* CopyFiles */ = {
+		ED1762E21F975B7000C84290 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -71,6 +74,7 @@
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeBashOutput.swift; sourceTree = "<group>"; };
+		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommandsCore.framework; path = Launcher/Frameworks/CommandsCore.framework; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
@@ -98,7 +102,6 @@
 		EDC551E51DB36F0C00293935 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		EDCDF5651E1AA3ED00738F91 /* helpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = helpers.rb; sourceTree = "<group>"; };
 		EDCDF5671E1AAC9F00738F91 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
-		EDD645CF1F97579C009E9D8C /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		EDEBE3851E0BD2D60069B9BC /* clicked_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicked_2.png; sourceTree = "<group>"; };
 		EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDD645D01F97579C009E9D8C /* CommandsCore.framework in Frameworks */,
+				ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +128,7 @@
 		3B9639FB1F93C4DA006E86C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED1762DC1F975B4500C84290 /* CommandsCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,7 +251,6 @@
 		EDD645CE1F975789009E9D8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EDD645CF1F97579C009E9D8C /* CommandsCore.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -270,7 +273,7 @@
 				ED4C14D91DB29FB700A1190E /* Sources */,
 				ED4C14DA1DB29FB700A1190E /* Frameworks */,
 				ED4C14DB1DB29FB700A1190E /* Resources */,
-				ED4321041E157048007B5025 /* CopyFiles */,
+				ED1762E21F975B7000C84290 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
