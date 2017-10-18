@@ -1,22 +1,23 @@
 #!/bin/bash --login
-
-file=${5}/Gemfile
+# Path
+file=${3}/Gemfile
 if [ ! -e "$file" ]; then
 echo $file
 echo "The path to Calabash folder is incorrect, please choose the right one. File chooser is in the APP Settings"
 exit
 fi
 
-export ${3}
-export ${4}
+# Debug mode
 export ${1}
-
-cd ${5}
+# Device Target
+export ${2}
+# Path
+cd ${3}
 
 if [[ $(bundle check) != *"The Gemfile's dependencies are satisfied"* ]];then
 echo "Installing missing Gems"
 bundle install
 fi
-
-cd ${5} && bundle exec cucumber -c ${6} ${2}
+# Path, Profile, Tag
+cd ${3} && bundle exec cucumber -c ${4} ${5}
 exit

@@ -1,6 +1,7 @@
 import Cocoa
 import Foundation
 import AppKit
+import CommandsCore
 
 class TasksViewController: NSViewController {
     
@@ -12,7 +13,7 @@ class TasksViewController: NSViewController {
     @IBOutlet var phoneComboBox: NSPopUpButton!
     @IBOutlet var languagePopUpButton: NSPopUpButton!
     @IBOutlet var buildPicker: NSPopUpButtonCell!
-    @IBOutlet var newOne: NSComboBox!
+    @IBOutlet var tagPicker: NSComboBox!
     @IBOutlet var simulator_radio: NSButton!
     @IBOutlet var phys_radio: NSButton!
     @IBOutlet var get_device: NSButtonCell!
@@ -21,6 +22,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     
+    let localization = Localization()
     let deviceCollector = DeviceCollector()
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
@@ -66,7 +68,6 @@ class TasksViewController: NSViewController {
         
         // Disable these elements for the moment, as it cannot work for people outside XING
         buildPicker.isEnabled = false
-        languagePopUpButton.isEnabled = false
         get_device.isEnabled = false
         phys_radio.isEnabled = false
         simulator_radio.state = .on
@@ -75,6 +76,8 @@ class TasksViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let languageValues = [Language.english.rawValue, Language.german.rawValue, Language.russian.rawValue, Language.italian.rawValue, Language.french.rawValue, Language.polish.rawValue, Language.other.rawValue]
+        languagePopUpButton.addItems(withTitles: languageValues)
         
         if let filePath = applicationStateHandler.filePath {
             pathToCalabashFolder = filePath.absoluteString.replacingOccurrences(of: "file://", with: "")
@@ -112,7 +115,7 @@ class TasksViewController: NSViewController {
         buildPicker.addItem(withTitle: "3. (release) For simulator(tracking enabled)")
         buildPicker.addItem(withTitle: "0. Don't download the APP and use the APP from build folder")
         
-        newOne.completes = true
+        tagPicker.completes = true
         killIrbSession()
         runGeneralIrbSession()
         getSimulators()
@@ -160,7 +163,7 @@ class TasksViewController: NSViewController {
         phoneComboBox.removeAllItems()
         
         if simulator_radio.state == .on {
-            // languagePopUpButton.isEnabled = true
+            languagePopUpButton.isEnabled = true
             phoneComboBox.addItems(withTitles: simulators)
         } else {
             get_device.isEnabled = true
@@ -210,17 +213,20 @@ class TasksViewController: NSViewController {
         }
         
         if let tag = applicationStateHandler.tag {
-            newOne.selectItem(withObjectValue: tag)
+            tagPicker.selectItem(withObjectValue: tag)
         }
         
         if let debugState = applicationStateHandler.debugState {
             debugCheckbox.state = NSControl.StateValue(rawValue: debugState)
         }
+        
+        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
+        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
     private func setupTagSelection() {
         tagsController.tags(in: pathToCalabashFolder).forEach({ (tag) in
-            self.newOne.addItem(withObjectValue: tag)
+            self.tagPicker.addItem(withObjectValue: tag)
         })
     }
 
@@ -303,7 +309,7 @@ class TasksViewController: NSViewController {
     @IBAction func simulator_radio(_ sender: Any) {
         phys_radio.state = .off
         get_device.isEnabled = false
-        // languagePopUpButton.isEnabled = true
+        languagePopUpButton.isEnabled = true
         
         phoneComboBox.removeAllItems()
         
@@ -399,14 +405,6 @@ class TasksViewController: NSViewController {
         } else {
             arguments.append("DEBUG=0")
         }
-        if !newOne.stringValue.isEmpty {
-            arguments.append("--t @\(newOne.stringValue)")
-        }
-        
-        
-        let simulatorUDIDs = "\(phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))"
-            .split(separators: "[]")
-            .map(String.init)
         
         if phys_radio.state == .on {
             //arguments.append("DEVICE_IP=http://\(device_name.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: "\'", with: "")).xing.hh:37265")
@@ -415,23 +413,18 @@ class TasksViewController: NSViewController {
                 // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
                 applicationStateHandler.isLaunched = true
             }
-        } else if simulatorUDIDs.count >= 2 {
-            arguments.append("DEVICE_TARGET=\(simulatorUDIDs[1])")
-        }
-        
-        switch languagePopUpButton.title {
-        case Language.english.rawValue:
-            arguments.append("TEST_LANGUAGE=\(Language.english.identifier)")
-        case Language.german.rawValue:
-            arguments.append("TEST_LANGUAGE=\(Language.english.identifier)")
-        default:
-            print("Unknown language")
+        } else {
+            arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
         }
         
         arguments.append(pathToCalabashFolder)
 
         if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
+        }
+        
+        if !tagPicker.stringValue.isEmpty {
+            arguments.append("--t @\(tagPicker.stringValue)")
         }
         
         buildButton.isEnabled = false
@@ -482,6 +475,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
+        
         do {
             try fileManager.removeItem(atPath: file
                 .replacingOccurrences(of: "file://", with: "")
@@ -490,6 +484,22 @@ class TasksViewController: NSViewController {
         
         if isRunning {
             buildProcess.terminate()
+        }
+    }
+
+    @IBAction func clickPhoneChooser(_ sender: Any) {
+        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
+        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
+    }
+    
+    @IBAction func languageSwitchButton(_ sender: Any) {
+        localization.changeDefaultLocale(language: languagePopUpButton.title)
+    }
+    
+    @IBAction func languagePopUp(_ sender: Any) {
+        applicationStateHandler.language = languagePopUpButton.title
+        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "languagesettings")) as? NSViewController, languagePopUpButton.title == Language.other.rawValue {
+            presentViewControllerAsModalWindow(controller)
         }
     }
     
@@ -614,7 +624,7 @@ class TasksViewController: NSViewController {
         applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
-        applicationStateHandler.tag = newOne.stringValue
+        applicationStateHandler.tag = tagPicker.stringValue
         applicationStateHandler.debugState = debugCheckbox.state.rawValue
     }
     

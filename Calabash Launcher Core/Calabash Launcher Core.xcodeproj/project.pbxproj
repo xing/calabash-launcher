@@ -87,7 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"Calabash Launcher Core::Calabash Launcher Core::Product" /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Calabash Launcher Core::Calabash Launcher Core::Product" /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Calabash Launcher Core::Calabash Launcher CoreTests::Product" /* Calabash_Launcher_CoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = Calabash_Launcher_CoreTests.xctest; path = "Calabash Launcher CoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Commands::Commands::Product" /* Commands */ = {isa = PBXFileReference; lastKnownFileType = text; path = Commands; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Commands::CommandsCore::Product" /* CommandsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,7 +201,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -210,7 +210,6 @@
 				OBJ_13 /* Dependencies */,
 				OBJ_21 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -346,7 +345,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

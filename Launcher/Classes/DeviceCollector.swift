@@ -45,4 +45,11 @@ class DeviceCollector {
         }
         self.outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
     }
+    
+    func getDeviceUDID(device : String) -> String {
+        let regex = "\\[(.*?)\\]"
+        let match = RegexHandler().matchesForRegexInText(regex: regex, text: device)
+        return match.first?.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "") ?? ""
+    }
+    
 }

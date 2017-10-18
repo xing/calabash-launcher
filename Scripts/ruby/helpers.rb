@@ -602,5 +602,11 @@ end
     end
     
 end
+    
+def set_sim_locale_and_lang(sim_udid, app_locale)
+    sim = RunLoop::Device.device_with_identifier(sim_udid)
+    RunLoop::CoreSimulator.set_locale(sim, app_locale)
+    RunLoop::CoreSimulator.set_language(sim, app_locale)
+end
 
 

@@ -48,12 +48,6 @@ extension String {
     }
 }
 
-extension Collection where Iterator.Element: Equatable {
-    func split<S: Sequence>(separators: S) -> [SubSequence] where Iterator.Element == S.Iterator.Element {
-        return split { separators.contains($0) }
-    }
-}
-
 extension Bundle {
     enum FileType: String {
         case ruby = "rb"
