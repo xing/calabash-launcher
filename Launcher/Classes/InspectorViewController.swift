@@ -1,9 +1,10 @@
 import Cocoa
 import Foundation
 import AppKit
+import CommandsCore
 
 class InspectorViewController: NSViewController, NSTableViewDataSource {
-
+    let commands = CommandsCore.CommandExecutor()
     var runDeviceTask:Process!
     var runDeviceTask1:Process!
     var runDeviceTask2:Process!
@@ -114,10 +115,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         let item = sender.item(atRow: sender.clickedRow)
         if item != nil {
-            flashElement(element: item as! String)
+            commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item as! String])
         }
     }
-
     
     @IBAction func getScreen(_ sender: Any) {
         timer.invalidate()
@@ -297,7 +297,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         if enableSpinner {
             self.disableAllElements()
         }
-        
         guard FileManager.default.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName)
                 else {
                     if numberOfRetries == retryCount {
@@ -312,12 +311,10 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                                                                                           execute: { [weak self] in
                                                                                             self?.waitingForFile(fileName: fileName, numberOfRetries: numberOfRetries, enableSpinner: enableSpinner, completion: completion)
                     })
-                    
                     retryCount += 1
                     return
             }
         retryCount = 0
-        
         completion()
         }
     
@@ -410,33 +407,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         
     }
     
-
-    func syncScreen() {
-        
-        do {
-            try fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch _ as NSError {
-        }
-        
-        let taskQueue9 = DispatchQueue.global(qos: .background)
-        
-        taskQueue9.async {
-            let path = Constants.FilePaths.Bash.screen
-            self.runDeviceTask3 = Process()
-           
-            self.runDeviceTask3.launchPath = path
-            var arguments:[String] = []
-            arguments.append(self.pathToCalabashFolder)
-            
-            self.runDeviceTask3.arguments = arguments
-            
-            self.runDeviceTask3.launch()
-
-        }
-        
-    }
-    
-
     func captureStandardOutputAndRouteToTextView(_ task:Process) {
 
         outputPipe = Pipe()
@@ -474,6 +444,23 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
     }
     
+    func syncScreen() {
+        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+        commands.executeCommand(at: Constants.FilePaths.Bash.screen ?? "", arguments: [])
+    }
+    
+    func getScreenProcs() {
+        self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 40) {
+            let imageURL = URL(fileURLWithPath: "/tmp/screenshot_0.png")
+            let image = NSImage(contentsOfFile: imageURL.path)
+            DispatchQueue.main.async {
+                self.gestureRecognizableView.image = image
+            }
+            try? self.fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+            self.enableAllElements()
+        }
+    }
+    
     func changeScreenshot() {
         let imageURL = URL(fileURLWithPath: "/tmp/screenshot_0.png")
         let image = NSImage(contentsOfFile: imageURL.path)
@@ -486,39 +473,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         } catch _ as NSError {
         }
         
-    }
-    
-    func getScreenProcs() {
-        
-        self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 40) {
-            
-
-        let imageURL = URL(fileURLWithPath: "/tmp/screenshot_0.png")
-        let image = NSImage(contentsOfFile: imageURL.path)
-        DispatchQueue.main.async {
-                self.gestureRecognizableView.image = image
-            }
-        do {
-            try self.fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch _ as NSError {
-        }
-                self.enableAllElements()
-        }
-        
-    }
-    
-    func flashElement(element : String) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.async {
-            let path = Constants.FilePaths.Bash.flash
-            self.buildTaskNew12 = Process()
-            self.buildTaskNew12.launchPath = path
-            var arguments:[String] = []
-            arguments.append(element)
-            self.buildTaskNew12.arguments = arguments
-            self.buildTaskNew12.launch()
-        }
     }
     
     func getElementsFromFile() {

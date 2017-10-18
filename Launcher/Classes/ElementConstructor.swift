@@ -1,6 +1,7 @@
 import Cocoa
 import Foundation
 import AppKit
+import CommandsCore
 
 class ElementConstructor: NSViewController, NSTableViewDataSource {
     
@@ -13,6 +14,7 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
     var runDeviceTask7: Process!
     var buildTaskNew122: Process!
     var retryCount: Int = 0
+    let commands = CommandsCore.CommandExecutor()
     
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var pushButton: NSButton!
@@ -26,8 +28,8 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
         getElements()
     }
     
-    
     override func viewDidAppear() {
+        super.viewDidAppear()
         pushButton.title = "Find unique elements for \(Shared.shared.stringValue ?? "Invalid string")"
     }
 
@@ -76,91 +78,37 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
                                                                                       execute: { [weak self] in
                                                                                         self?.waitingForFile(fileName: fileName, numberOfRetries: numberOfRetries, completion: completion)
                 })
-                
+
                 retryCount += 1
                 return
         }
         retryCount = 0
-        
+
         completion()
     }
     
     func getElements() {
         parent_collection_list = []
-        do {
-            try fileManager.removeItem(atPath: "/tmp/uniq_elements.txt")
-        } catch _ as NSError {}
+        var elements = [String]()
+        
         var arguments:[String] = Shared.shared.coordinates
         arguments.append(Shared.shared.stringValue)
         arguments.append(String(childCheckbox.state.rawValue))
         arguments.append(String(siblingCheckbox.state.rawValue))
         arguments.append(String(indexCheckbox.state.rawValue))
         
-        getElementsByOffset(arguments)
-        
-        let filePath = "/tmp/uniq_elements.txt"
-        
-        waitingForFile(fileName: "/tmp/uniq_elements.txt", numberOfRetries: 999) {
-        DispatchQueue.main.async {
-        if let aStreamReader = StreamReader(path: filePath) {
-            defer {
-                aStreamReader.close()
-            }
-            while let url_line = aStreamReader.nextLine() {
+        let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = {text in
+            elements.append(text)
+        }
 
-                    self.parent_collection_list.append(url_line)
-                }
-            }
-            
-            if self.parent_collection_list == [] {
-                sleep(1)
-                if let aStreamReader = StreamReader(path: filePath) {
-                    defer {
-                        aStreamReader.close()
-                    }
-                    while let url_line = aStreamReader.nextLine() {
-                       
-                        self.parent_collection_list.append(url_line)
-                        }
-                    }
-                }
-        
-    
-        
+        commands.executeCommand(at:  Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments, outputStream: outputStream)
+       
+        self.parent_collection_list.append(contentsOf: elements)
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)
-        }
-    }
     }
     
-    
-    func getElementsByOffset(_ arguments:[String]) {
-        
-        let taskQueue6 = DispatchQueue.global(qos: .background)
-        
-        taskQueue6.async {
-            
-            let path = Constants.FilePaths.Bash.uniqueElements
-            self.runDeviceTask7 = Process()
-            self.runDeviceTask7.launchPath = path
-            
-            self.runDeviceTask7.arguments = arguments
-            
-            self.runDeviceTask7.terminationHandler = {
-                task in
-                
-                DispatchQueue.main.async(execute: {
-                }) 
-            }
-            
-            self.runDeviceTask7.launch()
-            self.runDeviceTask7.waitUntilExit()
-            
-            
-            DispatchQueue.main.async(execute: {
-            })
-        }
-    }
     
     func flashElement(element : String) {
         let taskQueueNew = DispatchQueue.global(qos: .background)

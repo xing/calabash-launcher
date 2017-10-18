@@ -31,7 +31,12 @@ class SettingsController: NSViewController {
         if let filePath = applicationStateHandler.filePath {
             self.fileBrowser.url = filePath
         }
-        elements = [(linkField1, linkDescriptionField1), (linkField2, linkDescriptionField2), (linkField3, linkDescriptionField3), (linkField4, linkDescriptionField4)]
+        elements = [
+            (linkField1, linkDescriptionField1),
+            (linkField2, linkDescriptionField2),
+            (linkField3, linkDescriptionField3),
+            (linkField4, linkDescriptionField4)
+        ]
         
         if let cucumberProfile = applicationStateHandler.cucumberProfile {
             cucumberProfileField.stringValue = cucumberProfile
