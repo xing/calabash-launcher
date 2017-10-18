@@ -733,7 +733,9 @@
                                         </connections>
                                     </clickGestureRecognizer>
                                 </gestureRecognizers>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" image="click_image" id="QDy-pX-45q"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" image="click_image" id="QDy-pX-45q">
+                                    <accessibility description="defaultImage"/>
+                                </imageCell>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXv-0x-TKb">
                                 <rect key="frame" x="1351" y="630" width="25" height="28"/>
