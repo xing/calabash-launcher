@@ -4,7 +4,4 @@
    <FileRef
       location = "container:Calabash Launcher.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Calabash Launcher Core/Calabash Launcher Core.xcodeproj">
-   </FileRef>
 </Workspace>

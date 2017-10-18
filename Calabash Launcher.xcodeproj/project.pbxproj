@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B9639FC1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */; };
 		5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */; };
 		5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C911F8F4FC40001BC50 /* Constants.swift */; };
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
@@ -15,6 +14,8 @@
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
 		ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */; };
+		ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; };
+		ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */; };
 		ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */ = {isa = PBXBuildFile; fileRef = ED2C34771E16C969006AF7B4 /* send_to_irb.command */; };
 		ED399A461DBA0447000FA4AA /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = ED399A451DBA0447000FA4AA /* console.command */; };
@@ -52,19 +53,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ED4321041E157048007B5025 /* CopyFiles */ = {
+		ED1762E21F975B7000C84290 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Calabash_Launcher_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D948C911F8F4FC40001BC50 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeBashOutput.swift; sourceTree = "<group>"; };
+		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
@@ -115,28 +118,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9639FC1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework in Frameworks */,
+				ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B9639FB1F93C4DA006E86C5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3B9639FD1F93C4DA006E86C5 /* Calabash_Launcher_Core.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		ED4C14D41DB29FB700A1190E = {
 			isa = PBXGroup;
 			children = (
 				EDD303971F8F88400042E27F /* Launcher */,
 				EDD303931F8F869B0042E27F /* Scripts */,
 				ED4C14DE1DB29FB700A1190E /* Products */,
-				3B9639FB1F93C4DA006E86C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -228,6 +222,7 @@
 		EDD303971F8F88400042E27F /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				EDD645CE1F975789009E9D8C /* Frameworks */,
 				EDD303981F8F88AB0042E27F /* Storyboards */,
 				ED4C14E91DB29FB700A1190E /* Info.plist */,
 				EDD303961F8F879C0042E27F /* Assets */,
@@ -242,6 +237,14 @@
 				ED4C14E61DB29FB700A1190E /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		EDD645CE1F975789009E9D8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED1762DC1F975B4500C84290 /* CommandsCore.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		FD1047061F90AB2100A89D1C /* Controllers */ = {
@@ -262,7 +265,7 @@
 				ED4C14D91DB29FB700A1190E /* Sources */,
 				ED4C14DA1DB29FB700A1190E /* Frameworks */,
 				ED4C14DB1DB29FB700A1190E /* Resources */,
-				ED4321041E157048007B5025 /* CopyFiles */,
+				ED1762E21F975B7000C84290 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -495,7 +498,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Launcher/Frameworks",
+				);
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -516,7 +522,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Launcher/Frameworks",
+				);
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
