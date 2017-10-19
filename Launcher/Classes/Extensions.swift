@@ -1,11 +1,3 @@
-//
-//  Extensions.swift
-//  Calabash Launcher
-//
-//  Created by Bas Thomas Broek on 12/10/2017.
-//  Copyright © 2017 XING. All rights reserved.
-//
-
 import AppKit
 
 extension NSColor {
@@ -15,6 +7,10 @@ extension NSColor {
     
     static var lightGray: NSColor {
         return NSColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
+    }
+
+    static var lightGreen: NSColor {
+        return NSColor(red: 0.0, green: 1.0, blue: 0.28, alpha: 1.0)
     }
 }
 

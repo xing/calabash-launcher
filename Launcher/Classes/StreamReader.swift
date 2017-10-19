@@ -1,7 +1,6 @@
 import Foundation
 
 class StreamReader  {
-    
     let encoding: String.Encoding
     let chunkSize: Int
     var fileHandle: FileHandle!

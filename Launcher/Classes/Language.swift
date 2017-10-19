@@ -37,4 +37,8 @@ extension Language {
             return "other"
         }
     }
+
+    static var all: [Language] {
+        return [.english, .german, .russian, .italian, .french, .polish, .other]
+    }
 }
