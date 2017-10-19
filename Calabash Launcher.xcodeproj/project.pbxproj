@@ -10,6 +10,7 @@
 		5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */; };
 		5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C911F8F4FC40001BC50 /* Constants.swift */; };
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
+		D74D80851F97F7BA0049A84F /* click_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D74D80841F97F7BA0049A84F /* click_image.png */; };
 		D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */; };
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
@@ -44,7 +45,6 @@
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
 		EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE3851E0BD2D60069B9BC /* clicked_2.png */; };
 		EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */; };
-		EDEBE3A01E0C266F0069B9BC /* yourad.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39F1E0C266F0069B9BC /* yourad.png */; };
 		EDFF03191DD4A245000CA17C /* get_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = EDFF03171DD4A245000CA17C /* get_elements.command */; };
 		EDFF031A1DD4A245000CA17C /* start_device.command in Resources */ = {isa = PBXBuildFile; fileRef = EDFF03181DD4A245000CA17C /* start_device.command */; };
 		EDFF031C1DD4C33A000CA17C /* DeviceCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFF031B1DD4C33A000CA17C /* DeviceCollector.swift */; };
@@ -70,6 +70,7 @@
 		5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D948C911F8F4FC40001BC50 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		D74D80841F97F7BA0049A84F /* click_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = click_image.png; sourceTree = "<group>"; };
 		D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		EDEBE3851E0BD2D60069B9BC /* clicked_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicked_2.png; sourceTree = "<group>"; };
 		EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
-		EDEBE39F1E0C266F0069B9BC /* yourad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yourad.png; sourceTree = "<group>"; };
 		EDFF03171DD4A245000CA17C /* get_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements.command; sourceTree = "<group>"; };
 		EDFF03181DD4A245000CA17C /* start_device.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = start_device.command; sourceTree = "<group>"; };
 		EDFF031B1DD4C33A000CA17C /* DeviceCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCollector.swift; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 		EDD303961F8F879C0042E27F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D74D80841F97F7BA0049A84F /* click_image.png */,
 				EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */,
-				EDEBE39F1E0C266F0069B9BC /* yourad.png */,
 				EDEBE3851E0BD2D60069B9BC /* clicked_2.png */,
 			);
 			path = Assets;
@@ -322,7 +322,6 @@
 				ED5DB5FD1E01534A00B0FADC /* create_irb_session.command in Resources */,
 				EDFF03191DD4A245000CA17C /* get_elements.command in Resources */,
 				ED4C14F21DB2DB1C00A1190E /* get_sim_list.command in Resources */,
-				EDEBE3A01E0C266F0069B9BC /* yourad.png in Resources */,
 				EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */,
 				D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */,
 				ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */,
@@ -337,6 +336,7 @@
 				ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
 				EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */,
+				D74D80851F97F7BA0049A84F /* click_image.png in Resources */,
 				ED7045051DD61B9000272059 /* get_screen.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
