@@ -52,5 +52,4 @@ class DeviceCollector {
         let match = RegexHandler().matches(for: regex, in: device)
         return match.last ?? ""
     }
-    
 }

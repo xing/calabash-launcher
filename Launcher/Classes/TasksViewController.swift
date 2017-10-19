@@ -58,7 +58,6 @@ class TasksViewController: NSViewController {
         try? fileManager.removeItem(atPath: filePath3)
         try? fileManager.removeItem(atPath: filePath4)
         
-        
         textField.backgroundColor = .darkAquamarine
         textField.textColor = .white
         let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
@@ -76,7 +75,8 @@ class TasksViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let languageValues = [Language.english.rawValue, Language.german.rawValue, Language.russian.rawValue, Language.italian.rawValue, Language.french.rawValue, Language.polish.rawValue, Language.other.rawValue]
+
+        let languageValues = Language.all.map { $0.rawValue }
         languagePopUpButton.addItems(withTitles: languageValues)
         
         if let filePath = applicationStateHandler.filePath {
@@ -87,10 +87,10 @@ class TasksViewController: NSViewController {
         
         killProcessScreenshot()
         // removes NSUserDefaults for test
-//                if let appDomain = Bundle.main.bundleIdentifier {
-//                    UserDefaults.standard.removePersistentDomain(forName: appDomain)
-//                }
-        
+//        if let appDomain = Bundle.main.bundleIdentifier {
+//            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+//        }
+
         outputText.backgroundColor = .darkAquamarine
         outputText.textColor = .white
         buildPicker.autoenablesItems = false
@@ -108,12 +108,6 @@ class TasksViewController: NSViewController {
             get_device.isEnabled = false
             languagePopUpButton.isEnabled = true
         }
-        
-        buildPicker.removeAllItems()
-        buildPicker.addItem(withTitle: "1. (master) For simulator(tracking enabled)")
-        buildPicker.addItem(withTitle: "2. (master) For physical device")
-        buildPicker.addItem(withTitle: "3. (release) For simulator(tracking enabled)")
-        buildPicker.addItem(withTitle: "0. Don't download the APP and use the APP from build folder")
         
         tagPicker.completes = true
         killIrbSession()
@@ -172,16 +166,9 @@ class TasksViewController: NSViewController {
         }
         
         phoneComboBox.selectItem(at: 0)
-        
-        if !phoneComboBox.itemTitles.isEmpty {
-            for index in 0...phoneComboBox.itemTitles.count - 1 {
-                if phoneComboBox.itemTitles[index].contains("iPhone 7 (") {
-                    phoneComboBox.selectItem(at: index)
-                    break
-                }
-            }
-        }
-        
+
+        selectDeviceIfAvailable(prefixed: "iPhone 7(")
+
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
             phoneComboBox.highlight(true)
@@ -225,9 +212,9 @@ class TasksViewController: NSViewController {
     }
     
     private func setupTagSelection() {
-        tagsController.tags(in: pathToCalabashFolder).forEach({ (tag) in
+        tagsController.tags(in: pathToCalabashFolder).forEach { tag in
             self.tagPicker.addItem(withObjectValue: tag)
-        })
+        }
     }
 
     func killProcessScreenshot() {
@@ -237,10 +224,6 @@ class TasksViewController: NSViewController {
             let path = Constants.FilePaths.Bash.killProcess
             killProcessesProcess = Process()
             killProcessesProcess.launchPath = path
-            killProcessesProcess.terminationHandler = { task in
-                DispatchQueue.main.sync {
-                }
-            }
             killProcessesProcess.launch()
             killProcessesProcess.waitUntilExit()
         }
@@ -318,13 +301,8 @@ class TasksViewController: NSViewController {
         if let phoneName = applicationStateHandler.phoneName,
             phoneName != "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)" {
             phoneComboBox.selectItem(withTitle: phoneName)
-        } else if !phoneComboBox.itemTitles.isEmpty {
-            for index in 0...phoneComboBox.itemTitles.count - 1 {
-                if phoneComboBox.itemTitles[index].contains("iPhone 7 (") {
-                    phoneComboBox.selectItem(at: index)
-                    break
-                }
-            }
+        } else {
+            selectDeviceIfAvailable(prefixed: "iPhone 7(")
         }
         
         if phoneComboBox.selectedItem == nil {
@@ -340,6 +318,12 @@ class TasksViewController: NSViewController {
             deviceListIsEmpty = false
         }
         disableBuildItems()
+    }
+
+    private func selectDeviceIfAvailable(prefixed device: String) {
+        if !phoneComboBox.itemTitles.isEmpty, let deviceTitle = phoneComboBox.itemTitles.first(where: { $0.contains(device) }) {
+            phoneComboBox.selectItem(withTitle: deviceTitle)
+        }
     }
     
     @IBAction func phys_radio(_ sender: Any) {
@@ -407,7 +391,6 @@ class TasksViewController: NSViewController {
         }
         
         if phys_radio.state == .on {
-            //arguments.append("DEVICE_IP=http://\(device_name.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: "\'", with: "")).xing.hh:37265")
             arguments.append("phys_device")
             if applicationStateHandler.isLaunched == false {
                 // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
@@ -440,16 +423,7 @@ class TasksViewController: NSViewController {
             sendToIRBSessionProcess = Process()
             sendToIRBSessionProcess.launchPath = path
             
-            var arguments: [String] = []
-            arguments.append(textField.stringValue)
-            
-            sendToIRBSessionProcess.arguments = arguments
-            
-            sendToIRBSessionProcess.terminationHandler = { task in
-                DispatchQueue.main.sync {
-                    
-                }
-            }
+            sendToIRBSessionProcess.arguments = [textField.stringValue]
             
             sendToIRBSessionProcess.launch()
             sendToIRBSessionProcess.waitUntilExit()
@@ -611,12 +585,6 @@ class TasksViewController: NSViewController {
             strongSelf.generalIRBSessionTask = Process()
             strongSelf.generalIRBSessionTask.launchPath = path
             
-            strongSelf.generalIRBSessionTask.terminationHandler = { task in
-                DispatchQueue.main.sync {
-                    
-                }
-            }
-            
             strongSelf.generalIRBSessionTask.launch()
             strongSelf.generalIRBSessionTask.waitUntilExit()
         }
@@ -683,8 +651,8 @@ class TasksViewController: NSViewController {
             let path = Constants.FilePaths.Bash.createIRBSession
             strongSelf.createIRBSessionTask = Process()
             strongSelf.createIRBSessionTask.launchPath = path
+
             var arguments: [String] = []
-            strongSelf.createIRBSessionTask.arguments = arguments
             arguments.append(strongSelf.pathToCalabashFolder)
             if let helpersPath = Constants.FilePaths.Ruby.helpers {
                 arguments.append(helpersPath)
@@ -699,4 +667,3 @@ class TasksViewController: NSViewController {
         }
     }
 }
-

@@ -19,9 +19,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     let defaults = UserDefaults.standard
     let env = ProcessInfo.processInfo.environment as [String: String]
     let fileManager = FileManager.default
-    var elements_list:[String] = []
-    var parent_collection_list:[String] = []
-    var parent_collection_cut_list:[String] = []
+    var uiElements: [String] = []
+    var parentCollection: [String] = []
+    var filteredParentCollection: [String] = []
     var timer = Timer()
     var elementIndex:Int!
     var parentElementIndex:Int!
@@ -46,36 +46,36 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     func disableAllElements() {
         isRunning = true
         DispatchQueue.main.async {
-        self.startDeviceButton.isEnabled = false
-        self.getElementsButton.isEnabled = false
-        self.spinner.startAnimation(self)
-        self.gestureRecognizer.isEnabled = false
+            self.startDeviceButton.isEnabled = false
+            self.getElementsButton.isEnabled = false
+            self.spinner.startAnimation(self)
+            self.gestureRecognizer.isEnabled = false
         }
     }
 
     func enableAllElements() {
         isRunning = false
         DispatchQueue.main.async {
-        self.startDeviceButton.isEnabled = true
-        self.getElementsButton.isEnabled = true
-        self.spinner.stopAnimation(self)
-        self.gestureRecognizer.isEnabled = true
+            self.startDeviceButton.isEnabled = true
+            self.getElementsButton.isEnabled = true
+            self.spinner.stopAnimation(self)
+            self.gestureRecognizer.isEnabled = true
         }
     }
     
     override func viewDidAppear() {
-        self.outputText.backgroundColor = NSColor.init(red:0.18, green:0.33, blue:0.43, alpha:1.0)
-        self.outputText.textColor = NSColor.init(red:0.00, green:1.00, blue:0.28, alpha:1.0)
-        localizedTextField.textColor = NSColor.black
-        elementTextField.textColor = NSColor.black
-        self.outlineView.backgroundColor = NSColor.init(red:0.18, green:0.33, blue:0.43, alpha:1.0)
+        outputText.backgroundColor = .darkAquamarine
+        outputText.textColor = .lightGreen
+        localizedTextField.textColor = .black
+        elementTextField.textColor = .black
+        outlineView.backgroundColor = .darkAquamarine
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       //calabashIsRunning()
-        
+//        calabashIsRunning()
+
         self.getHomeDirectoryPath()
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
@@ -86,10 +86,10 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
 
     func setUserDefaultsListener(){
-        UserDefaults.standard.addObserver(self, forKeyPath: "FilePath", options: NSKeyValueObservingOptions.new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: "FilePath", options: .new, context: nil)
     }
     
-   override func observeValue(forKeyPath: String?, of: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+   override func observeValue(forKeyPath: String?, of: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
        if forKeyPath == "FilePath" {
             self.getHomeDirectoryPath()
             self.getElementsButton.isEnabled = true
@@ -104,9 +104,8 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
-        let item = sender.item(atRow: sender.clickedRow)
-        if item != nil {
-            commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item as! String])
+        if let item = sender.item(atRow: sender.clickedRow) as? String {
+            commands.executeCommand(at: Constants.FilePaths.Bash.flash ?? "", arguments: [item])
         }
     }
     
@@ -116,81 +115,81 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             coordinatesMarker.isHidden = true
             syncScreen()
             getScreenProcs()
-            timer = Timer.scheduledTimer(timeInterval: 5.5, target: self, selector: #selector(self.getScreenProcsLoop), userInfo: nil, repeats: true);
+            timer = .scheduledTimer(timeInterval: 5.5, target: self, selector: #selector(self.getScreenProcsLoop), userInfo: nil, repeats: true);
         } else {
             let coordinates = gestureRecognizer.location(in: gestureRecognizableView)
             self.coordinatesMarker.isHidden = false
             self.coordinatesMarker.isHighlighted = true
             let convertedClickPoint = self.gestureRecognizableView.convert(coordinates, to: self.view)
             self.coordinatesMarker.frame = NSRect(x: convertedClickPoint.x - self.coordinatesMarker.frame.size.width/2 + 1, y: convertedClickPoint.y - self.coordinatesMarker.frame.size.height/2 - 6, width: self.coordinatesMarker.frame.size.width, height: self.coordinatesMarker.frame.size.height)
-            var arguments:[String] = []
-            elements_list = []
-            parent_collection_list = []
+            var arguments: [String] = []
+            uiElements = []
+            parentCollection = []
             var parent_trigger = 0
-        
-        arguments.append(coordinates.x.description)
-        arguments.append(coordinates.y.description)
-        Shared.shared.coordinates = []
-        Shared.shared.coordinates.append(coordinates.x.description)
-        Shared.shared.coordinates.append(coordinates.y.description)
-        do {
-            try fileManager.removeItem(atPath: "/tmp/element_array.txt")
-        } catch _ as NSError {}
-        
-        self.disableAllElements()
-        getElementsByOffset(arguments)
-        
-        let filePath = "/tmp/element_array.txt"
-        
-        waitingForFile(fileName: "/tmp/element_array.txt", numberOfRetries: 990) {
-        
-        if let aStreamReader = StreamReader(path: filePath) {
-            defer {
-                aStreamReader.close()
-            }
-            while let url_line = aStreamReader.nextLine() {
-                
-                if url_line == "==========" {
-                    parent_trigger = 2
-                    continue
-                }
-                
-                if parent_trigger == 0 {
-                    self.elements_list.append(url_line)
-                } else if parent_trigger == 2 {
-                    self.parent_collection_list.append(url_line)
-                }
-            }
-            
-            if self.elements_list == [] {
-                sleep(1)
+
+            arguments.append(coordinates.x.description)
+            arguments.append(coordinates.y.description)
+            SharedElement.shared.coordinates = []
+            SharedElement.shared.coordinates.append(coordinates.x.description)
+            SharedElement.shared.coordinates.append(coordinates.y.description)
+            do {
+                try fileManager.removeItem(atPath: "/tmp/element_array.txt")
+            } catch { }
+
+            self.disableAllElements()
+            getElementsByOffset(arguments)
+
+            let filePath = "/tmp/element_array.txt"
+
+            waitingForFile(fileName: "/tmp/element_array.txt", numberOfRetries: 990) {
+
                 if let aStreamReader = StreamReader(path: filePath) {
                     defer {
                         aStreamReader.close()
                     }
                     while let url_line = aStreamReader.nextLine() {
-                        
+
                         if url_line == "==========" {
                             parent_trigger = 2
                             continue
                         }
-                        
+
                         if parent_trigger == 0 {
-                            self.elements_list.append(url_line)
+                            self.uiElements.append(url_line)
                         } else if parent_trigger == 2 {
-                            self.parent_collection_list.append(url_line)
+                            self.parentCollection.append(url_line)
                         }
                     }
+
+                    if self.uiElements == [] {
+                        sleep(1)
+                        if let aStreamReader = StreamReader(path: filePath) {
+                            defer {
+                                aStreamReader.close()
+                            }
+                            while let url_line = aStreamReader.nextLine() {
+
+                                if url_line == "==========" {
+                                    parent_trigger = 2
+                                    continue
+                                }
+
+                                if parent_trigger == 0 {
+                                    self.uiElements.append(url_line)
+                                } else if parent_trigger == 2 {
+                                    self.parentCollection.append(url_line)
+                                }
+                            }
+                        }
+                    }
+
+                    self.getScreenProcs()
+                    self.enableAllElements()
+                    DispatchQueue.main.async {
+                        self.outlineView.reloadData()
+                    }
                 }
-        }
-    
-        self.getScreenProcs()
-        self.enableAllElements()
-            DispatchQueue.main.async {
-        self.outlineView.reloadData()
             }
-        }
-        }
         }
     }
 
@@ -232,15 +231,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             
             self.buildTaskNew558.arguments = arguments
             
-            self.buildTaskNew558.terminationHandler = {
-                task in
-                
-                DispatchQueue.main.sync(execute: {
-                    
-                })
-                
-            }
-            
             self.buildTaskNew558.launch()
             self.buildTaskNew558.waitUntilExit()
         }
@@ -261,25 +251,21 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
     }
     
-    func fileIsNotEmpty(filePath: String)->Bool {
-        
+    func fileIsNotEmpty(filePath: String) -> Bool {
         if filePath.range(of: "txt") == nil {
             return true
         } else {
-        var found:Bool = false
-        if let aStreamReader = StreamReader(path: filePath) {
-            defer {
-                aStreamReader.close()
+            var found = false
+            if let aStreamReader = StreamReader(path: filePath) {
+                defer {
+                    aStreamReader.close()
+                }
+                if aStreamReader.nextLine() != nil {
+                    found = true
+                }
             }
-            if aStreamReader.nextLine() != nil {
-                found = true
-            }
-        }
-        if found {
-            return true
-        } else {
-            return false
-        }
+
+            return found
         }
     }
     
@@ -312,14 +298,15 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     func getHomeDirectoryPath() {
         if (defaults.url(forKey: "FilePath") != nil) {
             let path_string = "\(defaults.url(forKey: "FilePath")!)"
-            self.pathToCalabashFolder = (env["HOME"]! + "/" + path_string.replacingOccurrences(of: env["HOME"]!, with: "")).replacingOccurrences(of: "~/", with: "").replacingOccurrences(of: "file://", with: "")
+            self.pathToCalabashFolder = (env["HOME"]! + "/" + path_string
+                .replacingOccurrences(of: env["HOME"]!, with: ""))
+                .replacingOccurrences(of: "~/", with: "")
+                .replacingOccurrences(of: "file://", with: "")
         } else {
             setUserDefaultsListener()
         }
     }
-    
 
-    
     func getElementsByOffset(_ arguments:[String]) {
         
         let taskQueue6 = DispatchQueue.global(qos: .background)
@@ -350,8 +337,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             self.runDeviceTask1.arguments = arguments
             self.runDeviceTask1.launch()
         }
-        
-        
     }
     
 
@@ -361,10 +346,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     func startDevice() {
-        
         do {
             try fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch _ as NSError {}
+        } catch { }
         
         let taskQueue8 = DispatchQueue.global(qos: .background)
         
@@ -384,13 +368,12 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             self.runDeviceTask2.waitUntilExit()
         }
         
-        
         self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 9999) {
             
 
         self.getScreenProcs()
-        DispatchQueue.main.async {
-        self.outputInTheMainTextView(string: "Simulator is ready to use")
+            DispatchQueue.main.async {
+                self.outputInTheMainTextView(string: "Simulator is ready to use")
             }
             self.enableAllElements()
         }
@@ -407,13 +390,12 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
             
             let output = self.outputPipe.fileHandleForReading.availableData
-            let outputString = String(data: output, encoding: String.Encoding.utf8) ?? ""
+            let outputString = String(data: output, encoding: .utf8) ?? ""
             
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 let previousOutput = self.outputText.string
-                
-                
-                if outputString.count > 0 {
+
+                if !outputString.isEmpty {
                     
                     let nextOutput = previousOutput + "\n" + outputString
                     self.outputText.string = nextOutput
@@ -421,7 +403,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                     let range = NSRange(location: nextOutput.count, length: 0)
                     self.outputText.scrollRangeToVisible(range)
                 }
-            })
+            }
             self.outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         }
     }
@@ -461,8 +443,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         
         do {
             try fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch _ as NSError {
-        }
+        } catch { }
         
     }
     
@@ -495,52 +476,42 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
 extension InspectorViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        parent_collection_cut_list = []
-        if item == nil {
+        filteredParentCollection = []
+        guard let item = item else {
             isParentView = false
-            return elements_list.count
-        } else {
-            let current_child_index = elements_list.index(of: item! as! String)!
-            isParentView = true
-            
-            var calculated_child_index:Int = -1
-            
-            if parent_collection_list.count == 0 {
-                    return 0
-            }
-            
-            for i in 0...parent_collection_list.count - 1 {
-                
-                if parent_collection_list[i] == "\"separator\"" {
-                    calculated_child_index = calculated_child_index + 1
-                    continue
-                }
-            
-                if calculated_child_index == current_child_index {
-                    parent_collection_cut_list.append(parent_collection_list[i])
-                }
-            }
-            
-            return parent_collection_cut_list.count
+            return uiElements.count
         }
+
+        let currentChildIndex = uiElements.index(of: item as! String)!
+        isParentView = true
+
+        var calculatedChildIndex = -1
+
+        guard !parentCollection.isEmpty else { return 0 }
+
+        parentCollection.forEach { parent in
+            if parent == "\"separator\"" {
+                calculatedChildIndex += 1
+            } else if calculatedChildIndex == currentChildIndex {
+                filteredParentCollection.append(parent)
+            }
+        }
+
+        return filteredParentCollection.count
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if !isParentView {
             elementIndex = index
-            return elements_list[index]
+            return uiElements[index]
         } else {
             parentElementIndex = index
-            return parent_collection_cut_list[index]
+            return filteredParentCollection[index]
         }
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if !isParentView {
-            return true
-        } else {
-            return false
-        }
+        return !isParentView
     }
 }
 
@@ -549,11 +520,11 @@ extension InspectorViewController: NSOutlineViewDelegate {
         var view: NSTableCellView?
 
         if !isParentView {
-                view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedCell"), owner: self) as? NSTableCellView
-                if let textField = view?.textField {
-                    textField.textColor = NSColor.yellow
-                    textField.stringValue = item as! String
-                }
+            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedCell"), owner: self) as? NSTableCellView
+            if let textField = view?.textField {
+                textField.textColor = NSColor.yellow
+                textField.stringValue = item as! String
+            }
         } else {
             view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell"), owner: self) as? NSTableCellView
             if let textField = view?.textField {
@@ -562,41 +533,25 @@ extension InspectorViewController: NSOutlineViewDelegate {
             }
         }
         return view
-        }
-    
+    }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        
         self.cloneButton.isHidden = true
         self.cloneLabel.stringValue = ""
-        guard let outlineView = notification.object as? NSOutlineView else {
-            return
-        }
+        guard let outlineView = notification.object as? NSOutlineView else { return }
         
-        //2
         let selectedIndex = outlineView.selectedRow
         
         if let feedItem = outlineView.item(atRow: selectedIndex) as? String {
-            
             let filePath4 = "/tmp/localized.txt"
             
             self.localizedTextField.stringValue = ""
             
             do {
                 try fileManager.removeItem(atPath: filePath4)
-            } catch _ as NSError {}
+            } catch { }
             
             self.elementTextField.stringValue = feedItem
-            if elements_list.count != 0 {
-        }
-        
         }
     }
-}
-
-final class Shared {
-    static let shared = Shared()
-    
-    var stringValue: String!
-    var coordinates: [String]!
 }

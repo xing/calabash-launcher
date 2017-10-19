@@ -4,9 +4,8 @@ import AppKit
 import CommandsCore
 
 class ElementConstructor: NSViewController, NSTableViewDataSource {
-    
-    var parent_collection_cut_list: [String] = []
-    var parent_collection_list: [String] = []
+
+    var parentCollection: [String] = []
     var isParentView = false
     var elementIndex: Int!
     var parentElementIndex: Int!
@@ -30,7 +29,7 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        pushButton.title = "Find unique elements for \(Shared.shared.stringValue ?? "Invalid string")"
+        pushButton.title = "Find unique elements for \(SharedElement.shared.stringValue ?? "Invalid string")"
     }
 
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
@@ -41,12 +40,11 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
         flashElement(element: item)
     }    
     
-    func fileIsNotEmpty(filePath: String)->Bool {
-        
+    func fileIsNotEmpty(filePath: String) -> Bool {
         if filePath.range(of: "txt") == nil {
             return true
         } else {
-            var found:Bool = false
+            var found = false
             if let aStreamReader = StreamReader(path: filePath) {
                 defer {
                     aStreamReader.close()
@@ -55,11 +53,8 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
                     found = true
                 }
             }
-            if found {
-                return true
-            } else {
-                return false
-            }
+
+            return found
         }
     }
     
@@ -88,11 +83,11 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
     }
     
     func getElements() {
-        parent_collection_list = []
+        parentCollection = []
         var elements = [String]()
         
-        var arguments:[String] = Shared.shared.coordinates
-        arguments.append(Shared.shared.stringValue)
+        var arguments = SharedElement.shared.coordinates
+        arguments.append(SharedElement.shared.stringValue ?? "")
         arguments.append(String(childCheckbox.state.rawValue))
         arguments.append(String(siblingCheckbox.state.rawValue))
         arguments.append(String(indexCheckbox.state.rawValue))
@@ -104,22 +99,20 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
 
         commands.executeCommand(at:  Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments, outputStream: outputStream)
        
-        self.parent_collection_list.append(contentsOf: elements)
+        self.parentCollection.append(contentsOf: elements)
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)
     }
     
     
-    func flashElement(element : String) {
+    func flashElement(element: String) {
         let taskQueueNew = DispatchQueue.global(qos: .background)
         
         taskQueueNew.async {
             let path = Constants.FilePaths.Bash.flash
             self.buildTaskNew122 = Process()
             self.buildTaskNew122.launchPath = path
-            var arguments:[String] = []
-            arguments.append(element)
-            self.buildTaskNew122.arguments = arguments
+            self.buildTaskNew122.arguments = [element]
             self.buildTaskNew122.launch()
         }
     }
@@ -127,16 +120,16 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
 
 extension ElementConstructor: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        return parent_collection_list.count
+        return parentCollection.count
      }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-            parentElementIndex = index
-            return parent_collection_list[index]
-        }
+        parentElementIndex = index
+        return parentCollection[index]
+    }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-            return false
+        return false
     }
     
 }

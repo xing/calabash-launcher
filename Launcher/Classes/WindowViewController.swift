@@ -4,7 +4,6 @@ import AppKit
 
 class WindowViewControler: NSWindowController {
     
-    
     override func windowDidLoad() {
         super.windowDidLoad()
         window?.titleVisibility = .hidden
@@ -12,6 +11,4 @@ class WindowViewControler: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.backgroundColor = .lightGray
     }
-    
-
 }

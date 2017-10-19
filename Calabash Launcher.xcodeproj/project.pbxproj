@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1A40361F98FBE60055F57F /* SharedElement.swift */; };
 		5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */; };
 		5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C911F8F4FC40001BC50 /* Constants.swift */; };
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
@@ -22,7 +23,7 @@
 		ED399A461DBA0447000FA4AA /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = ED399A451DBA0447000FA4AA /* console.command */; };
 		ED3F0FAE1E0C3B7700956B44 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */; };
 		ED4C14E11DB29FB700A1190E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4C14E01DB29FB700A1190E /* AppDelegate.swift */; };
-		ED4C14E31DB29FB700A1190E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4C14E21DB29FB700A1190E /* ViewController.swift */; };
+		ED4C14E31DB29FB700A1190E /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4C14E21DB29FB700A1190E /* TasksViewController.swift */; };
 		ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14E61DB29FB700A1190E /* Main.storyboard */; };
 		ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14EF1DB2A10E00A1190E /* BuildScript.command */; };
 		ED4C14F21DB2DB1C00A1190E /* get_sim_list.command in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14F11DB2DB1C00A1190E /* get_sim_list.command */; };
@@ -67,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D1A40361F98FBE60055F57F /* SharedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedElement.swift; sourceTree = "<group>"; };
 		5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D948C911F8F4FC40001BC50 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
 		ED4C14DD1DB29FB700A1190E /* Calabash Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calabash Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4C14E01DB29FB700A1190E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED4C14E21DB29FB700A1190E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED4C14E21DB29FB700A1190E /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		ED4C14E71DB29FB700A1190E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED4C14E91DB29FB700A1190E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED4C14EF1DB2A10E00A1190E /* BuildScript.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = BuildScript.command; sourceTree = "<group>"; };
@@ -148,9 +150,10 @@
 				FD1047061F90AB2100A89D1C /* Controllers */,
 				EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */,
 				ED4C14E01DB29FB700A1190E /* AppDelegate.swift */,
-				ED4C14E21DB29FB700A1190E /* ViewController.swift */,
+				ED4C14E21DB29FB700A1190E /* TasksViewController.swift */,
 				FD4D0F341F8D086100EAD142 /* ApplicationStateHandler.swift */,
 				EDB433351DD49AF5001BABEC /* InspectorViewController.swift */,
+				5D1A40361F98FBE60055F57F /* SharedElement.swift */,
 				ED9472931E365F9C00FE2982 /* ElementConstructor.swift */,
 				EDC551E51DB36F0C00293935 /* StreamReader.swift */,
 				EDFF031B1DD4C33A000CA17C /* DeviceCollector.swift */,
@@ -288,6 +291,7 @@
 				TargetAttributes = {
 					ED4C14DC1DB29FB700A1190E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = KYPUGHVBB7;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -351,8 +355,9 @@
 				ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */,
 				EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */,
 				ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */,
+				5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */,
 				EDFF031C1DD4C33A000CA17C /* DeviceCollector.swift in Sources */,
-				ED4C14E31DB29FB700A1190E /* ViewController.swift in Sources */,
+				ED4C14E31DB29FB700A1190E /* TasksViewController.swift in Sources */,
 				FD4D0F351F8D086100EAD142 /* ApplicationStateHandler.swift in Sources */,
 				ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */,
 				EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */,
@@ -497,7 +502,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KYPUGHVBB7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Launcher/Frameworks",
@@ -521,7 +526,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KYPUGHVBB7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Launcher/Frameworks",

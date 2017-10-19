@@ -1,11 +1,3 @@
-//
-//  TagsController.swift
-//  Calabash Launcher
-//
-//  Created by Kim Dung-Pham on 11.10.17.
-//  Copyright © 2017 XING. All rights reserved.
-//
-
 import Foundation
 import CommandsCore
 
