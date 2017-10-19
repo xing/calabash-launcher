@@ -1,5 +1,3 @@
-import Cocoa
-import Foundation
 import AppKit
 
 class ColorizeBashOutput: NSViewController {

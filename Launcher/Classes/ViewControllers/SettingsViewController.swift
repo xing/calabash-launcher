@@ -1,6 +1,4 @@
-import Foundation
 import AppKit
-import Cocoa
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()

@@ -1,4 +1,3 @@
-import Foundation
 import CommandsCore
 
 class Localization {

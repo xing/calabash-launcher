@@ -1,5 +1,3 @@
-import Foundation
-
 enum Language: String {
     case english = "English"
     case german = "German"
