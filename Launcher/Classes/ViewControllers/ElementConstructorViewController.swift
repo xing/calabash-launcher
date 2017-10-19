@@ -8,8 +8,6 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     var elementIndex: Int!
     var parentElementIndex: Int!
     let fileManager = FileManager.default
-    var runDeviceTask7: Process!
-    var buildTaskNew122: Process!
     var retryCount: Int = 0
     let commands = CommandsCore.CommandExecutor()
     
@@ -35,7 +33,7 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item, forType: .string)
-        flashElement(element: item)
+        commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item])
     }    
     
     func fileIsNotEmpty(filePath: String) -> Bool {
@@ -100,19 +98,6 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         self.parentCollection.append(contentsOf: elements)
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)
-    }
-    
-    
-    func flashElement(element: String) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.async {
-            let path = Constants.FilePaths.Bash.flash
-            self.buildTaskNew122 = Process()
-            self.buildTaskNew122.launchPath = path
-            self.buildTaskNew122.arguments = [element]
-            self.buildTaskNew122.launch()
-        }
     }
 }
 

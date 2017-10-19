@@ -3,17 +3,13 @@ import CommandsCore
 
 class InspectorViewController: NSViewController, NSTableViewDataSource {
     let commands = CommandsCore.CommandExecutor()
+    let applicationStateHandler = ApplicationStateHandler()
     var runDeviceTask:Process!
     var runDeviceTask1:Process!
     var runDeviceTask2:Process!
-    var runDeviceTask3:Process!
-    var buildTaskNew12:Process!
-    var buildTaskNew34:Process!
     var buildTaskNew558:Process!
-    var buildTaskNew:Process!
     @objc dynamic var isRunning = false
     var outputPipe:Pipe!
-    var pathToCalabashFolder: String = ""
     let defaults = UserDefaults.standard
     let env = ProcessInfo.processInfo.environment as [String: String]
     let fileManager = FileManager.default
@@ -71,10 +67,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        calabashIsRunning()
-
-        self.getHomeDirectoryPath()
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
         self.getElementsButton.isEnabled = true
@@ -83,24 +75,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.cloneButton.isHidden = true
     }
 
-    func setUserDefaultsListener(){
-        UserDefaults.standard.addObserver(self, forKeyPath: "FilePath", options: .new, context: nil)
-    }
-    
-   override func observeValue(forKeyPath: String?, of: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-       if forKeyPath == "FilePath" {
-            self.getHomeDirectoryPath()
-            self.getElementsButton.isEnabled = true
-            self.startDeviceButton.isEnabled = true
-            self.gestureRecognizer.isEnabled = true
-        }
-    }
-    
-    deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: "FilePath")
-    }
-    
-    
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         if let item = sender.item(atRow: sender.clickedRow) as? String {
             commands.executeCommand(at: Constants.FilePaths.Bash.flash ?? "", arguments: [item])
@@ -120,22 +94,15 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             self.coordinatesMarker.isHighlighted = true
             let convertedClickPoint = self.gestureRecognizableView.convert(coordinates, to: self.view)
             self.coordinatesMarker.frame = NSRect(x: convertedClickPoint.x - self.coordinatesMarker.frame.size.width/2 + 1, y: convertedClickPoint.y - self.coordinatesMarker.frame.size.height/2 - 6, width: self.coordinatesMarker.frame.size.width, height: self.coordinatesMarker.frame.size.height)
-            var arguments: [String] = []
             uiElements = []
             parentCollection = []
             var parent_trigger = 0
-
-            arguments.append(coordinates.x.description)
-            arguments.append(coordinates.y.description)
             SharedElement.shared.coordinates = []
             SharedElement.shared.coordinates.append(coordinates.x.description)
             SharedElement.shared.coordinates.append(coordinates.y.description)
-            do {
-                try fileManager.removeItem(atPath: "/tmp/element_array.txt")
-            } catch { }
-
+            try? fileManager.removeItem(atPath: "/tmp/element_array.txt")
             self.disableAllElements()
-            getElementsByOffset(arguments)
+            getElementsByOffset([coordinates.x.description, coordinates.y.description])
 
             let filePath = "/tmp/element_array.txt"
 
@@ -199,54 +166,13 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         timer.invalidate()
         coordinatesMarker.isHidden = true
         startDevice()
-        
     }
 
     
     @IBAction func getElementsButton(_ sender: Any) {
-        
-        do {
-            try fileManager.removeItem(atPath: "/tmp/get_all_elements_inspector.txt")
-        } catch _ as NSError {
-            //print(error.debugDescription)
-        }
-        
+        try? fileManager.removeItem(atPath: "/tmp/get_all_elements_inspector.txt")
         getElements()
         getElementsFromFile()
-    }
-    
-    func calabashIsRunning() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.sync {
-            
-            let path = Constants.FilePaths.Bash.sendToIRB
-            self.buildTaskNew558 = Process()
-            self.buildTaskNew558.launchPath = path
-            
-            var arguments:[String] = []
-            arguments.append("healthcheck")
-            
-            self.buildTaskNew558.arguments = arguments
-            
-            self.buildTaskNew558.launch()
-            self.buildTaskNew558.waitUntilExit()
-        }
-        
-        let filePath = "/tmp/is_running.txt"
-        self.waitingForFile(fileName: filePath, numberOfRetries: 10, enableSpinner: false) {
-            if let aStreamReader = StreamReader(path: filePath) {
-                defer {
-                    aStreamReader.close()
-                }
-                if aStreamReader.nextLine() == "false" {
-                    self.disableAllElements()
-                } else {
-                    self.enableAllElements()
-                }
-            }
-        }
-
     }
     
     func fileIsNotEmpty(filePath: String) -> Bool {
@@ -262,7 +188,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                     found = true
                 }
             }
-
             return found
         }
     }
@@ -292,47 +217,27 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         completion()
         }
     
-    
-    func getHomeDirectoryPath() {
-        if (defaults.url(forKey: "FilePath") != nil) {
-            let path_string = "\(defaults.url(forKey: "FilePath")!)"
-            self.pathToCalabashFolder = (env["HOME"]! + "/" + path_string
-                .replacingOccurrences(of: env["HOME"]!, with: ""))
-                .replacingOccurrences(of: "~/", with: "")
-                .replacingOccurrences(of: "file://", with: "")
-        } else {
-            setUserDefaultsListener()
-        }
-    }
-
     func getElementsByOffset(_ arguments:[String]) {
-        
         let taskQueue6 = DispatchQueue.global(qos: .background)
-        
         taskQueue6.async {
-            
             let path = Constants.FilePaths.Bash.elementsByOffset
             self.runDeviceTask = Process()
             self.runDeviceTask.launchPath = path
-            
             self.runDeviceTask.arguments = arguments
-            
             self.runDeviceTask.launch()
         }
     }
-    
     
     func getElements() {
         let taskQueue7 = DispatchQueue.global(qos: .background)
         
         taskQueue7.async {
-            
             let path = Constants.FilePaths.Bash.elements
             self.runDeviceTask1 = Process()
             self.runDeviceTask1.launchPath = path
-            var arguments:[String] = []
-            arguments.append(self.pathToCalabashFolder)
-            self.runDeviceTask1.arguments = arguments
+            if let filePath = self.applicationStateHandler.filePath {
+                self.runDeviceTask1.arguments = [filePath.absoluteString]
+            }
             self.runDeviceTask1.launch()
         }
     }
@@ -344,23 +249,16 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     func startDevice() {
-        do {
-            try fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch { }
-        
+        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
         let taskQueue8 = DispatchQueue.global(qos: .background)
         
         taskQueue8.async {
-            
             let path = Constants.FilePaths.Bash.startDevice
             self.runDeviceTask2 = Process()
             self.runDeviceTask2.launchPath = path
-            var arguments:[String] = []
-            arguments.append(self.pathToCalabashFolder)
-            
-            self.runDeviceTask2.arguments = arguments
-            
-            
+            if let phoneUDID = self.applicationStateHandler.phoneUDID {
+                self.runDeviceTask2.arguments = [phoneUDID]
+            }
             self.captureStandardOutputAndRouteToTextView(self.runDeviceTask2)
             self.runDeviceTask2.launch()
             self.runDeviceTask2.waitUntilExit()
@@ -368,14 +266,12 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         
         self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 9999) {
             
-
         self.getScreenProcs()
             DispatchQueue.main.async {
                 self.outputInTheMainTextView(string: "Simulator is ready to use")
             }
             self.enableAllElements()
         }
-        
     }
     
     func captureStandardOutputAndRouteToTextView(_ task:Process) {
@@ -394,7 +290,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 let previousOutput = self.outputText.string
 
                 if !outputString.isEmpty {
-                    
+                
                     let nextOutput = previousOutput + "\n" + outputString
                     self.outputText.string = nextOutput
                     
@@ -438,11 +334,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = image
         }
-        
-        do {
-            try fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        } catch { }
-        
+        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
     }
     
     func getElementsFromFile() {
@@ -542,13 +434,8 @@ extension InspectorViewController: NSOutlineViewDelegate {
         
         if let feedItem = outlineView.item(atRow: selectedIndex) as? String {
             let filePath4 = "/tmp/localized.txt"
-            
             self.localizedTextField.stringValue = ""
-            
-            do {
-                try fileManager.removeItem(atPath: filePath4)
-            } catch { }
-            
+            try? fileManager.removeItem(atPath: filePath4)
             self.elementTextField.stringValue = feedItem
         }
     }
