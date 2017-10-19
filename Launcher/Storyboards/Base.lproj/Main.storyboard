@@ -1269,7 +1269,7 @@ ALAAswC1ALcAuQC7AMAA1wDZANsJiwmQCZsJpAm3CbsJxgnPCdQJ3AnfCeQJ8wn3Cf4KBgoTChgKGgoc
 CiEKKQosCjEKOQo8Ck4KUQpWAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAClg
 </mutableData>
         </image>
-        <image name="click_image" width="451" height="417"/>
+        <image name="click_image" width="367" height="192"/>
         <image name="clicked_2" width="512" height="512"/>
     </resources>
 </document>
