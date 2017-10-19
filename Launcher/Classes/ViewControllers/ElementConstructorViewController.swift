@@ -3,7 +3,7 @@ import Foundation
 import AppKit
 import CommandsCore
 
-class ElementConstructor: NSViewController, NSTableViewDataSource {
+class ElementConstructorViewController: NSViewController, NSTableViewDataSource {
 
     var parentCollection: [String] = []
     var isParentView = false
@@ -118,7 +118,7 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
     }
 }
 
-extension ElementConstructor: NSOutlineViewDataSource {
+extension ElementConstructorViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         return parentCollection.count
      }
@@ -134,7 +134,7 @@ extension ElementConstructor: NSOutlineViewDataSource {
     
 }
 
-extension ElementConstructor: NSOutlineViewDelegate {
+extension ElementConstructorViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         let cell = outlineViewConstructor.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell2"), owner: self) as? NSTableCellView
         if let textField = cell?.textField {

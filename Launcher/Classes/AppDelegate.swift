@@ -12,9 +12,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func configurationButton(_ sender: Any) {
         if
-            let controller = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "settingswindow")) as? SettingsController,
+            let controller = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "settingswindow")) as? SettingsViewController,
             let contentViewController = NSApplication.shared.mainWindow?.contentViewController,
-            contentViewController.presentedViewControllers?.first(where: { $0 is SettingsController }) == nil {
+            contentViewController.presentedViewControllers?.first(where: { $0 is SettingsViewController }) == nil {
             contentViewController.presentViewControllerAsSheet(controller)
         }
     }

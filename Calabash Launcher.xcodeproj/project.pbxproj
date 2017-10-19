@@ -18,7 +18,7 @@
 		ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */; };
 		ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; };
 		ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */; };
+		ED2183DB1F8D0B5800E59DCC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */; };
 		ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */ = {isa = PBXBuildFile; fileRef = ED2C34771E16C969006AF7B4 /* send_to_irb.command */; };
 		ED399A461DBA0447000FA4AA /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = ED399A451DBA0447000FA4AA /* console.command */; };
 		ED3F0FAE1E0C3B7700956B44 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE39B1E0BD3010069B9BC /* Asset.xcassets */; };
@@ -36,7 +36,7 @@
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
 		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
-		ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructor.swift */; };
+		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
@@ -78,7 +78,7 @@
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeBashOutput.swift; sourceTree = "<group>"; };
 		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
-		ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
 		ED4C14DD1DB29FB700A1190E /* Calabash Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calabash Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +97,7 @@
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
 		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
-		ED9472931E365F9C00FE2982 /* ElementConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructor.swift; sourceTree = "<group>"; };
+		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
@@ -127,6 +127,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D74D80861F993BAC0049A84F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */,
+				ED4C14E21DB29FB700A1190E /* TasksViewController.swift */,
+				ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */,
+				EDB433351DD49AF5001BABEC /* InspectorViewController.swift */,
+				ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */,
+				ED51B7191F90BE5300759547 /* PathWarningViewController.swift */,
+				ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		ED4C14D41DB29FB700A1190E = {
 			isa = PBXGroup;
 			children = (
@@ -147,24 +161,18 @@
 		EDD303911F8F86290042E27F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D74D80861F993BAC0049A84F /* ViewControllers */,
 				FD1047061F90AB2100A89D1C /* Controllers */,
-				EDEBE39D1E0C13C00069B9BC /* WindowViewController.swift */,
 				ED4C14E01DB29FB700A1190E /* AppDelegate.swift */,
-				ED4C14E21DB29FB700A1190E /* TasksViewController.swift */,
 				FD4D0F341F8D086100EAD142 /* ApplicationStateHandler.swift */,
-				EDB433351DD49AF5001BABEC /* InspectorViewController.swift */,
 				5D1A40361F98FBE60055F57F /* SharedElement.swift */,
-				ED9472931E365F9C00FE2982 /* ElementConstructor.swift */,
 				EDC551E51DB36F0C00293935 /* StreamReader.swift */,
 				EDFF031B1DD4C33A000CA17C /* DeviceCollector.swift */,
 				ED06A0E11E850CA70092C96E /* ColorizeBashOutput.swift */,
-				ED2183DA1F8D0B5800E59DCC /* SettingsController.swift */,
 				5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */,
 				5D948C911F8F4FC40001BC50 /* Constants.swift */,
 				5D948C931F8F556D0001BC50 /* Language.swift */,
 				ED51B7171F8FC2F500759547 /* PlistOperations.swift */,
-				ED51B7191F90BE5300759547 /* PathWarningViewController.swift */,
-				ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */,
 				D7E21B491F969FDD0044169A /* Localization.swift */,
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 			);
@@ -351,14 +359,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED2183DB1F8D0B5800E59DCC /* SettingsController.swift in Sources */,
+				ED2183DB1F8D0B5800E59DCC /* SettingsViewController.swift in Sources */,
 				EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */,
 				ED06A0E21E850CA70092C96E /* ColorizeBashOutput.swift in Sources */,
 				5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */,
 				EDFF031C1DD4C33A000CA17C /* DeviceCollector.swift in Sources */,
 				ED4C14E31DB29FB700A1190E /* TasksViewController.swift in Sources */,
 				FD4D0F351F8D086100EAD142 /* ApplicationStateHandler.swift in Sources */,
-				ED9472941E365F9D00FE2982 /* ElementConstructor.swift in Sources */,
+				ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */,
 				EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */,
 				5D948C941F8F556D0001BC50 /* Language.swift in Sources */,
 				ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */,

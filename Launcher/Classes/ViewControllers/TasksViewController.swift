@@ -5,7 +5,6 @@ import CommandsCore
 
 class TasksViewController: NSViewController {
     
-    //Controller Outlets
     @IBOutlet var outputText: NSTextView!
     @IBOutlet var spinner: NSProgressIndicator!
     @IBOutlet var buildButton: NSButton!

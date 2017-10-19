@@ -1,11 +1,3 @@
-//
-//  PlistOperations.swift
-//  Calabash Launcher
-//
-//  Created by Serghei Moret on 12.10.17.
-//  Copyright © 2017 XING. All rights reserved.
-//
-
 import Foundation
 
 class PlistOperations {
