@@ -1,13 +1,3 @@
-//
-//  LanguageController.swift
-//  Calabash Launcher
-//
-//  Created by Serghei Moret on 16.10.17.
-//  Copyright © 2017 XING. All rights reserved.
-//
-
-import Cocoa
-import Foundation
 import AppKit
 import CommandsCore
 

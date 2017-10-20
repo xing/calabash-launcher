@@ -1,5 +1,4 @@
 import AppKit
-import Foundation
 
 class ApplicationStateHandler {
     

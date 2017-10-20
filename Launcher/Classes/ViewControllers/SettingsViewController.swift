@@ -1,8 +1,6 @@
-import Foundation
 import AppKit
-import Cocoa
 
-class SettingsController: NSViewController {
+class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
     let plistOperations = PlistOperations()
     var linkData: [String: Any] = ["items" : []]

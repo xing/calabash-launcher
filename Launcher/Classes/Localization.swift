@@ -1,12 +1,3 @@
-//
-//  Localization.swift
-//  Calabash Launcher
-//
-//  Created by new mac on 17.10.17.
-//  Copyright © 2017 XING. All rights reserved.
-//
-
-import Foundation
 import CommandsCore
 
 class Localization {

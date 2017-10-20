@@ -1,17 +1,13 @@
-import Cocoa
-import Foundation
 import AppKit
 import CommandsCore
 
-class ElementConstructor: NSViewController, NSTableViewDataSource {
+class ElementConstructorViewController: NSViewController, NSTableViewDataSource {
 
     var parentCollection: [String] = []
     var isParentView = false
     var elementIndex: Int!
     var parentElementIndex: Int!
     let fileManager = FileManager.default
-    var runDeviceTask7: Process!
-    var buildTaskNew122: Process!
     var retryCount: Int = 0
     let commands = CommandsCore.CommandExecutor()
     
@@ -37,7 +33,7 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item, forType: .string)
-        flashElement(element: item)
+        commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item])
     }    
     
     func fileIsNotEmpty(filePath: String) -> Bool {
@@ -103,22 +99,9 @@ class ElementConstructor: NSViewController, NSTableViewDataSource {
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)
     }
-    
-    
-    func flashElement(element: String) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.async {
-            let path = Constants.FilePaths.Bash.flash
-            self.buildTaskNew122 = Process()
-            self.buildTaskNew122.launchPath = path
-            self.buildTaskNew122.arguments = [element]
-            self.buildTaskNew122.launch()
-        }
-    }
 }
 
-extension ElementConstructor: NSOutlineViewDataSource {
+extension ElementConstructorViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         return parentCollection.count
      }
@@ -134,7 +117,7 @@ extension ElementConstructor: NSOutlineViewDataSource {
     
 }
 
-extension ElementConstructor: NSOutlineViewDelegate {
+extension ElementConstructorViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         let cell = outlineViewConstructor.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell2"), owner: self) as? NSTableCellView
         if let textField = cell?.textField {

@@ -1,5 +1,3 @@
-import Cocoa
-import Foundation
 import AppKit
 
 class ColorizeBashOutput: NSViewController {
@@ -103,12 +101,5 @@ class ColorizeBashOutput: NSViewController {
             }
         }
         obj.outputText.textStorage?.append(myAttributedString)
-    }
-}
-
-extension ColorizeBashOutput.ANSIGroup: CustomStringConvertible {
-    var description: String {
-        let codeStrings = codes.map { String($0) }
-        return "\u{001B}[" + codeStrings.joined(separator: ";") + "m" + string + "\u{001B}[0m"
     }
 }
