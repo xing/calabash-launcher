@@ -41,6 +41,7 @@
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
+		EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */; };
 		EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC551E51DB36F0C00293935 /* StreamReader.swift */; };
 		EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5651E1AA3ED00738F91 /* helpers.rb */; };
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
@@ -102,6 +103,7 @@
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
+		EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPrinter.swift; sourceTree = "<group>"; };
 		EDC551E51DB36F0C00293935 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		EDCDF5651E1AA3ED00738F91 /* helpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = helpers.rb; sourceTree = "<group>"; };
 		EDCDF5671E1AAC9F00738F91 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				ED51B7171F8FC2F500759547 /* PlistOperations.swift */,
 				D7E21B491F969FDD0044169A /* Localization.swift */,
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
+				EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */,
 				5D948C941F8F556D0001BC50 /* Language.swift in Sources */,
 				ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */,
+				EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */,
 				EDEBE39E1E0C13C00069B9BC /* WindowViewController.swift in Sources */,
 				5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */,
 				ED4C14E11DB29FB700A1190E /* AppDelegate.swift in Sources */,
