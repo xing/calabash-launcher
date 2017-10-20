@@ -112,8 +112,6 @@ class TasksViewController: NSViewController {
         tagPicker.completes = true
         killIrbSession()
         runGeneralIrbSession()
-        getSimulators()
-        
         setupTagSelection()
         
         if let simulatorRadioButtonState = applicationStateHandler.simulatorRadioButtonState,
@@ -124,49 +122,7 @@ class TasksViewController: NSViewController {
         
         disableBuildItems()
         
-        let filePath2 = "/tmp/allout.txt"
-        let filePath3 = "/tmp/phys_dev.txt"
-        
-        if let bStreamReader = StreamReader(path: filePath2) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        
-        simulators = phoneComboBox.itemTitles
-        
-        phoneComboBox.removeAllItems()
-        
-        if let bStreamReader = StreamReader(path: filePath3) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        devices = phoneComboBox.itemTitles
-        
-        phoneComboBox.removeAllItems()
-        
-        if simulator_radio.state == .on {
-            languagePopUpButton.isEnabled = true
-            phoneComboBox.addItems(withTitles: simulators)
-        } else {
-            get_device.isEnabled = true
-            languagePopUpButton.isEnabled = false
-            phoneComboBox.addItems(withTitles: devices)
-        }
-        
-        phoneComboBox.selectItem(at: 0)
-
+        getSimulators()
         selectDeviceIfAvailable(prefixed: "iPhone 7(")
 
         if phoneComboBox.selectedItem == nil {
@@ -512,41 +468,23 @@ class TasksViewController: NSViewController {
         get_device.isEnabled = false
         isRunning = true
         
-        deviceCollector.simulators(completion: {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let strongSelf = self else { return }
+        if let launchPath = Constants.FilePaths.Bash.simulators {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = { text in
                 DispatchQueue.main.async {
-                    strongSelf.buildButton.isEnabled = true
-                    strongSelf.spinner.stopAnimation(strongSelf)
-                    strongSelf.get_device.isEnabled = true
-                    strongSelf.progressBar.stopAnimation(strongSelf)
-                }
-                strongSelf.isRunning = false
-            }
-        }) { output in
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let strongSelf = self else { return }
-                let previousOutput = strongSelf.textView.string
-                if !output.isEmpty {
-                    let nextOutput = "\(previousOutput)\n\(output)"
-                    strongSelf.textView.string = nextOutput
-                    
-                    let range = NSRange(location: nextOutput.count, length: 0)
-                    strongSelf.textView.scrollRangeToVisible(range)
+                    let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
+                    self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
+            let commands = CommandsCore.CommandExecutor()
+            commands.executeCommand(at: launchPath, arguments: [""], outputStream: outputStream)
         }
         
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
-                strongSelf.buildButton.isEnabled = true
-                strongSelf.get_device.isEnabled = true
-                strongSelf.spinner.stopAnimation(strongSelf)
-                strongSelf.progressBar.stopAnimation(strongSelf)
-            }
-            strongSelf.isRunning = false
-        }
+        buildButton.isEnabled = true
+        spinner.stopAnimation(self)
+        get_device.isEnabled = true
+        progressBar.stopAnimation(self)
+        isRunning = false
     }
 
     func killIrbSession() {
