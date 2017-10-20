@@ -488,12 +488,11 @@ class TasksViewController: NSViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let strongSelf = self else { return }
                     if !outputString.isEmpty {
-                        ColorizeBashOutput().colorizeTheOutput(outputRawString: outputString, obj: strongSelf)
+                        BashOutput.colorize(string: outputString, in: strongSelf.outputText)
                     }
                     
                     let range = NSRange(location: strongSelf.outputText.string.count, length: 0)
                     strongSelf.outputText.scrollRangeToVisible(range)
-                    
                 }
             }
             

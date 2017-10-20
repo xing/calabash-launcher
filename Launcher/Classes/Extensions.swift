@@ -33,13 +33,17 @@ extension String {
         return result
     }
     
-    mutating func removingRegexMatches(pattern: String, replaceWith: String = "") {
+    mutating func filteringRegexMatches(pattern: String, replaceWith replacement: String = "") {
+        self = filteredRegexMatches(pattern: pattern, replaceWith: replacement)
+    }
+
+    func filteredRegexMatches(pattern: String, replaceWith replacement: String = "") -> String {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
             let range = NSRange(location: 0, length: count)
-            self = regex.stringByReplacingMatches(in: self, range: range, withTemplate: replaceWith)
+            return regex.stringByReplacingMatches(in: self, range: range, withTemplate: replacement)
         } catch {
-            return
+            return self
         }
     }
 }
