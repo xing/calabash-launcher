@@ -476,7 +476,7 @@ class TasksViewController: NSViewController {
             presentViewControllerAsModalWindow(controller)
         }
     }
-    
+
     @objc func limitOfChars() {
         let maxCharacters = 40000
         let characterCount = textView.string.count
@@ -579,7 +579,7 @@ class TasksViewController: NSViewController {
         
         if let launchPath = Constants.FilePaths.Bash.buildScript {
             let outputStream = CommandsCore.CommandTextOutputStream()
-            outputStream.textHandler = {text in
+            outputStream.textHandler = { text in
                 DispatchQueue.main.async {
                     self.textViewPrinter.printToTextView(text)
                 }

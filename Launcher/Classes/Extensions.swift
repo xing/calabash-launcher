@@ -33,14 +33,14 @@ extension String {
         return result
     }
     
-    mutating func removingRegexMatches(pattern: String, replaceWith: String = "") {
-        do {
-            let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-            let range = NSRange(location: 0, length: count)
-            self = regex.stringByReplacingMatches(in: self, range: range, withTemplate: replaceWith)
-        } catch {
-            return
-        }
+    mutating func filteringRegexMatches(pattern: String, replaceWith replacement: String = "") {
+        self = filteredRegexMatches(pattern: pattern, replaceWith: replacement)
+    }
+
+    func filteredRegexMatches(pattern: String, replaceWith replacement: String = "") -> String {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else { return self }
+        let range = NSRange(location: 0, length: count)
+        return regex.stringByReplacingMatches(in: self, range: range, withTemplate: replacement)
     }
 }
 
