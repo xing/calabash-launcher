@@ -3,7 +3,7 @@ import CommandsCore
 
 class TasksViewController: NSViewController {
     
-    @IBOutlet var outputText: NSTextView!
+    @IBOutlet var textView: NSTextView!
     @IBOutlet var spinner: NSProgressIndicator!
     @IBOutlet var buildButton: NSButton!
     @IBOutlet var debugCheckbox: NSButton!
@@ -21,6 +21,7 @@ class TasksViewController: NSViewController {
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
+    var textViewPrinter: TextViewPrinter!
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
     @objc dynamic var isRunning = false
@@ -73,6 +74,8 @@ class TasksViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        textViewPrinter = TextViewPrinter(textView: textView)
+        
         let languageValues = Language.all.map { $0.rawValue }
         languagePopUpButton.addItems(withTitles: languageValues)
         
@@ -88,8 +91,8 @@ class TasksViewController: NSViewController {
 //            UserDefaults.standard.removePersistentDomain(forName: appDomain)
 //        }
 
-        outputText.backgroundColor = .darkAquamarine
-        outputText.textColor = .white
+        textView.backgroundColor = .darkAquamarine
+        textView.textColor = .white
         buildPicker.autoenablesItems = false
         cautionBuildImage.isHidden = true
         cautionImage.isHidden = true
@@ -172,8 +175,8 @@ class TasksViewController: NSViewController {
             cautionImage.isHidden = false
             let noConnectedDevices = "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
             phoneComboBox.addItem(withTitle: noConnectedDevices)
-            let previousOutput2 = outputText.string
-            outputText.string = "\(previousOutput2)\n\(noConnectedDevices)"
+            let previousOutput2 = textView.string
+            textView.string = "\(previousOutput2)\n\(noConnectedDevices)"
         } else {
             cautionImage.isHidden = true
             deviceListIsEmpty = false
@@ -235,7 +238,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
-        outputText.string = ""
+        textView.string = ""
     }
     
     @IBAction func settingsButton(_ sender: Any) {
@@ -308,8 +311,8 @@ class TasksViewController: NSViewController {
             cautionImage.isHidden = false
             let noConnectedSimulators = "\(Constants.Strings.noSimulatorsConnected) \(Constants.Strings.installSimulator)"
             phoneComboBox.addItem(withTitle: noConnectedSimulators)
-            let previousOutput3 = outputText.string
-            outputText.string = "\(previousOutput3)\n\(noConnectedSimulators)"
+            let previousOutput3 = textView.string
+            textView.string = "\(previousOutput3)\n\(noConnectedSimulators)"
         } else {
             cautionImage.isHidden = true
             deviceListIsEmpty = false
@@ -351,16 +354,16 @@ class TasksViewController: NSViewController {
         if deviceListIsEmpty == true {
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false
-            let previousOutput4 = outputText.string
-            outputText.string = "\(previousOutput4)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
+            let previousOutput4 = textView.string
+            textView.string = "\(previousOutput4)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
             return
         } else {
             cautionImage.isHidden = true
         }
         
         if buildItemIsDisabled {
-            let previousOutput6 = outputText.string
-            outputText.string = "\(previousOutput6)\n'\(buildPicker.titleOfSelectedItem ?? "unknown item"))' \(Constants.Strings.notCompatibleWithDeviceType)"
+            let previousOutput6 = textView.string
+            textView.string = "\(previousOutput6)\n'\(buildPicker.titleOfSelectedItem ?? "unknown item"))' \(Constants.Strings.notCompatibleWithDeviceType)"
             return
         }
         
@@ -437,12 +440,12 @@ class TasksViewController: NSViewController {
     func outputInTheMainTextView(string: String) {
         let attrString = NSMutableAttributedString(string: string)
         attrString.setAttributes([.foregroundColor: NSColor.white], range: NSRange(location: 0, length: string.count))
-        outputText.textStorage?.append(NSMutableAttributedString(string: "\n"))
-        outputText.textStorage?.append(attrString)
-        outputText.textStorage?.append(NSMutableAttributedString(string: "\n"))
+        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
+        textView.textStorage?.append(attrString)
+        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
         
-        let range = NSRange(location: outputText.string.count, length: 0)
-        outputText.scrollRangeToVisible(range)
+        let range = NSRange(location: textView.string.count, length: 0)
+        textView.scrollRangeToVisible(range)
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
@@ -474,40 +477,12 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func captureStandardOutputAndRouteToTextView(_ task: Process, outputPipe: Pipe) {
-        task.standardOutput = outputPipe
-        task.standardError = outputPipe
-        
-        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
-        
-        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
-            let output = outputPipe.fileHandleForReading.availableData
-            let outputString = String(data: output, encoding: .utf8) ?? ""
-            
-            if outputString != "nil\n" {
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else { return }
-                    if !outputString.isEmpty {
-                        ColorizeBashOutput().colorizeTheOutput(outputRawString: outputString, obj: strongSelf)
-                    }
-                    
-                    let range = NSRange(location: strongSelf.outputText.string.count, length: 0)
-                    strongSelf.outputText.scrollRangeToVisible(range)
-                    
-                }
-            }
-            
-            outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
-        }
-    }
-    
-    
     @objc func limitOfChars() {
         let maxCharacters = 40000
-        let characterCount = outputText.string.count
+        let characterCount = textView.string.count
         
         if characterCount > maxCharacters {
-            outputText.textStorage?.deleteCharacters(in: NSRange(location: 1, length: characterCount - maxCharacters))
+            textView.textStorage?.deleteCharacters(in: NSRange(location: 1, length: characterCount - maxCharacters))
         }
     }
     
@@ -551,13 +526,13 @@ class TasksViewController: NSViewController {
         }) { output in
             DispatchQueue.global(qos: .background).async { [weak self] in
                 guard let strongSelf = self else { return }
-                let previousOutput = strongSelf.outputText.string
+                let previousOutput = strongSelf.textView.string
                 if !output.isEmpty {
                     let nextOutput = "\(previousOutput)\n\(output)"
-                    strongSelf.outputText.string = nextOutput
+                    strongSelf.textView.string = nextOutput
                     
                     let range = NSRange(location: nextOutput.count, length: 0)
-                    strongSelf.outputText.scrollRangeToVisible(range)
+                    strongSelf.textView.scrollRangeToVisible(range)
                 }
             }
         }
@@ -599,68 +574,43 @@ class TasksViewController: NSViewController {
     
     func runScript(_ arguments: [String]) {
         isRunning = true
-        
-        let taskQueue33 = DispatchQueue.global(qos: .background)
-        
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
         
-        taskQueue33.async { [weak self] in
-            guard let strongSelf = self else { return }
-            let path = Constants.FilePaths.Bash.buildScript
-            
-            strongSelf.buildProcess = Process()
-            strongSelf.buildProcess.launchPath = path
-            strongSelf.buildProcess.arguments = arguments
-            
-            strongSelf.buildProcess.terminationHandler = { task in
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.buildButton.isEnabled = true
-                    strongSelf.spinner.stopAnimation(strongSelf)
-                    strongSelf.progressBar.stopAnimation(strongSelf)
-                    strongSelf.isRunning = false
+        if let launchPath = Constants.FilePaths.Bash.buildScript {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = {text in
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
                 }
             }
-            
-            strongSelf.outputPipeTestRun = Pipe()
-            if let testRunOutputPipe = strongSelf.outputPipeTestRun {
-                strongSelf.captureStandardOutputAndRouteToTextView(strongSelf.buildProcess, outputPipe: testRunOutputPipe)
-            }
-            strongSelf.buildProcess.launch()
-            strongSelf.buildProcess.waitUntilExit()
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.buildButton.isEnabled = true
-                strongSelf.spinner.stopAnimation(strongSelf)
-                strongSelf.progressBar.stopAnimation(strongSelf)
-                strongSelf.isRunning = false
-            }
+            let commands = CommandsCore.CommandExecutor()
+            commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
         }
+        
+        buildButton.isEnabled = true
+        spinner.stopAnimation(self)
+        progressBar.stopAnimation(self)
+        isRunning = false
     }
     
     func runGeneralIrbSession() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.async { [weak self] in
-            guard let strongSelf = self else { return }
-            let path = Constants.FilePaths.Bash.createIRBSession
-            strongSelf.createIRBSessionTask = Process()
-            strongSelf.createIRBSessionTask.launchPath = path
-
+        if let launchPath = Constants.FilePaths.Bash.createIRBSession {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = {text in
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
+                }
+            }
             var arguments: [String] = []
-            arguments.append(strongSelf.pathToCalabashFolder)
+            arguments.append(pathToCalabashFolder)
             if let helpersPath = Constants.FilePaths.Ruby.helpers {
                 arguments.append(helpersPath)
             }
-            strongSelf.createIRBSessionTask.arguments = arguments
-            strongSelf.outputPipeConsole = Pipe()
-            if let consoleOutputPipe = strongSelf.outputPipeConsole {
-                strongSelf.captureStandardOutputAndRouteToTextView(strongSelf.createIRBSessionTask, outputPipe: consoleOutputPipe)
+            let commands = CommandsCore.CommandExecutor()
+            DispatchQueue.global(qos: .background).async {
+                commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
-            strongSelf.createIRBSessionTask.launch()
-            strongSelf.createIRBSessionTask.waitUntilExit()
         }
     }
 }

@@ -73,7 +73,7 @@ class ColorizeBashOutput: NSViewController {
         return results
     }
 
-    func colorizeTheOutput(outputRawString: String, obj: TasksViewController) {
+    func colorizeTheOutput(outputRawString: String) -> NSAttributedString {
         var myAttributedString = NSMutableAttributedString(string: "")
 
         var outputString = outputRawString.replacingOccurrences(of: "\u{1B}", with: "")
@@ -100,6 +100,6 @@ class ColorizeBashOutput: NSViewController {
                 }
             }
         }
-        obj.outputText.textStorage?.append(myAttributedString)
+        return myAttributedString
     }
 }
