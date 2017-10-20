@@ -83,14 +83,14 @@ enum BashOutput {
         return results
     }
 
-    static func colorize(string: String, in textView: NSTextView) {
-        var myAttributedString = NSMutableAttributedString(string: "")
+    static func colorized(string: String) -> NSAttributedString {
+        var attributedString = NSMutableAttributedString(string: "")
 
         let outputString = string
             .replacingOccurrences(of: "\u{1B}", with: "")
             .filteredRegexMatches(pattern: "\\[(?<=\\[)(\\d)(.*?)(?=\\m)\\m")
-        myAttributedString = NSMutableAttributedString(string: outputString)
-        myAttributedString.setAttributes([.foregroundColor: NSColor.white], range: NSRange(location: 0, length: outputString.count - 1))
+        attributedString = NSMutableAttributedString(string: outputString)
+        attributedString.setAttributes([.foregroundColor: NSColor.white], range: NSRange(location: 0, length: outputString.count - 1))
 
         let parsedANSI = self.parseExistingANSI(string: string)
         parsedANSI.enumerated().forEach { argument in
@@ -104,12 +104,12 @@ enum BashOutput {
                 let ansiEnd: Int = outputString.distance(from: outputString.startIndex, to: outputString.range(of: ansi.string)!.upperBound)
 
                 if code == 1 || code == 0 {
-                    myAttributedString.addAttributes([.font: NSFont.boldSystemFont(ofSize: 12)], range: NSRange(location: ansiStart, length: ansiEnd - ansiStart))
+                    attributedString.addAttributes([.font: NSFont.boldSystemFont(ofSize: 12)], range: NSRange(location: ansiStart, length: ansiEnd - ansiStart))
                 } else if let newColor = newColor {
-                    myAttributedString.setAttributes([.foregroundColor: newColor], range: NSRange(location: ansiStart, length: ansiEnd - ansiStart))
+                    attributedString.setAttributes([.foregroundColor: newColor], range: NSRange(location: ansiStart, length: ansiEnd - ansiStart))
                 }
             }
         }
-        textView.textStorage?.append(myAttributedString)
+        return attributedString
     }
 }
