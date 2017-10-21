@@ -11,9 +11,9 @@ class TasksViewController: NSViewController {
     @IBOutlet var languagePopUpButton: NSPopUpButton!
     @IBOutlet var buildPicker: NSPopUpButtonCell!
     @IBOutlet var tagPicker: NSComboBox!
-    @IBOutlet var simulator_radio: NSButton!
-    @IBOutlet var phys_radio: NSButton!
-    @IBOutlet var get_device: NSButtonCell!
+    @IBOutlet var simulatorRadio: NSButton!
+    @IBOutlet var physicalDeviceRadio: NSButton!
+    @IBOutlet var getDevice: NSButtonCell!
     @IBOutlet var cautionImage: NSImageView!
     @IBOutlet var cautionBuildImage: NSImageView!
     @IBOutlet weak var textField: NSTextField!
@@ -49,9 +49,9 @@ class TasksViewController: NSViewController {
         
         // Disable these elements for the moment, as it cannot work for people outside XING
         buildPicker.isEnabled = false
-        get_device.isEnabled = false
-        phys_radio.isEnabled = false
-        simulator_radio.state = .on
+        getDevice.isEnabled = false
+        physicalDeviceRadio.isEnabled = false
+        simulatorRadio.state = .on
         // end
     }
     
@@ -85,11 +85,11 @@ class TasksViewController: NSViewController {
             textField.isAutomaticTextCompletionEnabled = true
         }
         
-        if phys_radio.state == .on {
+        if physicalDeviceRadio.state == .on {
             // get_device.isEnabled = true
             languagePopUpButton.isEnabled = false
         } else {
-            get_device.isEnabled = false
+            getDevice.isEnabled = false
             languagePopUpButton.isEnabled = true
         }
         
@@ -100,8 +100,8 @@ class TasksViewController: NSViewController {
         
         if let simulatorRadioButtonState = applicationStateHandler.simulatorRadioButtonState,
             let physicalButtonState = applicationStateHandler.physicalButtonState {
-            simulator_radio.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
-            phys_radio.state = physicalButtonState
+            simulatorRadio.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
+            physicalDeviceRadio.state = physicalButtonState
         }
         
         disableBuildItems()
@@ -191,7 +191,7 @@ class TasksViewController: NSViewController {
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
         
-        simulator_radio.state = .off
+        simulatorRadio.state = .off
         
         getSimulators()
         
@@ -210,8 +210,8 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
-        phys_radio.state = .off
-        get_device.isEnabled = false
+        physicalDeviceRadio.state = .off
+        getDevice.isEnabled = false
         languagePopUpButton.isEnabled = true
 
         if let phoneName = applicationStateHandler.phoneName,
@@ -243,9 +243,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func phys_radio(_ sender: Any) {
-        get_device.isEnabled = true
+        getDevice.isEnabled = true
         languagePopUpButton.isEnabled = false
-        simulator_radio.state = .off
+        simulatorRadio.state = .off
         
         phoneComboBox.removeAllItems()
         
@@ -306,7 +306,7 @@ class TasksViewController: NSViewController {
             arguments.append("DEBUG=0")
         }
         
-        if phys_radio.state == .on {
+        if physicalDeviceRadio.state == .on {
             arguments.append("phys_device")
             if applicationStateHandler.isLaunched == false {
                 // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
@@ -397,7 +397,7 @@ class TasksViewController: NSViewController {
     }
     
     func disableBuildItems() {
-        if simulator_radio.state == .on {
+        if simulatorRadio.state == .on {
             buildPicker.item(at: 0)?.isEnabled = true
             buildPicker.item(at: 1)?.isEnabled = false
             buildPicker.item(at: 2)?.isEnabled = true
@@ -419,7 +419,7 @@ class TasksViewController: NSViewController {
     func getSimulators() {
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
-        get_device.isEnabled = false
+        getDevice.isEnabled = false
         isRunning = true
         
         if let launchPath = Constants.FilePaths.Bash.simulators {
@@ -436,7 +436,7 @@ class TasksViewController: NSViewController {
         
         buildButton.isEnabled = true
         spinner.stopAnimation(self)
-        get_device.isEnabled = true
+        getDevice.isEnabled = true
         progressBar.stopAnimation(self)
         isRunning = false
     }
@@ -455,8 +455,8 @@ class TasksViewController: NSViewController {
     }
     
     func statePreservation() {
-        applicationStateHandler.simulatorRadioButtonState = simulator_radio.state.rawValue
-        applicationStateHandler.physicalButtonState = phys_radio.state
+        applicationStateHandler.simulatorRadioButtonState = simulatorRadio.state.rawValue
+        applicationStateHandler.physicalButtonState = physicalDeviceRadio.state
         applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
