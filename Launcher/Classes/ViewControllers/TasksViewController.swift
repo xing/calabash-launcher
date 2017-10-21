@@ -25,37 +25,21 @@ class TasksViewController: NSViewController {
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
     @objc dynamic var isRunning = false
-    var outputPipeConsole: Pipe?
-    var outputPipeTestRun: Pipe?
-    var buildTask: Process!
-    var buildTask1: Process!
-    var buildTask2: Process!
     var buildProcess:Process!
     var killProcessesProcess:Process!
     var sendToIRBSessionProcess:Process!
-    var simulatorProcess:Process!
     var generalIRBSessionTask:Process!
-    var createIRBSessionTask:Process!
     let env = ProcessInfo.processInfo.environment as [String: String]
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
     let fileManager = FileManager.default
     var devices: [String] = [""]
-    var simulators: [String] = [""]
     var file = ""
     var timer: Timer!
     var pathToCalabashFolder = ""
     
     override func viewDidAppear() {
-        super.viewDidAppear()
-        let filePath2 = "/tmp/allout.txt"
-        let filePath3 = "/tmp/phys_dev.txt"
-        let filePath4 = "/tmp/tag_list.txt"
-        
-        try? fileManager.removeItem(atPath: filePath2)
-        try? fileManager.removeItem(atPath: filePath3)
-        try? fileManager.removeItem(atPath: filePath4)
-        
+        super.viewDidAppear()        
         textField.backgroundColor = .darkAquamarine
         textField.textColor = .white
         let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
@@ -211,24 +195,6 @@ class TasksViewController: NSViewController {
         
         getSimulators()
         
-        phoneComboBox.removeAllItems()
-        
-        let filePath6 = "/tmp/phys_dev.txt"
-        let filePath7 = "/tmp/allout.txt"
-        
-        if let bStreamReader = StreamReader(path: filePath6) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        try? fileManager.removeItem(atPath: filePath6)
-        try? fileManager.removeItem(atPath: filePath7)
-        
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
             phoneComboBox.highlight(true)
@@ -241,19 +207,13 @@ class TasksViewController: NSViewController {
         
         spinner.stopAnimation(self)
         progressBar.stopAnimation(self)
-        
-        devices = self.phoneComboBox.itemTitles
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
         phys_radio.state = .off
         get_device.isEnabled = false
         languagePopUpButton.isEnabled = true
-        
-        phoneComboBox.removeAllItems()
-        
-        phoneComboBox.addItems(withTitles: simulators)
-        
+
         if let phoneName = applicationStateHandler.phoneName,
             phoneName != "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)" {
             phoneComboBox.selectItem(withTitle: phoneName)
