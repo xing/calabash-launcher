@@ -460,12 +460,12 @@
                         <outlet property="cautionBuildImage" destination="UFY-A7-cKx" id="6or-MY-044"/>
                         <outlet property="cautionImage" destination="zXL-3o-0Wq" id="2tc-AI-SvW"/>
                         <outlet property="debugCheckbox" destination="Wu4-dd-Hr4" id="PTc-ad-wLV"/>
-                        <outlet property="getDevice" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
+                        <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
                         <outlet property="phoneComboBox" destination="2d7-eQ-bCS" id="aSh-yK-6gN"/>
-                        <outlet property="physicalDeviceRadio" destination="V9k-ER-WQ4" id="Hfb-yT-T5x"/>
+                        <outlet property="physicalDeviceRadioButton" destination="V9k-ER-WQ4" id="Hfb-yT-T5x"/>
                         <outlet property="progressBar" destination="AHc-qg-8e1" id="Dgt-jZ-upy"/>
-                        <outlet property="simulatorRadio" destination="jhu-9b-wNu" id="A9D-F8-6ce"/>
+                        <outlet property="simulatorRadioButton" destination="jhu-9b-wNu" id="A9D-F8-6ce"/>
                         <outlet property="spinner" destination="hKG-UC-SCo" id="aeB-I6-poy"/>
                         <outlet property="tagPicker" destination="OaY-n0-L6b" id="N1C-0T-Cfm"/>
                         <outlet property="textField" destination="SA3-Li-mtu" id="Wmr-lt-V9E"/>
