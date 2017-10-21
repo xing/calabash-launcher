@@ -39,7 +39,7 @@ class TasksViewController: NSViewController {
     var pathToCalabashFolder = ""
     
     override func viewDidAppear() {
-        super.viewDidAppear()        
+        super.viewDidAppear()
         textField.backgroundColor = .darkAquamarine
         textField.textColor = .white
         let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
