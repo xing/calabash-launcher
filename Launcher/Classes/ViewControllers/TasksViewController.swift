@@ -483,13 +483,14 @@ class TasksViewController: NSViewController {
                 }
             }
             let commands = CommandsCore.CommandExecutor()
-            commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+            DispatchQueue.global(qos: .background).async {
+                commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                self.buildButton.isEnabled = true
+                self.spinner.stopAnimation(self)
+                self.progressBar.stopAnimation(self)
+                self.isRunning = false
+            }
         }
-        
-        buildButton.isEnabled = true
-        spinner.stopAnimation(self)
-        progressBar.stopAnimation(self)
-        isRunning = false
     }
     
     func runGeneralIrbSession() {
