@@ -365,16 +365,10 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
-        
-        do {
-            try fileManager.removeItem(atPath: file
-                .replacingOccurrences(of: "file://", with: "")
-                .replacingOccurrences(of: "//", with: "/"))
-        } catch { }
-        
-        if isRunning {
-            buildProcess.terminate()
-        }
+       // Need to find solution to stop the task. More control on processes is needed.
+//        if isRunning {
+//            buildProcess.terminate()
+//        }
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
@@ -485,10 +479,12 @@ class TasksViewController: NSViewController {
             let commands = CommandsCore.CommandExecutor()
             DispatchQueue.global(qos: .background).async {
                 commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
-                self.buildButton.isEnabled = true
-                self.spinner.stopAnimation(self)
-                self.progressBar.stopAnimation(self)
-                self.isRunning = false
+                DispatchQueue.main.async {
+                    self.buildButton.isEnabled = true
+                    self.spinner.stopAnimation(self)
+                    self.progressBar.stopAnimation(self)
+                    self.isRunning = false
+                }
             }
         }
     }
