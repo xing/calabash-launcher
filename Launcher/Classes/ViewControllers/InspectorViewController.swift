@@ -4,14 +4,8 @@ import CommandsCore
 class InspectorViewController: NSViewController, NSTableViewDataSource {
     let commands = CommandsCore.CommandExecutor()
     let applicationStateHandler = ApplicationStateHandler()
-    var runDeviceTask:Process!
-    var runDeviceTask1:Process!
-    var runDeviceTask2:Process!
-    var buildTaskNew558:Process!
+    var textViewPrinter: TextViewPrinter!
     @objc dynamic var isRunning = false
-    var outputPipe:Pipe!
-    let defaults = UserDefaults.standard
-    let env = ProcessInfo.processInfo.environment as [String: String]
     let fileManager = FileManager.default
     var uiElements: [String] = []
     var parentCollection: [String] = []
@@ -218,28 +212,15 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
     
     func getElementsByOffset(_ arguments:[String]) {
-        let taskQueue6 = DispatchQueue.global(qos: .background)
-        taskQueue6.async {
-            let path = Constants.FilePaths.Bash.elementsByOffset
-            self.runDeviceTask = Process()
-            self.runDeviceTask.launchPath = path
-            self.runDeviceTask.arguments = arguments
-            self.runDeviceTask.launch()
-        }
+        commands.executeCommand(at: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments)
     }
     
     func getElements() {
-        let taskQueue7 = DispatchQueue.global(qos: .background)
-        
-        taskQueue7.async {
-            let path = Constants.FilePaths.Bash.elements
-            self.runDeviceTask1 = Process()
-            self.runDeviceTask1.launchPath = path
-            if let filePath = self.applicationStateHandler.filePath {
-                self.runDeviceTask1.arguments = [filePath.absoluteString]
-            }
-            self.runDeviceTask1.launch()
+        var arguments: [String] = []
+        if let filePath = self.applicationStateHandler.filePath {
+            arguments = [filePath.absoluteString]
         }
+        commands.executeCommand(at: Constants.FilePaths.Bash.elements ?? "", arguments: arguments)
     }
     
 
@@ -250,18 +231,23 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     func startDevice() {
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        let taskQueue8 = DispatchQueue.global(qos: .background)
         
-        taskQueue8.async {
-            let path = Constants.FilePaths.Bash.startDevice
-            self.runDeviceTask2 = Process()
-            self.runDeviceTask2.launchPath = path
-            if let phoneUDID = self.applicationStateHandler.phoneUDID {
-                self.runDeviceTask2.arguments = [phoneUDID]
+        if let launchPath = Constants.FilePaths.Bash.startDevice {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = { text in
+                if !text.isEmpty {
+                    DispatchQueue.main.async {
+                        self.textViewPrinter.printToTextView(text)
+                    }
+                }
             }
-            self.captureStandardOutputAndRouteToTextView(self.runDeviceTask2)
-            self.runDeviceTask2.launch()
-            self.runDeviceTask2.waitUntilExit()
+            var arguments: [String] = []
+            if let phoneUDID = self.applicationStateHandler.phoneUDID {
+                arguments = [phoneUDID]
+            }
+            DispatchQueue.global(qos: .background).async {
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+            }
         }
         
         self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 9999) {
@@ -271,34 +257,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 self.outputInTheMainTextView(string: "Simulator is ready to use")
             }
             self.enableAllElements()
-        }
-    }
-    
-    func captureStandardOutputAndRouteToTextView(_ task:Process) {
-
-        outputPipe = Pipe()
-        task.standardOutput = outputPipe
-        
-        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
-        
-        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
-            
-            let output = self.outputPipe.fileHandleForReading.availableData
-            let outputString = String(data: output, encoding: .utf8) ?? ""
-            
-            DispatchQueue.main.async {
-                let previousOutput = self.outputText.string
-
-                if !outputString.isEmpty {
-                
-                    let nextOutput = previousOutput + "\n" + outputString
-                    self.outputText.string = nextOutput
-                    
-                    let range = NSRange(location: nextOutput.count, length: 0)
-                    self.outputText.scrollRangeToVisible(range)
-                }
-            }
-            self.outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         }
     }
     
