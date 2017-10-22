@@ -22,19 +22,13 @@ class TasksViewController: NSViewController {
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     var textViewPrinter: TextViewPrinter!
+    let commands = CommandsCore.CommandExecutor()
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
     @objc dynamic var isRunning = false
-    var buildProcess:Process!
-    var killProcessesProcess:Process!
-    var sendToIRBSessionProcess:Process!
-    var generalIRBSessionTask:Process!
-    let env = ProcessInfo.processInfo.environment as [String: String]
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
-    let fileManager = FileManager.default
     var devices: [String] = [""]
-    var file = ""
     var timer: Timer!
     var pathToCalabashFolder = ""
     
@@ -158,15 +152,7 @@ class TasksViewController: NSViewController {
     }
 
     func killProcessScreenshot() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.sync {
-            let path = Constants.FilePaths.Bash.killProcess
-            killProcessesProcess = Process()
-            killProcessesProcess.launchPath = path
-            killProcessesProcess.launch()
-            killProcessesProcess.waitUntilExit()
-        }
+        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [""])
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -283,21 +269,6 @@ class TasksViewController: NSViewController {
             return
         }
         
-        
-        file = "file://\(pathToCalabashFolder)/build_to_download.txt"
-        let fileURL = URL(string: file)
-        var text = String(buildPicker.indexOfSelectedItem + 1)
-        
-        if buildPicker.indexOfSelectedItem + 1 == buildPicker.numberOfItems {
-            text = "0"
-        }
-        
-        do {
-            if let fileURL = fileURL {
-                try text.write(to: fileURL, atomically: false, encoding: .utf8)
-            }
-        } catch { }
-        
         var arguments: [String] = []
         
         if debugCheckbox.state == .on {
@@ -333,35 +304,25 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func textField(_ sender: Any) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        taskQueueNew.sync {
-            let path = Constants.FilePaths.Bash.sendToIRB
-            sendToIRBSessionProcess = Process()
-            sendToIRBSessionProcess.launchPath = path
-            
-            sendToIRBSessionProcess.arguments = [textField.stringValue]
-            
-            sendToIRBSessionProcess.launch()
-            sendToIRBSessionProcess.waitUntilExit()
+        if let launchPath = Constants.FilePaths.Bash.sendToIRB {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = { text in
+                if !text.isEmpty {
+                    DispatchQueue.main.async {
+                        self.textViewPrinter.printToTextView(text)
+                    }
+                }
+            }
+            let arguments = [self.textField.stringValue]
+            DispatchQueue.global(qos: .background).async {
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+            }
         }
-        
-        outputInTheMainTextView(string: textField.stringValue)
         textField.stringValue = ""
     }
     
     @IBAction func toggleDebug(_ sender: NSButton) {
         applicationStateHandler.debugState = sender.state.rawValue
-    }
-    
-    func outputInTheMainTextView(string: String) {
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.setAttributes([.foregroundColor: NSColor.white], range: NSRange(location: 0, length: string.count))
-        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
-        textView.textStorage?.append(attrString)
-        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
-        
-        let range = NSRange(location: textView.string.count, length: 0)
-        textView.scrollRangeToVisible(range)
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
@@ -430,7 +391,6 @@ class TasksViewController: NSViewController {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
-            let commands = CommandsCore.CommandExecutor()
             commands.executeCommand(at: launchPath, arguments: [""], outputStream: outputStream)
         }
         
@@ -442,16 +402,7 @@ class TasksViewController: NSViewController {
     }
 
     func killIrbSession() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        taskQueueNew.sync { [weak self] in
-            guard let strongSelf = self else { return }
-            let path = Constants.FilePaths.Bash.quitIRBSession
-            strongSelf.generalIRBSessionTask = Process()
-            strongSelf.generalIRBSessionTask.launchPath = path
-            
-            strongSelf.generalIRBSessionTask.launch()
-            strongSelf.generalIRBSessionTask.waitUntilExit()
-        }
+        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [""])
     }
     
     func statePreservation() {
@@ -476,9 +427,8 @@ class TasksViewController: NSViewController {
                     self.textViewPrinter.printToTextView(text)
                 }
             }
-            let commands = CommandsCore.CommandExecutor()
             DispatchQueue.global(qos: .background).async {
-                commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
                     self.spinner.stopAnimation(self)
@@ -502,9 +452,8 @@ class TasksViewController: NSViewController {
             if let helpersPath = Constants.FilePaths.Ruby.helpers {
                 arguments.append(helpersPath)
             }
-            let commands = CommandsCore.CommandExecutor()
             DispatchQueue.global(qos: .background).async {
-                commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
         }
     }
