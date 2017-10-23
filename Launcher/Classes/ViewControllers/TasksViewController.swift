@@ -349,7 +349,6 @@ class TasksViewController: NSViewController {
             self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
             self.applicationStateHandler.phoneUDID = self.deviceCollector.getDeviceUDID(device: self.phoneComboBox.itemTitle(at: self.phoneComboBox.indexOfSelectedItem))
             self.buildButton.isEnabled = true
-            self.getDeviceButton.isEnabled = true
             self.isRunning = false
             self.emptyDeviceHandler()
         }
