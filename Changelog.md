@@ -4,5 +4,5 @@
 
 # 0.2
 
-- Remove unused "Physical device" functionality (https://github.com/JoeSSS/calabash-launcher/pull/35)
-- Improve launch time (https://github.com/JoeSSS/calabash-launcher/pull/34) 
+- Remove unused "Physical device" functionality ([#35](https://github.com/JoeSSS/calabash-launcher/pull/35))
+- Improve launch time ([#34](https://github.com/JoeSSS/calabash-launcher/pull/34))
