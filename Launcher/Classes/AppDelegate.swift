@@ -19,12 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func resetToDefaults(_ sender: Any) {
+    @IBAction func resetUserDefaults(_ sender: Any) {
         // Reset UserDefaults
         if let appDomain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: appDomain)
         }
-        AppHandler().applicationRestart()
+        AppHandler().restartApplication()
     }
     
     func application(application: NSApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {

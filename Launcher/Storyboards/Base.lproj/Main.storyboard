@@ -65,7 +65,7 @@
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                                         <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                             <connections>
-                                                <action selector="closeTheApp:" target="Voe-Tx-rLC" id="Dow-SP-Blk"/>
+                                                <action selector="resetUserDefaults:" target="Voe-Tx-rLC" id="Dow-SP-Blk"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -75,14 +75,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Settings" id="eMl-Tr-UV4">
                                     <items>
-                                        <menuItem title="Configure settings" keyEquivalent="s" id="QJc-YU-Tln">
+                                        <menuItem title="Configure Settings" keyEquivalent="s" id="QJc-YU-Tln">
                                             <connections>
-                                                <action selector="configurationButton:" target="Voe-Tx-rLC" id="yjF-fd-mVk"/>
+                                                <action selector="configurationButton:" target="Voe-Tx-rLC" id="kU7-Xi-5bp"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Reset to default settings" keyEquivalent="r" id="GtK-2a-LLr" userLabel="Reset To Default Settings ">
+                                        <menuItem title="Reset to Default Settings" keyEquivalent="r" id="GtK-2a-LLr">
                                             <connections>
-                                                <action selector="resetToDefaults:" target="Voe-Tx-rLC" id="jpy-Z0-SfW"/>
+                                                <action selector="resetUserDefaults:" target="Voe-Tx-rLC" id="jpy-Z0-SfW"/>
                                             </connections>
                                         </menuItem>
                                     </items>

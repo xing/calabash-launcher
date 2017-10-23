@@ -73,7 +73,7 @@ class SettingsViewController: NSViewController {
         
         // Restart APP after new path is available. Close Settings and save settings otherwise.
         if pathChanged {
-            AppHandler().applicationRestart()
+            AppHandler().restartApplication()
         } else if !hasWarnings {
             emptyPathHandling()
         }
