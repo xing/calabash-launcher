@@ -8,7 +8,7 @@ class TagsController {
         if let launchPath = Constants.FilePaths.Bash.tags {
             let outputStream = CommandsCore.CommandTextOutputStream()
             outputStream.textHandler = {text in
-                tags.append(contentsOf: text.components(separatedBy: "\n"))
+                tags.append(contentsOf: text.components(separatedBy: "\n").filter { !$0.isEmpty })
             }
 
             let commands = CommandsCore.CommandExecutor()

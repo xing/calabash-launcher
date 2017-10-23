@@ -11,9 +11,9 @@ class TasksViewController: NSViewController {
     @IBOutlet var languagePopUpButton: NSPopUpButton!
     @IBOutlet var buildPicker: NSPopUpButtonCell!
     @IBOutlet var tagPicker: NSComboBox!
-    @IBOutlet var simulator_radio: NSButton!
-    @IBOutlet var phys_radio: NSButton!
-    @IBOutlet var get_device: NSButtonCell!
+    @IBOutlet var simulatorRadioButton: NSButton!
+    @IBOutlet var physicalDeviceRadioButton: NSButton!
+    @IBOutlet var getDeviceButton: NSButtonCell!
     @IBOutlet var cautionImage: NSImageView!
     @IBOutlet var cautionBuildImage: NSImageView!
     @IBOutlet weak var textField: NSTextField!
@@ -22,40 +22,18 @@ class TasksViewController: NSViewController {
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     var textViewPrinter: TextViewPrinter!
+    let commands = CommandsCore.CommandExecutor()
     var deviceListIsEmpty = false
     var buildItemIsDisabled = false
     @objc dynamic var isRunning = false
-    var outputPipeConsole: Pipe?
-    var outputPipeTestRun: Pipe?
-    var buildTask: Process!
-    var buildTask1: Process!
-    var buildTask2: Process!
-    var buildProcess:Process!
-    var killProcessesProcess:Process!
-    var sendToIRBSessionProcess:Process!
-    var simulatorProcess:Process!
-    var generalIRBSessionTask:Process!
-    var createIRBSessionTask:Process!
-    let env = ProcessInfo.processInfo.environment as [String: String]
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
-    let fileManager = FileManager.default
-    var devices: [String] = [""]
-    var simulators: [String] = [""]
-    var file = ""
+    var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        let filePath2 = "/tmp/allout.txt"
-        let filePath3 = "/tmp/phys_dev.txt"
-        let filePath4 = "/tmp/tag_list.txt"
-        
-        try? fileManager.removeItem(atPath: filePath2)
-        try? fileManager.removeItem(atPath: filePath3)
-        try? fileManager.removeItem(atPath: filePath4)
-        
         textField.backgroundColor = .darkAquamarine
         textField.textColor = .white
         let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
@@ -65,9 +43,9 @@ class TasksViewController: NSViewController {
         
         // Disable these elements for the moment, as it cannot work for people outside XING
         buildPicker.isEnabled = false
-        get_device.isEnabled = false
-        phys_radio.isEnabled = false
-        simulator_radio.state = .on
+        getDeviceButton.isEnabled = false
+        physicalDeviceRadioButton.isEnabled = false
+        simulatorRadioButton.state = .on
         // end
     }
     
@@ -101,72 +79,28 @@ class TasksViewController: NSViewController {
             textField.isAutomaticTextCompletionEnabled = true
         }
         
-        if phys_radio.state == .on {
+        if physicalDeviceRadioButton.state == .on {
             // get_device.isEnabled = true
             languagePopUpButton.isEnabled = false
         } else {
-            get_device.isEnabled = false
+            getDeviceButton.isEnabled = false
             languagePopUpButton.isEnabled = true
         }
         
         tagPicker.completes = true
         killIrbSession()
         runGeneralIrbSession()
-        getSimulators()
-        
         setupTagSelection()
         
         if let simulatorRadioButtonState = applicationStateHandler.simulatorRadioButtonState,
             let physicalButtonState = applicationStateHandler.physicalButtonState {
-            simulator_radio.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
-            phys_radio.state = physicalButtonState
+            simulatorRadioButton.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
+            physicalDeviceRadioButton.state = physicalButtonState
         }
         
         disableBuildItems()
         
-        let filePath2 = "/tmp/allout.txt"
-        let filePath3 = "/tmp/phys_dev.txt"
-        
-        if let bStreamReader = StreamReader(path: filePath2) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        
-        simulators = phoneComboBox.itemTitles
-        
-        phoneComboBox.removeAllItems()
-        
-        if let bStreamReader = StreamReader(path: filePath3) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        devices = phoneComboBox.itemTitles
-        
-        phoneComboBox.removeAllItems()
-        
-        if simulator_radio.state == .on {
-            languagePopUpButton.isEnabled = true
-            phoneComboBox.addItems(withTitles: simulators)
-        } else {
-            get_device.isEnabled = true
-            languagePopUpButton.isEnabled = false
-            phoneComboBox.addItems(withTitles: devices)
-        }
-        
-        phoneComboBox.selectItem(at: 0)
-
+        getSimulators()
         selectDeviceIfAvailable(prefixed: "iPhone 7(")
 
         if phoneComboBox.selectedItem == nil {
@@ -218,15 +152,7 @@ class TasksViewController: NSViewController {
     }
 
     func killProcessScreenshot() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        
-        taskQueueNew.sync {
-            let path = Constants.FilePaths.Bash.killProcess
-            killProcessesProcess = Process()
-            killProcessesProcess.launchPath = path
-            killProcessesProcess.launch()
-            killProcessesProcess.waitUntilExit()
-        }
+        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [])
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -251,27 +177,9 @@ class TasksViewController: NSViewController {
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
         
-        simulator_radio.state = .off
+        simulatorRadioButton.state = .off
         
         getSimulators()
-        
-        phoneComboBox.removeAllItems()
-        
-        let filePath6 = "/tmp/phys_dev.txt"
-        let filePath7 = "/tmp/allout.txt"
-        
-        if let bStreamReader = StreamReader(path: filePath6) {
-            defer {
-                bStreamReader.close()
-            }
-            while var line = bStreamReader.nextLine() {
-                line = line.trimmingCharacters(in: .whitespaces)
-                phoneComboBox.addItem(withTitle: line)
-            }
-        }
-        
-        try? fileManager.removeItem(atPath: filePath6)
-        try? fileManager.removeItem(atPath: filePath7)
         
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
@@ -285,19 +193,13 @@ class TasksViewController: NSViewController {
         
         spinner.stopAnimation(self)
         progressBar.stopAnimation(self)
-        
-        devices = self.phoneComboBox.itemTitles
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
-        phys_radio.state = .off
-        get_device.isEnabled = false
+        physicalDeviceRadioButton.state = .off
+        getDeviceButton.isEnabled = false
         languagePopUpButton.isEnabled = true
-        
-        phoneComboBox.removeAllItems()
-        
-        phoneComboBox.addItems(withTitles: simulators)
-        
+
         if let phoneName = applicationStateHandler.phoneName,
             phoneName != "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)" {
             phoneComboBox.selectItem(withTitle: phoneName)
@@ -327,9 +229,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func phys_radio(_ sender: Any) {
-        get_device.isEnabled = true
+        getDeviceButton.isEnabled = true
         languagePopUpButton.isEnabled = false
-        simulator_radio.state = .off
+        simulatorRadioButton.state = .off
         
         phoneComboBox.removeAllItems()
         
@@ -367,21 +269,6 @@ class TasksViewController: NSViewController {
             return
         }
         
-        
-        file = "file://\(pathToCalabashFolder)/build_to_download.txt"
-        let fileURL = URL(string: file)
-        var text = String(buildPicker.indexOfSelectedItem + 1)
-        
-        if buildPicker.indexOfSelectedItem + 1 == buildPicker.numberOfItems {
-            text = "0"
-        }
-        
-        do {
-            if let fileURL = fileURL {
-                try text.write(to: fileURL, atomically: false, encoding: .utf8)
-            }
-        } catch { }
-        
         var arguments: [String] = []
         
         if debugCheckbox.state == .on {
@@ -390,7 +277,7 @@ class TasksViewController: NSViewController {
             arguments.append("DEBUG=0")
         }
         
-        if phys_radio.state == .on {
+        if physicalDeviceRadioButton.state == .on {
             arguments.append("phys_device")
             if applicationStateHandler.isLaunched == false {
                 // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
@@ -417,19 +304,19 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func textField(_ sender: Any) {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        taskQueueNew.sync {
-            let path = Constants.FilePaths.Bash.sendToIRB
-            sendToIRBSessionProcess = Process()
-            sendToIRBSessionProcess.launchPath = path
-            
-            sendToIRBSessionProcess.arguments = [textField.stringValue]
-            
-            sendToIRBSessionProcess.launch()
-            sendToIRBSessionProcess.waitUntilExit()
+        if let launchPath = Constants.FilePaths.Bash.sendToIRB {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = { text in
+                guard !text.isEmpty else { return }
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
+                }
+            }
+            let arguments = [self.textField.stringValue]
+            DispatchQueue.global(qos: .background).async {
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+            }
         }
-        
-        outputInTheMainTextView(string: textField.stringValue)
         textField.stringValue = ""
     }
     
@@ -437,28 +324,11 @@ class TasksViewController: NSViewController {
         applicationStateHandler.debugState = sender.state.rawValue
     }
     
-    func outputInTheMainTextView(string: String) {
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.setAttributes([.foregroundColor: NSColor.white], range: NSRange(location: 0, length: string.count))
-        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
-        textView.textStorage?.append(attrString)
-        textView.textStorage?.append(NSMutableAttributedString(string: "\n"))
-        
-        let range = NSRange(location: textView.string.count, length: 0)
-        textView.scrollRangeToVisible(range)
-    }
-    
     @IBAction func stopTask(_ sender:AnyObject) {
-        
-        do {
-            try fileManager.removeItem(atPath: file
-                .replacingOccurrences(of: "file://", with: "")
-                .replacingOccurrences(of: "//", with: "/"))
-        } catch { }
-        
-        if isRunning {
-            buildProcess.terminate()
-        }
+       // Need to find solution to stop the task. More control on processes is needed.
+//        if isRunning {
+//            buildProcess.terminate()
+//        }
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
@@ -487,7 +357,7 @@ class TasksViewController: NSViewController {
     }
     
     func disableBuildItems() {
-        if simulator_radio.state == .on {
+        if simulatorRadioButton.state == .on {
             buildPicker.item(at: 0)?.isEnabled = true
             buildPicker.item(at: 1)?.isEnabled = false
             buildPicker.item(at: 2)?.isEnabled = true
@@ -509,62 +379,34 @@ class TasksViewController: NSViewController {
     func getSimulators() {
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
-        get_device.isEnabled = false
+        getDeviceButton.isEnabled = false
         isRunning = true
         
-        deviceCollector.simulators(completion: {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let strongSelf = self else { return }
+        if let launchPath = Constants.FilePaths.Bash.simulators {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = { text in
                 DispatchQueue.main.async {
-                    strongSelf.buildButton.isEnabled = true
-                    strongSelf.spinner.stopAnimation(strongSelf)
-                    strongSelf.get_device.isEnabled = true
-                    strongSelf.progressBar.stopAnimation(strongSelf)
-                }
-                strongSelf.isRunning = false
-            }
-        }) { output in
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let strongSelf = self else { return }
-                let previousOutput = strongSelf.textView.string
-                if !output.isEmpty {
-                    let nextOutput = "\(previousOutput)\n\(output)"
-                    strongSelf.textView.string = nextOutput
-                    
-                    let range = NSRange(location: nextOutput.count, length: 0)
-                    strongSelf.textView.scrollRangeToVisible(range)
+                    let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
+                    self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
+            commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
         }
         
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
-                strongSelf.buildButton.isEnabled = true
-                strongSelf.get_device.isEnabled = true
-                strongSelf.spinner.stopAnimation(strongSelf)
-                strongSelf.progressBar.stopAnimation(strongSelf)
-            }
-            strongSelf.isRunning = false
-        }
+        buildButton.isEnabled = true
+        spinner.stopAnimation(self)
+        getDeviceButton.isEnabled = true
+        progressBar.stopAnimation(self)
+        isRunning = false
     }
 
     func killIrbSession() {
-        let taskQueueNew = DispatchQueue.global(qos: .background)
-        taskQueueNew.sync { [weak self] in
-            guard let strongSelf = self else { return }
-            let path = Constants.FilePaths.Bash.quitIRBSession
-            strongSelf.generalIRBSessionTask = Process()
-            strongSelf.generalIRBSessionTask.launchPath = path
-            
-            strongSelf.generalIRBSessionTask.launch()
-            strongSelf.generalIRBSessionTask.waitUntilExit()
-        }
+        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
     }
     
     func statePreservation() {
-        applicationStateHandler.simulatorRadioButtonState = simulator_radio.state.rawValue
-        applicationStateHandler.physicalButtonState = phys_radio.state
+        applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
+        applicationStateHandler.physicalButtonState = physicalDeviceRadioButton.state
         applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
@@ -584,14 +426,16 @@ class TasksViewController: NSViewController {
                     self.textViewPrinter.printToTextView(text)
                 }
             }
-            let commands = CommandsCore.CommandExecutor()
-            commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+            DispatchQueue.global(qos: .background).async {
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                DispatchQueue.main.async {
+                    self.buildButton.isEnabled = true
+                    self.spinner.stopAnimation(self)
+                    self.progressBar.stopAnimation(self)
+                    self.isRunning = false
+                }
+            }
         }
-        
-        buildButton.isEnabled = true
-        spinner.stopAnimation(self)
-        progressBar.stopAnimation(self)
-        isRunning = false
     }
     
     func runGeneralIrbSession() {
@@ -607,9 +451,8 @@ class TasksViewController: NSViewController {
             if let helpersPath = Constants.FilePaths.Ruby.helpers {
                 arguments.append(helpersPath)
             }
-            let commands = CommandsCore.CommandExecutor()
             DispatchQueue.global(qos: .background).async {
-                commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
         }
     }
