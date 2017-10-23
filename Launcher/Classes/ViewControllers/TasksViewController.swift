@@ -68,7 +68,6 @@ class TasksViewController: NSViewController {
 //        if let appDomain = Bundle.main.bundleIdentifier {
 //            UserDefaults.standard.removePersistentDomain(forName: appDomain)
 //        }
-
         textView.backgroundColor = .darkAquamarine
         textView.textColor = .white
         buildPicker.autoenablesItems = false
@@ -88,32 +87,26 @@ class TasksViewController: NSViewController {
         }
         
         tagPicker.completes = true
-        killIrbSession()
         runGeneralIrbSession()
-        setupTagSelection()
+        DispatchQueue.global(qos: .background).async {
+            self.setupTagSelection()
+            if let tag = self.applicationStateHandler.tag {
+                DispatchQueue.main.async {
+                    self.tagPicker.selectItem(withObjectValue: tag)
+                }
+            }
+        }
         
         if let simulatorRadioButtonState = applicationStateHandler.simulatorRadioButtonState,
             let physicalButtonState = applicationStateHandler.physicalButtonState {
             simulatorRadioButton.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
             physicalDeviceRadioButton.state = physicalButtonState
         }
-        
-        disableBuildItems()
-        
-        getSimulators()
-        selectDeviceIfAvailable(prefixed: "iPhone 7(")
 
-        if phoneComboBox.selectedItem == nil {
-            deviceListIsEmpty = true
-            phoneComboBox.highlight(true)
-            cautionImage.isHidden = false
-            let noConnectedDevices = "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
-            phoneComboBox.addItem(withTitle: noConnectedDevices)
-            let previousOutput2 = textView.string
-            textView.string = "\(previousOutput2)\n\(noConnectedDevices)"
-        } else {
-            cautionImage.isHidden = true
-            deviceListIsEmpty = false
+        disableBuildItems()
+
+        DispatchQueue.global(qos: .background).async {
+            self.getSimulators()
         }
         
         // State recovery
@@ -121,33 +114,20 @@ class TasksViewController: NSViewController {
         
         disableBuildItems()
         
-        if let phoneName = applicationStateHandler.phoneName {
-            phoneComboBox.selectItem(withTitle: phoneName)
-        }
-        
         if let language = applicationStateHandler.language {
             languagePopUpButton.selectItem(withTitle: language)
-            
-            if phoneComboBox.selectedItem == nil {
-                phoneComboBox.selectItem(at: 0)
-            }
-        }
-        
-        if let tag = applicationStateHandler.tag {
-            tagPicker.selectItem(withObjectValue: tag)
         }
         
         if let debugState = applicationStateHandler.debugState {
             debugCheckbox.state = NSControl.StateValue(rawValue: debugState)
         }
-        
-        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
     private func setupTagSelection() {
         tagsController.tags(in: pathToCalabashFolder).forEach { tag in
-            self.tagPicker.addItem(withObjectValue: tag)
+            DispatchQueue.main.async {
+                self.tagPicker.addItem(withObjectValue: tag)
+            }
         }
     }
 
@@ -203,8 +183,6 @@ class TasksViewController: NSViewController {
         if let phoneName = applicationStateHandler.phoneName,
             phoneName != "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)" {
             phoneComboBox.selectItem(withTitle: phoneName)
-        } else {
-            selectDeviceIfAvailable(prefixed: "iPhone 7(")
         }
         
         if phoneComboBox.selectedItem == nil {
@@ -220,12 +198,6 @@ class TasksViewController: NSViewController {
             deviceListIsEmpty = false
         }
         disableBuildItems()
-    }
-
-    private func selectDeviceIfAvailable(prefixed device: String) {
-        if !phoneComboBox.itemTitles.isEmpty, let deviceTitle = phoneComboBox.itemTitles.first(where: { $0.contains(device) }) {
-            phoneComboBox.selectItem(withTitle: deviceTitle)
-        }
     }
     
     @IBAction func phys_radio(_ sender: Any) {
@@ -376,30 +348,55 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func getSimulators() {
-        spinner.startAnimation(self)
-        progressBar.startAnimation(self)
-        getDeviceButton.isEnabled = false
-        isRunning = true
-        
+    func getSimulatorsCommand() {
         if let launchPath = Constants.FilePaths.Bash.simulators {
             let outputStream = CommandsCore.CommandTextOutputStream()
             outputStream.textHandler = { text in
+                let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
                 DispatchQueue.main.async {
-                    let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
-            commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
+            self.commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
+        }
+    }
+    
+    func emptyDeviceHandler() {
+        if self.phoneComboBox.selectedItem == nil {
+            self.deviceListIsEmpty = true
+            self.phoneComboBox.highlight(true)
+            self.cautionImage.isHidden = false
+            let noConnectedDevices = "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
+            self.phoneComboBox.addItem(withTitle: noConnectedDevices)
+            let previousOutput2 = self.textView.string
+            self.textView.string = "\(previousOutput2)\n\(noConnectedDevices)"
+        } else {
+            self.cautionImage.isHidden = true
+            self.deviceListIsEmpty = false
+        }
+    }
+    
+    func getSimulators() {
+        DispatchQueue.main.async {
+            self.getDeviceButton.isEnabled = false
+            self.isRunning = true
         }
         
-        buildButton.isEnabled = true
-        spinner.stopAnimation(self)
-        getDeviceButton.isEnabled = true
-        progressBar.stopAnimation(self)
-        isRunning = false
+        self.getSimulatorsCommand()
+        
+        DispatchQueue.main.async {
+            if let phoneName = self.applicationStateHandler.phoneName {
+                self.phoneComboBox.selectItem(withTitle: phoneName)
+            }
+            self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
+            self.applicationStateHandler.phoneUDID = self.deviceCollector.getDeviceUDID(device: self.phoneComboBox.itemTitle(at: self.phoneComboBox.indexOfSelectedItem))
+            self.buildButton.isEnabled = true
+            self.getDeviceButton.isEnabled = true
+            self.isRunning = false
+            self.emptyDeviceHandler()
+        }
     }
-
+    
     func killIrbSession() {
         commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
     }
@@ -439,11 +436,15 @@ class TasksViewController: NSViewController {
     }
     
     func runGeneralIrbSession() {
+        self.spinner.startAnimation(self)
+        self.progressBar.startAnimation(self)
         if let launchPath = Constants.FilePaths.Bash.createIRBSession {
             let outputStream = CommandsCore.CommandTextOutputStream()
             outputStream.textHandler = {text in
                 DispatchQueue.main.async {
                     self.textViewPrinter.printToTextView(text)
+                    self.spinner.stopAnimation(self)
+                    self.progressBar.stopAnimation(self)
                 }
             }
             var arguments: [String] = []
@@ -452,6 +453,7 @@ class TasksViewController: NSViewController {
                 arguments.append(helpersPath)
             }
             DispatchQueue.global(qos: .background).async {
+                self.killIrbSession()
                 self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
         }
