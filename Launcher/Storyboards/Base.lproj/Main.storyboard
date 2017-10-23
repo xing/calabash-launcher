@@ -75,9 +75,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Settings" id="eMl-Tr-UV4">
                                     <items>
-                                        <menuItem title="Configure Settings" keyEquivalent="s" id="QJc-YU-Tln">
+                                        <menuItem title="Configure settings" keyEquivalent="s" id="QJc-YU-Tln">
                                             <connections>
                                                 <action selector="configurationButton:" target="Voe-Tx-rLC" id="yjF-fd-mVk"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reset to default settings" keyEquivalent="r" id="GtK-2a-LLr" userLabel="Reset To Default Settings ">
+                                            <connections>
+                                                <action selector="resetToDefaults:" target="Voe-Tx-rLC" id="jpy-Z0-SfW"/>
                                             </connections>
                                         </menuItem>
                                     </items>
