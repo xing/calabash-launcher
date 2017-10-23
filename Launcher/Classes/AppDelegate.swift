@@ -23,8 +23,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Reset UserDefaults
         if let appDomain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            AppHandler().restartApplication()
+        } else {
+        if
+            let controller = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "warningwindow")) as? NSViewController,
+            let contentViewController = NSApplication.shared.mainWindow?.contentViewController,
+            contentViewController.presentedViewControllers?.first(where: { $0 is SettingsViewController }) == nil {
+            contentViewController.presentViewControllerAsModalWindow(controller)
+            }
         }
-        AppHandler().restartApplication()
     }
     
     func application(application: NSApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {

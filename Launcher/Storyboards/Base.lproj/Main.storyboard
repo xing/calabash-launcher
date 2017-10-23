@@ -1170,6 +1170,30 @@ DQ
             </objects>
             <point key="canvasLocation" x="1425" y="-303.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="OxI-XZ-qyi">
+            <objects>
+                <viewController storyboardIdentifier="warningwindow" id="a9w-3E-QDA" sceneMemberID="viewController">
+                    <view key="view" id="1cE-Z1-GKd">
+                        <rect key="frame" x="0.0" y="0.0" width="219" height="104"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XzT-uD-LWp">
+                                <rect key="frame" x="29" y="32" width="160" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Something went wrong, cannot reset settings" id="onI-if-TrB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="rre-PC-uqY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="-354"/>
+        </scene>
         <!--Language View Controller-->
         <scene sceneID="yAI-3E-L1W">
             <objects>
