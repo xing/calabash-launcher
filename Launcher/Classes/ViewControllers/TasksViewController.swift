@@ -24,7 +24,6 @@ class TasksViewController: NSViewController {
     var textViewPrinter: TextViewPrinter!
     let commands = CommandsCore.CommandExecutor()
     var deviceListIsEmpty = false
-    var buildItemIsDisabled = false
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
@@ -103,17 +102,11 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = physicalButtonState
         }
 
-        disableBuildItems()
-
         DispatchQueue.global(qos: .background).async {
             self.getSimulators()
         }
         
         // State recovery
-        buildPicker.selectItem(at: applicationStateHandler.buildNumber)
-        
-        disableBuildItems()
-        
         if let language = applicationStateHandler.language {
             languagePopUpButton.selectItem(withTitle: language)
         }
@@ -136,11 +129,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func buildPicker(_ sender: Any) {
-        if buildPicker.selectedItem?.isEnabled == true {
-            cautionBuildImage.isHidden = true
-            buildItemIsDisabled = false
-        }
-        statePreservation()
+       // To be developed
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
@@ -197,7 +186,6 @@ class TasksViewController: NSViewController {
             cautionImage.isHidden = true
             deviceListIsEmpty = false
         }
-        disableBuildItems()
     }
     
     @IBAction func phys_radio(_ sender: Any) {
@@ -218,7 +206,6 @@ class TasksViewController: NSViewController {
             cautionImage.isHidden = true
             deviceListIsEmpty = false
         }
-        disableBuildItems()
     }
     
     
@@ -233,12 +220,6 @@ class TasksViewController: NSViewController {
             return
         } else {
             cautionImage.isHidden = true
-        }
-        
-        if buildItemIsDisabled {
-            let previousOutput6 = textView.string
-            textView.string = "\(previousOutput6)\n'\(buildPicker.titleOfSelectedItem ?? "unknown item"))' \(Constants.Strings.notCompatibleWithDeviceType)"
-            return
         }
         
         var arguments: [String] = []
@@ -325,26 +306,6 @@ class TasksViewController: NSViewController {
         
         if characterCount > maxCharacters {
             textView.textStorage?.deleteCharacters(in: NSRange(location: 1, length: characterCount - maxCharacters))
-        }
-    }
-    
-    func disableBuildItems() {
-        if simulatorRadioButton.state == .on {
-            buildPicker.item(at: 0)?.isEnabled = true
-            buildPicker.item(at: 1)?.isEnabled = false
-            buildPicker.item(at: 2)?.isEnabled = true
-        } else {
-            buildPicker.item(at: 0)?.isEnabled = false
-            buildPicker.item(at: 1)?.isEnabled = true
-            buildPicker.item(at: 2)?.isEnabled = false
-        }
-        
-        if buildPicker.selectedItem?.isEnabled == false {
-            cautionBuildImage.isHidden = false
-            buildItemIsDisabled = true
-        } else {
-            cautionBuildImage.isHidden = true
-            buildItemIsDisabled = false
         }
     }
     
