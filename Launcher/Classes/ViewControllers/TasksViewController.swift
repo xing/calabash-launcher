@@ -63,10 +63,7 @@ class TasksViewController: NSViewController {
         }
         
         killProcessScreenshot()
-        // removes NSUserDefaults for test
-//        if let appDomain = Bundle.main.bundleIdentifier {
-//            UserDefaults.standard.removePersistentDomain(forName: appDomain)
-//        }
+
         textView.backgroundColor = .darkAquamarine
         textView.textColor = .white
         buildPicker.autoenablesItems = false
