@@ -235,10 +235,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         if let launchPath = Constants.FilePaths.Bash.startDevice {
             let outputStream = CommandsCore.CommandTextOutputStream()
             outputStream.textHandler = { text in
-                if !text.isEmpty {
-                    DispatchQueue.main.async {
-                        self.textViewPrinter.printToTextView(text)
-                    }
+                guard !text.isEmpty else { return }
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
                 }
             }
             var arguments: [String] = []

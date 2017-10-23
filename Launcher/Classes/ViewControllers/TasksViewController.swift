@@ -28,7 +28,7 @@ class TasksViewController: NSViewController {
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
-    var devices: [String] = [""]
+    var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
     
@@ -152,7 +152,7 @@ class TasksViewController: NSViewController {
     }
 
     func killProcessScreenshot() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [""])
+        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [])
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -307,10 +307,9 @@ class TasksViewController: NSViewController {
         if let launchPath = Constants.FilePaths.Bash.sendToIRB {
             let outputStream = CommandsCore.CommandTextOutputStream()
             outputStream.textHandler = { text in
-                if !text.isEmpty {
-                    DispatchQueue.main.async {
-                        self.textViewPrinter.printToTextView(text)
-                    }
+                guard !text.isEmpty else { return }
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
                 }
             }
             let arguments = [self.textField.stringValue]
@@ -391,7 +390,7 @@ class TasksViewController: NSViewController {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
-            commands.executeCommand(at: launchPath, arguments: [""], outputStream: outputStream)
+            commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
         }
         
         buildButton.isEnabled = true
@@ -402,7 +401,7 @@ class TasksViewController: NSViewController {
     }
 
     func killIrbSession() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [""])
+        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
     }
     
     func statePreservation() {
