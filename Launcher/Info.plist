@@ -28,7 +28,5 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUFeedURL</key>
-	<string>https://rink.hockeyapp.net/api/2/apps/a148846e00cf42b4a20fac791c757d08</string>
 </dict>
 </plist>
