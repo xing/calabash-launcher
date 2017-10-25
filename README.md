@@ -35,8 +35,19 @@ This project is actively under development, and it is used at XING.
 > Add simple usage instructions here (like an initial setup). Avoid too many screenshots; create a separate `docs` folder if needed.
 
 ## Contributing
+Want to help improving Calabash Launcher? We could really use your help!
 
-> Add contributing instructions here.
+Open source isn't just writing code. You can help by doing any of the following:
+
+- Reporting bugs
+- Reviewing pull requests
+- Bringing ideas for the new features
+- Answering questions on issues
+- Documentation improvements
+- Fixing bugs
+- Adding new features
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant code](http://contributor-covenant.org/) of conduct.
 
 ## License
 
