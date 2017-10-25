@@ -3,6 +3,7 @@
 Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac.
 
 ![calabash-launcher](https://user-images.githubusercontent.com/4190298/31447991-9ea646a2-aea3-11e7-9b4e-353399805409.png)
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32011906-7820e884-b9b6-11e7-8a43-8be26fd08c65.png)
 
 ## Test Runner
 
