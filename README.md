@@ -31,7 +31,7 @@ This project is actively under development, and it is used at XING.
 ## Prerequisites
 
 - MacOS Sierra
-- Xcode 8.3+
+- Xcode 9.0+
 - iOS Simulators >= 10.1
 - Ruby >= 2.0 (2.3.1 is preferred)
 - `bundler` >= 1.15.0
