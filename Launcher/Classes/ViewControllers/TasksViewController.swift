@@ -273,6 +273,8 @@ class TasksViewController: NSViewController {
             arguments.append("DEBUG=0")
         }
         
+        arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
+        
         arguments.append(pathToCalabashFolder)
 
         if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
