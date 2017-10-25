@@ -39,13 +39,13 @@ Want to help improving Calabash Launcher? We could really use your help!
 
 Open source isn't just writing code. You could help by any of the following:
 
-Reporting bugs
-Reviewing pull requests
-Bringing ideas for the new features
-Answering questions on issues
-Documentation improvements
-Fixing bugs
-Adding new features
+- Reporting bugs
+- Reviewing pull requests
+- Bringing ideas for the new features
+- Answering questions on issues
+- Documentation improvements
+- Fixing bugs
+- Adding new features
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant code](http://contributor-covenant.org/) of conduct.
 
