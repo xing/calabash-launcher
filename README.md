@@ -33,32 +33,31 @@ This project is actively under development, and it is used at XING.
 - MacOS Sierra
 - Xcode 8.3+
 - iOS Simulators >= 10.1
-- ruby >= 2.0 (2.3.1 is preferred)
-- bundler >= 1.15.0
-- calabash-ios >= 0.20.5
+- Ruby >= 2.0 (2.3.1 is preferred)
+- `bundler` >= 1.15.0
+- `calabash-ios` >= 0.20.5
 
 ## Usage
 
 ### Test Runner
 
-1. After start **Calabash Launcher** will ask you to give the path to the repository with your Calabash tests and Cucumber profile(leave it empty if you don't use any).
-2. After restart you will be able to configure your test run by choosing Simulator, Language and Cucumber tag you want to execute.
-3. Click "Run Test" button to start tests. Check the output window for the results.
+1. When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile.
+2. After a restart you will be able to configure your testrun by choosing a simulator, language and cucumber tag you want to execute.
+3. Click `Run Test` to start the tests. Results will appear in the output window.
 
 ### Element Inspector
 
-(!) Inspector is limited by working only using iPhone 6, iPhone 7 or iPhone 8. Please make sure that one of these devices is launched when you search for elements.
+** ⚠️ The Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements. ⚠️ **
 
-- Clicking on the right window in the view will sync your Inspector with the simulator (automatic sync will be performed every 5 seconds)
-- Clicking on any element in the synchronised window will show the element Class + id or label if they exist.
-- Clicking on nested menu of the appeared element will show you the element hierarchy.
+- Clicking on the right window in the view will sync the Inspector with the simulator (and it will be automatic synced every 5 seconds)
+- Clicking on an element in the synchronised window will show the element's `class`, `accessibility id` and `accessibility label`.
+- Clicking on a nested menu of an element will show you the element hierarchy.
 
 ## Troubleshooting
 
-- **Calabash Launcher** not going to work if you cannot run `bundle exec calabash-ios console` from your terminal. 
-Sometimes the problem could live in Ruby installation and conflicts with `readline`. To fix the problem re-install Ruby.
-
-- You can reset APP Settings to defaults by pressing `Command + R` on your keyboard.
+- Calabash Launcher will not work if you cannot run `bundle exec calabash-ios console` from your terminal. 
+Sometimes the problem could live in the Ruby installation and/or conflicts with `readline`. To fix the problem, please re-install Ruby.
+- You can reset Calabash Launcher's settings by pressing `⌘ + R`.
 
 ## Contributing
 Want to help improving Calabash Launcher? We could really use your help!
