@@ -30,6 +30,9 @@ class TasksViewController: NSViewController {
     var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
+    var isDeviceListEmpty: Bool {
+        return phoneComboBox.numberOfItems == 0
+    }
     
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -320,7 +323,7 @@ class TasksViewController: NSViewController {
     }
     
     func emptyDeviceHandler() {
-        if self.phoneComboBox.selectedItem == nil {
+        if isDeviceListEmpty {
             self.deviceListIsEmpty = true
             self.phoneComboBox.highlight(true)
             self.cautionImage.isHidden = false
@@ -354,7 +357,7 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func killIrbSession() {
+    func quitIrbSession() {
         commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
     }
     
@@ -410,7 +413,7 @@ class TasksViewController: NSViewController {
                 arguments.append(helpersPath)
             }
             DispatchQueue.global(qos: .background).async {
-                self.killIrbSession()
+                self.quitIrbSession()
                 self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
         }
