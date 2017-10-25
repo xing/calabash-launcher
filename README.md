@@ -62,7 +62,7 @@ Sometimes the problem could live in the Ruby installation and/or conflicts with 
 ## Contributing
 Want to help improving Calabash Launcher? We could really use your help!
 
-Open source isn't just writing code. You could help by any of the following:
+Open source isn't just writing code. You can help by doing any of the following:
 
 - Reporting bugs
 - Reviewing pull requests
