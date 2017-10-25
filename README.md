@@ -47,7 +47,7 @@ This project is actively under development, and it is used at XING.
 
 ### Element Inspector
 
-** ⚠️ The Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements. ⚠️ **
+⚠️ **The Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements.** ⚠️
 
 - Clicking on the right window in the view will sync the Inspector with the simulator (and it will be automatic synced every 5 seconds)
 - Clicking on an element in the synchronised window will show the element's `class`, `accessibility id` and `accessibility label`.
