@@ -37,7 +37,7 @@ This project is actively under development, and it is used at XING.
 ## Contributing
 Want to help improving Calabash Launcher? We could really use your help!
 
-Open source isn't just writing code. You could help by any of the following:
+Open source isn't just writing code. You can help by doing any of the following:
 
 - Reporting bugs
 - Reviewing pull requests
