@@ -273,16 +273,6 @@ class TasksViewController: NSViewController {
             arguments.append("DEBUG=0")
         }
         
-        if physicalDeviceRadioButton.state == .on {
-            arguments.append("phys_device")
-            if applicationStateHandler.isLaunched == false {
-                // Will keep it for now. Have to re-write the installation methods https://source.xing.com/serghei-moret/calabash_launcher/issues/28
-                applicationStateHandler.isLaunched = true
-            }
-        } else {
-            arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
-        }
-        
         arguments.append(pathToCalabashFolder)
 
         if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
