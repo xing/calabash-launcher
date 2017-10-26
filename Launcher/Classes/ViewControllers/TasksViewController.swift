@@ -86,6 +86,7 @@ class TasksViewController: NSViewController {
         }
         
         tagPicker.completes = true
+        quitIrbSession()
         runGeneralIrbSession()
         DispatchQueue.global(qos: .background).async {
             self.setupTagSelection()
@@ -405,7 +406,6 @@ class TasksViewController: NSViewController {
                 arguments.append(helpersPath)
             }
             DispatchQueue.global(qos: .background).async {
-                self.quitIrbSession()
                 self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
             }
         }
