@@ -81,6 +81,9 @@ class SettingsViewController: NSViewController {
     
     @IBAction func clickFileBrowser(_ sender: Any) {
         pathChanged = true
+        if let pathItem = fileBrowser.clickedPathItem {
+            fileBrowser.url = pathItem.url
+        }
         applicationStateHandler.filePath = fileBrowser.url
     }
     
