@@ -96,12 +96,9 @@ class TasksViewController: NSViewController {
                 }
             }
         }
-        
-        if let simulatorRadioButtonState = applicationStateHandler.simulatorRadioButtonState,
-            let physicalButtonState = applicationStateHandler.physicalButtonState {
-            simulatorRadioButton.state = NSControl.StateValue(rawValue: simulatorRadioButtonState)
-            physicalDeviceRadioButton.state = physicalButtonState
-        }
+
+        simulatorRadioButton.state = NSControl.StateValue(rawValue: applicationStateHandler.simulatorRadioButtonState)
+        physicalDeviceRadioButton.state = NSControl.StateValue(rawValue: applicationStateHandler.physicalButtonState)
 
         DispatchQueue.global(qos: .background).async {
             self.getSimulators()
@@ -356,7 +353,7 @@ class TasksViewController: NSViewController {
     
     func statePreservation() {
         applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
-        applicationStateHandler.physicalButtonState = physicalDeviceRadioButton.state
+        applicationStateHandler.physicalButtonState = physicalDeviceRadioButton.state.rawValue
         applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
