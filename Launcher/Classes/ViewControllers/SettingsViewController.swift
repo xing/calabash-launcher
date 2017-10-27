@@ -22,6 +22,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var warningField: NSTextField!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var proceedButton: NSButton!
+    @IBOutlet weak var additionalRunParameters: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,12 @@ class SettingsViewController: NSViewController {
         if let cucumberProfile = applicationStateHandler.cucumberProfile {
             cucumberProfileField.stringValue = cucumberProfile
         }
+        
+        if let additionalParameters = applicationStateHandler.additionalRunParameters {
+            additionalRunParameters.stringValue = additionalParameters
+        }
     }
     
-
     @IBAction func clickProceedButton(_ sender: Any) {
         self.dismiss(true)
     }
@@ -70,6 +74,7 @@ class SettingsViewController: NSViewController {
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
+        applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
         
         // Restart APP after new path is available. Close Settings and save settings otherwise.
         if pathChanged {
