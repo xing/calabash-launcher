@@ -210,42 +210,7 @@ class TasksViewController: NSViewController {
     
     
     @IBAction func startTask(_ sender:AnyObject) {
-        statePreservation()
-        
-        if deviceListIsEmpty == true {
-            phoneComboBox.highlight(true)
-            cautionImage.isHidden = false
-            let previousOutput4 = textView.string
-            textView.string = "\(previousOutput4)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
-            return
-        } else {
-            cautionImage.isHidden = true
-        }
-        
-        var arguments: [String] = []
-        
-        if debugCheckbox.state == .on {
-            arguments.append("DEBUG=1")
-        } else {
-            arguments.append("DEBUG=0")
-        }
-        
-        arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
-        
-        arguments.append(pathToCalabashFolder)
-
-        if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
-            arguments.append("-p \(cucumberProfile)")
-        }
-        
-        if !tagPicker.stringValue.isEmpty {
-            arguments.append("--t @\(tagPicker.stringValue)")
-        }
-        
-        buildButton.isEnabled = false
-        spinner.startAnimation(self)
-        progressBar.startAnimation(self)
-        runScript(arguments)
+        runScript()
     }
     
     @IBAction func textField(_ sender: Any) {
@@ -363,7 +328,41 @@ class TasksViewController: NSViewController {
         applicationStateHandler.debugState = debugCheckbox.state.rawValue
     }
     
-    func runScript(_ arguments: [String]) {
+    func runScript() {
+        statePreservation()
+        
+        if deviceListIsEmpty == true {
+            phoneComboBox.highlight(true)
+            cautionImage.isHidden = false
+            let previousOutput4 = textView.string
+            textView.string = "\(previousOutput4)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
+            return
+        } else {
+            cautionImage.isHidden = true
+        }
+        
+        var arguments: [String] = []
+        
+        if debugCheckbox.state == .on {
+            arguments.append("DEBUG=1")
+        } else {
+            arguments.append("DEBUG=0")
+        }
+        
+        arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
+        
+        arguments.append(pathToCalabashFolder)
+        
+        if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
+            arguments.append("-p \(cucumberProfile)")
+        }
+        
+        if !tagPicker.stringValue.isEmpty {
+            arguments.append("--t @\(tagPicker.stringValue)")
+        }
+        
+        buildButton.isEnabled = false
+        
         isRunning = true
         spinner.startAnimation(self)
         progressBar.startAnimation(self)
