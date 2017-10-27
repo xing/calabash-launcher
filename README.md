@@ -2,10 +2,9 @@
 
 Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac.
 
-![calabash-launcher](https://user-images.githubusercontent.com/4190298/31447991-9ea646a2-aea3-11e7-9b4e-353399805409.png)
 
 ## Test Runner
-
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
 The Test Runner lets you run your tests using whatever configuration required. It supports:
 
 - Running on simulator
@@ -15,13 +14,14 @@ The Test Runner lets you run your tests using whatever configuration required. I
 - Console
 
 ## Element Inspector
-
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107411-c7c68bd6-bb2e-11e7-8ae2-4d87b833c8fb.png)
 With the Element Inspector you can "browse" your app via its elements. It supports:
 
 - Device element highlighting
 - Accessing an element's address
 - Accessing an element's localized object
 - Visual representation of the device
+
 
 ## Project Status
 
