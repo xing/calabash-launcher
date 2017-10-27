@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13528"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -232,28 +232,6 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
-                            <box fixedFrame="YES" title="Enable Debug Output:" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-JN-AeK">
-                                <rect key="frame" x="923" y="534" width="162" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="YzF-ea-vPb">
-                                    <rect key="frame" x="2" y="2" width="158" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wu4-dd-Hr4" userLabel="Debug Checkbox">
-                                            <rect key="frame" x="9" y="0.0" width="114" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Debug Output" bezelStyle="regularSquare" imagePosition="left" alignment="right" inset="2" id="YFe-Ax-uCP" userLabel="DEBUG">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="toggleDebug:" target="XfG-lQ-9wD" id="jMY-Xw-XyJ"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
-                            </box>
                             <box fixedFrame="YES" title="Device Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-Or-z7P">
                                 <rect key="frame" x="685" y="583" width="563" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -377,15 +355,15 @@
                                 <rect key="frame" x="21" y="59" width="1224" height="453"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="HuI-bt-NDk">
-                                    <rect key="frame" x="1" y="1" width="1222" height="451"/>
+                                    <rect key="frame" x="1" y="1" width="1207" height="451"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" linkDetection="YES" dataDetection="YES" dashSubstitution="YES" textReplacement="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="QWs-YP-tY6">
-                                            <rect key="frame" x="0.0" y="0.0" width="1222" height="451"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1207" height="451"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.074509803920000006" green="0.84705882349999995" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="1222" height="451"/>
+                                            <size key="minSize" width="1207" height="451"/>
                                             <size key="maxSize" width="1373" height="10000000"/>
                                             <color key="insertionPointColor" red="0.074509803921568626" green="0.84705882352941175" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                         </textView>
@@ -397,15 +375,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RE2-jl-f8t">
-                                    <rect key="frame" x="1207" y="1" width="16" height="451"/>
+                                    <rect key="frame" x="1208" y="1" width="15" height="451"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <box fixedFrame="YES" title="Language Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="BBv-e5-cZl">
-                                <rect key="frame" x="685" y="534" width="236" height="45"/>
+                                <rect key="frame" x="685" y="534" width="243" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="i4x-Ev-A0f">
-                                    <rect key="frame" x="2" y="2" width="232" height="25"/>
+                                    <rect key="frame" x="2" y="2" width="239" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uw-cW-J8s">
@@ -421,7 +399,7 @@
                                             </connections>
                                         </popUpButton>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-K0-HKy">
-                                            <rect key="frame" x="98" y="-4" width="129" height="32"/>
+                                            <rect key="frame" x="98" y="-4" width="136" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Switch Language" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEq-29-y9Q">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -458,6 +436,28 @@
                                     <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
                                 </connections>
                             </textField>
+                            <box fixedFrame="YES" title="Enable Debug Output:" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-JN-AeK">
+                                <rect key="frame" x="930" y="534" width="155" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="YzF-ea-vPb">
+                                    <rect key="frame" x="2" y="2" width="151" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wu4-dd-Hr4" userLabel="Debug Checkbox">
+                                            <rect key="frame" x="9" y="0.0" width="114" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Debug Output" bezelStyle="regularSquare" imagePosition="left" alignment="right" inset="2" id="YFe-Ax-uCP" userLabel="DEBUG">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="toggleDebug:" target="XfG-lQ-9wD" id="jMY-Xw-XyJ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -599,11 +599,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="prg-h9-vN6">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xfg-QU-paq">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -658,14 +658,14 @@
                                 <rect key="frame" x="9" y="42" width="420" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="69F-Ax-yx7">
-                                    <rect key="frame" x="1" y="1" width="418" height="568"/>
+                                    <rect key="frame" x="1" y="1" width="403" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="GVN-mL-6hQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="418" height="568"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="403" height="568"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="418" height="568"/>
+                                            <size key="minSize" width="403" height="568"/>
                                             <size key="maxSize" width="899" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -698,7 +698,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YKc-Xf-nPO">
-                                    <rect key="frame" x="403" y="1" width="16" height="568"/>
+                                    <rect key="frame" x="404" y="1" width="15" height="568"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -824,11 +824,11 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="65t-gM-Mzo">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="G8Q-yt-oSe">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
