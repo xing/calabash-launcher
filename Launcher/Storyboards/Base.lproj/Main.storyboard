@@ -60,12 +60,25 @@
                             </menuItem>
                             <menuItem title="File" id="dMs-cI-mzQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="File" id="bib-Uj-vzu">
+                                <menu key="submenu" title="File" id="WI8-mY-bGC">
                                     <items>
-                                        <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
+                                        <menuItem isSeparatorItem="YES" id="p27-nN-WKy"/>
+                                        <menuItem title="Close" keyEquivalent="w" id="TSI-r1-Dv2">
                                             <connections>
-                                                <action selector="resetUserDefaults:" target="Voe-Tx-rLC" id="Dow-SP-Blk"/>
+                                                <action selector="resetUserDefaults:" target="Voe-Tx-rLC" id="cFc-pr-udr"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Product" id="dgO-KC-HUa">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Product" id="DwD-mY-miF">
+                                    <items>
+                                        <menuItem isSeparatorItem="YES" id="eQA-mg-n77"/>
+                                        <menuItem title="Run Test" keyEquivalent="r" id="Fek-WN-LiG">
+                                            <connections>
+                                                <action selector="runTests:" target="Voe-Tx-rLC" id="09d-iI-Q5o"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -80,7 +93,8 @@
                                                 <action selector="configurationButton:" target="Voe-Tx-rLC" id="kU7-Xi-5bp"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Reset to Default Settings" keyEquivalent="r" id="GtK-2a-LLr">
+                                        <menuItem title="Reset to Default Settings" id="GtK-2a-LLr">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="resetUserDefaults:" target="Voe-Tx-rLC" id="jpy-Z0-SfW"/>
                                             </connections>
@@ -201,7 +215,7 @@
                                     <rect key="frame" x="2" y="2" width="170" height="127"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button toolTip="Start building the project" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSF-eS-ljq" userLabel="Build Button">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSF-eS-ljq" userLabel="Build Button">
                                             <rect key="frame" x="14" y="72" width="137" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Run Test" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xMJ-pH-eVk">

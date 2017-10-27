@@ -34,6 +34,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func runTests(_ sender: Any) {
+        if
+            let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
+            let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
+            tasksViewController.runScript()
+        }
+    }
+    
     func application(application: NSApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
