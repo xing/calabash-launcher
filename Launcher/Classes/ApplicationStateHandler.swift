@@ -60,7 +60,7 @@ class ApplicationStateHandler {
             return defaults.url(forKey: .filePath)
         }
         set {
-            defaults.set(newValue, forKey: "FilePath")
+            defaults.set(newValue, forKey: .filePath)
         }
     }
     
