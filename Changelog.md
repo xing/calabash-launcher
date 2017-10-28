@@ -3,6 +3,7 @@
 - Removed unused "Physical device" functionality ([#35](https://github.com/JoeSSS/calabash-launcher/pull/35))
 - Improved launch time ([#34](https://github.com/JoeSSS/calabash-launcher/pull/34))
 - Added "Reset to default" functionality ([#36](https://github.com/JoeSSS/calabash-launcher/pull/36))
+- Added additional field in settings that allows to add run variables to the test run
 
 # 0.1
 
