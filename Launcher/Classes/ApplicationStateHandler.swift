@@ -147,10 +147,6 @@ private extension UserDefaults {
     }
 
     func set(_ value: Any?, forKey defaultName: ApplicationStateHandler.Keys) {
-        if URL(string: String(describing: value)) != nil {
-            set(value as? URL, forKey: defaultName.rawValue)
-        } else {
-            set(value, forKey: defaultName.rawValue)
-        }
+        set(value, forKey: defaultName.rawValue)
     }
 }
