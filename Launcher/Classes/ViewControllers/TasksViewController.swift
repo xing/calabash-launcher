@@ -357,6 +357,12 @@ class TasksViewController: NSViewController {
         
         if !tagPicker.stringValue.isEmpty {
             arguments.append("--t @\(tagPicker.stringValue)")
+        } else {
+            arguments.append("")
+        }
+        
+        if let additionalRunParameter = applicationStateHandler.additionalRunParameters, !additionalRunParameter.isEmpty {
+            arguments.append("export \(additionalRunParameter)")
         }
         
         buildButton.isEnabled = false
