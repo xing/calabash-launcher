@@ -9,7 +9,6 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     var parentElementIndex: Int!
     let fileManager = FileManager.default
     var retryCount: Int = 0
-    let commands = CommandsCore.CommandExecutor()
     
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var pushButton: NSButton!
@@ -33,8 +32,8 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item, forType: .string)
-        commands.executeCommand(at:  Constants.FilePaths.Bash.flash ?? "", arguments: [item])
-    }    
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
+    }
     
     func fileIsNotEmpty(filePath: String) -> Bool {
         if filePath.range(of: "txt") == nil {
@@ -93,8 +92,7 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
             elements.append(text)
         }
 
-        commands.executeCommand(at:  Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments, outputStream: outputStream)
-       
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments,  outputStream: outputStream).execute()       
         self.parentCollection.append(contentsOf: elements)
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)

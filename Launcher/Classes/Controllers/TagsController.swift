@@ -10,9 +10,7 @@ class TagsController {
             outputStream.textHandler = {text in
                 tags.append(contentsOf: text.components(separatedBy: "\n").filter { !$0.isEmpty })
             }
-
-            let commands = CommandsCore.CommandExecutor()
-            commands.executeCommand(at: launchPath, arguments: [folderPath], outputStream: outputStream)
+            CommandsCore.CommandExecutor(launchPath: launchPath, arguments: [folderPath], outputStream: outputStream).execute()
         }
         return tags
     }

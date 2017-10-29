@@ -22,7 +22,6 @@ class TasksViewController: NSViewController {
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     var textViewPrinter: TextViewPrinter!
-    let commands = CommandsCore.CommandExecutor()
     var deviceListIsEmpty = false
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -123,7 +122,7 @@ class TasksViewController: NSViewController {
     }
 
     func killProcessScreenshot() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [])
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.killProcess ?? "", arguments: []).execute()
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -222,7 +221,7 @@ class TasksViewController: NSViewController {
             }
             let arguments = [self.textField.stringValue]
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandsCore.CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
         textField.stringValue = ""
@@ -273,7 +272,7 @@ class TasksViewController: NSViewController {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
-            self.commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
+            CommandsCore.CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
         }
     }
     
@@ -313,7 +312,7 @@ class TasksViewController: NSViewController {
     }
     
     func quitIrbSession() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
     }
     
     func statePreservation() {
@@ -373,7 +372,7 @@ class TasksViewController: NSViewController {
                 }
             }
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandsCore.CommandExecutor(launchPath: launchPath, arguments: arguments,  outputStream: outputStream).execute()
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
                     self.spinner.stopAnimation(self)
@@ -402,7 +401,7 @@ class TasksViewController: NSViewController {
                 arguments.append(helpersPath)
             }
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandsCore.CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
     }

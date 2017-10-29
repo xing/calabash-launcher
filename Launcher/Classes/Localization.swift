@@ -34,8 +34,7 @@ class Localization {
     func changeLocale(locale : String) {
         if let simUDID = applicationStateHandler.phoneUDID {
             let arguments = [simUDID, locale]
-            let commands = CommandsCore.CommandExecutor()
-            commands.executeCommand(at: Constants.FilePaths.Bash.changeLanguage ?? "", arguments: arguments)
+            CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.changeLanguage ?? "", arguments: arguments).execute()
         }
     }
 }

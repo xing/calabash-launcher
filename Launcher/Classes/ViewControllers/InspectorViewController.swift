@@ -2,7 +2,6 @@ import AppKit
 import CommandsCore
 
 class InspectorViewController: NSViewController, NSTableViewDataSource {
-    let commands = CommandsCore.CommandExecutor()
     let applicationStateHandler = ApplicationStateHandler()
     var textViewPrinter: TextViewPrinter!
     @objc dynamic var isRunning = false
@@ -71,7 +70,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         if let item = sender.item(atRow: sender.clickedRow) as? String {
-            commands.executeCommand(at: Constants.FilePaths.Bash.flash ?? "", arguments: [item])
+            CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
         }
     }
     
@@ -212,7 +211,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
     
     func getElementsByOffset(_ arguments:[String]) {
-        commands.executeCommand(at: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments)
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments).execute()
     }
     
     func getElements() {
@@ -220,7 +219,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         if let filePath = self.applicationStateHandler.filePath {
             arguments = [filePath.absoluteString]
         }
-        commands.executeCommand(at: Constants.FilePaths.Bash.elements ?? "", arguments: arguments)
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.elements ?? "", arguments: arguments).execute()
     }
     
 
@@ -245,7 +244,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 arguments = [phoneUDID]
             }
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandsCore.CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
         
@@ -269,7 +268,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     func syncScreen() {
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        commands.executeCommand(at: Constants.FilePaths.Bash.screen ?? "", arguments: [])
+        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
     }
     
     func getScreenProcs() {
