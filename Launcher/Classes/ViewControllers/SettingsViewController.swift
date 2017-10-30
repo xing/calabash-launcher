@@ -3,12 +3,12 @@ import AppKit
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
     let plistOperations = PlistOperations()
-    var linkData: [String: Any] = ["items" : []]
+    let linkInfoKey = Constants.Strings.linkInfoKey
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
     var elements: [(NSTextField, NSTextField)] = []
-    
+
     @IBOutlet var fileBrowser: NSPathControl!
     @IBOutlet weak var cucumberProfileField: NSTextField!
     @IBOutlet weak var linkField1: NSTextField!
@@ -39,18 +39,30 @@ class SettingsViewController: NSViewController {
         if let cucumberProfile = applicationStateHandler.cucumberProfile {
             cucumberProfileField.stringValue = cucumberProfile
         }
+        
+        let linkInfoArray = plistOperations.readFromPlist(forKey: linkInfoKey)
+        let linksArray = linkInfoArray.0
+        let linkDescriptionArray = linkInfoArray.1
+        
+        for (index, element) in linksArray.enumerated() {
+            elements[index].0.stringValue = element
+        }
+        
+        for (index, element) in linkDescriptionArray.enumerated() {
+            elements[index].1.stringValue = element
+        }
     }
     
-
     @IBAction func clickProceedButton(_ sender: Any) {
         self.dismiss(true)
     }
     
     @IBAction func clickSaveButton(_ sender: Any) {
-        linkData["items"] = [:]
+        var linkData: [String: Any] = [linkInfoKey  : []]
+        linkData[linkInfoKey] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData["items"] as? [[String: String]] ?? []
+        var existingItems = linkData[linkInfoKey] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
@@ -65,11 +77,18 @@ class SettingsViewController: NSViewController {
         if hasWarnings {
             existingItems = [[:]]
         } else {
-            linkData["items"] = existingItems
+            linkData[linkInfoKey] = existingItems
             plistOperations.createPlist(data: linkData)
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
+        
+        // Reload build picker to get new elements
+        if
+            let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
+            let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
+            tasksViewController.getValuesForBuildPicker()
+        }
         
         // Restart APP after new path is available. Close Settings and save settings otherwise.
         if pathChanged {
