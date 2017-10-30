@@ -312,6 +312,19 @@ class TasksViewController: NSViewController {
         }
     }
     
+    func getValuesForBuildPicker() {
+        buildPicker.removeAllItems()
+        let linkInfoArray = plistOperations.readFromPlist(forKey: Constants.Strings.linkInfoKey)
+        buildPicker.addItems(withTitles: linkInfoArray.1)
+        
+        buildPicker.selectItem(at: applicationStateHandler.buildNumber)
+        if buildPicker.selectedItem == nil {
+            downloadButton.isEnabled = false
+        } else {
+            downloadButton.isEnabled = true
+        }
+    }
+    
     func quitIrbSession() {
         commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
     }
