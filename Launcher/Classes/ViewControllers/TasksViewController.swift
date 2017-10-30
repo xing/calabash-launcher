@@ -44,9 +44,8 @@ class TasksViewController: NSViewController {
         placeholderText.setAttributes([.foregroundColor: NSColor.lightGray], range: NSRange(location: 0, length: "Console Input (Beta)".count))
         textField.placeholderAttributedString = placeholderText
         timer = .scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.limitOfChars), userInfo: nil, repeats: true);
-        
+        getValuesForBuildPicker()
         // Disable these elements for the moment, as it cannot work for people outside XING
-        buildPicker.isEnabled = false
         getDeviceButton.isEnabled = false
         physicalDeviceRadioButton.isEnabled = false
         simulatorRadioButton.state = .on
@@ -341,11 +340,7 @@ class TasksViewController: NSViewController {
     func statePreservation() {
         applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
         applicationStateHandler.physicalButtonState = physicalDeviceRadioButton.state.rawValue
-        applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
-        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.language = languagePopUpButton.title
         applicationStateHandler.tag = tagPicker.stringValue
-        applicationStateHandler.debugState = debugCheckbox.state.rawValue
     }
     
     func runScript() {
