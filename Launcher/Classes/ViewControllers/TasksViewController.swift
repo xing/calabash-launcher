@@ -18,11 +18,13 @@ class TasksViewController: NSViewController {
     @IBOutlet var cautionBuildImage: NSImageView!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
+    @IBOutlet weak var downloadButton: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     var textViewPrinter: TextViewPrinter!
     let commands = CommandsCore.CommandExecutor()
+    let plistOperations = PlistOperations()
     var deviceListIsEmpty = false
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -126,8 +128,15 @@ class TasksViewController: NSViewController {
         commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [])
     }
     
+    @IBAction func clickDownloadButton(_ sender: Any) {
+        // buildPicker.indexOfSelectedItem
+    }
+    
     @IBAction func buildPicker(_ sender: Any) {
-       // To be developed
+       applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
+        if buildPicker.selectedItem != nil {
+            downloadButton.isEnabled = true
+        }
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {

@@ -310,23 +310,28 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wf9-1h-T2l">
-                                            <rect key="frame" x="4" y="18" width="433" height="26"/>
+                                            <rect key="frame" x="4" y="18" width="307" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SSI-Xd-AuH" id="KmW-kk-AK7">
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="KmW-kk-AK7">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="DiK-XK-S0g">
-                                                    <items>
-                                                        <menuItem title="Item 1" state="on" id="SSI-Xd-AuH"/>
-                                                        <menuItem title="Item 2" id="kY8-9a-vmh"/>
-                                                        <menuItem title="Item 3" id="amt-fI-xjk"/>
-                                                    </items>
-                                                </menu>
+                                                <menu key="menu" id="DiK-XK-S0g"/>
                                             </popUpButtonCell>
                                             <connections>
                                                 <action selector="buildPicker:" target="XfG-lQ-9wD" id="IwR-po-4H7"/>
                                             </connections>
                                         </popUpButton>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWN-Ez-xJo">
+                                            <rect key="frame" x="310" y="14" width="130" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mE-kp-xrj">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clickDownloadButton:" target="XfG-lQ-9wD" id="3qt-eh-kSI"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
@@ -480,6 +485,7 @@
                         <outlet property="cautionBuildImage" destination="UFY-A7-cKx" id="6or-MY-044"/>
                         <outlet property="cautionImage" destination="zXL-3o-0Wq" id="2tc-AI-SvW"/>
                         <outlet property="debugCheckbox" destination="Wu4-dd-Hr4" id="PTc-ad-wLV"/>
+                        <outlet property="downloadButton" destination="LWN-Ez-xJo" id="8Tb-AG-PcA"/>
                         <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
                         <outlet property="phoneComboBox" destination="2d7-eQ-bCS" id="aSh-yK-6gN"/>
@@ -986,9 +992,6 @@
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
-                                            <connections>
-                                                <action selector="clickFileBrowser:" target="Nd7-tF-bGG" id="XTy-w1-05P"/>
-                                            </connections>
                                         </textField>
                                     </subviews>
                                 </view>
