@@ -35,6 +35,7 @@
 		ED66FA821E0AB8570081A30D /* quit_irb_session.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA811E0AB8570081A30D /* quit_irb_session.command */; };
 		ED7045051DD61B9000272059 /* get_screen.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045041DD61B9000272059 /* get_screen.command */; };
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
+		ED7278961FA78E050022505E /* app_download.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7278951FA78E050022505E /* app_download.command */; };
 		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
@@ -98,6 +99,7 @@
 		ED66FA811E0AB8570081A30D /* quit_irb_session.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quit_irb_session.command; sourceTree = "<group>"; };
 		ED7045041DD61B9000272059 /* get_screen.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_screen.command; sourceTree = "<group>"; };
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
+		ED7278951FA78E050022505E /* app_download.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_download.command; sourceTree = "<group>"; };
 		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
+				ED7278951FA78E050022505E /* app_download.command */,
 				ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */,
 				ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */,
 				ED66FA811E0AB8570081A30D /* quit_irb_session.command */,
@@ -354,6 +357,7 @@
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
 				EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */,
 				D74D80851F97F7BA0049A84F /* click_image.png in Resources */,
+				ED7278961FA78E050022505E /* app_download.command in Resources */,
 				ED7045051DD61B9000272059 /* get_screen.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

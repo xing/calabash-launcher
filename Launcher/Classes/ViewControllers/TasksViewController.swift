@@ -32,6 +32,7 @@ class TasksViewController: NSViewController {
     var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
+    var linkInfoArray: ([String], [String]) = ([], [])
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -128,7 +129,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        // buildPicker.indexOfSelectedItem
+        downloadAppFromLink(link: linkInfoArray.0[buildPicker.indexOfSelectedItem])
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -322,7 +323,7 @@ class TasksViewController: NSViewController {
     
     func getValuesForBuildPicker() {
         buildPicker.removeAllItems()
-        let linkInfoArray = plistOperations.readFromPlist(forKey: Constants.Strings.linkInfoKey)
+        linkInfoArray = plistOperations.readFromPlist(forKey: Constants.Strings.linkInfoKey)
         buildPicker.addItems(withTitles: linkInfoArray.1)
         
         buildPicker.selectItem(at: applicationStateHandler.buildNumber)
@@ -330,6 +331,19 @@ class TasksViewController: NSViewController {
             downloadButton.isEnabled = false
         } else {
             downloadButton.isEnabled = true
+        }
+    }
+    
+    func downloadAppFromLink(link: String) {
+        if let launchPath = Constants.FilePaths.Bash.appDownload {
+            let outputStream = CommandsCore.CommandTextOutputStream()
+            outputStream.textHandler = {text in
+                DispatchQueue.main.async {
+                    self.textViewPrinter.printToTextView(text)
+                }
+            }
+            let commands = CommandsCore.CommandExecutor()
+            commands.executeCommand(at: launchPath, arguments: [link, pathToCalabashFolder], outputStream: outputStream)
         }
     }
     
