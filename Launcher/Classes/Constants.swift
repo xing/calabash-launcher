@@ -7,6 +7,7 @@ enum Constants {
         static let pluginDevice = "Please plug-in your device.".localized
         static let installSimulator = "Please install an iOS simulator.".localized
         static let installSimulatorOrPluginDevice = "Please install a simulator or plug-in your device.".localized
+        static let useLocalBuild = "Skip download. Use local APP version.".localized
         static let notCompatibleWithDeviceType = "not compatible with chosen device type."
         static let linkInfoKey = "linksInfo"
     }

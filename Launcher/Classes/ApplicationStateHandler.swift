@@ -8,7 +8,7 @@ class ApplicationStateHandler {
         case simulatorRadioButtonState = "simRadioButton"
         case physicalRadioButtonState = "phyRadioButton"
         case isLaunched = "wasLaunched"
-        case buildNumber = "buildNumber"
+        case buildName = "buildName"
         case filePath = "FilePath"
         case phoneName = "PhoneName"
         case phoneUDID = "PhoneUDID"
@@ -46,12 +46,12 @@ class ApplicationStateHandler {
         }
     }
     
-    var buildNumber: Int {
+    var buildName: String? {
         get {
-            return defaults.integer(forKey: .buildNumber)
+            return defaults.string(forKey: .buildName)
         }
         set {
-            defaults.set(newValue, forKey: .buildNumber)
+            defaults.set(newValue, forKey: .buildName)
         }
     }
     

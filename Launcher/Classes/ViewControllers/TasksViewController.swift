@@ -133,8 +133,10 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func buildPicker(_ sender: Any) {
-       applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
-        if buildPicker.selectedItem != nil {
+       applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
+        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
+            downloadButton.isEnabled = false
+        } else {
             downloadButton.isEnabled = true
         }
     }
@@ -325,9 +327,15 @@ class TasksViewController: NSViewController {
         buildPicker.removeAllItems()
         linkInfoArray = plistOperations.readFromPlist(forKey: Constants.Strings.linkInfoKey)
         buildPicker.addItems(withTitles: linkInfoArray.1)
+        buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
+
+        if let buildName = applicationStateHandler.buildName, buildPicker.itemTitles.contains(buildName) {
+            buildPicker.selectItem(withTitle: buildName)
+        } else {
+            buildPicker.selectItem(withTitle: Constants.Strings.useLocalBuild)
+        }
         
-        buildPicker.selectItem(at: applicationStateHandler.buildNumber)
-        if buildPicker.selectedItem == nil {
+        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
             downloadButton.isEnabled = false
         } else {
             downloadButton.isEnabled = true
