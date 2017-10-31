@@ -129,7 +129,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        downloadAppFromLink(link: linkInfoArray.0[buildPicker.indexOfSelectedItem])
+        CommandsController().downloadAppFromLink(link: linkInfoArray.0[buildPicker.indexOfSelectedItem], textView: textView)
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -325,7 +325,7 @@ class TasksViewController: NSViewController {
     
     func getValuesForBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfoArray = plistOperations.readFromPlist(forKey: Constants.Strings.linkInfoKey)
+        linkInfoArray = plistOperations.read(forKey: Constants.Strings.linkInfoKey)
         buildPicker.addItems(withTitles: linkInfoArray.1)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 
@@ -339,19 +339,6 @@ class TasksViewController: NSViewController {
             downloadButton.isEnabled = false
         } else {
             downloadButton.isEnabled = true
-        }
-    }
-    
-    func downloadAppFromLink(link: String) {
-        if let launchPath = Constants.FilePaths.Bash.appDownload {
-            let outputStream = CommandsCore.CommandTextOutputStream()
-            outputStream.textHandler = {text in
-                DispatchQueue.main.async {
-                    self.textViewPrinter.printToTextView(text)
-                }
-            }
-            let commands = CommandsCore.CommandExecutor()
-            commands.executeCommand(at: launchPath, arguments: [link, pathToCalabashFolder], outputStream: outputStream)
         }
     }
     

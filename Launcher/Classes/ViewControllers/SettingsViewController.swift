@@ -40,7 +40,7 @@ class SettingsViewController: NSViewController {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        let linkInfoArray = plistOperations.readFromPlist(forKey: linkInfoKey)
+        let linkInfoArray = plistOperations.read(forKey: linkInfoKey)
         let linksArray = linkInfoArray.0
         let linkDescriptionArray = linkInfoArray.1
         
@@ -78,7 +78,7 @@ class SettingsViewController: NSViewController {
             existingItems = [[:]]
         } else {
             linkData[linkInfoKey] = existingItems
-            plistOperations.createPlist(data: linkData)
+            plistOperations.create(data: linkData)
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue

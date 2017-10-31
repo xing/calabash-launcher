@@ -10,7 +10,7 @@ class PlistOperations {
         plistPath = documentDirectory.appending(defaultPlistPath)
     }
     
-    func createPlist(data : [String : Any]) {
+    func create(data : [String : Any]) {
         if !fileManager.fileExists(atPath: plistPath) {
             try? fileManager.removeItem(atPath: plistPath)
         }
@@ -18,7 +18,7 @@ class PlistOperations {
         someData.write(toFile: plistPath, atomically: true)
     }
     
-    func readFromPlist(forKey: String) -> ([String], [String]) {
+    func read(forKey: String) -> ([String], [String]) {
         var plistDictionary: NSDictionary?
         var keysArray = [String]()
         var valuesArray = [String]()
