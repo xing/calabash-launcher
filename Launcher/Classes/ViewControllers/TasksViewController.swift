@@ -23,7 +23,6 @@ class TasksViewController: NSViewController {
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     var textViewPrinter: TextViewPrinter!
-    let commands = CommandsCore.CommandExecutor()
     let plistOperations = PlistOperations()
     var deviceListIsEmpty = false
     @objc dynamic var isRunning = false

@@ -13,10 +13,10 @@ class CommandsController {
                     textViewPrinter.printToTextView(text)
                 }
             }
-            let commands = CommandExecutor()
+            
             if let path = applicationStateHandler.filePath {
                 let filePath = path.absoluteString.replacingOccurrences(of: "file://", with: "")
-                commands.executeCommand(at: launchPath, arguments: [link, filePath], outputStream: outputStream)
+                CommandExecutor(launchPath: launchPath,arguments: [link, filePath], outputStream: outputStream).execute()
             }
         }
     }
