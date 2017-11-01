@@ -21,19 +21,19 @@ class ApplicationStateHandler {
     
     var simulatorRadioButtonState: Int {
         get {
-            return defaults.integer(forKey: "simRadioButton")
+            return defaults.integer(forKey: .simulatorRadioButtonState)
         }
         set {
-            defaults.set(newValue, forKey: "simRadioButton")
+            defaults.set(newValue, forKey: .simulatorRadioButtonState)
         }
     }
     
     var physicalButtonState: Int {
         get {
-            return defaults.integer(forKey: "phyRadioButton")
+            return defaults.integer(forKey: .physicalRadioButtonState)
         }
         set {
-            defaults.set(newValue, forKey:"phyRadioButton")
+            defaults.set(newValue, forKey: .physicalRadioButtonState)
         }
     }
     
@@ -148,5 +148,11 @@ private extension UserDefaults {
 
     func set(_ value: Any?, forKey defaultName: ApplicationStateHandler.Keys) {
         set(value, forKey: defaultName.rawValue)
+    }
+
+    // It appears UserDefaults doesn't like it when we pass a URL directly
+    // into the "Any?" setter, thinking we are passing in a non-property list object.
+    func set(_ url: URL?, forKey defaultName: ApplicationStateHandler.Keys) {
+        set(url, forKey: defaultName.rawValue)
     }
 }
