@@ -4,6 +4,7 @@
 - Improved launch time ([#34](https://github.com/JoeSSS/calabash-launcher/pull/34))
 - Added "Reset to default" functionality ([#36](https://github.com/JoeSSS/calabash-launcher/pull/36))
 - Transfered to new CommandsCore API
+- Added additional field in settings that allows to add run variables to the test run
 
 # 0.1
 
