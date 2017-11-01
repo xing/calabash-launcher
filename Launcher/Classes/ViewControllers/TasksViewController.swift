@@ -355,8 +355,17 @@ class TasksViewController: NSViewController {
             arguments.append("-p \(cucumberProfile)")
         }
         
+        // We still need an arugment to be passed, otherwise bash variable order will be spoiled
         if !tagPicker.stringValue.isEmpty {
             arguments.append("--t @\(tagPicker.stringValue)")
+        } else {
+            arguments.append("")
+        }
+        
+        if let additionalRunParameter = applicationStateHandler.additionalRunParameters, !additionalRunParameter.isEmpty {
+            arguments.append("export \(additionalRunParameter)")
+        } else {
+            arguments.append("")
         }
         
         buildButton.isEnabled = false
