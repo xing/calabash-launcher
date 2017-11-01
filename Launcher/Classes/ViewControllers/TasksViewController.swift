@@ -22,8 +22,8 @@ class TasksViewController: NSViewController {
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
+    let plistOperations = PlistOperations(forKey: Constants.Strings.linkInfoKey)
     var textViewPrinter: TextViewPrinter!
-    let plistOperations = PlistOperations()
     var deviceListIsEmpty = false
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -31,7 +31,7 @@ class TasksViewController: NSViewController {
     var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
-    var linkInfoArray: ([String], [String]) = ([], [])
+    var linkInfoArray = [""]
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -128,7 +128,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        CommandsController().downloadAppFromLink(link: linkInfoArray.0[buildPicker.indexOfSelectedItem], textView: textView)
+        CommandsController().downloadAppFromLink(link: linkInfoArray[buildPicker.indexOfSelectedItem], textView: textView)
     }
     
     @IBAction func buildPicker(_ sender: Any) {
@@ -324,8 +324,8 @@ class TasksViewController: NSViewController {
     
     func getValuesForBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfoArray = plistOperations.read(forKey: Constants.Strings.linkInfoKey)
-        buildPicker.addItems(withTitles: linkInfoArray.1)
+        linkInfoArray = plistOperations.readValues()
+        buildPicker.addItems(withTitles: linkInfoArray)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 
         if let buildName = applicationStateHandler.buildName, buildPicker.itemTitles.contains(buildName) {

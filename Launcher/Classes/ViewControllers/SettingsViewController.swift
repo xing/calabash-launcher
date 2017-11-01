@@ -2,8 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations()
-    let linkInfoKey = Constants.Strings.linkInfoKey
+    let plistOperations = PlistOperations(forKey: Constants.Strings.linkInfoKey)
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -41,18 +40,17 @@ class SettingsViewController: NSViewController {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        let linkInfoArray = plistOperations.read(forKey: linkInfoKey)
-        let linksArray = linkInfoArray.0
-        let linkDescriptionArray = linkInfoArray.1
-        
-        for (index, element) in linksArray.enumerated() {
-            elements[index].0.stringValue = element
+        let linkArray = plistOperations.readKeys()
+        let linkDescriptionArray = plistOperations.readValues()
+
+        for (index, element) in linkArray.enumerated() {
+            elements[index].0.stringValue = String(describing: element)
         }
-        
+
         for (index, element) in linkDescriptionArray.enumerated() {
-            elements[index].1.stringValue = element
+            elements[index].1.stringValue = String(describing: element)
         }
-      
+        
         if let additionalParameters = applicationStateHandler.additionalRunParameters {
             additionalRunParameters.stringValue = additionalParameters
         }
@@ -63,11 +61,11 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func clickSaveButton(_ sender: Any) {
-        var linkData: [String: Any] = [linkInfoKey  : []]
-        linkData[linkInfoKey] = [:]
+        var linkData: [String: Any] = [Constants.Strings.linkInfoKey  : []]
+        linkData[Constants.Strings.linkInfoKey] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData[linkInfoKey] as? [[String: String]] ?? []
+        var existingItems = linkData[Constants.Strings.linkInfoKey] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
@@ -82,7 +80,7 @@ class SettingsViewController: NSViewController {
         if hasWarnings {
             existingItems = [[:]]
         } else {
-            linkData[linkInfoKey] = existingItems
+            linkData[Constants.Strings.linkInfoKey] = existingItems
             plistOperations.create(data: linkData)
         }
         
