@@ -11,9 +11,6 @@ class PlistOperations {
     }
     
     func create(data : [String : Any]) {
-        if !fileManager.fileExists(atPath: plistPath) {
-            try? fileManager.removeItem(atPath: plistPath)
-        }
         let someData = NSDictionary(dictionary: data)
         someData.write(toFile: plistPath, atomically: true)
     }
