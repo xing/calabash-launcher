@@ -19,7 +19,7 @@ class PlistOperations {
     
     func read() -> [NSDictionary] {
         var plistDictionary: NSDictionary?
-        var keysArray = [NSDictionary]()
+        var dictionaryArray = [NSDictionary]()
         
         if fileManager.fileExists(atPath: plistPath) {
             plistDictionary = NSDictionary(contentsOfFile: plistPath)
@@ -27,11 +27,11 @@ class PlistOperations {
         if let objectsArray = plistDictionary?.mutableArrayValue(forKey: dictionaryKey) {
             objectsArray.forEach { dictionary in
                 if let dict = dictionary as? NSDictionary, !dict.allKeys.isEmpty {
-                    keysArray.append(dict)
+                    dictionaryArray.append(dict)
                 }
             }
         }
-        return(keysArray)
+        return(dictionaryArray)
     }
     
     func readValues() -> [String] {
