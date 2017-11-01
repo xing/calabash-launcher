@@ -125,7 +125,7 @@ class TasksViewController: NSViewController {
     }
 
     func killProcessScreenshot() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.killProcess ?? "", arguments: [])
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.killProcess ?? "", arguments: []).execute()
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
@@ -224,7 +224,7 @@ class TasksViewController: NSViewController {
     
     @IBAction func textField(_ sender: Any) {
         if let launchPath = Constants.FilePaths.Bash.sendToIRB {
-            let outputStream = CommandsCore.CommandTextOutputStream()
+            let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
                 guard !text.isEmpty else { return }
                 DispatchQueue.main.async {
@@ -233,7 +233,7 @@ class TasksViewController: NSViewController {
             }
             let arguments = [self.textField.stringValue]
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
         textField.stringValue = ""
@@ -277,14 +277,14 @@ class TasksViewController: NSViewController {
     
     func getSimulatorsCommand() {
         if let launchPath = Constants.FilePaths.Bash.simulators {
-            let outputStream = CommandsCore.CommandTextOutputStream()
+            let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
                 let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
                 DispatchQueue.main.async {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
             }
-            self.commands.executeCommand(at: launchPath, arguments: [], outputStream: outputStream)
+            CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
         }
     }
     
@@ -343,7 +343,7 @@ class TasksViewController: NSViewController {
     }
     
     func quitIrbSession() {
-        commands.executeCommand(at: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: [])
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
     }
     
     func statePreservation() {
@@ -401,14 +401,15 @@ class TasksViewController: NSViewController {
         progressBar.startAnimation(self)
         
         if let launchPath = Constants.FilePaths.Bash.buildScript {
-            let outputStream = CommandsCore.CommandTextOutputStream()
+            let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
                 DispatchQueue.main.async {
                     self.textViewPrinter.printToTextView(text)
                 }
             }
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandExecutor(launchPath: launchPath, arguments: arguments,  outputStream: outputStream).execute()
+                
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
                     self.spinner.stopAnimation(self)
@@ -423,7 +424,7 @@ class TasksViewController: NSViewController {
         self.spinner.startAnimation(self)
         self.progressBar.startAnimation(self)
         if let launchPath = Constants.FilePaths.Bash.createIRBSession {
-            let outputStream = CommandsCore.CommandTextOutputStream()
+            let outputStream = CommandTextOutputStream()
             outputStream.textHandler = {text in
                 DispatchQueue.main.async {
                     self.textViewPrinter.printToTextView(text)
@@ -437,7 +438,7 @@ class TasksViewController: NSViewController {
                 arguments.append(helpersPath)
             }
             DispatchQueue.global(qos: .background).async {
-                self.commands.executeCommand(at: launchPath, arguments: arguments, outputStream: outputStream)
+                CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
     }
