@@ -11,6 +11,7 @@ fi
 export ${1}
 # Device Target
 export ${2}
+${6}
 # Path
 cd ${3}
 
@@ -19,5 +20,5 @@ echo "Installing missing Gems"
 bundle install
 fi
 # Path, Profile, Tag
-cd ${3} && bundle exec cucumber -c ${4} ${5}
+bundle exec cucumber -c ${4} ${5}
 exit

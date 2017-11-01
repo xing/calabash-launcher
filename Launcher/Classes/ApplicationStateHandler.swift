@@ -16,6 +16,7 @@ class ApplicationStateHandler {
         case tag = "Tag"
         case debugState = "DebugCheckbox"
         case cucumberProfile = "cucumberProfile"
+        case additionalRunParameters = "additionalRunParameters"
     }
     
     var simulatorRadioButtonState: Int {
@@ -115,6 +116,15 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .cucumberProfile)
+        }
+    }
+    
+    var additionalRunParameters: String? {
+        get {
+            return defaults.string(forKey: .additionalRunParameters)
+        }
+        set {
+            defaults.set(newValue, forKey: .additionalRunParameters)
         }
     }
 }

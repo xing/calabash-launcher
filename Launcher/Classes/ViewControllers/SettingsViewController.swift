@@ -22,6 +22,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var warningField: NSTextField!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var proceedButton: NSButton!
+    @IBOutlet weak var additionalRunParameters: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,10 @@ class SettingsViewController: NSViewController {
         
         for (index, element) in linkDescriptionArray.enumerated() {
             elements[index].1.stringValue = element
+        }
+      
+        if let additionalParameters = applicationStateHandler.additionalRunParameters {
+            additionalRunParameters.stringValue = additionalParameters
         }
     }
     
@@ -82,6 +87,7 @@ class SettingsViewController: NSViewController {
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
+        applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
         
         // Reload build picker to get new elements
         if
