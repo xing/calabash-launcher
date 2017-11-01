@@ -70,7 +70,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         if let item = sender.item(atRow: sender.clickedRow) as? String {
-            CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
+            CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
         }
     }
     
@@ -211,7 +211,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
     
     func getElementsByOffset(_ arguments:[String]) {
-        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments).execute()
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments).execute()
     }
     
     func getElements() {
@@ -219,7 +219,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         if let filePath = self.applicationStateHandler.filePath {
             arguments = [filePath.absoluteString]
         }
-        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.elements ?? "", arguments: arguments).execute()
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.elements ?? "", arguments: arguments).execute()
     }
     
 
@@ -232,7 +232,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
         
         if let launchPath = Constants.FilePaths.Bash.startDevice {
-            let outputStream = CommandsCore.CommandTextOutputStream()
+            let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
                 guard !text.isEmpty else { return }
                 DispatchQueue.main.async {
@@ -244,7 +244,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 arguments = [phoneUDID]
             }
             DispatchQueue.global(qos: .background).async {
-                CommandsCore.CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
+                CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
         
@@ -268,7 +268,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     func syncScreen() {
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
     }
     
     func getScreenProcs() {

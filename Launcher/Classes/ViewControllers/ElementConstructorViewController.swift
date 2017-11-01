@@ -32,7 +32,7 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         pasteboard.setString(item, forType: .string)
-        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
     }
     
     func fileIsNotEmpty(filePath: String) -> Bool {
@@ -87,12 +87,12 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         arguments.append(String(siblingCheckbox.state.rawValue))
         arguments.append(String(indexCheckbox.state.rawValue))
         
-        let outputStream = CommandsCore.CommandTextOutputStream()
+        let outputStream = CommandTextOutputStream()
             outputStream.textHandler = {text in
             elements.append(text)
         }
 
-        CommandsCore.CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments,  outputStream: outputStream).execute()       
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments,  outputStream: outputStream).execute()       
         self.parentCollection.append(contentsOf: elements)
         self.outlineViewConstructor.reloadData()
         self.spinner.stopAnimation(self)
