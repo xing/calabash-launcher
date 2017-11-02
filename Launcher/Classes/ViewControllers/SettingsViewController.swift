@@ -2,7 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations(forKey: Constants.Strings.linkInfoKey)
+    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -61,11 +61,11 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func clickSaveButton(_ sender: Any) {
-        var linkData: [String: Any] = [Constants.Strings.linkInfoKey  : []]
-        linkData[Constants.Strings.linkInfoKey] = [:]
+        var linkData: [String: Any] = [Constants.Keys.linkInfo : []]
+        linkData[Constants.Keys.linkInfo] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData[Constants.Strings.linkInfoKey] as? [[String: String]] ?? []
+        var existingItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
@@ -80,8 +80,8 @@ class SettingsViewController: NSViewController {
         if hasWarnings {
             existingItems = [[:]]
         } else {
-            linkData[Constants.Strings.linkInfoKey] = existingItems
-            plistOperations.create(data: linkData)
+            linkData[Constants.Keys.linkInfo] = existingItems
+            plistOperations.create(from: linkData)
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
@@ -94,7 +94,7 @@ class SettingsViewController: NSViewController {
             tasksViewController.getValuesForBuildPicker()
         }
         
-        // Restart APP after new path is available. Close Settings and save settings otherwise.
+        // Restart app after new path is available. Close Settings and save settings otherwise.
         if pathChanged {
             AppHandler().restartApplication()
         } else if !hasWarnings {

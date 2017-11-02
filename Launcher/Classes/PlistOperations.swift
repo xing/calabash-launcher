@@ -2,47 +2,37 @@ import Foundation
 
 class PlistOperations {
     
-    var plistPath: String
+    let plistPath: String
     let fileManager = FileManager.default
-    var dictionaryKey = ""
+    let dictionaryKey: String
     
-    public init(forKey: String, defaultPlistPath: String = "/CalabashLauncherSettings.plist") {
-        dictionaryKey = forKey
+    public init(forKey key: String, defaultPlistPath path: String = "/CalabashLauncherSettings.plist") {
+        dictionaryKey = key
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        plistPath = documentDirectory.appending(defaultPlistPath)
+        plistPath = documentDirectory.appending(path)
     }
     
-    func create(data : [String : Any]) {
-        let someData = NSDictionary(dictionary: data)
+    func create(from dictionary: [String: Any]) {
+        let someData = NSDictionary(dictionary: dictionary)
         someData.write(toFile: plistPath, atomically: true)
     }
     
-    func read() -> [NSDictionary] {
-        var plistDictionary: NSDictionary?
-        var dictionaryArray = [NSDictionary]()
-        
-        if fileManager.fileExists(atPath: plistPath) {
-            plistDictionary = NSDictionary(contentsOfFile: plistPath)
+    private func read() -> [NSDictionary] {
+        guard
+            fileManager.fileExists(atPath: plistPath),
+            let dictionary = NSDictionary(contentsOfFile: plistPath) else { return [] }
+
+        return dictionary.mutableArrayValue(forKey: dictionaryKey).flatMap { element -> NSDictionary? in
+            guard let dictionary = element as? NSDictionary else { return nil }
+            return dictionary
         }
-        if let objectsArray = plistDictionary?.mutableArrayValue(forKey: dictionaryKey) {
-            objectsArray.forEach { dictionary in
-                if let dict = dictionary as? NSDictionary, !dict.allKeys.isEmpty {
-                    dictionaryArray.append(dict)
-                }
-            }
-        }
-        return(dictionaryArray)
     }
     
     func readValues() -> [String] {
-        let dictionaryData = self.read()
-        let valuesArray = dictionaryData.flatMap { $0.allValues } as? [String]
-        return valuesArray ?? [""]
+        return read().flatMap { $0.allValues } as? [String] ?? []
     }
     
     func readKeys() -> [String] {
-        let dictionaryData = self.read()
-        let keysArray = dictionaryData.flatMap { $0.allKeys } as? [String]
-        return keysArray ?? [""]
+        return read().flatMap { $0.allKeys } as? [String] ?? []
     }
 }

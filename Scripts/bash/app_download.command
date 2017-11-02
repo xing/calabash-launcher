@@ -16,7 +16,7 @@ else
 fi
 
 if [ ${extension} == "zip" ]; then
-    echo "Extracting APP from archieve"
+    echo "Extracting app from archive"
     ditto -xk ${filename} .
     rm ${filename}
     echo "Extracted Succesfully"
