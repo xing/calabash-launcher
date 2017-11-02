@@ -5,16 +5,14 @@ class ApplicationStateHandler {
     private let defaults = UserDefaults.standard
 
     fileprivate enum Keys: String {
-        case simulatorRadioButtonState = "simRadioButton"
-        case physicalRadioButtonState = "phyRadioButton"
-        case isLaunched = "wasLaunched"
+        case simulatorRadioButtonState = "simulatorRadioButton"
         case buildNumber = "buildNumber"
-        case filePath = "FilePath"
-        case phoneName = "PhoneName"
-        case phoneUDID = "PhoneUDID"
-        case language = "Language"
-        case tag = "Tag"
-        case debugState = "DebugCheckbox"
+        case filePath = "filePath"
+        case phoneName = "phoneName"
+        case phoneUDID = "phoneUDID"
+        case language = "testLanguage"
+        case tag = "testTag"
+        case debugState = "debugCheckboxState"
         case cucumberProfile = "cucumberProfile"
         case additionalRunParameters = "additionalRunParameters"
     }
@@ -25,25 +23,6 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .simulatorRadioButtonState)
-        }
-    }
-    
-    var physicalButtonState: Int {
-        get {
-            return defaults.integer(forKey: .physicalRadioButtonState)
-        }
-        set {
-            defaults.set(newValue, forKey: .physicalRadioButtonState)
-        }
-    }
-    
-    // todo: does this really need to be handled in the application state handler? it's only used in the view controller
-    var isLaunched: Bool {
-        get {
-            return defaults.bool(forKey: .isLaunched)
-        }
-        set {
-            defaults.set(newValue, forKey: .isLaunched)
         }
     }
     
