@@ -16,6 +16,8 @@ class CommandsController {
 
         guard let path = applicationStateHandler.filePath else { return }
         let filePath = path.absoluteString.replacingOccurrences(of: "file://", with: "")
-        CommandExecutor(launchPath: launchPath,arguments: [url.absoluteString, filePath], outputStream: outputStream).execute()
+        DispatchQueue.global(qos: .background).async {
+            CommandExecutor(launchPath: launchPath,arguments: [url.absoluteString, filePath], outputStream: outputStream).execute()
+        }
     }
 }

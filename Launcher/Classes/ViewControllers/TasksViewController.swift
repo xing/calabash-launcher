@@ -128,7 +128,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        guard let url = URL(string: linkInfoArray[buildPicker.indexOfSelectedItem]) else { return }
+        guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
         CommandsController().downloadApp(from: url, textView: textView)
     }
     
