@@ -3,6 +3,7 @@
 ## Added
 
 - Added "Reset to default" functionality ([#36](https://github.com/JoeSSS/calabash-launcher/pull/36))
+- Added functionality to download APP from link ([#69](https://github.com/xing/calabash-launcher/pull/69))
 - Added possibility to choose path from drop-down menu ([#62](https://github.com/xing/calabash-launcher/pull/62))
 - Added additional field in settings that allows to add run variables to the test run ([#66](https://github.com/xing/calabash-launcher/pull/66))
 

@@ -4,7 +4,7 @@ file=${1}/Gemfile
 
 if [ ! -e "$file" ]; then
 echo $file
-echo "The path to Calabash folder is incorrect, please choose the right one. File chooser is in the APP Settings"
+echo "The path to Calabash folder is incorrect; please choose the right one. File chooser is in the app Settings"
 else
 
 if open -Ra "iTerm" ; then

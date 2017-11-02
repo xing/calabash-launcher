@@ -7,7 +7,12 @@ enum Constants {
         static let pluginDevice = "Please plug-in your device.".localized
         static let installSimulator = "Please install an iOS simulator.".localized
         static let installSimulatorOrPluginDevice = "Please install a simulator or plug-in your device.".localized
-        static let notCompatibleWithDeviceType = "not compatible with chosen device type."
+        static let useLocalBuild = "Skipping download. Use a local app version.".localized
+        static let notCompatibleWithDeviceType = "not compatible with chosen device type.".localized
+    }
+
+    enum Keys {
+        static let linkInfo = "linksInfo"
     }
     
     enum FilePaths {
@@ -17,6 +22,7 @@ enum Constants {
             static let buildScript = main.path(forResource: "BuildScript", ofType: .bash)
             static let killProcess = main.path(forResource: "kill_process", ofType: .bash)
             static let flash = main.path(forResource: "flash", ofType: .bash)
+            static let appDownload = main.path(forResource: "app_download", ofType: .bash)
             
             // Interactive Ruby Shell
             static let createIRBSession = main.path(forResource: "create_irb_session", ofType: .bash)
