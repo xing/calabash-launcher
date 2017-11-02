@@ -4,7 +4,7 @@ class PlistOperations {
     func createPlist(data : [String : Any]) {
         let fileManager = FileManager.default
         
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
         let path = documentDirectory.appending("/CalabashLauncherSettings.plist")
         
         if !fileManager.fileExists(atPath: path) {
