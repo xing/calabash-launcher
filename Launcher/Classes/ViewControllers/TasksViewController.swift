@@ -18,9 +18,11 @@ class TasksViewController: NSViewController {
     @IBOutlet var cautionBuildImage: NSImageView!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
+    @IBOutlet weak var downloadButton: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
+    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
     var textViewPrinter: TextViewPrinter!
     var deviceListIsEmpty = false
     @objc dynamic var isRunning = false
@@ -29,6 +31,7 @@ class TasksViewController: NSViewController {
     var devices = [""]
     var timer: Timer!
     var pathToCalabashFolder = ""
+    var linkInfoArray = [""]
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -41,9 +44,8 @@ class TasksViewController: NSViewController {
         placeholderText.setAttributes([.foregroundColor: NSColor.lightGray], range: NSRange(location: 0, length: "Console Input (Beta)".count))
         textField.placeholderAttributedString = placeholderText
         timer = .scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.limitOfChars), userInfo: nil, repeats: true);
-        
+        getValuesForBuildPicker()
         // Disable these elements for the moment, as it cannot work for people outside XING
-        buildPicker.isEnabled = false
         getDeviceButton.isEnabled = false
         physicalDeviceRadioButton.isEnabled = false
         simulatorRadioButton.state = .on
@@ -124,8 +126,18 @@ class TasksViewController: NSViewController {
         CommandExecutor(launchPath: Constants.FilePaths.Bash.killProcess ?? "", arguments: []).execute()
     }
     
+    @IBAction func clickDownloadButton(_ sender: Any) {
+        guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+        CommandsController().downloadApp(from: url, textView: textView)
+    }
+    
     @IBAction func buildPicker(_ sender: Any) {
-       // To be developed
+       applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
+        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
+            downloadButton.isEnabled = false
+        } else {
+            downloadButton.isEnabled = true
+        }
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
@@ -310,6 +322,25 @@ class TasksViewController: NSViewController {
         }
     }
     
+    func getValuesForBuildPicker() {
+        buildPicker.removeAllItems()
+        linkInfoArray = plistOperations.readValues()
+        buildPicker.addItems(withTitles: linkInfoArray)
+        buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
+
+        if let buildName = applicationStateHandler.buildName, buildPicker.itemTitles.contains(buildName) {
+            buildPicker.selectItem(withTitle: buildName)
+        } else {
+            buildPicker.selectItem(withTitle: Constants.Strings.useLocalBuild)
+        }
+        
+        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
+            downloadButton.isEnabled = false
+        } else {
+            downloadButton.isEnabled = true
+        }
+    }
+    
     func quitIrbSession() {
         CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
     }
@@ -320,7 +351,6 @@ class TasksViewController: NSViewController {
         applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         applicationStateHandler.language = languagePopUpButton.title
         applicationStateHandler.tag = tagPicker.stringValue
-        applicationStateHandler.debugState = debugCheckbox.state.rawValue
     }
     
     func runScript() {

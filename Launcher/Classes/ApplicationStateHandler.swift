@@ -26,12 +26,12 @@ class ApplicationStateHandler {
         }
     }
     
-    var buildNumber: Int {
+    var buildName: String? {
         get {
-            return defaults.integer(forKey: .buildNumber)
+            return defaults.string(forKey: .buildName)
         }
         set {
-            defaults.set(newValue, forKey: .buildNumber)
+            defaults.set(newValue, forKey: .buildName)
         }
     }
     

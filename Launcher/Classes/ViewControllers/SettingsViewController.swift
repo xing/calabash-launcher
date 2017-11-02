@@ -2,13 +2,12 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations()
-    var linkData: [String: Any] = ["items" : []]
+    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
     var elements: [(NSTextField, NSTextField)] = []
-    
+
     @IBOutlet var fileBrowser: NSPathControl!
     @IBOutlet weak var cucumberProfileField: NSTextField!
     @IBOutlet weak var linkField1: NSTextField!
@@ -41,6 +40,17 @@ class SettingsViewController: NSViewController {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
+        let linkArray = plistOperations.readKeys()
+        let linkDescriptionArray = plistOperations.readValues()
+
+        for (index, element) in linkArray.enumerated() {
+            elements[index].0.stringValue = String(describing: element)
+        }
+
+        for (index, element) in linkDescriptionArray.enumerated() {
+            elements[index].1.stringValue = String(describing: element)
+        }
+        
         if let additionalParameters = applicationStateHandler.additionalRunParameters {
             additionalRunParameters.stringValue = additionalParameters
         }
@@ -51,10 +61,11 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func clickSaveButton(_ sender: Any) {
-        linkData["items"] = [:]
+        var linkData: [String: Any] = [Constants.Keys.linkInfo : []]
+        linkData[Constants.Keys.linkInfo] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData["items"] as? [[String: String]] ?? []
+        var existingItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
@@ -69,14 +80,21 @@ class SettingsViewController: NSViewController {
         if hasWarnings {
             existingItems = [[:]]
         } else {
-            linkData["items"] = existingItems
-            plistOperations.createPlist(data: linkData)
+            linkData[Constants.Keys.linkInfo] = existingItems
+            plistOperations.create(from: linkData)
         }
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
         applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
         
-        // Restart APP after new path is available. Close Settings and save settings otherwise.
+        // Reload build picker to get new elements
+        if
+            let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
+            let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
+            tasksViewController.getValuesForBuildPicker()
+        }
+        
+        // Restart app after new path is available. Close Settings and save settings otherwise.
         if pathChanged {
             AppHandler().restartApplication()
         } else if !hasWarnings {
@@ -86,6 +104,9 @@ class SettingsViewController: NSViewController {
     
     @IBAction func clickFileBrowser(_ sender: Any) {
         pathChanged = true
+        if let pathItem = fileBrowser.clickedPathItem {
+            fileBrowser.url = pathItem.url
+        }
         applicationStateHandler.filePath = fileBrowser.url
     }
     
