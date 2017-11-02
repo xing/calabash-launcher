@@ -347,9 +347,6 @@ class TasksViewController: NSViewController {
     
     func statePreservation() {
         applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
-        applicationStateHandler.buildNumber = buildPicker.indexOfSelectedItem
-        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.language = languagePopUpButton.title
         applicationStateHandler.tag = tagPicker.stringValue
     }
     
