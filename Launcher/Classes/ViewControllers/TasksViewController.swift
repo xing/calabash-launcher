@@ -99,7 +99,6 @@ class TasksViewController: NSViewController {
         }
 
         simulatorRadioButton.state = NSControl.StateValue(rawValue: applicationStateHandler.simulatorRadioButtonState)
-        physicalDeviceRadioButton.state = NSControl.StateValue(rawValue: applicationStateHandler.physicalButtonState)
 
         DispatchQueue.global(qos: .background).async {
             self.getSimulators()
@@ -348,7 +347,6 @@ class TasksViewController: NSViewController {
     
     func statePreservation() {
         applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
-        applicationStateHandler.physicalButtonState = physicalDeviceRadioButton.state.rawValue
         applicationStateHandler.tag = tagPicker.stringValue
     }
     

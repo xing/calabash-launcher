@@ -1,14 +1,13 @@
 import Foundation
 
 class PlistOperations {
-    
     let plistPath: String
     let fileManager = FileManager.default
     let dictionaryKey: String
     
     public init(forKey key: String, defaultPlistPath path: String = "/CalabashLauncherSettings.plist") {
         dictionaryKey = key
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
         plistPath = documentDirectory.appending(path)
     }
     
