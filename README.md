@@ -56,7 +56,7 @@ This project is actively under development, and it is used at XING.
 
 - Calabash Launcher will not work if you cannot run `bundle exec calabash-ios console` from your terminal. 
 Sometimes the problem could live in the Ruby installation and/or conflicts with `readline`. To fix the problem, please re-install Ruby.
-- You can reset Calabash Launcher's settings by pressing `⌘ + R`.
+- You can reset Calabash Launcher's settings by pressing the `Reset to Defaults Settings` menu item.
 
 ## Contributing
 Want to help improving Calabash Launcher? We could really use your help!
