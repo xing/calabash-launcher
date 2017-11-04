@@ -6,7 +6,7 @@ class ApplicationStateHandler {
 
     fileprivate enum Keys: String {
         case simulatorRadioButtonState = "simulatorRadioButton"
-        case buildNumber = "buildNumber"
+        case buildName = "buildName"
         case filePath = "filePath"
         case phoneName = "phoneName"
         case phoneUDID = "phoneUDID"
