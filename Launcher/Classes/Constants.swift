@@ -23,6 +23,7 @@ enum Constants {
             static let killProcess = main.path(forResource: "kill_process", ofType: .bash)
             static let flash = main.path(forResource: "flash", ofType: .bash)
             static let appDownload = main.path(forResource: "app_download", ofType: .bash)
+            static let checkSimulatorType = main.path(forResource: "check_sim_type", ofType: .bash)
             
             // Interactive Ruby Shell
             static let createIRBSession = main.path(forResource: "create_irb_session", ofType: .bash)
