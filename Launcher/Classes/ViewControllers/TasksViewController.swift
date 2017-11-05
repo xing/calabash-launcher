@@ -246,6 +246,7 @@ class TasksViewController: NSViewController {
     @IBAction func stopTask(_ sender:AnyObject) {
         if let testRunProcess = testRun {
             testRunProcess.terminate()
+            testRun = nil
             self.buildButton.isEnabled = true
             self.spinner.stopAnimation(self)
             self.progressBar.stopAnimation(self)
