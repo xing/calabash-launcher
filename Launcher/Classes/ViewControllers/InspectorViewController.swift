@@ -68,6 +68,10 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.cloneButton.isHidden = true
     }
 
+    override func viewDidDisappear() {
+        stopImageRefresh()
+    }
+    
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         if let item = sender.item(atRow: sender.clickedRow) as? String {
             CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
@@ -291,6 +295,12 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             self.gestureRecognizableView.image = image
         }
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+    }
+    
+    func stopImageRefresh() {
+        self.gestureRecognizableView.image = NSImage(named: NSImage.Name(rawValue: "click_image.png"))
+        self.gestureRecognizableView.setAccessibilityLabel("defaultImage")
+        timer.invalidate()
     }
     
     func getElementsFromFile() {
