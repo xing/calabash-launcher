@@ -32,7 +32,7 @@ class TasksViewController: NSViewController {
     var timer: Timer!
     var pathToCalabashFolder = ""
     var linkInfoArray = [""]
-    var testRun: Process!
+    var testRun: Process?
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -411,7 +411,9 @@ class TasksViewController: NSViewController {
             }
             DispatchQueue.global(qos: .background).async {
                 self.testRun = Process()
-                CommandExecutor(launchPath: launchPath, arguments: arguments,  outputStream: outputStream).execute(process: self.testRun)
+                if let testProcess = self.testRun {
+                    CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute(process: testProcess)
+                }
                 
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
