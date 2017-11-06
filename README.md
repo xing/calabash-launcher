@@ -34,7 +34,7 @@ In order to run... you have to make sure that your machine meets the following r
 - MacOS Sierra
 - Xcode 9.0+
 - iOS Simulators >= 10.1
-- Ruby >= 2.0 (> 2.3.0 is preferred)
+- Ruby >= 2.2.0 (2.3.1 is preferred)
 - `bundler` >= 1.15.0
 - `calabash-ios` >= 0.20.5
 
