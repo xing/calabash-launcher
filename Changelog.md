@@ -15,6 +15,7 @@
 ## Fixed
 
 - Fixed a crash when changing the Calabash folder path ([#71](https://github.com/xing/calabash-launcher/pull/71))
+- Fixed a crash when there are no simulators to select ([#82](https://github.com/xing/calabash-launcher/pull/82))
 - Screen synchronisation is terminating when the view controller changes ([#80](https://github.com/xing/calabash-launcher/pull/80/)) 
 
 ## Miscellaneous
