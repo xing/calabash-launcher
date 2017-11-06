@@ -42,7 +42,7 @@ In order to run... you have to make sure that your machine meets the following r
 
 When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile. After a restart you will be able to configure your testrun by choosing a simulator, language and cucumber tag you want to execute.
 
-### Element Inspector
+## Using the Element Inspector
 
 ⚠️ **Currently the Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements.** ⚠️
 
