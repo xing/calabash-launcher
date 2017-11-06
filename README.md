@@ -2,7 +2,7 @@
 
 Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac. 
 - Instead of having to run and configure test runs in console, you can use a simple user interface which helps you to pick up needed devices, languages, tags, builds and other parameters. 
-- Instead of having to search elements by quering view hierarchy again and again, you can click on the element under search and get its class name, label and/or id.
+- Instead of having to search elements by quering view hierarchy again and again, you can click on the element under search and get its class name, accessibility label and/or accessibility id.
 
 ## Test Runner
 ![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
