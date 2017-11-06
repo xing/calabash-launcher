@@ -58,6 +58,10 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         outlineView.backgroundColor = .darkAquamarine
     }
     
+    override func viewDidDisappear() {
+        stopImageRefresh()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
@@ -189,26 +193,26 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         if enableSpinner {
             self.disableAllElements()
         }
-        guard FileManager.default.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName)
-                else {
-                    if numberOfRetries == retryCount {
-                        retryCount = 0
-                        DispatchQueue.main.async {
-                        self.enableAllElements()
-                        self.outputInTheMainTextView(string: "The command has failed after \(numberOfRetries) tries")
-                        }
-                        return
-                    }
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.1,
-                                                                                          execute: { [weak self] in
-                                                                                            self?.waitingForFile(fileName: fileName, numberOfRetries: numberOfRetries, enableSpinner: enableSpinner, completion: completion)
-                    })
-                    retryCount += 1
-                    return
+        guard FileManager.default.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName) else {
+            if numberOfRetries == retryCount {
+                retryCount = 0
+                DispatchQueue.main.async {
+                    self.enableAllElements()
+                    self.outputInTheMainTextView(string: "The command has failed after \(numberOfRetries) tries")
+                }
+                stopImageRefresh()
+                return
             }
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.1,
+                                                              execute: { [weak self] in
+                                                                self?.waitingForFile(fileName: fileName, numberOfRetries: numberOfRetries, enableSpinner: enableSpinner, completion: completion)
+            })
+            retryCount += 1
+            return
+        }
         retryCount = 0
         completion()
-        }
+    }
     
     func getElementsByOffset(_ arguments:[String]) {
         CommandExecutor(launchPath: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments).execute()
@@ -268,7 +272,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     func syncScreen() {
         try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
-        CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
+        DispatchQueue.global(qos: .background).async {
+            CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
+        }
     }
     
     func getScreenProcs() {
@@ -282,6 +288,12 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             try? self.fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
             self.enableAllElements()
         }
+    }
+    
+    func stopImageRefresh() {
+        self.gestureRecognizableView.image = NSImage(named: NSImage.Name(rawValue: "click_image.png"))
+        self.gestureRecognizableView.setAccessibilityLabel("defaultImage")
+        timer.invalidate()
     }
     
     func changeScreenshot() {

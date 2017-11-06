@@ -32,6 +32,7 @@ class TasksViewController: NSViewController {
     var timer: Timer!
     var pathToCalabashFolder = ""
     var linkInfoArray = [""]
+    var testRun: Process?
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -243,10 +244,13 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
-       // Need to find solution to stop the task. More control on processes is needed.
-//        if isRunning {
-//            buildProcess.terminate()
-//        }
+        if let testRunProcess = testRun {
+            testRunProcess.terminate()
+            testRun = nil
+            self.buildButton.isEnabled = true
+            self.spinner.stopAnimation(self)
+            self.progressBar.stopAnimation(self)
+        }
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
@@ -409,7 +413,10 @@ class TasksViewController: NSViewController {
                 }
             }
             DispatchQueue.global(qos: .background).async {
-                CommandExecutor(launchPath: launchPath, arguments: arguments,  outputStream: outputStream).execute()
+                self.testRun = Process()
+                if let testProcess = self.testRun {
+                    CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute(process: testProcess)
+                }
                 
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
