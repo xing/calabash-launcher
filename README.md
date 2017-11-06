@@ -1,48 +1,46 @@
 # Calabash Launcher
 
-Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac.
+Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac. Instead of having to run Calabash... you can... which helps you to...
 
 
 ## Test Runner
 ![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
-The Test Runner lets you run your tests using whatever configuration required. It supports:
+The Test Runner runs tests on a variety of configurations. It supports:
 
-- Running on simulator
-- Running on a physical device
-- Running in different languages
+- Running tests on simulator
+- Running tests on a physical device
+- Running tests in different languages
 - Test tags
-- Console
+- Console output
 
 ## Element Inspector
 ![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107411-c7c68bd6-bb2e-11e7-8ae2-4d87b833c8fb.png)
-With the Element Inspector you can "browse" your app via its elements. It supports:
+With the Element Inspector you can inspect your app via its elements to...
+It supports:
 
 - Device element highlighting
 - Accessing an element's address
 - Accessing an element's localized object
-- Visual representation of the device
+- The visual representation of the device
 
 
 ## Project Status
 
-This project is actively under development, and it is used at XING.
+This project is under active development, and it is heavily used at XING.
 
 ## Prerequisites
+In order to run... you have to make sure that your machine meets the following requirements.
 
 - MacOS Sierra
 - Xcode 9.0+
 - iOS Simulators >= 10.1
-- Ruby >= 2.0 (2.3.1 is preferred)
+- Ruby >= 2.0 (> 2.3.0 is preferred)
 - `bundler` >= 1.15.0
 - `calabash-ios` >= 0.20.5
 
-## Usage
+## Using the Test Runner
 
-### Test Runner
-
-1. When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile.
-2. After a restart you will be able to configure your testrun by choosing a simulator, language and cucumber tag you want to execute.
-3. Click `Run Test` to start the tests. Results will appear in the output window.
+When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile. After a restart you will be able to configure your testrun by choosing a simulator, language and cucumber tag you want to execute.
 
 ### Element Inspector
 
