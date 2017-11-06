@@ -314,7 +314,7 @@ class TasksViewController: NSViewController {
             if let phoneName = self.applicationStateHandler.phoneName, self.phoneComboBox.itemTitles.contains(phoneName) {
                 self.phoneComboBox.selectItem(withTitle: phoneName)
             } else {
-                    self.phoneComboBox.selectItem(at: 0)
+                self.phoneComboBox.selectItem(at: 0)
             }
             
             self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
