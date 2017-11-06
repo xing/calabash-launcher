@@ -28,16 +28,16 @@ class CommandsController {
         let outputStream = CommandTextOutputStream()
 	
         outputStream.textHandler = { text in
-            if !text.isEmpty {
-                if text == "Wrong device\n" {
-                    result = false
-                } else {
-                    result = true
-                }
+            guard !text.isEmpty else { return }
+            
+            if text == "Wrong device\n" {
+                result = false
+            } else {
+                result = true
             }
         }
         
-        CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
+        CommandExecutor(launchPath: launchPath,arguments: [], outputStream: outputStream).execute()
         
         return result
     }
