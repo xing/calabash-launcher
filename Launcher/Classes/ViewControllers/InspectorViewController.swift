@@ -71,7 +71,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.gestureRecognizer.isEnabled = true
         self.cloneButton.isHidden = true
     }
-    
+
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
         if let item = sender.item(atRow: sender.clickedRow) as? String {
             CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
