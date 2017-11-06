@@ -1,3 +1,4 @@
+require 'timeout'
 # Evaluate a loop when new command appear in temp file.
 # Used to send Calabash command to an existing calabash console session.
 def eval_loop
@@ -179,7 +180,9 @@ def flash_utf(qu)
 end
 
 def screenshot_with_no_output
-    scr = screenshot(options = { prefix: '/tmp/' })
+    Timeout::timeout(5) {
+        scr = screenshot(options = { prefix: '/tmp/' })
+    }
 end
 
 def screenshot_handling_no_loop
