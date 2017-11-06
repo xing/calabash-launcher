@@ -81,11 +81,14 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     @IBAction func gestureRecognizer(_ sender: Any) {
         // Show dialog window if booted Simulator is incorrect (should be iPhone 6,7 or 8).
-        if !commandsController.simulatorIsCorrect() {
-            if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "wrongSimulatorWindow")) as? NSViewController {
-                presentViewControllerAsModalWindow(controller)
+        DispatchQueue.global(qos: .background).async {
+            if !self.commandsController.simulatorIsCorrect() {
+                if let controller = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "wrongSimulatorWindow")) as? NSViewController {
+                    DispatchQueue.main.async {
+                        self.presentViewControllerAsModalWindow(controller)
+                    }
+                }
             }
-            return
         }
         
         if gestureRecognizableView.accessibilityLabel() == "defaultImage" {
@@ -300,7 +303,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     func stopImageRefresh() {
-        self.gestureRecognizableView.image = NSImage(named: NSImage.Name(rawValue: "click_image.png"))
+        DispatchQueue.main.async {
+            self.gestureRecognizableView.image = NSImage(named: NSImage.Name(rawValue: "click_image.png"))
+        }
         self.gestureRecognizableView.setAccessibilityLabel("defaultImage")
         timer.invalidate()
     }

@@ -37,7 +37,7 @@ class CommandsController {
             }
         }
         
-        CommandExecutor(launchPath: launchPath,arguments: [], outputStream: outputStream).execute()
+        CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
         
         return result
     }
