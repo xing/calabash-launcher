@@ -14,7 +14,7 @@
 ## Fixed
 
 - Fixed a crash when changing the Calabash folder path ([#71](https://github.com/xing/calabash-launcher/pull/71))
-- Fixed a crash when one can get by not being able to find Simulator to select ([#82](https://github.com/xing/calabash-launcher/pull/82))
+- Fixed a crash when there are no simulators to select ([#82](https://github.com/xing/calabash-launcher/pull/82))
 
 ## Miscellaneous
 
