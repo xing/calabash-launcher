@@ -311,11 +311,14 @@ class TasksViewController: NSViewController {
         self.getSimulatorsCommand()
         
         DispatchQueue.main.async {
-            if let phoneName = self.applicationStateHandler.phoneName {
+            if let phoneName = self.applicationStateHandler.phoneName, self.phoneComboBox.itemTitles.contains(phoneName) {
                 self.phoneComboBox.selectItem(withTitle: phoneName)
+            } else {
+                    self.phoneComboBox.selectItem(at: 0)
             }
+            
             self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
-            self.applicationStateHandler.phoneUDID = self.deviceCollector.getDeviceUDID(device: self.phoneComboBox.itemTitle(at: self.phoneComboBox.indexOfSelectedItem))
+            self.applicationStateHandler.phoneUDID = self.deviceCollector.getDeviceUDID(device: self.phoneComboBox.titleOfSelectedItem ?? "")
             self.buildButton.isEnabled = true
             self.isRunning = false
             self.emptyDeviceHandler()
