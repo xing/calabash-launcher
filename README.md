@@ -1,6 +1,6 @@
 # Calabash Launcher
 
-Calabash Launcher is a macOS app that helps you run and manage Calabash tests on your Mac. 
+Calabash Launcher is a macOS app that helps you run and manage Calabash iOS tests on your Mac. 
 - Instead of having to run and configure test runs in console, you can use a simple user interface which helps you to pick up needed devices, languages, tags, builds and other parameters. 
 - Instead of having to search elements by quering view hierarchy again and again, you can click on the element under search and get its class name, accessibility label and/or accessibility id.
 
@@ -26,7 +26,7 @@ It supports:
 
 ## Project Status
 
-This project is under active development, and it is heavily used at XING.
+This project is under active development, and it is heavily used at [XING SE](www.xing.com).
 
 ## Prerequisites
 In order to run the application you have to make sure that your machine meets the following requirements.
@@ -40,7 +40,7 @@ In order to run the application you have to make sure that your machine meets th
 
 ## Using the Test Runner
 
-When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile. After a restart you will be able to configure your testrun by choosing a simulator, language and cucumber tag you want to execute.
+When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile. After a restart of the Calabash Launcher, you will be able to configure your testrun by choosing a simulator, language and Cucumber tag you want to execute.
 
 ## Using the Element Inspector
 
