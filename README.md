@@ -5,7 +5,7 @@ Calabash Launcher is a macOS app that helps you run and manage Calabash iOS test
 - Instead of having to search elements by quering view hierarchy again and again, you can click on the element under search and get its class name, accessibility label and/or accessibility id.
 
 ## Test Runner
-![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
+
 The Test Runner runs tests on a variety of configurations. It supports:
 
 - Running tests on a simulator
@@ -15,7 +15,7 @@ The Test Runner runs tests on a variety of configurations. It supports:
 - Console output
 
 ## Element Inspector
-![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107411-c7c68bd6-bb2e-11e7-8ae2-4d87b833c8fb.png)
+
 With the Element Inspector you can inspect your apps view hierarchy to get elements query strings in hierarchy tree representation.
 It supports:
 
@@ -40,9 +40,13 @@ In order to run the application you have to make sure that your machine meets th
 
 ## Using the Test Runner
 
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
+
 When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile. After a restart of the Calabash Launcher, you will be able to configure your testrun by choosing a simulator, the language and the Cucumber tag to execute.
 
 ## Using the Element Inspector
+
+https://user-images.githubusercontent.com/18147900/32503133-c04ee05e-c3dc-11e7-8394-3c0eb5b0105b.gif
 
 ⚠️ **Currently the Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements.** ⚠️
 
