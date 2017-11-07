@@ -21,12 +21,11 @@ class CommandsController {
         }
     }
     
-    func simulatorIsCorrect() -> Bool {
-        var result = Bool()
-        
+    var isSimulatorCorrect: Bool {
         guard let launchPath = Constants.FilePaths.Bash.checkSimulatorType else { return false }
         let outputStream = CommandTextOutputStream()
 	
+        var result = false
         outputStream.textHandler = { text in
             guard !text.isEmpty else { return }
             
