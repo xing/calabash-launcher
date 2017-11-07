@@ -46,7 +46,7 @@ When opening Calabash Launcher the first time, it will ask you to give the path 
 
 ## Using the Element Inspector
 
-https://user-images.githubusercontent.com/18147900/32503133-c04ee05e-c3dc-11e7-8394-3c0eb5b0105b.gif
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32503133-c04ee05e-c3dc-11e7-8394-3c0eb5b0105b.gif)
 
 ⚠️ **Currently the Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements.** ⚠️
 
