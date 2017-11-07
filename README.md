@@ -26,7 +26,7 @@ It supports:
 
 ## Project Status
 
-This project is under active development, and it is heavily used at [XING SE](www.xing.com).
+This project is under active development, and it is heavily used at [XING SE](https://xing.com).
 
 ## Prerequisites
 In order to run the application you have to make sure that your machine meets the following requirements.
