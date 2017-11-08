@@ -51,6 +51,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     override func viewDidAppear() {
+        textViewPrinter = TextViewPrinter(textView: outputText)
         outputText.backgroundColor = .darkAquamarine
         outputText.textColor = .lightGreen
         localizedTextField.textColor = .black
