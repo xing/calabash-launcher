@@ -64,6 +64,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        outputText.alignment = NSTextAlignment.left
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
         self.getElementsButton.isEnabled = true
