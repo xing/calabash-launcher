@@ -51,7 +51,6 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     override func viewDidAppear() {
-        textViewPrinter = TextViewPrinter(textView: outputText)
         outputText.backgroundColor = .darkAquamarine
         outputText.textColor = .lightGreen
         localizedTextField.textColor = .black
@@ -71,6 +70,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         self.startDeviceButton.isEnabled = true
         self.gestureRecognizer.isEnabled = true
         self.cloneButton.isHidden = true
+        textViewPrinter = TextViewPrinter(textView: outputText)
     }
 
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
