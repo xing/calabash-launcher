@@ -282,7 +282,7 @@ class TasksViewController: NSViewController {
         if let launchPath = Constants.FilePaths.Bash.simulators {
             let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
-                let filderedText = text.components(separatedBy: "\n").filter { !$0.isEmpty }
+                let filderedText = text.components(separatedBy: "\n").filter { $0.contains("Simulator") }
                 DispatchQueue.main.async {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
