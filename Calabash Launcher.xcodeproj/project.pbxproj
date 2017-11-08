@@ -41,6 +41,10 @@
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
+		ED99D7AC1FB334DA0077B965 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED99D7AA1FB334DA0077B965 /* Sparkle.framework */; };
+		ED99D7AD1FB335560077B965 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED99D7A91FB334DA0077B965 /* HockeySDK.framework */; };
+		ED99D7AE1FB335560077B965 /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED99D7A91FB334DA0077B965 /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED99D7B01FB335560077B965 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED99D7AA1FB334DA0077B965 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
@@ -64,6 +68,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				ED99D7AE1FB335560077B965 /* HockeySDK.framework in Embed Frameworks */,
+				ED99D7B01FB335560077B965 /* Sparkle.framework in Embed Frameworks */,
 				ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -106,6 +112,8 @@
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
+		ED99D7A91FB334DA0077B965 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Launcher/Frameworks/HockeySDK.framework; sourceTree = "<group>"; };
+		ED99D7AA1FB334DA0077B965 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Launcher/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
@@ -128,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED99D7AD1FB335560077B965 /* HockeySDK.framework in Frameworks */,
+				ED99D7AC1FB334DA0077B965 /* Sparkle.framework in Frameworks */,
 				ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +165,7 @@
 				EDD303971F8F88400042E27F /* Launcher */,
 				EDD303931F8F869B0042E27F /* Scripts */,
 				ED4C14DE1DB29FB700A1190E /* Products */,
+				ED99D7A81FB334D90077B965 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +175,15 @@
 				ED4C14DD1DB29FB700A1190E /* Calabash Launcher.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ED99D7A81FB334D90077B965 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED99D7A91FB334DA0077B965 /* HockeySDK.framework */,
+				ED99D7AA1FB334DA0077B965 /* Sparkle.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EDD303911F8F86290042E27F /* Classes */ = {
