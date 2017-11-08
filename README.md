@@ -17,6 +17,7 @@ The Test Runner runs tests on a variety of configurations. It supports:
 ## Element Inspector
 
 With the Element Inspector you can inspect your apps view hierarchy to get elements query strings in hierarchy tree representation.
+
 It supports:
 
 - Device element highlighting
