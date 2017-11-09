@@ -662,18 +662,6 @@
                                     <action selector="clearBufferButton:" target="XfG-lQ-9wD" id="JL8-FS-N6c"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="1339" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Li-mtu">
-                                <rect key="frame" x="21" y="37" width="1207" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Console Input (Beta)" drawsBackground="YES" id="6Ye-4Y-cFJ">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
-                                </connections>
-                            </textField>
                             <box fixedFrame="YES" title="Enable Debug Output:" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-JN-AeK">
                                 <rect key="frame" x="930" y="534" width="155" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -696,6 +684,18 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="1339" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Li-mtu">
+                                <rect key="frame" x="21" y="32" width="1224" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Console Input (Beta)" drawsBackground="YES" id="6Ye-4Y-cFJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
+                                </connections>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1144,10 +1144,10 @@
             </objects>
             <point key="canvasLocation" x="1400.5" y="1438"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Calabash Launcher Setup-->
         <scene sceneID="Mul-ol-0xQ">
             <objects>
-                <viewController storyboardIdentifier="settingswindow" id="Nd7-tF-bGG" customClass="SettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Calabash Launcher Setup" storyboardIdentifier="settingswindow" id="Nd7-tF-bGG" customClass="SettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0iB-dR-do5">
                         <rect key="frame" x="0.0" y="0.0" width="878" height="376"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1339,6 +1339,50 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a36-1w-7HB">
+                                <rect key="frame" x="100" y="261" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="F36-WA-VvL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="CFa-Ei-xXl" kind="popover" popoverAnchorView="a36-1w-7HB" popoverBehavior="t" preferredEdge="maxY" id="B4X-D4-LKd"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ijs-x9-qaK">
+                                <rect key="frame" x="665" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="iOY-md-EPa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="oI4-p8-Ybp" kind="popover" popoverAnchorView="Ijs-x9-qaK" popoverBehavior="t" preferredEdge="maxY" id="zLv-TS-ksS"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVR-zl-UwU">
+                                <rect key="frame" x="375" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="TFc-ww-UB1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="jGw-VW-MJH" kind="popover" popoverAnchorView="gVR-zl-UwU" popoverBehavior="t" preferredEdge="maxY" id="qgq-pN-eRE"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWK-19-2n7">
+                                <rect key="frame" x="153" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Hvc-yj-2uJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="GGf-yH-GhD" kind="popover" popoverAnchorView="VWK-19-2n7" popoverBehavior="t" preferredEdge="maxY" id="Nlg-4O-Ysu"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1400,7 +1444,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-ha-SDH">
                                 <rect key="frame" x="-2" y="42" width="308" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="The path to the Launcher is not set or is incorrect. Some functions will not work as expected" id="yqX-D3-eYQ">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="The path to the Launcher is not set or is incorrect. Some functions will not work as expected." id="yqX-D3-eYQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" red="0.91640951569999995" green="0.19761444859999999" blue="0.12549828290000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1438,7 +1482,7 @@ DQ
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XzT-uD-LWp">
                                 <rect key="frame" x="29" y="32" width="160" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Something went wrong, cannot reset settings" id="onI-if-TrB">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Something went wrong, cannot reset settings." id="onI-if-TrB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1450,6 +1494,102 @@ DQ
                 <customObject id="rre-PC-uqY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="-354"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g8G-x0-f9I">
+            <objects>
+                <viewController id="GGf-yH-GhD" sceneMemberID="viewController">
+                    <view key="view" id="7Xz-GT-VWX">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="77"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaS-bs-5E6">
+                                <rect key="frame" x="6" y="8" width="167" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Here you can choose the path to the directory of your Calabash tests." id="5At-nx-at0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="rN9-er-w1p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="-554"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vRI-18-CPe">
+            <objects>
+                <viewController id="oI4-p8-Ybp" sceneMemberID="viewController">
+                    <view key="view" id="76X-Wb-DnP">
+                        <rect key="frame" x="0.0" y="0.0" width="173" height="72"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVk-Hf-1sI">
+                                <rect key="frame" x="7" y="8" width="160" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add additional variables and run parameters to your setup." id="MRb-ID-qhZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="hXA-cA-jcb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575.5" y="-558"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DrG-vs-LD5">
+            <objects>
+                <viewController id="CFa-Ei-xXl" sceneMemberID="viewController">
+                    <view key="view" id="yGc-BB-WjN">
+                        <rect key="frame" x="0.0" y="0.0" width="194" height="87"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbP-Wj-Noq">
+                                <rect key="frame" x="9" y="0.0" width="179" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add links to download the app(s) under test in the left column and description of the build in the right one." id="B9B-iJ-Fki">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="jcI-jG-ZZb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825" y="-549.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xfV-hX-Fk1">
+            <objects>
+                <viewController id="jGw-VW-MJH" sceneMemberID="viewController">
+                    <view key="view" id="HRJ-F5-YBh">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="77"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4i-gO-6i6">
+                                <rect key="frame" x="6" y="8" width="167" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Here you can define a Cucumber profile if you use one in your project." id="Dty-QX-oN1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="KFl-mQ-huh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="-555"/>
         </scene>
         <!--Language View Controller-->
         <scene sceneID="yAI-3E-L1W">
