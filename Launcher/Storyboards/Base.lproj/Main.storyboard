@@ -916,11 +916,11 @@
                                                     </attributes>
                                                 </fragment>
                                                 <fragment>
-                                                    <mutableString key="content">     Please make sure that your simulator is running and your App is opened, otherwise you can start it clicking on 'Start Simulator' Button.
+                                                    <mutableString key="content">     Please make sure that your simulator is running and your app is opened, otherwise you can start it clicking on 'Start Simulator' Button.
 
-     In this field you can get all the elements from the opened APP screen. To do so, you will need to press 'Get All Elements' button.
+     In this view you can get all the elements from the apps screen. To do so, press 'Get All Elements' button.
 
-     In next window you'll be able to see hierarchy of the selected element. To select the element click on the screenshot of the simulator in 3rd window of this view. To sync screenshot with simulator - press 'Get Screen' button once, it'll automatically update every 7 seconds afterwards.        Choosing the element in the view hierarchy you'll get element address (copy/paste is enabled for this view).       Double-clicking on the view in hierarchy the element will flash in the simulator!  Have fun and reports bugs :)</mutableString>
+     In the following (middle) view you'll be able to see hierarchy of the selected element. To select the element click on the screenshot of the simulator in 3rd view of this view. To sync screenshot with the simulator - click on the view placeholder, it'll automatically update every 7 seconds afterwards.        Choosing the element in the view hierarchy you'll get element address in the text field on top (copy/paste is enabled for this view).       Double-clicking on the element in hierarchy the element will flash in the simulator!  Have fun and reports bugs :)</mutableString>
                                                     <attributes>
                                                         <font key="NSFont" size="12" name="Helvetica"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
