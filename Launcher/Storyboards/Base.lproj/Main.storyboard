@@ -364,7 +364,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Calabash_Launcher" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Calabash_Launcher" customModuleProvider="target">
+                    <connections>
+                        <outlet property="updater" destination="h1r-oC-F6n" id="HpC-Ay-xYC"/>
+                    </connections>
+                </customObject>
+                <customObject id="h1r-oC-F6n" customClass="SUUpdater"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-322" y="-581"/>

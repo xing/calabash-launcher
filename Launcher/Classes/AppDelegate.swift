@@ -1,9 +1,13 @@
 import Cocoa
+import HockeySDK
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var buildTaskNew: Process!
+    
+    @IBOutlet weak var updater: SUUpdater!
     
     @IBAction func closeTheApp(_ sender: AnyObject) {
         killProcessScreenshot()
@@ -50,6 +54,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        if let hockeyID = Bundle.main.infoDictionary?["HockeyID"] as? String,
+            let hockeyURLString = Bundle.main.infoDictionary?["SUFeedURL"] as? String,
+            let hockeyURL = URL(string: hockeyURLString) {
+            BITHockeyManager.shared().configure(withIdentifier: hockeyID)
+            BITHockeyManager.shared().crashManager.isAutoSubmitCrashReport = true
+            BITHockeyManager.shared().start()
+            updater.feedURL = hockeyURL
+            updater.checkForUpdates(SUUpdater.self)
+            updater.automaticallyChecksForUpdates = true
+        }
+    }
+    
     func shouldSaveApplicationState(_ sender: NSApplication) -> Bool {
         return true
     }
