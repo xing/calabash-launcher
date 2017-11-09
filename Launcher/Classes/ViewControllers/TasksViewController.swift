@@ -46,11 +46,8 @@ class TasksViewController: NSViewController {
         textField.placeholderAttributedString = placeholderText
         timer = .scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.limitOfChars), userInfo: nil, repeats: true);
         getValuesForBuildPicker()
-        // Disable these elements for the moment, as it cannot work for people outside XING
-        getDeviceButton.isEnabled = false
-        physicalDeviceRadioButton.isEnabled = false
-        simulatorRadioButton.state = .on
-        // end
+        
+        handleRadioButtons(willGetDevice: false)
     }
     
     override func viewDidLoad() {
@@ -79,14 +76,6 @@ class TasksViewController: NSViewController {
             textField.isAutomaticTextCompletionEnabled = true
         }
         
-        if physicalDeviceRadioButton.state == .on {
-            // get_device.isEnabled = true
-            languagePopUpButton.isEnabled = false
-        } else {
-            getDeviceButton.isEnabled = false
-            languagePopUpButton.isEnabled = true
-        }
-        
         tagPicker.completes = true
         quitIrbSession()
         runGeneralIrbSession()
@@ -99,10 +88,12 @@ class TasksViewController: NSViewController {
             }
         }
 
-        simulatorRadioButton.state = NSControl.StateValue(rawValue: applicationStateHandler.simulatorRadioButtonState)
-
-        DispatchQueue.global(qos: .background).async {
-            self.getSimulators()
+        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, !simulatorRadioState {
+            // add getPhysDevice
+        } else {
+            DispatchQueue.global(qos: .background).async {
+                self.getSimulators()
+            }
         }
         
         // State recovery
@@ -157,8 +148,6 @@ class TasksViewController: NSViewController {
         
         simulatorRadioButton.state = .off
         
-        getSimulators()
-        
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
             phoneComboBox.highlight(true)
@@ -174,10 +163,10 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
-        physicalDeviceRadioButton.state = .off
-        getDeviceButton.isEnabled = false
-        languagePopUpButton.isEnabled = true
-
+        applicationStateHandler.simulatorRadioButtonState = true
+        phoneComboBox.removeAllItems()
+        handleRadioButtons()
+        
         if let phoneName = applicationStateHandler.phoneName,
             phoneName != "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)" {
             phoneComboBox.selectItem(withTitle: phoneName)
@@ -198,13 +187,10 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func phys_radio(_ sender: Any) {
-        getDeviceButton.isEnabled = true
-        languagePopUpButton.isEnabled = false
-        simulatorRadioButton.state = .off
+        applicationStateHandler.simulatorRadioButtonState = false
+        handleRadioButtons()
         
         phoneComboBox.removeAllItems()
-        
-        phoneComboBox.addItems(withTitles: devices)
         
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
@@ -217,6 +203,9 @@ class TasksViewController: NSViewController {
         }
     }
     
+    @IBAction func clickTagPicker(_ sender: Any) {
+        applicationStateHandler.tag = tagPicker.stringValue
+    }
     
     @IBAction func startTask(_ sender:AnyObject) {
         runScript()
@@ -254,8 +243,10 @@ class TasksViewController: NSViewController {
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
-        applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
+        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, simulatorRadioState {
+            applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
+            applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
+        }
     }
     
     @IBAction func languageSwitchButton(_ sender: Any) {
@@ -329,6 +320,29 @@ class TasksViewController: NSViewController {
         }
     }
     
+    func handleRadioButtons(willGetDevice:Bool = true) {
+        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, !simulatorRadioState {
+            simulatorRadioButton.state = .off
+            physicalDeviceRadioButton.state = .on
+            getDeviceButton.isEnabled = true
+            languagePopUpButton.isEnabled = false
+        } else {
+            simulatorRadioButton.state = .on
+            
+            if willGetDevice {
+                spinner.startAnimation(self)
+                progressBar.startAnimation(self)
+                getSimulators()
+                spinner.stopAnimation(self)
+                progressBar.stopAnimation(self)
+            }
+
+            physicalDeviceRadioButton.state = .off
+            getDeviceButton.isEnabled = false
+            languagePopUpButton.isEnabled = true
+        }
+    }
+    
     func getValuesForBuildPicker() {
         buildPicker.removeAllItems()
         linkInfoArray = plistOperations.readValues()
@@ -352,14 +366,7 @@ class TasksViewController: NSViewController {
         CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
     }
     
-    func statePreservation() {
-        applicationStateHandler.simulatorRadioButtonState = simulatorRadioButton.state.rawValue
-        applicationStateHandler.tag = tagPicker.stringValue
-    }
-    
     func runScript() {
-        statePreservation()
-        
         if deviceListIsEmpty == true {
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false

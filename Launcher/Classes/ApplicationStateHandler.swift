@@ -17,9 +17,9 @@ class ApplicationStateHandler {
         case additionalRunParameters = "additionalRunParameters"
     }
     
-    var simulatorRadioButtonState: Int {
+    var simulatorRadioButtonState: Bool? {
         get {
-            return defaults.integer(forKey: .simulatorRadioButtonState)
+            return defaults.bool(forKey: .simulatorRadioButtonState)
         }
         set {
             defaults.set(newValue, forKey: .simulatorRadioButtonState)
