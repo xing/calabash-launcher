@@ -3,61 +3,61 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "16.png",
+      "filename" : "LauncherIcon16_1.png",
       "scale" : "1x"
     },
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "32 copy.png",
+      "filename" : "LauncherIcon16_2.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "32.png",
+      "filename" : "LauncherIcon32_1.png",
       "scale" : "1x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "rsz_128.png",
+      "filename" : "LauncherIcon32_2.png",
       "scale" : "2x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "128.png",
+      "filename" : "LauncherIcon128_1.png",
       "scale" : "1x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "256 copy.png",
+      "filename" : "LauncherIcon128_2.png",
       "scale" : "2x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "256.png",
+      "filename" : "LauncherIcon256_1.png",
       "scale" : "1x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "512 copy.png",
+      "filename" : "LauncherIcon256_2.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "512.png",
+      "filename" : "LauncherIcon512_1.png",
       "scale" : "1x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "Prerelease-Icon-1024.png",
+      "filename" : "LauncherIcon512_2.png",
       "scale" : "2x"
     }
   ],

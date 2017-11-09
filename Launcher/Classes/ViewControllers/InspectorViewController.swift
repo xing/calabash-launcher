@@ -4,6 +4,7 @@ import CommandsCore
 class InspectorViewController: NSViewController, NSTableViewDataSource {
     let applicationStateHandler = ApplicationStateHandler()
     var textViewPrinter: TextViewPrinter!
+    let commandsController = CommandsController()
     @objc dynamic var isRunning = false
     let fileManager = FileManager.default
     var uiElements: [String] = []
@@ -64,6 +65,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        outputText.alignment = NSTextAlignment.left
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
         self.getElementsButton.isEnabled = true
@@ -80,6 +82,15 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     @IBAction func gestureRecognizer(_ sender: Any) {
+        // Show dialog window if booted Simulator is incorrect (should be iPhone 6,7 or 8).
+        DispatchQueue.global(qos: .background).async {
+            guard let controller = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "wrongSimulatorWindow")) as? NSViewController,
+                !self.commandsController.isSimulatorCorrect else { return }
+            DispatchQueue.main.async {
+                self.presentViewControllerAsModalWindow(controller)
+            }
+        }
+        
         if gestureRecognizableView.accessibilityLabel() == "defaultImage" {
             timer.invalidate()
             coordinatesMarker.isHidden = true
@@ -292,7 +303,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     func stopImageRefresh() {
-        self.gestureRecognizableView.image = NSImage(named: NSImage.Name(rawValue: "click_image.png"))
+        DispatchQueue.main.async {
+            self.gestureRecognizableView.image = #imageLiteral(resourceName: "click_image.png")
+        }
         self.gestureRecognizableView.setAccessibilityLabel("defaultImage")
         timer.invalidate()
     }

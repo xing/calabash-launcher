@@ -17,6 +17,7 @@
 		D7DDE9AC1FA92DBA0083D00E /* CommandsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DDE9AB1FA92DBA0083D00E /* CommandsController.swift */; };
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
+		D7E995B81FAFB1D600318741 /* check_sim_type.command in Resources */ = {isa = PBXBuildFile; fileRef = D7E995B71FAFB1D600318741 /* check_sim_type.command */; };
 		ED06A0E21E850CA70092C96E /* BashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* BashOutput.swift */; };
 		ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; };
 		ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -88,6 +89,7 @@
 		D7DDE9AB1FA92DBA0083D00E /* CommandsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsController.swift; sourceTree = "<group>"; };
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
+		D7E995B71FAFB1D600318741 /* check_sim_type.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_sim_type.command; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* BashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BashOutput.swift; sourceTree = "<group>"; };
 		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
+				D7E995B71FAFB1D600318741 /* check_sim_type.command */,
 				ED7278951FA78E050022505E /* app_download.command */,
 				ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */,
 				ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */,
@@ -377,6 +380,7 @@
 				EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */,
 				EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */,
 				ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */,
+				D7E995B81FAFB1D600318741 /* check_sim_type.command in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
 				EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */,
 				D74D80851F97F7BA0049A84F /* click_image.png in Resources */,

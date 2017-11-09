@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -667,18 +667,6 @@
                                     <action selector="clearBufferButton:" target="XfG-lQ-9wD" id="JL8-FS-N6c"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="1339" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Li-mtu">
-                                <rect key="frame" x="21" y="37" width="1207" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Console Input (Beta)" drawsBackground="YES" id="6Ye-4Y-cFJ">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
-                                </connections>
-                            </textField>
                             <box fixedFrame="YES" title="Enable Debug Output:" translatesAutoresizingMaskIntoConstraints="NO" id="ZhP-JN-AeK">
                                 <rect key="frame" x="930" y="534" width="155" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -701,6 +689,18 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="1339" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-Li-mtu">
+                                <rect key="frame" x="21" y="36" width="1224" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Console Input (Beta)" drawsBackground="YES" id="6Ye-4Y-cFJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="textField:" target="XfG-lQ-9wD" id="QFJ-qR-EzV"/>
+                                </connections>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -921,11 +921,11 @@
                                                     </attributes>
                                                 </fragment>
                                                 <fragment>
-                                                    <mutableString key="content">     Please make sure that your simulator is running and your App is opened, otherwise you can start it clicking on 'Start Simulator' Button.
+                                                    <mutableString key="content">     Please make sure that your simulator is running and your app is opened, otherwise you can start it clicking on 'Start Simulator' Button.
 
-     In this field you can get all the elements from the opened APP screen. To do so, you will need to press 'Get All Elements' button.
+     In this view you can get all the elements from the apps screen. To do so, press 'Get All Elements' button.
 
-     In next window you'll be able to see hierarchy of the selected element. To select the element click on the screenshot of the simulator in 3rd window of this view. To sync screenshot with simulator - press 'Get Screen' button once, it'll automatically update every 7 seconds afterwards.        Choosing the element in the view hierarchy you'll get element address (copy/paste is enabled for this view).       Double-clicking on the view in hierarchy the element will flash in the simulator!  Have fun and reports bugs :)</mutableString>
+     In the following (middle) view you'll be able to see hierarchy of the selected element. To select the element click on the screenshot of the simulator in 3rd view of this view. To sync screenshot with the simulator - click on the view placeholder, it'll automatically update every 7 seconds afterwards.        Choosing the element in the view hierarchy you'll get element address in the text field on top (copy/paste is enabled for this view).       Double-clicking on the element in hierarchy the element will flash in the simulator!  Have fun and reports bugs :)</mutableString>
                                                     <attributes>
                                                         <font key="NSFont" size="12" name="Helvetica"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -1149,25 +1149,14 @@
             </objects>
             <point key="canvasLocation" x="1400.5" y="1438"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Calabash Launcher Setup-->
         <scene sceneID="Mul-ol-0xQ">
             <objects>
-                <viewController storyboardIdentifier="settingswindow" id="Nd7-tF-bGG" customClass="SettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Calabash Launcher Setup" storyboardIdentifier="settingswindow" id="Nd7-tF-bGG" customClass="SettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0iB-dR-do5">
                         <rect key="frame" x="0.0" y="0.0" width="878" height="376"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-G8-bFH">
-                                <rect key="frame" x="711" y="17" width="152" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1FZ-nQ-KMs">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clickSaveButton:" target="Nd7-tF-bGG" id="skh-Oa-hQJ"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPd-p7-nqK">
                                 <rect key="frame" x="556" y="17" width="136" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1344,6 +1333,61 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a36-1w-7HB">
+                                <rect key="frame" x="100" y="261" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="F36-WA-VvL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="CFa-Ei-xXl" kind="popover" popoverAnchorView="a36-1w-7HB" popoverBehavior="t" preferredEdge="maxY" id="B4X-D4-LKd"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ijs-x9-qaK">
+                                <rect key="frame" x="665" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="iOY-md-EPa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="oI4-p8-Ybp" kind="popover" popoverAnchorView="Ijs-x9-qaK" popoverBehavior="t" preferredEdge="maxY" id="zLv-TS-ksS"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVR-zl-UwU">
+                                <rect key="frame" x="375" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="TFc-ww-UB1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="jGw-VW-MJH" kind="popover" popoverAnchorView="gVR-zl-UwU" popoverBehavior="t" preferredEdge="maxY" id="qgq-pN-eRE"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWK-19-2n7">
+                                <rect key="frame" x="153" y="340" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Hvc-yj-2uJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="GGf-yH-GhD" kind="popover" popoverAnchorView="VWK-19-2n7" popoverBehavior="t" preferredEdge="maxY" id="Nlg-4O-Ysu"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-G8-bFH">
+                                <rect key="frame" x="723" y="17" width="140" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1FZ-nQ-KMs">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickSaveButton:" target="Nd7-tF-bGG" id="skh-Oa-hQJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1405,7 +1449,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-ha-SDH">
                                 <rect key="frame" x="-2" y="42" width="308" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="The path to the Launcher is not set or is incorrect. Some functions will not work as expected" id="yqX-D3-eYQ">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="The path to the Launcher is not set or is incorrect. Some functions will not work as expected." id="yqX-D3-eYQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" red="0.91640951569999995" green="0.19761444859999999" blue="0.12549828290000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1443,7 +1487,7 @@ DQ
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XzT-uD-LWp">
                                 <rect key="frame" x="29" y="32" width="160" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Something went wrong, cannot reset settings" id="onI-if-TrB">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Something went wrong, cannot reset settings." id="onI-if-TrB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1455,6 +1499,102 @@ DQ
                 <customObject id="rre-PC-uqY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="-354"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g8G-x0-f9I">
+            <objects>
+                <viewController id="GGf-yH-GhD" sceneMemberID="viewController">
+                    <view key="view" id="7Xz-GT-VWX">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="77"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaS-bs-5E6">
+                                <rect key="frame" x="6" y="8" width="167" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Here you can choose the path to the directory of your Calabash tests." id="5At-nx-at0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="rN9-er-w1p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="-554"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vRI-18-CPe">
+            <objects>
+                <viewController id="oI4-p8-Ybp" sceneMemberID="viewController">
+                    <view key="view" id="76X-Wb-DnP">
+                        <rect key="frame" x="0.0" y="0.0" width="173" height="72"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVk-Hf-1sI">
+                                <rect key="frame" x="7" y="8" width="160" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add additional variables and run parameters to your setup." id="MRb-ID-qhZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="hXA-cA-jcb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575.5" y="-558"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DrG-vs-LD5">
+            <objects>
+                <viewController id="CFa-Ei-xXl" sceneMemberID="viewController">
+                    <view key="view" id="yGc-BB-WjN">
+                        <rect key="frame" x="0.0" y="0.0" width="194" height="87"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbP-Wj-Noq">
+                                <rect key="frame" x="9" y="0.0" width="179" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add links to download the app(s) under test in the left column and description of the build in the right one." id="B9B-iJ-Fki">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="jcI-jG-ZZb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825" y="-549.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xfV-hX-Fk1">
+            <objects>
+                <viewController id="jGw-VW-MJH" sceneMemberID="viewController">
+                    <view key="view" id="HRJ-F5-YBh">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="77"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4i-gO-6i6">
+                                <rect key="frame" x="6" y="8" width="167" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Here you can define a Cucumber profile if you use one in your project." id="Dty-QX-oN1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="KFl-mQ-huh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="-555"/>
         </scene>
         <!--Language View Controller-->
         <scene sceneID="yAI-3E-L1W">
@@ -1504,6 +1644,33 @@ DQ
                 <customObject id="8HF-0b-kkv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-528" y="-97"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uaP-k9-RuF">
+            <objects>
+                <viewController storyboardIdentifier="wrongSimulatorWindow" id="OfN-n6-Oef" sceneMemberID="viewController">
+                    <view key="view" id="LcH-JO-uQF">
+                        <rect key="frame" x="0.0" y="0.0" width="318" height="150"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-Se-bBb">
+                                <rect key="frame" x="9" y="11" width="300" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="elD-c0-O0v">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">We're sorry, but "Element Inspector" supports only iPhone 6, iPhone 7 or iPhone 8 devices.
+
+Please choose one of the supported devices from "Test Runner" menu and click "Start Simulator" button being back to "Element Inspector".</string>
+                                    <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="QYg-CS-Ful" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="337" y="-575"/>
         </scene>
     </scenes>
     <resources>

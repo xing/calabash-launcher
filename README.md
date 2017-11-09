@@ -51,11 +51,11 @@ Once the team is added, hit the build button and the calabash launcher will star
 
 When opening Calabash Launcher the first time, it will ask you to give the path to the repository with your Calabash tests and (optionally) your Cucumber profile.
 
-![Calabash Launcher Setup](https://user-images.githubusercontent.com/4619244/32549683-addd49ca-c48a-11e7-90c5-99799a5fcb37.png)
+![Calabash Launcher Setup](https://user-images.githubusercontent.com/18147900/32609402-e9b05aa2-c55f-11e7-99d6-c2c1b5b8195d.png)
 
 Provide the required data and press save. After a restart of the Calabash Launcher, you will be able to configure your testrun by choosing a simulator, the language and the Cucumber tag to execute.
 
-![calabash-launcher](https://user-images.githubusercontent.com/18147900/32107640-8afc2c32-bb2f-11e7-83bf-857bb5b86709.png)
+![calabash-launcher](https://user-images.githubusercontent.com/18147900/32609542-4f0c18aa-c560-11e7-9663-d44e1c759187.png)
 
 ## Using the Element Inspector
 

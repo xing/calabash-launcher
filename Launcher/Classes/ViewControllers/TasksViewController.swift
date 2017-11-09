@@ -39,7 +39,7 @@ class TasksViewController: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        textField.backgroundColor = .darkAquamarine
+        textField.backgroundColor = .darkGray
         textField.textColor = .white
         let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
         placeholderText.setAttributes([.foregroundColor: NSColor.lightGray], range: NSRange(location: 0, length: "Console Input (Beta)".count))

@@ -20,4 +20,24 @@ class CommandsController {
             CommandExecutor(launchPath: launchPath,arguments: [url.absoluteString, filePath], outputStream: outputStream).execute()
         }
     }
+    
+    var isSimulatorCorrect: Bool {
+        guard let launchPath = Constants.FilePaths.Bash.checkSimulatorType else { return false }
+        let outputStream = CommandTextOutputStream()
+	
+        var result = false
+        outputStream.textHandler = { text in
+            guard !text.isEmpty else { return }
+            
+            if text == "Wrong device\n" {
+                result = false
+            } else {
+                result = true
+            }
+        }
+        
+        CommandExecutor(launchPath: launchPath,arguments: [], outputStream: outputStream).execute()
+        
+        return result
+    }
 }
