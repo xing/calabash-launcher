@@ -281,6 +281,7 @@ class TasksViewController: NSViewController {
             let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
                 let filderedText = text.components(separatedBy: "\n").filter { $0.contains("11.1") }
+                // .filteredRegexMatches(pattern: "\\(([^()])*\\) \\[(.*?)\\]")
                 guard !filderedText.isEmpty else { return }
                 DispatchQueue.main.async {
                     self.phoneComboBox.addItems(withTitles: filderedText)
