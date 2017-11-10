@@ -352,6 +352,11 @@ class TasksViewController: NSViewController {
                 spinner.stopAnimation(self)
                 progressBar.stopAnimation(self)
             }
+            if let itemTitle = phoneComboBox.titleOfSelectedItem,
+                itemTitle.contains("(null)"),
+                let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "deviceUnlock")) as? NSViewController {
+                presentViewControllerAsModalWindow(controller)
+            }
         } else {
             simulatorRadioButton.state = .on
             physicalDeviceRadioButton.state = .off
