@@ -38,9 +38,15 @@ enum Constants {
             static let changeLanguage = main.path(forResource: "change_sim_language", ofType: .bash)
             static let uniqueElements = main.path(forResource: "get_uniq_elements", ofType: .bash)
             static let simulators = main.path(forResource: "get_sim_list", ofType: .bash)
+            static let physicalDevices = main.path(forResource: "get_physical_device", ofType: .bash)
         }
         enum Ruby {
             static let helpers = main.path(forResource: "helpers", ofType: .ruby)
         }
+    }
+    
+    enum DeviceType {
+        case simulator
+        case physical
     }
 }

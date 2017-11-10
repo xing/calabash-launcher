@@ -42,6 +42,7 @@
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
+		ED9AC7541FB5E12200886E06 /* get_physical_device.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9AC7531FB5E12100886E06 /* get_physical_device.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
@@ -108,6 +109,7 @@
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
+		ED9AC7531FB5E12100886E06 /* get_physical_device.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_physical_device.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
+				ED9AC7531FB5E12100886E06 /* get_physical_device.command */,
 				D7E995B71FAFB1D600318741 /* check_sim_type.command */,
 				ED7278951FA78E050022505E /* app_download.command */,
 				ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */,
@@ -349,6 +352,7 @@
 				EDFF03191DD4A245000CA17C /* get_elements.command in Resources */,
 				ED4C14F21DB2DB1C00A1190E /* get_sim_list.command in Resources */,
 				EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */,
+				ED9AC7541FB5E12200886E06 /* get_physical_device.command in Resources */,
 				D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */,
 				ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */,
 				ED399A461DBA0447000FA4AA /* console.command in Resources */,

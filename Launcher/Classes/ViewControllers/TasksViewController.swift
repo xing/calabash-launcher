@@ -89,14 +89,13 @@ class TasksViewController: NSViewController {
         }
 
         if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, !simulatorRadioState {
-            // add getPhysDevice
+            self.getDevices(ofType: .physical)
         } else {
             DispatchQueue.global(qos: .background).async {
-                self.getSimulators()
+                self.getDevices(ofType: .simulator)
             }
         }
         
-        // State recovery
         if let language = applicationStateHandler.language {
             languagePopUpButton.selectItem(withTitle: language)
         }
@@ -188,9 +187,8 @@ class TasksViewController: NSViewController {
     
     @IBAction func phys_radio(_ sender: Any) {
         applicationStateHandler.simulatorRadioButtonState = false
-        handleRadioButtons()
-        
         phoneComboBox.removeAllItems()
+        handleRadioButtons()
         
         if phoneComboBox.selectedItem == nil {
             deviceListIsEmpty = true
@@ -269,11 +267,21 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func getSimulatorsCommand() {
-        if let launchPath = Constants.FilePaths.Bash.simulators {
+    func getDevicesCommand(ofType type: Constants.DeviceType) {
+        var path: String?
+        
+        switch type {
+        case .simulator:
+            path = Constants.FilePaths.Bash.simulators
+        case .physical:
+            path = Constants.FilePaths.Bash.physicalDevices
+        }
+        
+        if let launchPath = path {
             let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
-                let filderedText = text.components(separatedBy: "\n").filter { $0.contains("Simulator") }
+                let filderedText = text.components(separatedBy: "\n").filter { $0.contains("11.1") }
+                guard !filderedText.isEmpty else { return }
                 DispatchQueue.main.async {
                     self.phoneComboBox.addItems(withTitles: filderedText)
                 }
@@ -297,22 +305,32 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func getSimulators() {
+    func getDevices(ofType type: Constants.DeviceType) {
         DispatchQueue.main.async {
-            self.getDeviceButton.isEnabled = false
             self.isRunning = true
         }
         
-        self.getSimulatorsCommand()
+        switch type {
+        case .simulator:
+            self.getDevicesCommand(ofType: .simulator)
+        case .physical:
+            self.getDevicesCommand(ofType: .physical)
+        }
         
         DispatchQueue.main.async {
-            if let phoneName = self.applicationStateHandler.phoneName, self.phoneComboBox.itemTitles.contains(phoneName) {
+            if let phoneName = self.applicationStateHandler.phoneName,
+                self.phoneComboBox.itemTitles.contains(phoneName),
+                type == .simulator
+            {
                 self.phoneComboBox.selectItem(withTitle: phoneName)
             } else {
                 self.phoneComboBox.selectItem(at: 0)
             }
             
-            self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
+            if type == .simulator {
+                self.applicationStateHandler.phoneName = self.phoneComboBox.titleOfSelectedItem
+            }
+            
             self.applicationStateHandler.phoneUDID = self.deviceCollector.getDeviceUDID(device: self.phoneComboBox.titleOfSelectedItem ?? "")
             self.buildButton.isEnabled = true
             self.isRunning = false
@@ -326,20 +344,25 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = .on
             getDeviceButton.isEnabled = true
             languagePopUpButton.isEnabled = false
-        } else {
-            simulatorRadioButton.state = .on
-            
             if willGetDevice {
                 spinner.startAnimation(self)
                 progressBar.startAnimation(self)
-                getSimulators()
+                getDevices(ofType: .physical)
                 spinner.stopAnimation(self)
                 progressBar.stopAnimation(self)
             }
-
+        } else {
+            simulatorRadioButton.state = .on
             physicalDeviceRadioButton.state = .off
             getDeviceButton.isEnabled = false
             languagePopUpButton.isEnabled = true
+            if willGetDevice {
+                spinner.startAnimation(self)
+                progressBar.startAnimation(self)
+                getDevices(ofType: .simulator)
+                spinner.stopAnimation(self)
+                progressBar.stopAnimation(self)
+            }
         }
     }
     
