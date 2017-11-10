@@ -6,11 +6,6 @@
 
 xcrun instruments -s devices | grep -E "\(" | sed '/Simulator/d'
 
-
-#if xcrun instruments -s devices | sed '/Simulator/d' | sed '/Known Devices:/d' | sed '/nb/d' | sed '/Apple Watch/d' | grep -q '(null)'; then
-#    echo "Please unlock your iPhone and tap on 'Trust' button"
-#fi
-#
 #if [[ ${3} == "phys_device" ]];then
 #wifi_address=$(ideviceinfo | grep 'WiFiAddress' | cut -d " " -f 2)
 #device_ip=$(arp -a | grep $wifi_address | cut -d "(" -f 2 | cut -d ")" -f 1)

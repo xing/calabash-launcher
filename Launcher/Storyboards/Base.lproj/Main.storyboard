@@ -1409,6 +1409,30 @@
             </objects>
             <point key="canvasLocation" x="617" y="-218"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="bqb-te-08G">
+            <objects>
+                <viewController storyboardIdentifier="deviceUnlock" id="Guo-D5-zDq" sceneMemberID="viewController">
+                    <view key="view" id="Upb-cG-EMa">
+                        <rect key="frame" x="0.0" y="0.0" width="243" height="118"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="joX-5f-xT1">
+                                <rect key="frame" x="7" y="8" width="228" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="Please unlock your device and tap on 'Trust' button" id="EI2-0U-uBj">
+                                    <font key="font" size="24" name=".AppleSystemUIFont"/>
+                                    <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="Bhi-tZ-C3T" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="88"/>
+        </scene>
         <!--Tab View Controller-->
         <scene sceneID="3jM-MF-zb0">
             <objects>
