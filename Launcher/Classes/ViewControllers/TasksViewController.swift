@@ -280,11 +280,10 @@ class TasksViewController: NSViewController {
         if let launchPath = path {
             let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
-                let filderedText = text.components(separatedBy: "\n").filter { $0.contains("11.1") }
-                // .filteredRegexMatches(pattern: "\\(([^()])*\\) \\[(.*?)\\]")
-                guard !filderedText.isEmpty else { return }
+                let filteredText = text.components(separatedBy: "\n").filter { !RegexHandler().matches(for: "\\(([^()])*\\) \\[(.*?)\\]", in: $0).isEmpty }
+                guard !filteredText.isEmpty else { return }
                 DispatchQueue.main.async {
-                    self.phoneComboBox.addItems(withTitles: filderedText)
+                    self.phoneComboBox.addItems(withTitles: filteredText)
                 }
             }
             CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
