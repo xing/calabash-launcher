@@ -88,7 +88,7 @@ class TasksViewController: NSViewController {
         }
         
         tagPicker.completes = true
-        quitIrbSession()
+        CommandsController.quitIRBSession()
         runGeneralIrbSession()
         DispatchQueue.global(qos: .background).async {
             self.setupTagSelection()
@@ -278,19 +278,6 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func getSimulatorsCommand() {
-        if let launchPath = Constants.FilePaths.Bash.simulators {
-            let outputStream = CommandTextOutputStream()
-            outputStream.textHandler = { text in
-                let filderedText = text.components(separatedBy: "\n").filter { $0.contains("Simulator") }
-                DispatchQueue.main.async {
-                    self.phoneComboBox.addItems(withTitles: filderedText)
-                }
-            }
-            CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
-        }
-    }
-    
     func emptyDeviceHandler() {
         if isDeviceListEmpty {
             self.deviceListIsEmpty = true
@@ -312,7 +299,15 @@ class TasksViewController: NSViewController {
             self.isRunning = true
         }
         
-        self.getSimulatorsCommand()
+        CommandsController.simulators { [weak self] in
+            guard let strongSelf = self else { return }
+            switch $0 {
+            case let .success(simulator):
+                strongSelf.phoneComboBox.addItem(withTitle: simulator)
+            case let .failure(error):
+                print(error)
+            }
+        }
         
         DispatchQueue.main.async {
             if let phoneName = self.applicationStateHandler.phoneName, self.phoneComboBox.itemTitles.contains(phoneName) {
@@ -346,10 +341,6 @@ class TasksViewController: NSViewController {
         } else {
             downloadButton.isEnabled = true
         }
-    }
-    
-    func quitIrbSession() {
-        CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
     }
     
     func statePreservation() {

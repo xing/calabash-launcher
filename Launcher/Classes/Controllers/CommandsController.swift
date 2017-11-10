@@ -20,6 +20,24 @@ class CommandsController {
             CommandExecutor(launchPath: launchPath,arguments: [url.absoluteString, filePath], outputStream: outputStream).execute()
         }
     }
+
+    static func quitIRBSession() {
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.quitIRBSession ?? "", arguments: []).execute()
+    }
+
+    static func simulators(completionHandler: @escaping (Result<String>) -> Void) {
+        guard let launchPath = Constants.FilePaths.Bash.simulators else {
+            completionHandler(.failure(FileError.notFound))
+            return
+        }
+        let outputStream = CommandTextOutputStream()
+        outputStream.textHandler = { text in
+            text.components(separatedBy: "\n")
+                .filter { $0.contains("Simulator") }
+                .forEach { completionHandler(.success($0)) }
+        }
+        CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
+    }
     
     var isSimulatorCorrect: Bool {
         guard let launchPath = Constants.FilePaths.Bash.checkSimulatorType else { return false }
