@@ -1512,8 +1512,8 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="bundleID" destination="GLU-PD-zcb" id="0a6-1U-7Gf"/>
-                        <outlet property="textField" destination="b3B-lo-4h0" id="KeZ-Qg-CN3"/>
+                        <outlet property="bundleIDTextField" destination="GLU-PD-zcb" id="JGG-yo-Oxl"/>
+                        <outlet property="deviceIPTextField" destination="b3B-lo-4h0" id="bEb-g5-WKV"/>
                     </connections>
                 </viewController>
                 <customObject id="UWK-7x-zSi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
