@@ -422,6 +422,7 @@ class TasksViewController: NSViewController {
             arguments.append("export BUNDLE_ID=\(bundleID)")
         } else if physicalDeviceRadioButton.state == .on {
             textViewPrinter.printToTextView(Constants.Strings.wrongDeviceSetup)
+            textViewPrinter.printToTextView("\n")
             return
         }
         
