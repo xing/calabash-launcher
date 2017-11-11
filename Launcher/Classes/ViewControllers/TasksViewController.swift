@@ -141,26 +141,6 @@ class TasksViewController: NSViewController {
         }
     }
     
-    @IBAction func get_device(_ sender: Any) {
-        spinner.startAnimation(self)
-        progressBar.startAnimation(self)
-        
-        simulatorRadioButton.state = .off
-        
-        if phoneComboBox.selectedItem == nil {
-            deviceListIsEmpty = true
-            phoneComboBox.highlight(true)
-            cautionImage.isHidden = false
-            phoneComboBox.addItem(withTitle: "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)")
-        } else {
-            cautionImage.isHidden = true
-            deviceListIsEmpty = false
-        }
-        
-        spinner.stopAnimation(self)
-        progressBar.stopAnimation(self)
-    }
-    
     @IBAction func simulator_radio(_ sender: Any) {
         applicationStateHandler.simulatorRadioButtonState = true
         phoneComboBox.removeAllItems()

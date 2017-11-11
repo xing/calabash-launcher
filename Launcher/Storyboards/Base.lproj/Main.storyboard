@@ -507,15 +507,12 @@
                                             </connections>
                                         </popUpButton>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-Cx-9Gj">
-                                            <rect key="frame" x="252" y="32" width="124" height="32"/>
+                                            <rect key="frame" x="252" y="32" width="155" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Detect device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZC-Bd-bFC">
+                                            <buttonCell key="cell" type="push" title="Configure Device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZC-Bd-bFC">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="get_device:" target="XfG-lQ-9wD" id="wGt-Fz-inG"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
