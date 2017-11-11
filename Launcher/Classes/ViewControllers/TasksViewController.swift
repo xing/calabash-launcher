@@ -418,7 +418,7 @@ class TasksViewController: NSViewController {
             let bundleID = applicationStateHandler.bundleID,
             physicalDeviceRadioButton.state == .on,
             !deviceIP.isEmpty {
-            arguments.append("export DEVICE_ENDPOINT=http://\(deviceIP):37265")
+            arguments.append("export DEVICE_ENDPOINT=http://\(deviceIP):\(Constants.CalabashData.port)")
             arguments.append("export BUNDLE_ID=\(bundleID)")
         } else if physicalDeviceRadioButton.state == .on {
             textViewPrinter.printToTextView(Constants.Strings.wrongDeviceSetup)

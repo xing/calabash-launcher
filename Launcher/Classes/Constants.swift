@@ -50,4 +50,8 @@ enum Constants {
         case simulator
         case physical
     }
+    
+    enum CalabashData {
+        static let port = "37265"
+    }
 }
