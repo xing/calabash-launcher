@@ -57,7 +57,9 @@ Provide the required data and press save. After a restart of the Calabash Launch
 
 ![Test Runner](https://user-images.githubusercontent.com/18147900/32609542-4f0c18aa-c560-11e7-9663-d44e1c759187.png)
 
-For testing on physical devices, you will also have to provide the device IP and app bundle id.
+#### Running on physical devices
+
+For testing on physical devices, you will have to provide the device IP and app bundle it, as it shown on this example:
 
 <img width="580" alt="screen shot 2017-11-11 at 22 05 20" src="https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png">
 
