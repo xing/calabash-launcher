@@ -16,6 +16,7 @@ class ApplicationStateHandler {
         case cucumberProfile = "cucumberProfile"
         case additionalRunParameters = "additionalRunParameters"
         case deviceIP = "deviceIP"
+        case bundleID = "bundleID"
     }
     
     var simulatorRadioButtonState: Bool? {
@@ -114,6 +115,15 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .deviceIP)
+        }
+    }
+    
+    var bundleID: String? {
+        get {
+            return defaults.string(forKey: .bundleID)
+        }
+        set {
+            defaults.set(newValue, forKey: .bundleID)
         }
     }
 }

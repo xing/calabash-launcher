@@ -1438,11 +1438,11 @@
             <objects>
                 <viewController id="ayg-Ye-fvl" customClass="DeviceSettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mvS-Eg-NYc">
-                        <rect key="frame" x="0.0" y="0.0" width="317" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="164"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Device IP:" translatesAutoresizingMaskIntoConstraints="NO" id="Mqg-4D-qrs">
-                                <rect key="frame" x="5" y="4" width="309" height="68"/>
+                                <rect key="frame" x="5" y="88" width="309" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="6lV-ZR-GWb">
                                     <rect key="frame" x="2" y="2" width="305" height="48"/>
@@ -1465,7 +1465,7 @@
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BqA-nV-8O4">
-                                <rect key="frame" x="83" y="57" width="25" height="25"/>
+                                <rect key="frame" x="83" y="141" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="2gE-rh-FPc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1475,15 +1475,50 @@
                                     <segue destination="Dqx-Nk-Vc6" kind="popover" popoverAnchorView="BqA-nV-8O4" popoverBehavior="t" preferredEdge="maxY" id="YJS-VW-geN"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Bundle ID:" translatesAutoresizingMaskIntoConstraints="NO" id="aSa-1t-4vT">
+                                <rect key="frame" x="5" y="10" width="309" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="lH5-zr-gHu">
+                                    <rect key="frame" x="2" y="2" width="305" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLU-PD-zcb">
+                                            <rect key="frame" x="15" y="13" width="270" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="e.g. com.example.MyApp-cal" drawsBackground="YES" id="1py-s4-SHl">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="changeBundleIDField:" target="ayg-Ye-fvl" id="l9x-ep-UKg"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8C-Ui-vZQ">
+                                <rect key="frame" x="83" y="69" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="07Y-iB-CxI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="NcV-lV-bPa" kind="popover" popoverAnchorView="Z8C-Ui-vZQ" popoverBehavior="t" preferredEdge="maxY" id="eUE-yP-DnV"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="bundleID" destination="GLU-PD-zcb" id="4r5-UQ-ckV"/>
                         <outlet property="textField" destination="b3B-lo-4h0" id="o2R-u5-oaN"/>
                     </connections>
                 </viewController>
                 <customObject id="UWK-7x-zSi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="114"/>
+            <point key="canvasLocation" x="937.5" y="156"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="3jM-MF-zb0">
@@ -1781,7 +1816,31 @@ Please choose one of the supported devices from "Test Runner" menu and click "St
                 </viewController>
                 <customObject id="Fkk-hq-hwu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="183"/>
+            <point key="canvasLocation" x="1230" y="30"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Y7c-71-kya">
+            <objects>
+                <viewController id="NcV-lV-bPa" sceneMemberID="viewController">
+                    <view key="view" id="dX6-4p-9Ek">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="68"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avM-2g-fqj">
+                                <rect key="frame" x="5" y="10" width="154" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add your application bundle identifier to start tests against your app" id="scn-Nn-uB1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="lOL-Jv-wmU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1259" y="146"/>
         </scene>
     </scenes>
     <resources>

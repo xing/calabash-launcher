@@ -414,6 +414,17 @@ class TasksViewController: NSViewController {
             arguments.append("")
         }
         
+        if let deviceIP = applicationStateHandler.deviceIP,
+            let bundleID = applicationStateHandler.bundleID,
+            physicalDeviceRadioButton.state == .on,
+            !deviceIP.isEmpty {
+            arguments.append("export DEVICE_ENDPOINT=http://\(deviceIP):37265")
+            arguments.append("export BUNDLE_ID=\(bundleID)")
+        } else if physicalDeviceRadioButton.state == .on {
+            textViewPrinter.printToTextView(Constants.Strings.wrongDeviceSetup)
+            return
+        }
+        
         buildButton.isEnabled = false
         
         isRunning = true
