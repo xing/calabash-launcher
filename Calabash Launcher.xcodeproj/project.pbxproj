@@ -14,6 +14,7 @@
 		D71FD8681F9E6C140091FD30 /* AppHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71FD8671F9E6C140091FD30 /* AppHandler.swift */; };
 		D74D80851F97F7BA0049A84F /* click_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D74D80841F97F7BA0049A84F /* click_image.png */; };
 		D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */; };
+		D7DC66321FB70A72006BCE7C /* DeviceSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DC66311FB70A72006BCE7C /* DeviceSettingsViewController.swift */; };
 		D7DDE9AC1FA92DBA0083D00E /* CommandsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DDE9AB1FA92DBA0083D00E /* CommandsController.swift */; };
 		D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B491F969FDD0044169A /* Localization.swift */; };
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
@@ -81,6 +82,7 @@
 		D71FD8671F9E6C140091FD30 /* AppHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHandler.swift; sourceTree = "<group>"; };
 		D74D80841F97F7BA0049A84F /* click_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = click_image.png; sourceTree = "<group>"; };
 		D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
+		D7DC66311FB70A72006BCE7C /* DeviceSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsViewController.swift; sourceTree = "<group>"; };
 		D7DDE9AB1FA92DBA0083D00E /* CommandsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsController.swift; sourceTree = "<group>"; };
 		D7E21B491F969FDD0044169A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */,
 				ED51B7191F90BE5300759547 /* PathWarningViewController.swift */,
 				ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */,
+				D7DC66311FB70A72006BCE7C /* DeviceSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2183DB1F8D0B5800E59DCC /* SettingsViewController.swift in Sources */,
+				D7DC66321FB70A72006BCE7C /* DeviceSettingsViewController.swift in Sources */,
 				EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */,
 				ED06A0E21E850CA70092C96E /* BashOutput.swift in Sources */,
 				5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */,

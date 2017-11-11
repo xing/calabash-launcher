@@ -15,6 +15,7 @@ class ApplicationStateHandler {
         case debugState = "debugCheckboxState"
         case cucumberProfile = "cucumberProfile"
         case additionalRunParameters = "additionalRunParameters"
+        case deviceIP = "deviceIP"
     }
     
     var simulatorRadioButtonState: Bool? {
@@ -104,6 +105,15 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .additionalRunParameters)
+        }
+    }
+    
+    var deviceIP: String? {
+        get {
+            return defaults.string(forKey: .deviceIP)
+        }
+        set {
+            defaults.set(newValue, forKey: .deviceIP)
         }
     }
 }

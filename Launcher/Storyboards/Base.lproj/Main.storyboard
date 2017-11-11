@@ -513,6 +513,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <segue destination="ayg-Ye-fvl" kind="popover" popoverAnchorView="jd1-Cx-9Gj" popoverBehavior="t" preferredEdge="maxY" id="3qv-Ox-5T9"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -1430,6 +1433,58 @@
             </objects>
             <point key="canvasLocation" x="636" y="88"/>
         </scene>
+        <!--Device Settings View Controller-->
+        <scene sceneID="2Rx-fi-R80">
+            <objects>
+                <viewController id="ayg-Ye-fvl" customClass="DeviceSettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="mvS-Eg-NYc">
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="80"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" title="Device IP:" translatesAutoresizingMaskIntoConstraints="NO" id="Mqg-4D-qrs">
+                                <rect key="frame" x="5" y="4" width="309" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="6lV-ZR-GWb">
+                                    <rect key="frame" x="2" y="2" width="305" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b3B-lo-4h0">
+                                            <rect key="frame" x="15" y="13" width="270" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="e.g. 192.169.0.2" drawsBackground="YES" id="ZAT-I1-QKY">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="changeTextField:" target="ayg-Ye-fvl" id="rpA-8G-p2a"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BqA-nV-8O4">
+                                <rect key="frame" x="83" y="57" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="2gE-rh-FPc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="Dqx-Nk-Vc6" kind="popover" popoverAnchorView="BqA-nV-8O4" popoverBehavior="t" preferredEdge="maxY" id="YJS-VW-geN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="b3B-lo-4h0" id="o2R-u5-oaN"/>
+                    </connections>
+                </viewController>
+                <customObject id="UWK-7x-zSi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="114"/>
+        </scene>
         <!--Tab View Controller-->
         <scene sceneID="3jM-MF-zb0">
             <objects>
@@ -1690,6 +1745,43 @@ Please choose one of the supported devices from "Test Runner" menu and click "St
                 <customObject id="QYg-CS-Ful" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="337" y="-575"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DAe-gF-thG">
+            <objects>
+                <viewController id="vBT-ub-gmE" sceneMemberID="viewController">
+                    <view key="view" id="hKE-0A-y5h">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="oZy-vd-eZ1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7ni-su-60L">
+            <objects>
+                <viewController id="Dqx-Nk-Vc6" sceneMemberID="viewController">
+                    <view key="view" id="66Z-BD-y8N">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="88"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jZ-OC-YhU">
+                                <rect key="frame" x="5" y="8" width="226" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="pjv-DD-cZO">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Add iPhone or iPad IP to start testing on physical device. IP can be found by checking "IP Address" field of the active WiFi connection. </string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="Fkk-hq-hwu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="183"/>
         </scene>
     </scenes>
     <resources>
