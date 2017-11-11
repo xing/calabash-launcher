@@ -56,12 +56,13 @@ When opening Calabash Launcher the first time, it will ask you to give the path 
 Provide the required data and press save. After a restart of the Calabash Launcher, you will be able to configure your testrun by choosing a simulator, the language and the Cucumber tag to execute.
 
 ![Test Runner](https://user-images.githubusercontent.com/18147900/32609542-4f0c18aa-c560-11e7-9663-d44e1c759187.png)
-
 #### Running on physical devices
 
 For testing on physical devices, you will have to provide the device IP and app bundle it, as it shown on this example:
 
+
 <img width="580" alt="screen shot 2017-11-11 at 22 05 20" src="https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png">
+
 
 ## Using the Element Inspector
 
