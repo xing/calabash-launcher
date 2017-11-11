@@ -55,13 +55,17 @@ When opening Calabash Launcher the first time, it will ask you to give the path 
 
 Provide the required data and press save. After a restart of the Calabash Launcher, you will be able to configure your testrun by choosing a simulator, the language and the Cucumber tag to execute.
 
-![calabash-launcher](https://user-images.githubusercontent.com/18147900/32609542-4f0c18aa-c560-11e7-9663-d44e1c759187.png)
+![Test Runner](https://user-images.githubusercontent.com/18147900/32609542-4f0c18aa-c560-11e7-9663-d44e1c759187.png)
+
+For testing on physical devices, you will also have to provide the device IP and app bundle id.
+
+![Physical Device Setup](https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png)
 
 ## Using the Element Inspector
 
 ⚠️ **Currently the Element Inspector is limited to iPhone 6, iPhone 7 and iPhone 8. Please make sure that one of these devices is launched when you search for elements.** ⚠️
 
-![calabash-launcher](https://user-images.githubusercontent.com/18147900/32503133-c04ee05e-c3dc-11e7-8394-3c0eb5b0105b.gif)
+![Element Inspector](https://user-images.githubusercontent.com/18147900/32503133-c04ee05e-c3dc-11e7-8394-3c0eb5b0105b.gif)
 
 - Clicking on the right window in the view will sync the Inspector with the simulator (and it will be automatically synced every 5 seconds)
 - Clicking on an element in the synchronised window will show the element's `class`, `accessibility id` and `accessibility label`.
