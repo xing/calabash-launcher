@@ -223,8 +223,8 @@ class TasksViewController: NSViewController {
     @IBAction func clickPhoneChooser(_ sender: Any) {
         if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, simulatorRadioState {
             applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
-            applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
         }
+        applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
     }
     
     @IBAction func languageSwitchButton(_ sender: Any) {

@@ -20,7 +20,7 @@ class DeviceSettingsViewController: NSViewController {
         applicationStateHandler.deviceIP = textField.stringValue
     }
     
-    @IBAction func changeBundleIDField(_ sender: Any) {
+    @IBAction func changeBundleID(_ sender: Any) {
         applicationStateHandler.bundleID = bundleID.stringValue
     }
 }

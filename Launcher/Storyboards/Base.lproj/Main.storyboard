@@ -1457,7 +1457,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="changeDeviceIP:" target="ayg-Ye-fvl" id="rpA-8G-p2a"/>
+                                                <action selector="changeDeviceIP:" target="ayg-Ye-fvl" id="Vxv-B4-QWp"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -1491,7 +1491,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="changeDeviceIP:" target="ayg-Ye-fvl" id="l9x-ep-UKg"/>
+                                                <action selector="changeBundleID:" target="ayg-Ye-fvl" id="d23-Lk-9SK"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -1512,8 +1512,8 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="bundleID" destination="GLU-PD-zcb" id="4r5-UQ-ckV"/>
-                        <outlet property="textField" destination="b3B-lo-4h0" id="o2R-u5-oaN"/>
+                        <outlet property="bundleID" destination="GLU-PD-zcb" id="0a6-1U-7Gf"/>
+                        <outlet property="textField" destination="b3B-lo-4h0" id="KeZ-Qg-CN3"/>
                     </connections>
                 </viewController>
                 <customObject id="UWK-7x-zSi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
