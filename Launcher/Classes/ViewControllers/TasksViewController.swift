@@ -175,7 +175,9 @@ class TasksViewController: NSViewController {
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false
             phoneComboBox.addItem(withTitle: "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)")
+            self.getDeviceButton.isEnabled = false
         } else {
+            self.getDeviceButton.isEnabled = true
             cautionImage.isHidden = true
             deviceListIsEmpty = false
         }
@@ -279,6 +281,7 @@ class TasksViewController: NSViewController {
             self.phoneComboBox.addItem(withTitle: noConnectedDevices)
             let previousOutput2 = self.textView.string
             self.textView.string = "\(previousOutput2)\n\(noConnectedDevices)"
+            self.getDeviceButton.isEnabled = false
         } else {
             self.cautionImage.isHidden = true
             self.deviceListIsEmpty = false
