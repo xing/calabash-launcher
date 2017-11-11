@@ -1457,7 +1457,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="changeTextField:" target="ayg-Ye-fvl" id="rpA-8G-p2a"/>
+                                                <action selector="changeDeviceIP:" target="ayg-Ye-fvl" id="rpA-8G-p2a"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -1491,7 +1491,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="changeBundleIDField:" target="ayg-Ye-fvl" id="l9x-ep-UKg"/>
+                                                <action selector="changeDeviceIP:" target="ayg-Ye-fvl" id="l9x-ep-UKg"/>
                                             </connections>
                                         </textField>
                                     </subviews>

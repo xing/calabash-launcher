@@ -16,7 +16,7 @@ class DeviceSettingsViewController: NSViewController {
         }
     }
     
-    @IBAction func changeTextField(_ sender: Any) {
+    @IBAction func changeDeviceIP(_ sender: Any) {
         applicationStateHandler.deviceIP = textField.stringValue
     }
     
