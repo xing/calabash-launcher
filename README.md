@@ -61,7 +61,7 @@ Provide the required data and press save. After a restart of the Calabash Launch
 For running tests on physical devices, the device IP and apps bundle ID should be provided in device configuration dialog:
 
 
-<img width="580" alt="screen shot 2017-11-11 at 22 05 20" src="https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png">
+<img width="586" alt="screen shot 2017-11-11 at 23 55 00" src="https://user-images.githubusercontent.com/18147900/32694248-d8c2d7c8-c73b-11e7-8803-81590d61fbf9.png">
 
 
 ## Using the Element Inspector
