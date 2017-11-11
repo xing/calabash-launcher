@@ -59,7 +59,7 @@ Provide the required data and press save. After a restart of the Calabash Launch
 
 For testing on physical devices, you will also have to provide the device IP and app bundle id.
 
-![Physical Device Setup](https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png)
+![Physical Device Setup](<img width="580" alt="screen shot 2017-11-11 at 22 05 20" src="https://user-images.githubusercontent.com/18147900/32693519-add622fe-c72c-11e7-9950-7197900eba53.png">)
 
 ## Using the Element Inspector
 
