@@ -88,7 +88,7 @@ class TasksViewController: NSViewController {
             }
         }
 
-        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, !simulatorRadioState {
+        if applicationStateHandler.physicalRadioButtonState {
             self.getDevices(ofType: .physical)
         } else {
             DispatchQueue.global(qos: .background).async {
@@ -142,7 +142,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
-        applicationStateHandler.simulatorRadioButtonState = true
+        applicationStateHandler.physicalRadioButtonState = false
         phoneComboBox.removeAllItems()
         handleRadioButtons()
         
@@ -166,7 +166,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func phys_radio(_ sender: Any) {
-        applicationStateHandler.simulatorRadioButtonState = false
+        applicationStateHandler.physicalRadioButtonState = true
         phoneComboBox.removeAllItems()
         handleRadioButtons()
         
@@ -223,7 +223,7 @@ class TasksViewController: NSViewController {
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
-        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, simulatorRadioState {
+        if !applicationStateHandler.physicalRadioButtonState {
             applicationStateHandler.phoneName = phoneComboBox.titleOfSelectedItem
         }
         applicationStateHandler.phoneUDID = deviceCollector.getDeviceUDID(device: phoneComboBox.itemTitle(at: phoneComboBox.indexOfSelectedItem))
@@ -322,7 +322,7 @@ class TasksViewController: NSViewController {
     }
     
     func handleRadioButtons(willGetDevice:Bool = true) {
-        if let simulatorRadioState = applicationStateHandler.simulatorRadioButtonState, !simulatorRadioState {
+        if applicationStateHandler.physicalRadioButtonState {
             simulatorRadioButton.state = .off
             physicalDeviceRadioButton.state = .on
             getDeviceButton.isEnabled = true

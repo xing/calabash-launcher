@@ -19,7 +19,7 @@ class ApplicationStateHandler {
         case bundleID = "bundleID"
     }
     
-    var simulatorRadioButtonState: Bool? {
+    var physicalRadioButtonState: Bool {
         get {
             return defaults.bool(forKey: .simulatorRadioButtonState)
         }
