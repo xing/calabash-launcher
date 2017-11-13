@@ -84,7 +84,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     @IBAction func gestureRecognizer(_ sender: Any) {
         // Show dialog window if booted Simulator is incorrect (should be iPhone 6,7 or 8).
         DispatchQueue.global(qos: .background).async {
-            guard let controller = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "wrongSimulatorWindow")) as? NSViewController,
+            guard let controller = self.storyboard?.instantiateController(withIdentifier: .wrongSimulator) as? NSViewController,
                 !self.commandsController.isSimulatorCorrect else { return }
             DispatchQueue.main.async {
                 self.presentViewControllerAsModalWindow(controller)

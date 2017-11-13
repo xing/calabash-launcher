@@ -11,12 +11,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func configurationButton(_ sender: Any) {
-        if
-            let controller = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "settingswindow")) as? SettingsViewController,
+        guard
+            let controller = NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .settingsWindow) as? SettingsViewController,
             let contentViewController = NSApplication.shared.mainWindow?.contentViewController,
-            contentViewController.presentedViewControllers?.first(where: { $0 is SettingsViewController }) == nil {
-            contentViewController.presentViewControllerAsSheet(controller)
-        }
+            contentViewController.presentedViewControllers?.first(where: { $0 is SettingsViewController }) == nil else { return }
+        contentViewController.presentViewControllerAsSheet(controller)
     }
     
     @IBAction func resetUserDefaults(_ sender: Any) {
@@ -24,22 +23,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let appDomain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: appDomain)
             AppHandler().restartApplication()
-        } else {
-        if
-            let controller = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "warningwindow")) as? NSViewController,
+        } else if
+            let controller = NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .warningWindow) as? NSViewController,
             let contentViewController = NSApplication.shared.mainWindow?.contentViewController,
             contentViewController.presentedViewControllers?.first(where: { $0 is SettingsViewController }) == nil {
-            contentViewController.presentViewControllerAsModalWindow(controller)
-            }
+                contentViewController.presentViewControllerAsModalWindow(controller)
         }
     }
     
     @IBAction func runTests(_ sender: Any) {
-        if
+        guard
             let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
-            let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
-            tasksViewController.runScript()
-        }
+            let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController else { return }
+        tasksViewController.runScript()
     }
     
     func application(application: NSApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
@@ -69,12 +65,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func killProcessScreenshot() {
         let taskQueueNew = DispatchQueue.global(qos: .background)
         
-        taskQueueNew.sync {
+        taskQueueNew.sync { [weak self] in
+            guard let strongSelf = self else { return }
             let path = Constants.FilePaths.Bash.killProcess
-            self.buildTaskNew = Process()
-            self.buildTaskNew.launchPath = path
-            self.buildTaskNew.launch()
-            self.buildTaskNew.waitUntilExit()
+            strongSelf.buildTaskNew = Process()
+            strongSelf.buildTaskNew.launchPath = path
+            strongSelf.buildTaskNew.launch()
+            strongSelf.buildTaskNew.waitUntilExit()
         }
     }
 }
