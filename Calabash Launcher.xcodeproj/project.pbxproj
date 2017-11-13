@@ -11,6 +11,8 @@
 		5D948C901F8F4BDA0001BC50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */; };
 		5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C911F8F4FC40001BC50 /* Constants.swift */; };
 		5D948C941F8F556D0001BC50 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D948C931F8F556D0001BC50 /* Language.swift */; };
+		5DA2EE0D1FB5F46100C33AAF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE0C1FB5F46100C33AAF /* Result.swift */; };
+		5DA2EE0F1FB5FF1400C33AAF /* FileError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE0E1FB5FF1400C33AAF /* FileError.swift */; };
 		D71FD8681F9E6C140091FD30 /* AppHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71FD8671F9E6C140091FD30 /* AppHandler.swift */; };
 		D74D80851F97F7BA0049A84F /* click_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D74D80841F97F7BA0049A84F /* click_image.png */; };
 		D7CAAEC01F940B76006F8AE8 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */; };
@@ -77,6 +79,8 @@
 		5D948C8F1F8F4BDA0001BC50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D948C911F8F4FC40001BC50 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D948C931F8F556D0001BC50 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		5DA2EE0C1FB5F46100C33AAF /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		5DA2EE0E1FB5FF1400C33AAF /* FileError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileError.swift; sourceTree = "<group>"; };
 		D71FD8671F9E6C140091FD30 /* AppHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHandler.swift; sourceTree = "<group>"; };
 		D74D80841F97F7BA0049A84F /* click_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = click_image.png; sourceTree = "<group>"; };
 		D7CAAEBF1F940B76006F8AE8 /* Gemfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 				EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */,
 				D71FD8671F9E6C140091FD30 /* AppHandler.swift */,
+				5DA2EE0C1FB5F46100C33AAF /* Result.swift */,
+				5DA2EE0E1FB5FF1400C33AAF /* FileError.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -378,10 +384,12 @@
 			files = (
 				ED2183DB1F8D0B5800E59DCC /* SettingsViewController.swift in Sources */,
 				EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */,
+				5DA2EE0F1FB5FF1400C33AAF /* FileError.swift in Sources */,
 				ED06A0E21E850CA70092C96E /* BashOutput.swift in Sources */,
 				5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */,
 				EDFF031C1DD4C33A000CA17C /* DeviceCollector.swift in Sources */,
 				ED4C14E31DB29FB700A1190E /* TasksViewController.swift in Sources */,
+				5DA2EE0D1FB5F46100C33AAF /* Result.swift in Sources */,
 				FD4D0F351F8D086100EAD142 /* ApplicationStateHandler.swift in Sources */,
 				ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */,
 				EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */,
