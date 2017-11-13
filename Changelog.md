@@ -1,3 +1,9 @@
+# 1.1
+
+## Added
+
+- Added physical device support ([#109](https://github.com/xing/calabash-launcher/pull/109))
+
 # 1.0
 
 ## Added

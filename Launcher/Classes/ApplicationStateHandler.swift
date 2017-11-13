@@ -5,7 +5,7 @@ class ApplicationStateHandler {
     private let defaults = UserDefaults.standard
 
     fileprivate enum Keys: String {
-        case simulatorRadioButtonState = "simulatorRadioButton"
+        case physicalRadioButtonState = "physicalRadioButtonState"
         case buildName = "buildName"
         case filePath = "filePath"
         case phoneName = "phoneName"
@@ -15,14 +15,16 @@ class ApplicationStateHandler {
         case debugState = "debugCheckboxState"
         case cucumberProfile = "cucumberProfile"
         case additionalRunParameters = "additionalRunParameters"
+        case deviceIP = "deviceIP"
+        case bundleID = "bundleID"
     }
     
-    var simulatorRadioButtonState: Int {
+    var physicalRadioButtonState: Bool {
         get {
-            return defaults.integer(forKey: .simulatorRadioButtonState)
+            return defaults.bool(forKey: .physicalRadioButtonState)
         }
         set {
-            defaults.set(newValue, forKey: .simulatorRadioButtonState)
+            defaults.set(newValue, forKey: .physicalRadioButtonState)
         }
     }
     
@@ -104,6 +106,24 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .additionalRunParameters)
+        }
+    }
+    
+    var deviceIP: String? {
+        get {
+            return defaults.string(forKey: .deviceIP)
+        }
+        set {
+            defaults.set(newValue, forKey: .deviceIP)
+        }
+    }
+    
+    var bundleID: String? {
+        get {
+            return defaults.string(forKey: .bundleID)
+        }
+        set {
+            defaults.set(newValue, forKey: .bundleID)
         }
     }
 }

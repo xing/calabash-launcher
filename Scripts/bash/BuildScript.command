@@ -11,7 +11,12 @@ fi
 export ${1}
 # Device Target
 export ${2}
+# Env variables (can be empty)
 ${6}
+# Device IP (can be empty)
+${7}
+# Device bundle identifier
+${8}
 # Path
 cd ${3}
 
