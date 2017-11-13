@@ -250,7 +250,7 @@ class TasksViewController: NSViewController {
     }
     
     func getDevicesCommand(ofType type: Constants.DeviceType) {
-        var path: String?
+        let path: String?
         
         switch type {
         case .simulator:
@@ -262,7 +262,7 @@ class TasksViewController: NSViewController {
         if let launchPath = path {
             let outputStream = CommandTextOutputStream()
             outputStream.textHandler = { text in
-                let filteredText = text.components(separatedBy: "\n").filter { !RegexHandler().matches(for: "\\(([^()])*\\) \\[(.*?)\\]", in: $0).isEmpty }
+                let filteredText = text.components(separatedBy: "\n").filter { RegexHandler().matches(for: "\\(([^()])*\\) \\[(.*?)\\]", in: $0).isEmpty == false }
                 guard !filteredText.isEmpty else { return }
                 DispatchQueue.main.async {
                     self.phoneComboBox.addItems(withTitles: filteredText)

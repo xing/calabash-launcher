@@ -5,7 +5,7 @@ class ApplicationStateHandler {
     private let defaults = UserDefaults.standard
 
     fileprivate enum Keys: String {
-        case simulatorRadioButtonState = "simulatorRadioButton"
+        case physicalRadioButtonState = "physicalRadioButtonState"
         case buildName = "buildName"
         case filePath = "filePath"
         case phoneName = "phoneName"
@@ -21,10 +21,10 @@ class ApplicationStateHandler {
     
     var physicalRadioButtonState: Bool {
         get {
-            return defaults.bool(forKey: .simulatorRadioButtonState)
+            return defaults.bool(forKey: .physicalRadioButtonState)
         }
         set {
-            defaults.set(newValue, forKey: .simulatorRadioButtonState)
+            defaults.set(newValue, forKey: .physicalRadioButtonState)
         }
     }
     
