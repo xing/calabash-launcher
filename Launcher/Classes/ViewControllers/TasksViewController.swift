@@ -32,7 +32,7 @@ class TasksViewController: NSViewController {
     var timer: Timer!
     var pathToCalabashFolder = ""
     var linkInfoArray = [""]
-    var testRun: Process?
+    var commandExecutor: CommandExecutor?
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -213,9 +213,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
-        if let testRunProcess = testRun {
+        if let testRunProcess = commandExecutor {
             testRunProcess.terminate()
-            testRun = nil
+            commandExecutor = nil
             self.buildButton.isEnabled = true
             self.spinner.stopAnimation(self)
             self.progressBar.stopAnimation(self)
@@ -443,10 +443,8 @@ class TasksViewController: NSViewController {
                 }
             }
             DispatchQueue.global(qos: .background).async {
-                self.testRun = Process()
-                if let testProcess = self.testRun {
-                    CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute(process: testProcess)
-                }
+                self.commandExecutor = CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream)
+                self.commandExecutor?.execute()
                 
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
