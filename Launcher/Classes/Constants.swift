@@ -9,7 +9,7 @@ enum Constants {
         static let installSimulatorOrPluginDevice = "Please install a simulator or plug-in your device.".localized
         static let useLocalBuild = "Skipping download. Use a local app version.".localized
         static let notCompatibleWithDeviceType = "not compatible with chosen device type.".localized
-        static let wrongDeviceSetup = "Please provide device IP and bundle identifier of your application. It can be configured under 'Configure Device' settings.".localized
+        static let wrongDeviceSetup = "Please provide the device IP and bundle identifier of your application. It can be configured under 'Configure Device' settings.".localized
     }
 
     enum Keys {
