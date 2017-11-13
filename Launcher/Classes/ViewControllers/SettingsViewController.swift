@@ -131,7 +131,7 @@ class SettingsViewController: NSViewController {
     }
     
     func emptyPathHandling() {
-        if applicationStateHandler.filePath == nil, let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "pathWarning")) as? NSViewController {
+        if applicationStateHandler.filePath == nil, let controller = storyboard?.instantiateController(withIdentifier: .pathWarning) as? NSViewController {
             presentViewControllerAsModalWindow(controller)
             proceedButton.isHidden = false
         } else {

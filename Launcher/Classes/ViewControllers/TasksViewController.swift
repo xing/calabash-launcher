@@ -60,7 +60,7 @@ class TasksViewController: NSViewController {
         
         if let filePath = applicationStateHandler.filePath {
             pathToCalabashFolder = filePath.absoluteString.replacingOccurrences(of: "file://", with: "")
-        } else if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "settingswindow")) as? NSViewController {
+        } else if let controller = storyboard?.instantiateController(withIdentifier: .settingsWindow) as? NSViewController {
             presentViewControllerAsModalWindow(controller)
         }
         
@@ -136,7 +136,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func settingsButton(_ sender: Any) {
-        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "settingswindow")) as? NSViewController {
+        if let controller = storyboard?.instantiateController(withIdentifier: .settingsWindow) as? NSViewController {
             presentViewControllerAsSheet(controller)
         }
     }
@@ -235,7 +235,7 @@ class TasksViewController: NSViewController {
     
     @IBAction func languagePopUp(_ sender: Any) {
         applicationStateHandler.language = languagePopUpButton.title
-        if let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "languagesettings")) as? NSViewController, languagePopUpButton.title == Language.other.rawValue {
+        if let controller = storyboard?.instantiateController(withIdentifier: .languageSettings) as? NSViewController, languagePopUpButton.title == Language.other.rawValue {
             presentViewControllerAsModalWindow(controller)
         }
     }
