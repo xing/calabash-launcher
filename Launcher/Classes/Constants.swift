@@ -9,6 +9,7 @@ enum Constants {
         static let installSimulatorOrPluginDevice = "Please install a simulator or plug-in your device.".localized
         static let useLocalBuild = "Skipping download. Use a local app version.".localized
         static let notCompatibleWithDeviceType = "not compatible with chosen device type.".localized
+        static let wrongDeviceSetup = "Please provide the device IP and bundle identifier of your application. It can be configured under 'Configure Device' settings.".localized
     }
 
     enum Keys {
@@ -38,9 +39,19 @@ enum Constants {
             static let changeLanguage = main.path(forResource: "change_sim_language", ofType: .bash)
             static let uniqueElements = main.path(forResource: "get_uniq_elements", ofType: .bash)
             static let simulators = main.path(forResource: "get_sim_list", ofType: .bash)
+            static let physicalDevices = main.path(forResource: "get_physical_device", ofType: .bash)
         }
         enum Ruby {
             static let helpers = main.path(forResource: "helpers", ofType: .ruby)
         }
+    }
+    
+    enum DeviceType {
+        case simulator
+        case physical
+    }
+    
+    enum CalabashData {
+        static let port = "37265"
     }
 }
