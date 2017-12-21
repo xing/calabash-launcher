@@ -384,13 +384,13 @@ extension InspectorViewController: NSOutlineViewDelegate {
         var view: NSTableCellView?
 
         if !isParentView {
-            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedCell"), owner: self) as? NSTableCellView
+            view = outlineView.makeView(withIdentifier: .feedCell, owner: self) as? NSTableCellView
             if let textField = view?.textField {
                 textField.textColor = NSColor.yellow
                 textField.stringValue = item as! String
             }
         } else {
-            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell"), owner: self) as? NSTableCellView
+            view = outlineView.makeView(withIdentifier: .feedItemCell, owner: self) as? NSTableCellView
             if let textField = view?.textField {
                 textField.textColor = NSColor.cyan
                 textField.stringValue = item as! String
