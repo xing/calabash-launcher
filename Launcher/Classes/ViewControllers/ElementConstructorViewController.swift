@@ -117,7 +117,7 @@ extension ElementConstructorViewController: NSOutlineViewDataSource {
 
 extension ElementConstructorViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        let cell = outlineViewConstructor.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell2"), owner: self) as? NSTableCellView
+        let cell = outlineViewConstructor.makeView(withIdentifier: .feedItemCell2, owner: self) as? NSTableCellView
         if let textField = cell?.textField {
             textField.textColor = .black
             textField.stringValue = item as? String ?? ""

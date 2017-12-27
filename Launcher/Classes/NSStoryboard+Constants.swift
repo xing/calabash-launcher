@@ -15,9 +15,11 @@ extension NSStoryboard.Name {
 }
 
 extension NSStoryboard.SceneIdentifier {
-    static let settingsWindow = "settingswindow".sceneIdentifier
-    static let warningWindow = "warningwindow".sceneIdentifier
-    static let languageSettings = "languagesettings".sceneIdentifier
-    static let wrongSimulator = "wrongSimulatorWindow".sceneIdentifier
-    static let pathWarning = "pathWarning".sceneIdentifier
+    static let
+    settingsWindow = "settingswindow".sceneIdentifier,
+    warningWindow = "warningwindow".sceneIdentifier,
+    languageSettings = "languagesettings".sceneIdentifier,
+    wrongSimulator = "wrongSimulatorWindow".sceneIdentifier,
+    pathWarning = "pathWarning".sceneIdentifier,
+    deviceUnlock = "deviceUnlock".sceneIdentifier
 }

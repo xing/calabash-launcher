@@ -24,14 +24,13 @@ class TasksViewController: NSViewController {
     let deviceCollector = DeviceCollector()
     let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
     var textViewPrinter: TextViewPrinter!
-    var deviceListIsEmpty = false
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
     let tagsController = TagsController()
-    var devices = [""]
+    var devices: [String] = []
     var timer: Timer!
-    var pathToCalabashFolder = ""
-    var linkInfoArray = [""]
+    var calabashFolderPath = ""
+    var linkInfo: [String] = []
     var testRun: Process?
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
@@ -41,11 +40,11 @@ class TasksViewController: NSViewController {
         super.viewDidAppear()
         textField.backgroundColor = .darkGray
         textField.textColor = .white
-        let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)")
+        let placeholderText = NSMutableAttributedString(string: "Console Input (Beta)".localized)
         placeholderText.setAttributes([.foregroundColor: NSColor.lightGray], range: NSRange(location: 0, length: "Console Input (Beta)".count))
         textField.placeholderAttributedString = placeholderText
-        timer = .scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.limitOfChars), userInfo: nil, repeats: true);
-        getValuesForBuildPicker()
+        timer = .scheduledTimer(timeInterval: 40, target: self, selector: #selector(cleanupOutput), userInfo: nil, repeats: true);
+        populateBuildPicker()
         
         handleRadioButtons(willGetDevice: false)
     }
@@ -59,7 +58,7 @@ class TasksViewController: NSViewController {
         languagePopUpButton.addItems(withTitles: languageValues)
         
         if let filePath = applicationStateHandler.filePath {
-            pathToCalabashFolder = filePath.absoluteString.replacingOccurrences(of: "file://", with: "")
+            calabashFolderPath = filePath.absoluteString.replacingOccurrences(of: "file://", with: "")
         } else if let controller = storyboard?.instantiateController(withIdentifier: .settingsWindow) as? NSViewController {
             presentViewControllerAsModalWindow(controller)
         }
@@ -89,7 +88,7 @@ class TasksViewController: NSViewController {
         }
 
         if applicationStateHandler.physicalRadioButtonState {
-            self.getDevices(ofType: .physical)
+            getDevices(ofType: .physical)
         } else {
             DispatchQueue.global(qos: .background).async {
                 self.getDevices(ofType: .simulator)
@@ -106,7 +105,7 @@ class TasksViewController: NSViewController {
     }
     
     private func setupTagSelection() {
-        tagsController.tags(in: pathToCalabashFolder).forEach { tag in
+        tagsController.tags(in: calabashFolderPath).forEach { tag in
             DispatchQueue.main.async {
                 self.tagPicker.addItem(withObjectValue: tag)
             }
@@ -123,12 +122,8 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func buildPicker(_ sender: Any) {
-       applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
-        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
-            downloadButton.isEnabled = false
-        } else {
-            downloadButton.isEnabled = true
-        }
+        applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
+        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
@@ -136,9 +131,8 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func settingsButton(_ sender: Any) {
-        if let controller = storyboard?.instantiateController(withIdentifier: .settingsWindow) as? NSViewController {
-            presentViewControllerAsSheet(controller)
-        }
+        guard let controller = storyboard?.instantiateController(withIdentifier: .settingsWindow) as? NSViewController else { return }
+        presentViewControllerAsSheet(controller)
     }
     
     @IBAction func simulator_radio(_ sender: Any) {
@@ -152,16 +146,14 @@ class TasksViewController: NSViewController {
         }
         
         if phoneComboBox.selectedItem == nil {
-            deviceListIsEmpty = true
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false
             let noConnectedSimulators = "\(Constants.Strings.noSimulatorsConnected) \(Constants.Strings.installSimulator)"
             phoneComboBox.addItem(withTitle: noConnectedSimulators)
-            let previousOutput3 = textView.string
-            textView.string = "\(previousOutput3)\n\(noConnectedSimulators)"
+            let previousOutput = textView.string
+            textView.string = "\(previousOutput)\n\(noConnectedSimulators)"
         } else {
             cautionImage.isHidden = true
-            deviceListIsEmpty = false
         }
     }
     
@@ -171,15 +163,13 @@ class TasksViewController: NSViewController {
         handleRadioButtons()
         
         if phoneComboBox.selectedItem == nil {
-            deviceListIsEmpty = true
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false
             phoneComboBox.addItem(withTitle: "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)")
-            self.getDeviceButton.isEnabled = false
+            getDeviceButton.isEnabled = false
         } else {
-            self.getDeviceButton.isEnabled = true
+            getDeviceButton.isEnabled = true
             cautionImage.isHidden = true
-            deviceListIsEmpty = false
         }
     }
     
@@ -192,20 +182,19 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func textField(_ sender: Any) {
-        if let launchPath = Constants.FilePaths.Bash.sendToIRB {
-            let outputStream = CommandTextOutputStream()
-            outputStream.textHandler = { text in
-                guard !text.isEmpty else { return }
-                DispatchQueue.main.async {
-                    self.textViewPrinter.printToTextView(text)
-                }
-            }
-            let arguments = [self.textField.stringValue]
-            DispatchQueue.global(qos: .background).async {
-                CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
+        defer { textField.stringValue = "" }
+        guard let launchPath = Constants.FilePaths.Bash.sendToIRB else { return }
+        let outputStream = CommandTextOutputStream()
+        outputStream.textHandler = { text in
+            guard !text.isEmpty else { return }
+            DispatchQueue.main.async {
+                self.textViewPrinter.printToTextView(text)
             }
         }
-        textField.stringValue = ""
+        let argument = textField.stringValue
+        DispatchQueue.global(qos: .background).async {
+            CommandExecutor(launchPath: launchPath, arguments: [argument], outputStream: outputStream).execute()
+        }
     }
     
     @IBAction func toggleDebug(_ sender: NSButton) {
@@ -213,13 +202,12 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
-        if let testRunProcess = testRun {
-            testRunProcess.terminate()
-            testRun = nil
-            self.buildButton.isEnabled = true
-            self.spinner.stopAnimation(self)
-            self.progressBar.stopAnimation(self)
-        }
+        guard let testRunProcess = testRun else { return }
+        testRunProcess.terminate()
+        testRun = nil
+        buildButton.isEnabled = true
+        spinner.stopAnimation(self)
+        progressBar.stopAnimation(self)
     }
 
     @IBAction func clickPhoneChooser(_ sender: Any) {
@@ -235,13 +223,14 @@ class TasksViewController: NSViewController {
     
     @IBAction func languagePopUp(_ sender: Any) {
         applicationStateHandler.language = languagePopUpButton.title
-        if let controller = storyboard?.instantiateController(withIdentifier: .languageSettings) as? NSViewController, languagePopUpButton.title == Language.other.rawValue {
-            presentViewControllerAsModalWindow(controller)
-        }
+        guard
+            let controller = storyboard?.instantiateController(withIdentifier: .languageSettings) as? NSViewController,
+            languagePopUpButton.title == Language.other.rawValue else { return }
+        presentViewControllerAsModalWindow(controller)
     }
 
-    @objc func limitOfChars() {
-        let maxCharacters = 40000
+    @objc func cleanupOutput() {
+        let maxCharacters = 40_000
         let characterCount = textView.string.count
         
         if characterCount > maxCharacters {
@@ -259,32 +248,30 @@ class TasksViewController: NSViewController {
             path = Constants.FilePaths.Bash.physicalDevices
         }
         
-        if let launchPath = path {
-            let outputStream = CommandTextOutputStream()
-            outputStream.textHandler = { text in
-                let filteredText = text.components(separatedBy: "\n").filter { RegexHandler().matches(for: "\\(([^()])*\\) \\[(.*?)\\]", in: $0).isEmpty == false }
-                guard !filteredText.isEmpty else { return }
-                DispatchQueue.main.async {
-                    self.phoneComboBox.addItems(withTitles: filteredText)
-                }
+        guard let launchPath = path else { return }
+        let outputStream = CommandTextOutputStream()
+        outputStream.textHandler = { text in
+            let filteredText = text.components(separatedBy: "\n")
+                .filter { RegexHandler().matches(for: "\\(([^()])*\\) \\[(.*?)\\]", in: $0).isEmpty == false }
+            guard !filteredText.isEmpty else { return }
+            DispatchQueue.main.async {
+                self.phoneComboBox.addItems(withTitles: filteredText)
             }
-            CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
         }
+        CommandExecutor(launchPath: launchPath, arguments: [], outputStream: outputStream).execute()
     }
     
     func emptyDeviceHandler() {
         if isDeviceListEmpty {
-            self.deviceListIsEmpty = true
-            self.phoneComboBox.highlight(true)
-            self.cautionImage.isHidden = false
+            phoneComboBox.highlight(true)
+            cautionImage.isHidden = false
             let noConnectedDevices = "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
-            self.phoneComboBox.addItem(withTitle: noConnectedDevices)
-            let previousOutput2 = self.textView.string
-            self.textView.string = "\(previousOutput2)\n\(noConnectedDevices)"
-            self.getDeviceButton.isEnabled = false
+            phoneComboBox.addItem(withTitle: noConnectedDevices)
+            let previousOutput = textView.string
+            textView.string = "\(previousOutput)\n\(noConnectedDevices)"
+            getDeviceButton.isEnabled = false
         } else {
-            self.cautionImage.isHidden = true
-            self.deviceListIsEmpty = false
+            cautionImage.isHidden = true
         }
     }
     
@@ -295,9 +282,9 @@ class TasksViewController: NSViewController {
         
         switch type {
         case .simulator:
-            self.getDevicesCommand(ofType: .simulator)
+            getDevicesCommand(ofType: .simulator)
         case .physical:
-            self.getDevicesCommand(ofType: .physical)
+            getDevicesCommand(ofType: .physical)
         }
         
         DispatchQueue.main.async {
@@ -321,7 +308,7 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func handleRadioButtons(willGetDevice:Bool = true) {
+    func handleRadioButtons(willGetDevice: Bool = true) {
         if applicationStateHandler.physicalRadioButtonState {
             simulatorRadioButton.state = .off
             physicalDeviceRadioButton.state = .on
@@ -334,11 +321,11 @@ class TasksViewController: NSViewController {
                 spinner.stopAnimation(self)
                 progressBar.stopAnimation(self)
             }
-            if let itemTitle = phoneComboBox.titleOfSelectedItem,
+            guard
+                let itemTitle = phoneComboBox.titleOfSelectedItem,
                 itemTitle.contains("(null)"),
-                let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "deviceUnlock")) as? NSViewController {
-                presentViewControllerAsModalWindow(controller)
-            }
+                let controller = storyboard?.instantiateController(withIdentifier: .deviceUnlock) as? NSViewController else { return }
+            presentViewControllerAsModalWindow(controller)
         } else {
             simulatorRadioButton.state = .on
             physicalDeviceRadioButton.state = .off
@@ -354,10 +341,10 @@ class TasksViewController: NSViewController {
         }
     }
     
-    func getValuesForBuildPicker() {
+    func populateBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfoArray = plistOperations.readValues()
-        buildPicker.addItems(withTitles: linkInfoArray)
+        linkInfo = plistOperations.readValues()
+        buildPicker.addItems(withTitles: linkInfo)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 
         if let buildName = applicationStateHandler.buildName, buildPicker.itemTitles.contains(buildName) {
@@ -366,11 +353,7 @@ class TasksViewController: NSViewController {
             buildPicker.selectItem(withTitle: Constants.Strings.useLocalBuild)
         }
         
-        if buildPicker.titleOfSelectedItem == Constants.Strings.useLocalBuild {
-            downloadButton.isEnabled = false
-        } else {
-            downloadButton.isEnabled = true
-        }
+        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
     }
     
     func quitIrbSession() {
@@ -378,11 +361,11 @@ class TasksViewController: NSViewController {
     }
     
     func runScript() {
-        if deviceListIsEmpty == true {
+        if isDeviceListEmpty {
             phoneComboBox.highlight(true)
             cautionImage.isHidden = false
-            let previousOutput4 = textView.string
-            textView.string = "\(previousOutput4)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
+            let previousOutput = textView.string
+            textView.string = "\(previousOutput)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
             return
         } else {
             cautionImage.isHidden = true
@@ -398,7 +381,7 @@ class TasksViewController: NSViewController {
         
         arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
         
-        arguments.append(pathToCalabashFolder)
+        arguments.append(calabashFolderPath)
         
         if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
@@ -461,23 +444,22 @@ class TasksViewController: NSViewController {
     func runGeneralIrbSession() {
         self.spinner.startAnimation(self)
         self.progressBar.startAnimation(self)
-        if let launchPath = Constants.FilePaths.Bash.createIRBSession {
-            let outputStream = CommandTextOutputStream()
-            outputStream.textHandler = {text in
-                DispatchQueue.main.async {
-                    self.textViewPrinter.printToTextView(text)
-                    self.spinner.stopAnimation(self)
-                    self.progressBar.stopAnimation(self)
-                }
+        guard let launchPath = Constants.FilePaths.Bash.createIRBSession else { return }
+        let outputStream = CommandTextOutputStream()
+        outputStream.textHandler = { text in
+            DispatchQueue.main.async {
+                self.textViewPrinter.printToTextView(text)
+                self.spinner.stopAnimation(self)
+                self.progressBar.stopAnimation(self)
             }
-            var arguments: [String] = []
-            arguments.append(pathToCalabashFolder)
-            if let helpersPath = Constants.FilePaths.Ruby.helpers {
-                arguments.append(helpersPath)
-            }
-            DispatchQueue.global(qos: .background).async {
-                CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
-            }
+        }
+        var arguments: [String] = []
+        arguments.append(calabashFolderPath)
+        if let helpersPath = Constants.FilePaths.Ruby.helpers {
+            arguments.append(helpersPath)
+        }
+        DispatchQueue.global(qos: .background).async {
+            CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
         }
     }
 }
