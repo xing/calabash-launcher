@@ -91,7 +91,7 @@ class SettingsViewController: NSViewController {
         if
             let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
             let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
-            tasksViewController.getValuesForBuildPicker()
+            tasksViewController.populateBuildPicker()
         }
         
         // Restart app after new path is available. Close Settings and save settings otherwise.
