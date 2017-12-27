@@ -31,7 +31,7 @@ class TasksViewController: NSViewController {
     var timer: Timer!
     var calabashFolderPath = ""
     var linkInfo: [String] = []
-    var testRun: Process?
+    var commandExecutor: CommandExecutor?
     var isDeviceListEmpty: Bool {
         return phoneComboBox.numberOfItems == 0
     }
@@ -202,9 +202,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func stopTask(_ sender:AnyObject) {
-        guard let testRunProcess = testRun else { return }
+        guard let testRunProcess = commandExecutor else { return }
         testRunProcess.terminate()
-        testRun = nil
+        commandExecutor = nil
         buildButton.isEnabled = true
         spinner.stopAnimation(self)
         progressBar.stopAnimation(self)
@@ -426,10 +426,8 @@ class TasksViewController: NSViewController {
                 }
             }
             DispatchQueue.global(qos: .background).async {
-                self.testRun = Process()
-                if let testProcess = self.testRun {
-                    CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute(process: testProcess)
-                }
+                self.commandExecutor = CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream)
+                self.commandExecutor?.execute()
                 
                 DispatchQueue.main.async {
                     self.buildButton.isEnabled = true
