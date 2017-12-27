@@ -16,7 +16,8 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     var isParentView = false
     var retryCount = 0
     private let temporaryScreenshotPath = "/tmp/screenshot_0.png"
-    private let gestureRecognizerAccessibilityLabel = "defaultImage"
+    private let defaultGestureRecognizerAccessibilityLabel = "defaultImage"
+    private let customGestureRecognizerAccessibilityLabel = "customImage"
     private let elementInspectorPath = "/tmp/get_all_elements_inspector.txt"
     
     @IBOutlet var startDeviceButton: NSButton!
@@ -93,7 +94,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             }
         }
         
-        if gestureRecognizableView.accessibilityLabel() == "defaultImage" {
+        if gestureRecognizableView.accessibilityLabel() == defaultGestureRecognizerAccessibilityLabel {
             timer.invalidate()
             coordinatesMarker.isHidden = true
             syncScreen()
@@ -291,7 +292,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             DispatchQueue.main.async {
                 self.gestureRecognizableView.image = image
             }
-            self.gestureRecognizableView.setAccessibilityLabel(self.gestureRecognizerAccessibilityLabel)
+            self.gestureRecognizableView.setAccessibilityLabel(self.customGestureRecognizerAccessibilityLabel)
             try? self.fileManager.removeItem(atPath: self.temporaryScreenshotPath)
             self.enableAllElements()
         }
@@ -301,7 +302,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = #imageLiteral(resourceName: "click_image.png")
         }
-        gestureRecognizableView.setAccessibilityLabel(gestureRecognizerAccessibilityLabel)
+        gestureRecognizableView.setAccessibilityLabel(defaultGestureRecognizerAccessibilityLabel)
         timer.invalidate()
     }
     
