@@ -9,6 +9,23 @@ class PlistOperations {
         dictionaryKey = key
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
         plistPath = documentDirectory.appending(path)
+        
+        if let integratedSettingsPath = Bundle.main.path(forResource: "CalabashLauncherSettings", ofType: "plist"), !fileManager.fileExists(atPath: plistPath){
+            self.copyFile(atPath: integratedSettingsPath, toPath: documentDirectory.appending(path))
+        }
+    }
+    
+    func copyFile(atPath: String, toPath: String) {
+        do {
+            try fileManager.copyItem(atPath: atPath, toPath: toPath)
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+    }
+    
+    func removePlist() {
+        try? fileManager.removeItem(atPath: plistPath)
     }
     
     func create(from dictionary: [String: Any]) {
