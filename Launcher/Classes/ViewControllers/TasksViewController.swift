@@ -22,7 +22,7 @@ class TasksViewController: NSViewController {
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
-    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
+    let plistOperations = PlistOperations()
     var textViewPrinter: TextViewPrinter!
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -117,7 +117,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+        guard let url = URL(string: plistOperations.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
         CommandsController().downloadApp(from: url, textView: textView)
     }
     
@@ -343,7 +343,7 @@ class TasksViewController: NSViewController {
     
     func populateBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfo = plistOperations.readValues()
+        linkInfo = plistOperations.readValues(forKey: Constants.Keys.linkInfo)
         buildPicker.addItems(withTitles: linkInfo)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 

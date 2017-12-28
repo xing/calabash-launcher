@@ -2,7 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
+    let plistOperations = PlistOperations()
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -40,8 +40,8 @@ class SettingsViewController: NSViewController {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        let linkArray = plistOperations.readKeys()
-        let linkDescriptionArray = plistOperations.readValues()
+        let linkArray = plistOperations.readKeys(forKey: Constants.Keys.linkInfo)
+        let linkDescriptionArray = plistOperations.readValues(forKey: Constants.Keys.linkInfo)
 
         for (index, element) in linkArray.enumerated() {
             elements[index].0.stringValue = String(describing: element)
