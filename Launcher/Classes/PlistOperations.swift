@@ -19,7 +19,7 @@ class PlistOperations {
         do {
             try fileManager.copyItem(atPath: atPath, toPath: toPath)
         }
-        catch let error as NSError {
+        catch let error {
             print("Ooops! Something went wrong: \(error)")
         }
     }
