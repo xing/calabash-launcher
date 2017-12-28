@@ -60,6 +60,11 @@ class SettingsViewController: NSViewController {
         self.dismiss(true)
     }
     
+    @IBAction func clickResetToDefaults(_ sender: Any) {
+        plistOperations.removePlist()
+        AppHandler().restartApplication()
+    }
+    
     @IBAction func clickSaveButton(_ sender: Any) {
         var linkData: [String: Any] = [Constants.Keys.linkInfo : []]
         linkData[Constants.Keys.linkInfo] = [:]
