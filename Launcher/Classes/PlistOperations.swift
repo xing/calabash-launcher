@@ -11,7 +11,7 @@ class PlistOperations {
         plistPath = documentDirectory.appending(path)
         
         if let integratedSettingsPath = Bundle.main.path(forResource: "CalabashLauncherSettings", ofType: "plist"), !fileManager.fileExists(atPath: plistPath){
-            self.copyFile(atPath: integratedSettingsPath, toPath: documentDirectory.appending(path))
+            self.copyFile(atPath: integratedSettingsPath, toPath: plistPath)
         }
     }
     
