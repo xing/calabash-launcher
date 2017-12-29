@@ -22,6 +22,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var proceedButton: NSButton!
     @IBOutlet weak var additionalRunParameters: NSTextField!
+    @IBOutlet weak var appPathField: NSTextField!
+    @IBOutlet weak var commandField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,14 @@ class SettingsViewController: NSViewController {
         
         if let additionalParameters = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
             additionalRunParameters.stringValue = additionalParameters
+        }
+        
+        if let pathToBuild = plistOperations.readValues(forKey: Constants.Keys.pathToBuildInfo).first {
+            appPathField.stringValue = pathToBuild
+        }
+        
+        if let command = plistOperations.readValues(forKey: Constants.Keys.commandFieldInfo).first {
+            commandField.stringValue = command
         }
         
         let linkArray = plistOperations.readKeys(forKey: Constants.Keys.linkInfo)
@@ -90,12 +100,16 @@ class SettingsViewController: NSViewController {
         
         let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo, on: Constants.Keys.cucumberProfileField)
         let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo, on: Constants.Keys.additionalDataField)
+        let pathToBuildFieldData = fillDictionary(with: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
+        let commandsFieldData = fillDictionary(with: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
         
         var resultingDictionary: [String: Any] = [:]
         
         resultingDictionary.append(dictionary: linkData)
         resultingDictionary.append(dictionary: cucumberProfileData)
         resultingDictionary.append(dictionary: additionalFieldData)
+        resultingDictionary.append(dictionary: pathToBuildFieldData)
+        resultingDictionary.append(dictionary: commandsFieldData)
         
         plistOperations.create(from: resultingDictionary)
         

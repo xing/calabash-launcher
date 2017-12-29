@@ -18,6 +18,8 @@ enum Constants {
         static let cucumberProfileField = "cucumberProfileField"
         static let additionalFieldInfo = "additionalInfo"
         static let additionalDataField = "additionalDataField"
+        static let pathToBuildInfo = "pathToBuildInfo"
+        static let commandFieldInfo = "commandFieldInfo"
     }
     
     enum FilePaths {
