@@ -14,6 +14,10 @@ enum Constants {
 
     enum Keys {
         static let linkInfo = "linksInfo"
+        static let cucumberProfileInfo = "cucumberProfileInfo"
+        static let cucumberProfileField = "cucumberProfileField"
+        static let additionalFieldInfo = "additionalInfo"
+        static let additionalDataField = "additionalDataField"
     }
     
     enum FilePaths {

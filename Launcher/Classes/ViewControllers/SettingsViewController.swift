@@ -70,24 +70,34 @@ class SettingsViewController: NSViewController {
         linkData[Constants.Keys.linkInfo] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
+        var existingLinkItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
 
             if !warningState {
-                existingItems.append(singleLinkData)
+                existingLinkItems.append(singleLinkData)
             } else {
                 hasWarnings = true
             }
         }
         
         if hasWarnings {
-            existingItems = [[:]]
+            existingLinkItems = [[:]]
         } else {
-            linkData[Constants.Keys.linkInfo] = existingItems
-            plistOperations.create(from: linkData)
+            linkData[Constants.Keys.linkInfo] = existingLinkItems
         }
+        
+        let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo, on: Constants.Keys.cucumberProfileField)
+        let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo, on: Constants.Keys.additionalDataField)
+        
+        var resultingDictionary: [String: Any] = [:]
+        
+        resultingDictionary.append(dictionary: linkData)
+        resultingDictionary.append(dictionary: cucumberProfileData)
+        resultingDictionary.append(dictionary: additionalFieldData)
+        
+        plistOperations.create(from: resultingDictionary)
         
         applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
         applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
@@ -143,6 +153,16 @@ class SettingsViewController: NSViewController {
             self.dismiss(true)
         }
     }
-
+    
+    func fillDictionary(with value: String, for key: String, on fieldName: String) -> [String : Any] {
+        var data: [String: Any] = [key : []]
+        data[key] = [:]
+        
+        var existingItems =  data[key] as? [[String: String]] ?? []
+        
+        existingItems.append([fieldName : value])
+        data[key] = existingItems
+        return data
+    }
 }
 

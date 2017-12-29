@@ -54,3 +54,12 @@ extension Bundle {
         return path(forResource: name, ofType: ext.rawValue)
     }
 }
+
+extension Dictionary where Key == String {
+    mutating func append(dictionary: Dictionary) {
+        let resultingDictionary = dictionary
+        resultingDictionary.map {
+            self[$0.0] = $0.1
+        }
+    }
+}
