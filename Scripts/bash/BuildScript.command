@@ -13,10 +13,12 @@ export ${1}
 export ${2}
 # Env variables (can be empty)
 ${6}
-# Device IP (can be empty)
+# Command to execute before run (user defined)
 ${7}
-# Device bundle identifier
+# Device IP (can be empty)
 ${8}
+# Device bundle identifier
+${9}
 # Path
 cd ${3}
 

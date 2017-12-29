@@ -400,6 +400,9 @@ class TasksViewController: NSViewController {
             arguments.append("")
         }
         
+        let commandToExecute = plistOperations.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
+        arguments.append(commandToExecute)
+        
         if let deviceIP = applicationStateHandler.deviceIP,
             let bundleID = applicationStateHandler.bundleID,
             physicalDeviceRadioButton.state == .on,
