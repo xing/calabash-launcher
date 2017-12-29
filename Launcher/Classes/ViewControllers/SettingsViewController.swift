@@ -98,8 +98,8 @@ class SettingsViewController: NSViewController {
             linkData[Constants.Keys.linkInfo] = existingLinkItems
         }
         
-        let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo, on: Constants.Keys.cucumberProfileField)
-        let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo, on: Constants.Keys.additionalDataField)
+        let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo)
+        let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo)
         let pathToBuildFieldData = fillDictionary(with: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
         let commandsFieldData = fillDictionary(with: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
         
@@ -165,13 +165,13 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    func fillDictionary(with value: String, for key: String, on fieldName: String) -> [String : Any] {
+    func fillDictionary(with value: String, for key: String) -> [String : Any] {
         var data: [String: Any] = [key : []]
         data[key] = [:]
         
         var existingItems =  data[key] as? [[String: String]] ?? []
         
-        existingItems.append([fieldName : value])
+        existingItems.append([key : value])
         data[key] = existingItems
         return data
     }
