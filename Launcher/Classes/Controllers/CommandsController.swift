@@ -3,7 +3,7 @@ import CommandsCore
 
 class CommandsController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations()
+    let plistHandler = PlistHandler()
     
     func downloadApp(from url: URL, textView: NSTextView) {
         let textViewPrinter = TextViewPrinter(textView: textView)
@@ -18,7 +18,7 @@ class CommandsController {
         guard let path = applicationStateHandler.filePath else { return }
         let filePath = path.absoluteString.replacingOccurrences(of: "file://", with: "")
     
-        let pathToMoveBuild = plistOperations.readValues(forKey: Constants.Keys.pathToBuildInfo).first ?? ""
+        let pathToMoveBuild = plistHandler.readValues(forKey: Constants.Keys.pathToBuildInfo).first ?? ""
         
         DispatchQueue.global(qos: .background).async {
             CommandExecutor(launchPath: launchPath, arguments: [url.absoluteString, filePath, pathToMoveBuild], outputStream: outputStream).execute()

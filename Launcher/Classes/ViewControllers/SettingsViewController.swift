@@ -2,7 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations()
+    let plistHandler = PlistHandler()
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -38,24 +38,24 @@ class SettingsViewController: NSViewController {
             (linkField4, linkDescriptionField4)
         ]
         
-        if let cucumberProfile = plistOperations.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
+        if let cucumberProfile = plistHandler.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        if let additionalParameters = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
+        if let additionalParameters = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
             additionalRunParameters.stringValue = additionalParameters
         }
         
-        if let pathToBuild = plistOperations.readValues(forKey: Constants.Keys.pathToBuildInfo).first {
+        if let pathToBuild = plistHandler.readValues(forKey: Constants.Keys.pathToBuildInfo).first {
             appPathField.stringValue = pathToBuild
         }
         
-        if let command = plistOperations.readValues(forKey: Constants.Keys.commandFieldInfo).first {
+        if let command = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first {
             commandField.stringValue = command
         }
         
-        let linkArray = plistOperations.readKeys(forKey: Constants.Keys.linkInfo)
-        let linkDescriptionArray = plistOperations.readValues(forKey: Constants.Keys.linkInfo)
+        let linkArray = plistHandler.readKeys(forKey: Constants.Keys.linkInfo)
+        let linkDescriptionArray = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
 
         for (index, element) in linkArray.enumerated() {
             elements[index].0.stringValue = String(describing: element)
@@ -71,7 +71,7 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func clickResetToDefaults(_ sender: Any) {
-        plistOperations.removePlist()
+        plistHandler.removePlist()
         AppHandler().restartApplication()
     }
     
@@ -111,7 +111,7 @@ class SettingsViewController: NSViewController {
         resultingDictionary.append(dictionary: pathToBuildFieldData)
         resultingDictionary.append(dictionary: commandsFieldData)
         
-        plistOperations.create(from: resultingDictionary)
+        plistHandler.create(from: resultingDictionary)
         
         // Reload build picker to get new elements
         if

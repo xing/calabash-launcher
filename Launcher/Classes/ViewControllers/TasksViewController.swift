@@ -22,7 +22,7 @@ class TasksViewController: NSViewController {
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
-    let plistOperations = PlistOperations()
+    let plistHandler = PlistHandler()
     var textViewPrinter: TextViewPrinter!
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -117,7 +117,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        guard let url = URL(string: plistOperations.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
+        guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
         CommandsController().downloadApp(from: url, textView: textView)
     }
     
@@ -343,7 +343,7 @@ class TasksViewController: NSViewController {
     
     func populateBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfo = plistOperations.readValues(forKey: Constants.Keys.linkInfo)
+        linkInfo = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
         buildPicker.addItems(withTitles: linkInfo)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 
@@ -383,7 +383,7 @@ class TasksViewController: NSViewController {
         
         arguments.append(calabashFolderPath)
         
-        if let cucumberProfile = plistOperations.readValues(forKey: Constants.Keys.cucumberProfileInfo).first, !cucumberProfile.isEmpty {
+        if let cucumberProfile = plistHandler.readValues(forKey: Constants.Keys.cucumberProfileInfo).first, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
         }
         
@@ -394,13 +394,13 @@ class TasksViewController: NSViewController {
             arguments.append("")
         }
         
-        if let additionalRunParameter = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first, !additionalRunParameter.isEmpty {
+        if let additionalRunParameter = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first, !additionalRunParameter.isEmpty {
             arguments.append("export \(additionalRunParameter)")
         } else {
             arguments.append("")
         }
         
-        let commandToExecute = plistOperations.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
+        let commandToExecute = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
         arguments.append(commandToExecute)
         
         if let deviceIP = applicationStateHandler.deviceIP,

@@ -13,7 +13,7 @@ export ${1}
 export ${2}
 # Env variables (can be empty)
 ${6}
-# Command to execute before run (user defined)
+# Command to execute before run. User defined (can be empty)
 ${7}
 # Device IP (can be empty)
 ${8}
