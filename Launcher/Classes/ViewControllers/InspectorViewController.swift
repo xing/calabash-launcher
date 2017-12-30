@@ -19,6 +19,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     private let defaultGestureRecognizerAccessibilityLabel = "defaultImage"
     private let customGestureRecognizerAccessibilityLabel = "customImage"
     private let elementInspectorPath = "/tmp/get_all_elements_inspector.txt"
+    private let cloneInfoPath = "/tmp/clone_info.txt"
     
     @IBOutlet var startDeviceButton: NSButton!
     @IBOutlet var getElementsButton: NSButton!
@@ -141,7 +142,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             }
 
             waitingForFile(withName: filePath, numberOfRetries: numberOfRetries) {
-
+                
                 guard let streamReader = StreamReader(path: filePath) else { return }
                 defer { streamReader.close() }
                 while let urlLine = streamReader.nextLine() {
@@ -408,9 +409,23 @@ extension InspectorViewController: NSOutlineViewDelegate {
         let selectedIndex = outlineView.selectedRow
         
         guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
-        let filePath4 = "/tmp/localized.txt"
         localizedTextField.stringValue = ""
-        try? fileManager.removeItem(atPath: filePath4)
         elementTextField.stringValue = feedItem
+        
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.checkDuplicates ?? "", arguments: [feedItem]).execute()
+        waitingForFile(withName: self.cloneInfoPath, numberOfRetries: 30, enableSpinner: false) {
+            guard let streamReader = StreamReader(path: self.cloneInfoPath) else { return }
+            defer {
+                streamReader.close()
+                try? self.fileManager.removeItem(atPath: self.cloneInfoPath)
+            }
+            guard let urlLine = streamReader.nextLine(), urlLine == "false" else { return }
+            SharedElement.shared.stringValue = feedItem
+            DispatchQueue.main.async {
+                self.cloneButton.isHidden = false
+                self.cloneLabel.stringValue = "The Element is not unique"
+                self.cloneLabel.textColor = NSColor.red
+            }
+        }
     }
 }
