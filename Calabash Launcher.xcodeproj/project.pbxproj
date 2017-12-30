@@ -193,7 +193,7 @@
 				5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */,
 				5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */,
 				5D948C931F8F556D0001BC50 /* Language.swift */,
-				ED51B7171F8FC2F500759547 /* PlistOperations.swift */,
+				ED51B7171F8FC2F500759547 /* PlistHandler.swift */,
 				D7E21B491F969FDD0044169A /* Localization.swift */,
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 				EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */,
