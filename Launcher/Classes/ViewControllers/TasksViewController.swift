@@ -19,6 +19,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var downloadButton: NSButton!
+    @IBOutlet weak var switchLanguageButton: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
@@ -314,6 +315,7 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = .on
             getDeviceButton.isEnabled = true
             languagePopUpButton.isEnabled = false
+            switchLanguageButton.isEnabled = false
             if willGetDevice {
                 spinner.startAnimation(self)
                 progressBar.startAnimation(self)
@@ -331,6 +333,7 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = .off
             getDeviceButton.isEnabled = false
             languagePopUpButton.isEnabled = true
+            switchLanguageButton.isEnabled = true
             if willGetDevice {
                 spinner.startAnimation(self)
                 progressBar.startAnimation(self)
