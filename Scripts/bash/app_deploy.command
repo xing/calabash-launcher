@@ -12,6 +12,10 @@ if (( $(grep -c . <<<"$APP_LOCATION") > 1 )); then
     echo "Multiple application bundle has found. Please keep only one that you want to install or define the path to your app in the settings"
 elif (( $(grep -c . <<<"$APP_LOCATION") == 1 )); then
         if [[ ${3} == "simulator" ]];then
+            if ! xcrun simctl list devices | grep ${1} | grep Booted > /dev/null ; then
+                xcrun simctl boot ${1}
+                open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
+            fi
             xcrun simctl install ${1} $APP_LOCATION
         else
             if [[ $(which brew) != *"/usr/local/bin/brew"* ]];then
