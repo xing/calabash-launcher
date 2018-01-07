@@ -21,6 +21,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var downloadButton: NSButton!
     @IBOutlet weak var switchLanguageButton: NSButton!
     @IBOutlet weak var downloadCheckbox: NSButton!
+    @IBOutlet weak var installButton: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
@@ -125,7 +126,41 @@ class TasksViewController: NSViewController {
     @IBAction func clickDownloadButton(_ sender: Any) {
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
-        CommandsController().downloadApp(from: url, textView: textView)
+        
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.spinner.startAnimation(self)
+                self.downloadButton.isEnabled = false
+            }
+            CommandsController().downloadApp(from: url, textView: self.textView)
+            DispatchQueue.main.async {
+                self.spinner.stopAnimation(self)
+                self.downloadButton.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func clickInstallButton(_ sender: Any) {
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.spinner.startAnimation(self)
+                self.installButton.isEnabled = false
+            }
+            
+            var device = ""
+            if self.applicationStateHandler.physicalRadioButtonState {
+                device = "physical"
+            } else {
+                device = "simulator"
+            }
+                
+            CommandsController().installApp(textView: self.textView, deviceType: device)
+                
+            DispatchQueue.main.async {
+                self.spinner.stopAnimation(self)
+                self.installButton.isEnabled = true
+            }
+        }
     }
     
     @IBAction func buildPicker(_ sender: Any) {

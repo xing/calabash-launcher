@@ -687,10 +687,13 @@
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGJ-yW-K6W">
                                             <rect key="frame" x="125" y="1" width="162" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dTl-aJ-fjZ">
+                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dTl-aJ-fjZ">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="clickInstallButton:" target="XfG-lQ-9wD" id="a2K-mK-aMe"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -707,6 +710,7 @@
                         <outlet property="downloadButton" destination="LWN-Ez-xJo" id="8Tb-AG-PcA"/>
                         <outlet property="downloadCheckbox" destination="HAn-mF-z4K" id="GF1-Gy-21D"/>
                         <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
+                        <outlet property="installButton" destination="jGJ-yW-K6W" id="YCm-0M-3qf"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
                         <outlet property="phoneComboBox" destination="2d7-eQ-bCS" id="aSh-yK-6gN"/>
                         <outlet property="physicalDeviceRadioButton" destination="V9k-ER-WQ4" id="Hfb-yT-T5x"/>
