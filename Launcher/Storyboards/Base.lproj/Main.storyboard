@@ -483,17 +483,6 @@
                                                 <action selector="phys_radio:" target="XfG-lQ-9wD" id="pW2-7w-6l6"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-Cx-9Gj">
-                                            <rect key="frame" x="244" y="90" width="155" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Configure Device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZC-Bd-bFC">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <segue destination="ayg-Ye-fvl" kind="popover" popoverAnchorView="jd1-Cx-9Gj" popoverBehavior="t" preferredEdge="maxY" id="3qv-Ox-5T9"/>
-                                            </connections>
-                                        </button>
                                         <popUpButton horizontalHuggingPriority="1000" verticalHuggingPriority="1000" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="21" translatesAutoresizingMaskIntoConstraints="NO" id="2d7-eQ-bCS">
                                             <rect key="frame" x="4" y="66" width="551" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -540,6 +529,28 @@
                                             </view>
                                             <font key="titleFont" metaFont="systemSemibold" size="13"/>
                                         </box>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmk-Af-lsy">
+                                            <rect key="frame" x="229" y="90" width="159" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Erase Simulator" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YzV-Vl-wda">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clickEraseSimulatorButton:" target="XfG-lQ-9wD" id="pqs-q8-GVA"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-Cx-9Gj">
+                                            <rect key="frame" x="391" y="91" width="160" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Configure Device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZC-Bd-bFC">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <segue destination="ayg-Ye-fvl" kind="popover" popoverAnchorView="jd1-Cx-9Gj" popoverBehavior="t" preferredEdge="maxY" id="3qv-Ox-5T9"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
@@ -709,6 +720,7 @@
                         <outlet property="debugCheckbox" destination="Wu4-dd-Hr4" id="PTc-ad-wLV"/>
                         <outlet property="downloadButton" destination="LWN-Ez-xJo" id="8Tb-AG-PcA"/>
                         <outlet property="downloadCheckbox" destination="HAn-mF-z4K" id="GF1-Gy-21D"/>
+                        <outlet property="eraseSimulatorButton" destination="xmk-Af-lsy" id="DSw-42-84y"/>
                         <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
                         <outlet property="installButton" destination="jGJ-yW-K6W" id="YCm-0M-3qf"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
