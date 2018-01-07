@@ -20,6 +20,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var downloadButton: NSButton!
     @IBOutlet weak var switchLanguageButton: NSButton!
+    @IBOutlet weak var downloadCheckbox: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
@@ -103,6 +104,10 @@ class TasksViewController: NSViewController {
         if let debugState = applicationStateHandler.debugState {
             debugCheckbox.state = NSControl.StateValue(rawValue: debugState)
         }
+        
+        if let downloadCheckboxState = applicationStateHandler.downloadCheckbox {
+            downloadCheckbox.stringValue = downloadCheckboxState
+        }
     }
     
     private func setupTagSelection() {
@@ -118,13 +123,17 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
+        applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
         CommandsController().downloadApp(from: url, textView: textView)
     }
     
     @IBAction func buildPicker(_ sender: Any) {
         applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
-        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        
+        let elementsState = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        downloadButton.isEnabled = elementsState
+        downloadCheckbox.isEnabled = elementsState
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
@@ -179,6 +188,11 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func startTask(_ sender:AnyObject) {
+        applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
+        if downloadCheckbox.state == .on, downloadCheckbox.isEnabled {
+            guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+            CommandsController().downloadApp(from: url, textView: textView)
+        }
         runScript()
     }
     
@@ -356,7 +370,9 @@ class TasksViewController: NSViewController {
             buildPicker.selectItem(withTitle: Constants.Strings.useLocalBuild)
         }
         
-        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        let elementsState = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        downloadButton.isEnabled = elementsState
+        downloadCheckbox.isEnabled = elementsState
     }
     
     func quitIrbSession() {
