@@ -41,6 +41,7 @@
 		ED7045051DD61B9000272059 /* get_screen.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045041DD61B9000272059 /* get_screen.command */; };
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
 		ED7278961FA78E050022505E /* app_download.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7278951FA78E050022505E /* app_download.command */; };
+		ED7764841FF78033007E85AE /* check_for_duplicates.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7764831FF78033007E85AE /* check_for_duplicates.command */; };
 		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
@@ -112,6 +113,7 @@
 		ED7045041DD61B9000272059 /* get_screen.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_screen.command; sourceTree = "<group>"; };
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
 		ED7278951FA78E050022505E /* app_download.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_download.command; sourceTree = "<group>"; };
+		ED7764831FF78033007E85AE /* check_for_duplicates.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_for_duplicates.command; sourceTree = "<group>"; };
 		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				EDBC4AE020024CD3000E4D63 /* app_deploy.command */,
+				ED7764831FF78033007E85AE /* check_for_duplicates.command */,
 				ED9AC7531FB5E12100886E06 /* get_physical_device.command */,
 				D7E995B71FAFB1D600318741 /* check_sim_type.command */,
 				ED7278951FA78E050022505E /* app_download.command */,
@@ -376,6 +379,7 @@
 				ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */,
 				EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */,
 				EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */,
+				ED7764841FF78033007E85AE /* check_for_duplicates.command in Resources */,
 				ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */,
 				D7E995B81FAFB1D600318741 /* check_sim_type.command in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,
