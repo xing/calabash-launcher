@@ -19,6 +19,9 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var downloadButton: NSButton!
+    @IBOutlet weak var switchLanguageButton: NSButton!
+    @IBOutlet weak var downloadCheckbox: NSButton!
+    @IBOutlet weak var installButton: NSButton!
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
@@ -102,6 +105,10 @@ class TasksViewController: NSViewController {
         if let debugState = applicationStateHandler.debugState {
             debugCheckbox.state = NSControl.StateValue(rawValue: debugState)
         }
+        
+        if let downloadCheckboxState = applicationStateHandler.downloadCheckbox {
+            downloadCheckbox.stringValue = downloadCheckboxState
+        }
     }
     
     private func setupTagSelection() {
@@ -118,12 +125,51 @@ class TasksViewController: NSViewController {
     
     @IBAction func clickDownloadButton(_ sender: Any) {
         guard let url = URL(string: plistOperations.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
-        CommandsController().downloadApp(from: url, textView: textView)
+
+        applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
+        
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.spinner.startAnimation(self)
+                self.downloadButton.isEnabled = false
+            }
+            CommandsController().downloadApp(from: url, textView: self.textView)
+            DispatchQueue.main.async {
+                self.spinner.stopAnimation(self)
+                self.downloadButton.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func clickInstallButton(_ sender: Any) {
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.spinner.startAnimation(self)
+                self.installButton.isEnabled = false
+            }
+            
+            let device: String
+            if self.applicationStateHandler.physicalRadioButtonState {
+                device = "physical"
+            } else {
+                device = "simulator"
+            }
+                
+            CommandsController().installApp(textView: self.textView, deviceType: device)
+                
+            DispatchQueue.main.async {
+                self.spinner.stopAnimation(self)
+                self.installButton.isEnabled = true
+            }
+        }
     }
     
     @IBAction func buildPicker(_ sender: Any) {
         applicationStateHandler.buildName = buildPicker.titleOfSelectedItem
-        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        
+        let elementsState = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        downloadButton.isEnabled = elementsState
+        downloadCheckbox.isEnabled = elementsState
     }
     
     @IBAction func clearBufferButton(_ sender: Any) {
@@ -178,6 +224,11 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func startTask(_ sender:AnyObject) {
+        applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
+        if downloadCheckbox.state == .on, downloadCheckbox.isEnabled {
+            guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+            CommandsController().downloadApp(from: url, textView: textView)
+        }
         runScript()
     }
     
@@ -314,6 +365,7 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = .on
             getDeviceButton.isEnabled = true
             languagePopUpButton.isEnabled = false
+            switchLanguageButton.isEnabled = false
             if willGetDevice {
                 spinner.startAnimation(self)
                 progressBar.startAnimation(self)
@@ -331,6 +383,7 @@ class TasksViewController: NSViewController {
             physicalDeviceRadioButton.state = .off
             getDeviceButton.isEnabled = false
             languagePopUpButton.isEnabled = true
+            switchLanguageButton.isEnabled = true
             if willGetDevice {
                 spinner.startAnimation(self)
                 progressBar.startAnimation(self)
@@ -353,7 +406,9 @@ class TasksViewController: NSViewController {
             buildPicker.selectItem(withTitle: Constants.Strings.useLocalBuild)
         }
         
-        downloadButton.isEnabled = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        let elementsState = buildPicker.titleOfSelectedItem != Constants.Strings.useLocalBuild
+        downloadButton.isEnabled = elementsState
+        downloadCheckbox.isEnabled = elementsState
     }
     
     func quitIrbSession() {

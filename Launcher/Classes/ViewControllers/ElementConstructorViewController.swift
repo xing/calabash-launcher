@@ -9,6 +9,7 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     var parentElementIndex: Int!
     let fileManager = FileManager.default
     var retryCount: Int = 0
+    private let uniqueElementsPath = "/tmp/uniq_elements.txt"
     
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var pushButton: NSButton!
@@ -54,7 +55,9 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     }
     
     func waitingForFile(fileName: String, numberOfRetries: Int, completion: @escaping () -> Void) {
-        self.spinner.startAnimation(self)
+        DispatchQueue.main.async {
+            self.spinner.startAnimation(self)
+        }
         guard FileManager.default.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName)
             else {
                 if numberOfRetries == retryCount {
@@ -80,22 +83,29 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     func getElements() {
         parentCollection = []
         var elements = [String]()
-        
         var arguments = SharedElement.shared.coordinates
         arguments.append(SharedElement.shared.stringValue ?? "")
         arguments.append(String(childCheckbox.state.rawValue))
         arguments.append(String(siblingCheckbox.state.rawValue))
         arguments.append(String(indexCheckbox.state.rawValue))
-        
-        let outputStream = CommandTextOutputStream()
-            outputStream.textHandler = {text in
-            elements.append(text)
-        }
 
-        CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments,  outputStream: outputStream).execute()       
-        self.parentCollection.append(contentsOf: elements)
-        self.outlineViewConstructor.reloadData()
-        self.spinner.stopAnimation(self)
+        try? self.fileManager.removeItem(atPath: uniqueElementsPath)
+        
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments).execute()
+        
+        waitingForFile(fileName: uniqueElementsPath, numberOfRetries: 600) {
+            guard let streamReader = StreamReader(path: self.uniqueElementsPath) else { return }
+            defer { streamReader.close() }
+            while let urlLine = streamReader.nextLine(), !urlLine.isEmpty {
+                elements.append(urlLine)
+            }
+
+            DispatchQueue.main.async {
+                self.parentCollection.append(contentsOf: elements)
+                self.outlineViewConstructor.reloadData()
+                self.spinner.stopAnimation(self)
+            }
+        }
     }
 }
 
@@ -122,7 +132,7 @@ extension ElementConstructorViewController: NSOutlineViewDelegate {
             textField.textColor = .black
             textField.stringValue = item as? String ?? ""
         }
-        
+
         return cell
     }
 }
