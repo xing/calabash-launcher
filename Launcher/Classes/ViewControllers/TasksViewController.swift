@@ -23,7 +23,7 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var downloadCheckbox: NSButton!
     @IBOutlet weak var installButton: NSButton!
     @IBOutlet weak var eraseSimulatorButton: NSButton!
-    
+
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
@@ -147,8 +147,8 @@ class TasksViewController: NSViewController {
                 self.spinner.startAnimation(self)
                 self.installButton.isEnabled = false
             }
-            
-            var device = ""
+
+            let device: String
             if self.applicationStateHandler.physicalRadioButtonState {
                 device = "physical"
             } else {

@@ -48,8 +48,8 @@
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
 		ED9AC7541FB5E12200886E06 /* get_physical_device.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9AC7531FB5E12100886E06 /* get_physical_device.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
-		EDBC4AE120024CD3000E4D63 /* app_deploy.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE020024CD3000E4D63 /* app_deploy.command */; };
 		EDBC4AE32002C8A6000E4D63 /* erase_simulator.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */; };
+		EDBC4AE120024CD3000E4D63 /* app_install.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE020024CD3000E4D63 /* app_install.command */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
 		EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */; };
@@ -121,8 +121,8 @@
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
 		ED9AC7531FB5E12100886E06 /* get_physical_device.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_physical_device.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
-		EDBC4AE020024CD3000E4D63 /* app_deploy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_deploy.command; sourceTree = "<group>"; };
 		EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erase_simulator.command; sourceTree = "<group>"; };
+		EDBC4AE020024CD3000E4D63 /* app_install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_install.command; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
 		EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPrinter.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */,
-				EDBC4AE020024CD3000E4D63 /* app_deploy.command */,
+				EDBC4AE020024CD3000E4D63 /* app_install.command */,
 				ED7764831FF78033007E85AE /* check_for_duplicates.command */,
 				ED9AC7531FB5E12100886E06 /* get_physical_device.command */,
 				D7E995B71FAFB1D600318741 /* check_sim_type.command */,
@@ -378,7 +378,7 @@
 				EDFF031A1DD4A245000CA17C /* start_device.command in Resources */,
 				EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */,
 				EDBC4AE32002C8A6000E4D63 /* erase_simulator.command in Resources */,
-				EDBC4AE120024CD3000E4D63 /* app_deploy.command in Resources */,
+				EDBC4AE120024CD3000E4D63 /* app_install.command in Resources */,
 				ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */,
 				ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */,
 				EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */,

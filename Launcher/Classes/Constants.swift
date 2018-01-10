@@ -25,8 +25,8 @@ enum Constants {
             static let flash = main.path(forResource: "flash", ofType: .bash)
             static let appDownload = main.path(forResource: "app_download", ofType: .bash)
             static let checkSimulatorType = main.path(forResource: "check_sim_type", ofType: .bash)
-            static let appInstall = main.path(forResource: "app_deploy", ofType: .bash)
             static let eraseSimulator = main.path(forResource: "erase_simulator", ofType: .bash)
+            static let appInstall = main.path(forResource: "app_install", ofType: .bash)
             static let checkDuplicates = main.path(forResource: "check_for_duplicates", ofType: .bash)
             
             // Interactive Ruby Shell
