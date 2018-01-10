@@ -21,6 +21,7 @@ class CommandsController {
         
         DispatchQueue.global(qos: .background).async {
             CommandExecutor(launchPath: launchPath, arguments: [url.absoluteString, filePath, pathToMoveBuild], outputStream: outputStream).execute()
+        }
     }
     
     func installApp(textView: NSTextView, deviceType: String) {
@@ -61,3 +62,4 @@ class CommandsController {
         return result
     }
 }
+

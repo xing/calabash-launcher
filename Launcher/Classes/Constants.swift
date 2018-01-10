@@ -50,6 +50,9 @@ enum Constants {
         enum Ruby {
             static let helpers = main.path(forResource: "helpers", ofType: .ruby)
         }
+        enum InternalResources {
+            static let defaultPlist = "/CalabashLauncherSettings.plist"
+        }
     }
     
     enum DeviceType {

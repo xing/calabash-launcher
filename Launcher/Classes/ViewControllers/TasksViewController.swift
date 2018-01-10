@@ -124,7 +124,7 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
-        guard let url = URL(string: plistOperations.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
+        guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
 
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         
@@ -226,7 +226,7 @@ class TasksViewController: NSViewController {
     @IBAction func startTask(_ sender:AnyObject) {
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         if downloadCheckbox.state == .on, downloadCheckbox.isEnabled {
-            guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+            guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
             CommandsController().downloadApp(from: url, textView: textView)
         }
         runScript()

@@ -4,7 +4,7 @@ class PlistHandler {
     let plistPath: String
     let fileManager = FileManager.default
     
-    public init(defaultPlistPath path: String = "/CalabashLauncherSettings.plist") {
+    public init(path: String = Constants.FilePaths.InternalResources.defaultPlist) {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
         plistPath = documentDirectory.appending(path)
         

@@ -99,24 +99,6 @@ class ApplicationStateHandler {
         }
     }
     
-    var cucumberProfile: String? {
-        get {
-            return defaults.string(forKey: .cucumberProfile)
-        }
-        set {
-            defaults.set(newValue, forKey: .cucumberProfile)
-        }
-    }
-    
-    var additionalRunParameters: String? {
-        get {
-            return defaults.string(forKey: .additionalRunParameters)
-        }
-        set {
-            defaults.set(newValue, forKey: .additionalRunParameters)
-        }
-    }
-    
     var deviceIP: String? {
         get {
             return defaults.string(forKey: .deviceIP)
