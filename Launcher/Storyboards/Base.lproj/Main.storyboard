@@ -596,15 +596,15 @@
                                 <rect key="frame" x="21" y="59" width="1224" height="453"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="HuI-bt-NDk">
-                                    <rect key="frame" x="1" y="1" width="1207" height="451"/>
+                                    <rect key="frame" x="1" y="1" width="1222" height="451"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" linkDetection="YES" dataDetection="YES" dashSubstitution="YES" textReplacement="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="QWs-YP-tY6">
-                                            <rect key="frame" x="0.0" y="0.0" width="1207" height="451"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1222" height="451"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.074509803920000006" green="0.84705882349999995" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="1207" height="451"/>
+                                            <size key="minSize" width="1222" height="451"/>
                                             <size key="maxSize" width="1373" height="10000000"/>
                                             <color key="insertionPointColor" red="0.074509803921568626" green="0.84705882352941175" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                         </textView>
@@ -616,7 +616,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RE2-jl-f8t">
-                                    <rect key="frame" x="1208" y="1" width="15" height="451"/>
+                                    <rect key="frame" x="1207" y="1" width="16" height="451"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -841,11 +841,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="prg-h9-vN6">
-                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xfg-QU-paq">
-                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
+                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -900,14 +900,14 @@
                                 <rect key="frame" x="9" y="42" width="420" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="69F-Ax-yx7">
-                                    <rect key="frame" x="1" y="1" width="403" height="568"/>
+                                    <rect key="frame" x="1" y="1" width="418" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="GVN-mL-6hQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="403" height="568"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="418" height="568"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="403" height="568"/>
+                                            <size key="minSize" width="418" height="568"/>
                                             <size key="maxSize" width="899" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -940,7 +940,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YKc-Xf-nPO">
-                                    <rect key="frame" x="404" y="1" width="15" height="568"/>
+                                    <rect key="frame" x="403" y="1" width="16" height="568"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1066,11 +1066,11 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="65t-gM-Mzo">
-                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="G8Q-yt-oSe">
-                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
+                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1152,22 +1152,11 @@
             <objects>
                 <viewController title="Calabash Launcher Setup" storyboardIdentifier="settingswindow" id="Nd7-tF-bGG" customClass="SettingsViewController" customModule="Calabash_Launcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0iB-dR-do5">
-                        <rect key="frame" x="0.0" y="0.0" width="878" height="376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="878" height="402"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPd-p7-nqK">
-                                <rect key="frame" x="556" y="17" width="136" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="It8-AQ-Odb">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clickCloseButton:" target="Nd7-tF-bGG" id="Tkb-Zm-wTR"/>
-                                </connections>
-                            </button>
-                            <box fixedFrame="YES" title="Path To Test Folder:" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-bc-WlC">
-                                <rect key="frame" x="17" y="288" width="216" height="68"/>
+                            <box fixedFrame="YES" title="Path to Test Folder:" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-bc-WlC">
+                                <rect key="frame" x="17" y="314" width="216" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="gTL-Et-lyp">
                                     <rect key="frame" x="2" y="2" width="212" height="48"/>
@@ -1188,8 +1177,59 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
+                            <box fixedFrame="YES" title="Copy Build to Folder:" translatesAutoresizingMaskIntoConstraints="NO" id="UDK-gG-14t">
+                                <rect key="frame" x="17" y="228" width="216" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="BfW-IE-NLI">
+                                    <rect key="frame" x="2" y="2" width="212" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBG-xL-yBm">
+                                            <rect key="frame" x="10" y="13" width="192" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Path to your app" drawsBackground="YES" id="RGf-n1-hvz">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQR-XO-9Zh">
+                                <rect key="frame" x="161" y="279" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="gYD-pc-UGl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="Fzd-fW-W4C" kind="popover" popoverAnchorView="iQR-XO-9Zh" popoverBehavior="t" preferredEdge="maxY" id="1GZ-I6-cHr"/>
+                                </connections>
+                            </button>
+                            <box fixedFrame="YES" title="Execute Comand Before Run:" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-wv-L0G">
+                                <rect key="frame" x="250" y="226" width="611" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="bJv-6l-lfe">
+                                    <rect key="frame" x="2" y="2" width="607" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOx-DS-yA1">
+                                            <rect key="frame" x="10" y="13" width="577" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Bash command to execute" drawsBackground="YES" id="FVu-vg-eCk">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
                             <box fixedFrame="YES" title="Cucumber Profile:" translatesAutoresizingMaskIntoConstraints="NO" id="Gx3-mw-5ti">
-                                <rect key="frame" x="250" y="288" width="214" height="68"/>
+                                <rect key="frame" x="250" y="314" width="214" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="ZeE-aT-l34">
                                     <rect key="frame" x="2" y="2" width="210" height="48"/>
@@ -1209,7 +1249,7 @@
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
                             <box fixedFrame="YES" title="Build Links:" translatesAutoresizingMaskIntoConstraints="NO" id="S1e-qO-Ln1">
-                                <rect key="frame" x="17" y="99" width="844" height="175"/>
+                                <rect key="frame" x="17" y="43" width="844" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="bKF-dg-WUP">
                                     <rect key="frame" x="2" y="2" width="840" height="155"/>
@@ -1292,7 +1332,7 @@
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAE-Bg-l8T">
-                                <rect key="frame" x="309" y="22" width="229" height="19"/>
+                                <rect key="frame" x="143" y="203" width="229" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="raM-32-MiM">
                                     <font key="font" metaFont="system" size="15"/>
@@ -1301,7 +1341,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myp-Yc-vn7">
-                                <rect key="frame" x="384" y="17" width="142" height="28"/>
+                                <rect key="frame" x="371" y="8" width="142" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Proceed Anyways" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3T7-3p-4mh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1311,8 +1351,8 @@
                                     <action selector="clickProceedButton:" target="Nd7-tF-bGG" id="3Un-Vc-jEG"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" title="Additional run parameters:" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-3I-is2">
-                                <rect key="frame" x="484" y="264" width="377" height="92"/>
+                            <box fixedFrame="YES" title="Additional Run Parameters:" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-3I-is2">
+                                <rect key="frame" x="484" y="290" width="377" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="88i-FJ-aQP">
                                     <rect key="frame" x="2" y="2" width="373" height="72"/>
@@ -1332,7 +1372,7 @@
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a36-1w-7HB">
-                                <rect key="frame" x="100" y="261" width="25" height="25"/>
+                                <rect key="frame" x="100" y="201" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="F36-WA-VvL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1343,7 +1383,7 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ijs-x9-qaK">
-                                <rect key="frame" x="665" y="340" width="25" height="25"/>
+                                <rect key="frame" x="665" y="366" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="iOY-md-EPa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1354,7 +1394,7 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVR-zl-UwU">
-                                <rect key="frame" x="375" y="340" width="25" height="25"/>
+                                <rect key="frame" x="375" y="366" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="TFc-ww-UB1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1365,7 +1405,7 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWK-19-2n7">
-                                <rect key="frame" x="153" y="340" width="25" height="25"/>
+                                <rect key="frame" x="153" y="366" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Hvc-yj-2uJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1375,19 +1415,8 @@
                                     <segue destination="GGf-yH-GhD" kind="popover" popoverAnchorView="VWK-19-2n7" popoverBehavior="t" preferredEdge="maxY" id="Nlg-4O-Ysu"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-G8-bFH">
-                                <rect key="frame" x="723" y="17" width="140" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1FZ-nQ-KMs">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clickSaveButton:" target="Nd7-tF-bGG" id="skh-Oa-hQJ"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ntO-Aa-m5s">
-                                <rect key="frame" x="14" y="16" width="175" height="32"/>
+                                <rect key="frame" x="14" y="6" width="175" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Reset to defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H2C-a5-ARZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1397,10 +1426,45 @@
                                     <action selector="clickResetToDefaults:" target="Nd7-tF-bGG" id="edr-6Z-vUp"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPd-p7-nqK">
+                                <rect key="frame" x="556" y="8" width="136" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="It8-AQ-Odb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickCloseButton:" target="Nd7-tF-bGG" id="Tkb-Zm-wTR"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtK-Od-PCP">
+                                <rect key="frame" x="445" y="279" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="zHA-1B-yVK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="9qB-bs-toR" kind="popover" popoverAnchorView="mtK-Od-PCP" popoverBehavior="t" preferredEdge="maxY" id="lma-kF-Orp"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-G8-bFH">
+                                <rect key="frame" x="723" y="8" width="140" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1FZ-nQ-KMs">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickSaveButton:" target="Nd7-tF-bGG" id="skh-Oa-hQJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="additionalRunParameters" destination="NPo-XZ-8dk" id="abz-dO-0HA"/>
+                        <outlet property="appPathField" destination="FBG-xL-yBm" id="XMH-g0-ooV"/>
+                        <outlet property="commandField" destination="zOx-DS-yA1" id="1AR-cb-RzT"/>
                         <outlet property="cucumberProfileField" destination="xpp-5y-QIk" id="E91-KK-EYk"/>
                         <outlet property="fileBrowser" destination="m0k-vh-d0z" id="Epd-3U-51G"/>
                         <outlet property="linkDescriptionField1" destination="Bqv-pU-EFd" id="ekd-bq-nHJ"/>
@@ -1418,7 +1482,7 @@
                 </viewController>
                 <customObject id="gvU-WH-Mhb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="-218"/>
+            <point key="canvasLocation" x="617" y="-205"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bqb-te-08G">
@@ -1690,7 +1754,7 @@ DQ
                 </viewController>
                 <customObject id="jcI-jG-ZZb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825" y="-549.5"/>
+            <point key="canvasLocation" x="829" y="-560"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="xfV-hX-Fk1">
@@ -1714,7 +1778,7 @@ DQ
                 </viewController>
                 <customObject id="KFl-mQ-huh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="340" y="-555"/>
+            <point key="canvasLocation" x="668" y="-694"/>
         </scene>
         <!--Language View Controller-->
         <scene sceneID="yAI-3E-L1W">
@@ -1852,6 +1916,54 @@ Please choose one of the supported devices from "Test Runner" menu and click "St
                 <customObject id="lOL-Jv-wmU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1259" y="146"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ho4-Ml-Rym">
+            <objects>
+                <viewController id="Fzd-fW-W4C" sceneMemberID="viewController">
+                    <view key="view" id="JPz-gQ-5tw">
+                        <rect key="frame" x="0.0" y="0.0" width="193" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4WA-AF-Tik">
+                                <rect key="frame" x="8" y="-6" width="179" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Identify directory to copy the build after downloading." id="UxM-nB-nnN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="uvC-aT-BDl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063.5" y="-658"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aqb-Dj-fNI">
+            <objects>
+                <viewController id="9qB-bs-toR" sceneMemberID="viewController">
+                    <view key="view" id="7r0-OP-hHw">
+                        <rect key="frame" x="0.0" y="0.0" width="206" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-aK-0sA">
+                                <rect key="frame" x="9" y="0.0" width="191" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Add bash command to execute before every test run." id="YtV-IS-3ps">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="ssM-FR-kGy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1328" y="-580.5"/>
         </scene>
     </scenes>
     <resources>

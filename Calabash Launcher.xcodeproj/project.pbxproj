@@ -33,7 +33,7 @@
 		ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14E61DB29FB700A1190E /* Main.storyboard */; };
 		ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14EF1DB2A10E00A1190E /* BuildScript.command */; };
 		ED4C14F21DB2DB1C00A1190E /* get_sim_list.command in Resources */ = {isa = PBXBuildFile; fileRef = ED4C14F11DB2DB1C00A1190E /* get_sim_list.command */; };
-		ED51B7181F8FC2F500759547 /* PlistOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED51B7171F8FC2F500759547 /* PlistOperations.swift */; };
+		ED51B7181F8FC2F500759547 /* PlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED51B7171F8FC2F500759547 /* PlistHandler.swift */; };
 		ED51B71A1F90BE5300759547 /* PathWarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED51B7191F90BE5300759547 /* PathWarningViewController.swift */; };
 		ED5DB5FD1E01534A00B0FADC /* create_irb_session.command in Resources */ = {isa = PBXBuildFile; fileRef = ED5DB5FC1E01534A00B0FADC /* create_irb_session.command */; };
 		ED66FA801E098E3F0081A30D /* flash.command in Resources */ = {isa = PBXBuildFile; fileRef = ED66FA7F1E098E3F0081A30D /* flash.command */; };
@@ -103,7 +103,7 @@
 		ED4C14E91DB29FB700A1190E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED4C14EF1DB2A10E00A1190E /* BuildScript.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = BuildScript.command; sourceTree = "<group>"; };
 		ED4C14F11DB2DB1C00A1190E /* get_sim_list.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_sim_list.command; sourceTree = "<group>"; };
-		ED51B7171F8FC2F500759547 /* PlistOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistOperations.swift; sourceTree = "<group>"; };
+		ED51B7171F8FC2F500759547 /* PlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistHandler.swift; sourceTree = "<group>"; };
 		ED51B7191F90BE5300759547 /* PathWarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathWarningViewController.swift; sourceTree = "<group>"; };
 		ED5DB5FC1E01534A00B0FADC /* create_irb_session.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = create_irb_session.command; sourceTree = "<group>"; };
 		ED66FA7F1E098E3F0081A30D /* flash.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = flash.command; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 				5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */,
 				5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */,
 				5D948C931F8F556D0001BC50 /* Language.swift */,
-				ED51B7171F8FC2F500759547 /* PlistOperations.swift */,
+				ED51B7171F8FC2F500759547 /* PlistHandler.swift */,
 				D7E21B491F969FDD0044169A /* Localization.swift */,
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 				EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */,
@@ -410,7 +410,7 @@
 				FD1047081F90B02E00A89D1C /* TagsController.swift in Sources */,
 				5D272E7F1FB98BC200E957DE /* NSStoryboard+Constants.swift in Sources */,
 				D7E21B4A1F969FDD0044169A /* Localization.swift in Sources */,
-				ED51B7181F8FC2F500759547 /* PlistOperations.swift in Sources */,
+				ED51B7181F8FC2F500759547 /* PlistHandler.swift in Sources */,
 				D71FD8681F9E6C140091FD30 /* AppHandler.swift in Sources */,
 				ED51B71A1F90BE5300759547 /* PathWarningViewController.swift in Sources */,
 				5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */,
