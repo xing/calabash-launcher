@@ -2,7 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations()
+    let plistHandler = PlistHandler()
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -22,6 +22,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var proceedButton: NSButton!
     @IBOutlet weak var additionalRunParameters: NSTextField!
+    @IBOutlet weak var appPathField: NSTextField!
+    @IBOutlet weak var commandField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +38,30 @@ class SettingsViewController: NSViewController {
             (linkField4, linkDescriptionField4)
         ]
         
-        if let cucumberProfile = plistOperations.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
+        if let cucumberProfile = plistHandler.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        if let additionalParameters = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
+        if let additionalParameters = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
             additionalRunParameters.stringValue = additionalParameters
         }
         
-        let linkArray = plistOperations.readKeys(forKey: Constants.Keys.linkInfo)
-        let linkDescriptionArray = plistOperations.readValues(forKey: Constants.Keys.linkInfo)
+        if let pathToBuild = plistHandler.readValues(forKey: Constants.Keys.pathToBuildInfo).first {
+            appPathField.stringValue = pathToBuild
+        }
+        
+        if let command = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first {
+            commandField.stringValue = command
+        }
+        
+        let linkKeys = plistHandler.readKeys(forKey: Constants.Keys.linkInfo)
+        let linkValues = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
 
-        for (index, element) in linkArray.enumerated() {
+        for (index, element) in linkKeys.enumerated() {
             elements[index].0.stringValue = String(describing: element)
         }
 
-        for (index, element) in linkDescriptionArray.enumerated() {
+        for (index, element) in linkValues.enumerated() {
             elements[index].1.stringValue = String(describing: element)
         }
     }
@@ -61,7 +71,7 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func clickResetToDefaults(_ sender: Any) {
-        plistOperations.removePlist()
+        plistHandler.removePlist()
         AppHandler().restartApplication()
     }
     
@@ -88,16 +98,20 @@ class SettingsViewController: NSViewController {
             linkData[Constants.Keys.linkInfo] = existingLinkItems
         }
         
-        let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo, on: Constants.Keys.cucumberProfileField)
-        let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo, on: Constants.Keys.additionalDataField)
+        let cucumberProfileData = appendToDictionary(using: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo)
+        let additionalFieldData = appendToDictionary(using: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo)
+        let pathToBuildFieldData = appendToDictionary(using: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
+        let commandsFieldData = appendToDictionary(using: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
         
         var resultingDictionary: [String: Any] = [:]
         
         resultingDictionary.append(dictionary: linkData)
         resultingDictionary.append(dictionary: cucumberProfileData)
         resultingDictionary.append(dictionary: additionalFieldData)
+        resultingDictionary.append(dictionary: pathToBuildFieldData)
+        resultingDictionary.append(dictionary: commandsFieldData)
         
-        plistOperations.create(from: resultingDictionary)
+        plistHandler.create(from: resultingDictionary)
         
         // Reload build picker to get new elements
         if
@@ -151,13 +165,13 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    func fillDictionary(with value: String, for key: String, on fieldName: String) -> [String : Any] {
+    func appendToDictionary(using value: String, for key: String) -> [String : Any] {
         var data: [String: Any] = [key : []]
         data[key] = [:]
         
-        var existingItems =  data[key] as? [[String: String]] ?? []
+        var existingItems = data[key] as? [[String: String]] ?? []
         
-        existingItems.append([fieldName : value])
+        existingItems.append([key : value])
         data[key] = existingItems
         return data
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-class PlistOperations {
+class PlistHandler {
     let plistPath: String
     let fileManager = FileManager.default
     
