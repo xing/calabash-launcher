@@ -147,7 +147,7 @@ class TasksViewController: NSViewController {
                 self.installButton.isEnabled = false
             }
             
-            var device = ""
+            let device: String
             if self.applicationStateHandler.physicalRadioButtonState {
                 device = "physical"
             } else {
