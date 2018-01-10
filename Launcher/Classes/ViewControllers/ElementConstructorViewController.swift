@@ -9,7 +9,7 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
     var parentElementIndex: Int!
     let fileManager = FileManager.default
     var retryCount: Int = 0
-    private let pathToUniqElements = "/tmp/uniq_elements.txt"
+    private let uniqueElementsPath = "/tmp/uniq_elements.txt"
     
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var pushButton: NSButton!
@@ -89,12 +89,12 @@ class ElementConstructorViewController: NSViewController, NSTableViewDataSource 
         arguments.append(String(siblingCheckbox.state.rawValue))
         arguments.append(String(indexCheckbox.state.rawValue))
 
-        try? self.fileManager.removeItem(atPath: pathToUniqElements)
+        try? self.fileManager.removeItem(atPath: uniqueElementsPath)
         
         CommandExecutor(launchPath: Constants.FilePaths.Bash.uniqueElements ?? "", arguments: arguments).execute()
         
-        waitingForFile(fileName: pathToUniqElements, numberOfRetries: 600) {
-            guard let streamReader = StreamReader(path: self.pathToUniqElements) else { return }
+        waitingForFile(fileName: uniqueElementsPath, numberOfRetries: 600) {
+            guard let streamReader = StreamReader(path: self.uniqueElementsPath) else { return }
             defer { streamReader.close() }
             while let urlLine = streamReader.nextLine(), !urlLine.isEmpty {
                 elements.append(urlLine)
