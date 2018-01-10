@@ -54,14 +54,14 @@ class SettingsViewController: NSViewController {
             commandField.stringValue = command
         }
         
-        let linkArray = plistHandler.readKeys(forKey: Constants.Keys.linkInfo)
-        let linkDescriptionArray = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
+        let linkKeys = plistHandler.readKeys(forKey: Constants.Keys.linkInfo)
+        let linkValues = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
 
-        for (index, element) in linkArray.enumerated() {
+        for (index, element) in linkKeys.enumerated() {
             elements[index].0.stringValue = String(describing: element)
         }
 
-        for (index, element) in linkDescriptionArray.enumerated() {
+        for (index, element) in linkValues.enumerated() {
             elements[index].1.stringValue = String(describing: element)
         }
     }
@@ -98,10 +98,10 @@ class SettingsViewController: NSViewController {
             linkData[Constants.Keys.linkInfo] = existingLinkItems
         }
         
-        let cucumberProfileData = fillDictionary(with: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo)
-        let additionalFieldData = fillDictionary(with: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo)
-        let pathToBuildFieldData = fillDictionary(with: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
-        let commandsFieldData = fillDictionary(with: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
+        let cucumberProfileData = appendToDictionary(using: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo)
+        let additionalFieldData = appendToDictionary(using: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo)
+        let pathToBuildFieldData = appendToDictionary(using: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
+        let commandsFieldData = appendToDictionary(using: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
         
         var resultingDictionary: [String: Any] = [:]
         
@@ -165,11 +165,11 @@ class SettingsViewController: NSViewController {
         }
     }
     
-    func fillDictionary(with value: String, for key: String) -> [String : Any] {
+    func appendToDictionary(using value: String, for key: String) -> [String : Any] {
         var data: [String: Any] = [key : []]
         data[key] = [:]
         
-        var existingItems =  data[key] as? [[String: String]] ?? []
+        var existingItems = data[key] as? [[String: String]] ?? []
         
         existingItems.append([key : value])
         data[key] = existingItems
