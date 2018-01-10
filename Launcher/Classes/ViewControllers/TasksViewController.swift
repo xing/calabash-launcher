@@ -438,7 +438,7 @@ class TasksViewController: NSViewController {
         
         arguments.append(calabashFolderPath)
         
-        if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
+        if let cucumberProfile = plistOperations.readValues(forKey: Constants.Keys.cucumberProfileInfo).first, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
         }
         
@@ -449,7 +449,7 @@ class TasksViewController: NSViewController {
             arguments.append("")
         }
         
-        if let additionalRunParameter = applicationStateHandler.additionalRunParameters, !additionalRunParameter.isEmpty {
+        if let additionalRunParameter = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first, !additionalRunParameter.isEmpty {
             arguments.append("export \(additionalRunParameter)")
         } else {
             arguments.append("")

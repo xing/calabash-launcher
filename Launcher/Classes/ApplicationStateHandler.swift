@@ -13,8 +13,6 @@ class ApplicationStateHandler {
         case language = "testLanguage"
         case tag = "testTag"
         case debugState = "debugCheckboxState"
-        case cucumberProfile = "cucumberProfile"
-        case additionalRunParameters = "additionalRunParameters"
         case deviceIP = "deviceIP"
         case bundleID = "bundleID"
         case downloadCheckbox = "downloadCheckbox"
