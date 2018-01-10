@@ -41,12 +41,14 @@
 		ED7045051DD61B9000272059 /* get_screen.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045041DD61B9000272059 /* get_screen.command */; };
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
 		ED7278961FA78E050022505E /* app_download.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7278951FA78E050022505E /* app_download.command */; };
+		ED7764841FF78033007E85AE /* check_for_duplicates.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7764831FF78033007E85AE /* check_for_duplicates.command */; };
 		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
 		ED9AC7541FB5E12200886E06 /* get_physical_device.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9AC7531FB5E12100886E06 /* get_physical_device.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
+		EDBC4AE120024CD3000E4D63 /* app_install.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE020024CD3000E4D63 /* app_install.command */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
 		EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */; };
@@ -111,12 +113,14 @@
 		ED7045041DD61B9000272059 /* get_screen.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_screen.command; sourceTree = "<group>"; };
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
 		ED7278951FA78E050022505E /* app_download.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_download.command; sourceTree = "<group>"; };
+		ED7764831FF78033007E85AE /* check_for_duplicates.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_for_duplicates.command; sourceTree = "<group>"; };
 		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
 		ED9AC7531FB5E12100886E06 /* get_physical_device.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_physical_device.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
+		EDBC4AE020024CD3000E4D63 /* app_install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_install.command; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
 		EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPrinter.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 		EDD303941F8F86B00042E27F /* bash */ = {
 			isa = PBXGroup;
 			children = (
+				EDBC4AE020024CD3000E4D63 /* app_install.command */,
+				ED7764831FF78033007E85AE /* check_for_duplicates.command */,
 				ED9AC7531FB5E12100886E06 /* get_physical_device.command */,
 				D7E995B71FAFB1D600318741 /* check_sim_type.command */,
 				ED7278951FA78E050022505E /* app_download.command */,
@@ -368,10 +374,12 @@
 				ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */,
 				EDFF031A1DD4A245000CA17C /* start_device.command in Resources */,
 				EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */,
+				EDBC4AE120024CD3000E4D63 /* app_install.command in Resources */,
 				ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */,
 				ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */,
 				EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */,
 				EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */,
+				ED7764841FF78033007E85AE /* check_for_duplicates.command in Resources */,
 				ED4C14E81DB29FB700A1190E /* Main.storyboard in Resources */,
 				D7E995B81FAFB1D600318741 /* check_sim_type.command in Resources */,
 				ED4C14F01DB2A10E00A1190E /* BuildScript.command in Resources */,

@@ -17,6 +17,7 @@ class ApplicationStateHandler {
         case additionalRunParameters = "additionalRunParameters"
         case deviceIP = "deviceIP"
         case bundleID = "bundleID"
+        case downloadCheckbox = "downloadCheckbox"
     }
     
     var physicalRadioButtonState: Bool {
@@ -88,6 +89,15 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .debugState)
+        }
+    }
+    
+    var downloadCheckbox: String? {
+        get {
+            return defaults.string(forKey: .downloadCheckbox)
+        }
+        set {
+            defaults.set(newValue, forKey: .downloadCheckbox)
         }
     }
     
