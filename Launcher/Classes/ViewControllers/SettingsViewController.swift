@@ -36,8 +36,12 @@ class SettingsViewController: NSViewController {
             (linkField4, linkDescriptionField4)
         ]
         
-        if let cucumberProfile = applicationStateHandler.cucumberProfile {
+        if let cucumberProfile = plistOperations.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
             cucumberProfileField.stringValue = cucumberProfile
+        }
+        
+        if let additionalParameters = plistOperations.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
+            additionalRunParameters.stringValue = additionalParameters
         }
         
         let linkArray = plistOperations.readKeys(forKey: Constants.Keys.linkInfo)
@@ -49,10 +53,6 @@ class SettingsViewController: NSViewController {
 
         for (index, element) in linkDescriptionArray.enumerated() {
             elements[index].1.stringValue = String(describing: element)
-        }
-        
-        if let additionalParameters = applicationStateHandler.additionalRunParameters {
-            additionalRunParameters.stringValue = additionalParameters
         }
     }
     
@@ -98,9 +98,6 @@ class SettingsViewController: NSViewController {
         resultingDictionary.append(dictionary: additionalFieldData)
         
         plistOperations.create(from: resultingDictionary)
-        
-        applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
-        applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
         
         // Reload build picker to get new elements
         if
