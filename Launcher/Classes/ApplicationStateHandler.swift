@@ -13,10 +13,9 @@ class ApplicationStateHandler {
         case language = "testLanguage"
         case tag = "testTag"
         case debugState = "debugCheckboxState"
-        case cucumberProfile = "cucumberProfile"
-        case additionalRunParameters = "additionalRunParameters"
         case deviceIP = "deviceIP"
         case bundleID = "bundleID"
+        case downloadCheckbox = "downloadCheckbox"
     }
     
     var physicalRadioButtonState: Bool {
@@ -91,21 +90,12 @@ class ApplicationStateHandler {
         }
     }
     
-    var cucumberProfile: String? {
+    var downloadCheckbox: String? {
         get {
-            return defaults.string(forKey: .cucumberProfile)
+            return defaults.string(forKey: .downloadCheckbox)
         }
         set {
-            defaults.set(newValue, forKey: .cucumberProfile)
-        }
-    }
-    
-    var additionalRunParameters: String? {
-        get {
-            return defaults.string(forKey: .additionalRunParameters)
-        }
-        set {
-            defaults.set(newValue, forKey: .additionalRunParameters)
+            defaults.set(newValue, forKey: .downloadCheckbox)
         }
     }
     

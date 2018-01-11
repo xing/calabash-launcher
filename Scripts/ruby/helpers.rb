@@ -170,6 +170,12 @@ def get_elements_by_offset(x, y)
     end
 end
 
+def is_unique?(query_string)
+    File.open('/tmp/clone_info.txt', 'w+') do |f|
+        f.puts(query(query_string).size < 2)
+    end
+end
+    
 def flash_utf(qu)
     qu = qu.to_s.encode('UTF-8', {
         :invalid => :replace,
