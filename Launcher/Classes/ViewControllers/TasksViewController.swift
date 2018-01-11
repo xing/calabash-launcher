@@ -22,7 +22,8 @@ class TasksViewController: NSViewController {
     @IBOutlet weak var switchLanguageButton: NSButton!
     @IBOutlet weak var downloadCheckbox: NSButton!
     @IBOutlet weak var installButton: NSButton!
-    
+    @IBOutlet weak var eraseSimulatorButton: NSButton!
+
     let localization = Localization()
     let deviceCollector = DeviceCollector()
     let plistHandler = PlistHandler()
@@ -147,7 +148,7 @@ class TasksViewController: NSViewController {
                 self.spinner.startAnimation(self)
                 self.installButton.isEnabled = false
             }
-            
+
             let device: String
             if self.applicationStateHandler.physicalRadioButtonState {
                 device = "physical"
@@ -157,6 +158,22 @@ class TasksViewController: NSViewController {
                 
             CommandsController().installApp(textView: self.textView, deviceType: device)
                 
+            DispatchQueue.main.async {
+                self.spinner.stopAnimation(self)
+                self.installButton.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func clickEraseSimulatorButton(_ sender: Any) {
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.spinner.startAnimation(self)
+                self.installButton.isEnabled = false
+            }
+            
+            CommandsController().eraseSimulator(textView: self.textView)
+            
             DispatchQueue.main.async {
                 self.spinner.stopAnimation(self)
                 self.installButton.isEnabled = true
@@ -213,8 +230,10 @@ class TasksViewController: NSViewController {
             cautionImage.isHidden = false
             phoneComboBox.addItem(withTitle: "\(Constants.Strings.noDevicesConnected) \(Constants.Strings.pluginDevice)")
             getDeviceButton.isEnabled = false
+            eraseSimulatorButton.isEnabled = true
         } else {
             getDeviceButton.isEnabled = true
+            eraseSimulatorButton.isEnabled = false
             cautionImage.isHidden = true
         }
     }
@@ -321,6 +340,7 @@ class TasksViewController: NSViewController {
             let previousOutput = textView.string
             textView.string = "\(previousOutput)\n\(noConnectedDevices)"
             getDeviceButton.isEnabled = false
+            eraseSimulatorButton.isEnabled = true
         } else {
             cautionImage.isHidden = true
         }
@@ -364,6 +384,7 @@ class TasksViewController: NSViewController {
             simulatorRadioButton.state = .off
             physicalDeviceRadioButton.state = .on
             getDeviceButton.isEnabled = true
+            eraseSimulatorButton.isEnabled = false
             languagePopUpButton.isEnabled = false
             switchLanguageButton.isEnabled = false
             if willGetDevice {
@@ -382,6 +403,7 @@ class TasksViewController: NSViewController {
             simulatorRadioButton.state = .on
             physicalDeviceRadioButton.state = .off
             getDeviceButton.isEnabled = false
+            eraseSimulatorButton.isEnabled = true
             languagePopUpButton.isEnabled = true
             switchLanguageButton.isEnabled = true
             if willGetDevice {

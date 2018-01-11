@@ -42,6 +42,21 @@ class CommandsController {
         }
     }
     
+    func eraseSimulator(textView: NSTextView) {
+        let textViewPrinter = TextViewPrinter(textView: textView)
+        guard let launchPath = Constants.FilePaths.Bash.eraseSimulator else { return }
+        let outputStream = CommandTextOutputStream()
+        outputStream.textHandler = { text in
+            DispatchQueue.main.async {
+                textViewPrinter.printToTextView(text)
+            }
+        }
+        
+        if let deviceID = applicationStateHandler.phoneUDID {
+            CommandExecutor(launchPath: launchPath, arguments: [deviceID], outputStream: outputStream).execute()
+        }
+    }
+    
     var isSimulatorCorrect: Bool {
         guard let launchPath = Constants.FilePaths.Bash.checkSimulatorType else { return false }
         let outputStream = CommandTextOutputStream()
