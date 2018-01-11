@@ -544,40 +544,6 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
-                            <box fixedFrame="YES" title="Build Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="kDV-el-u4m">
-                                <rect key="frame" x="204" y="541" width="467" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="kc2-B3-DdJ">
-                                    <rect key="frame" x="2" y="2" width="463" height="49"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wf9-1h-T2l">
-                                            <rect key="frame" x="4" y="11" width="327" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="KmW-kk-AK7">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="DiK-XK-S0g"/>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <action selector="buildPicker:" target="XfG-lQ-9wD" id="IwR-po-4H7"/>
-                                            </connections>
-                                        </popUpButton>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWN-Ez-xJo">
-                                            <rect key="frame" x="330" y="7" width="130" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mE-kp-xrj">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="clickDownloadButton:" target="XfG-lQ-9wD" id="3qt-eh-kSI"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
-                            </box>
                             <box fixedFrame="YES" title="Which test to execute:" translatesAutoresizingMaskIntoConstraints="NO" id="9FK-fe-VNv">
                                 <rect key="frame" x="204" y="628" width="467" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -602,7 +568,7 @@
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
                             <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFY-A7-cKx">
-                                <rect key="frame" x="303" y="599" width="25" height="24"/>
+                                <rect key="frame" x="300" y="605" width="25" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" controlSize="small" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyUpOrDown" image="NSCaution" id="QfD-rj-oTG"/>
                             </imageView>
@@ -677,6 +643,59 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" controlSize="small" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyUpOrDown" image="NSCaution" id="d2A-O7-MrX"/>
                             </imageView>
+                            <box fixedFrame="YES" title="Build Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="kDV-el-u4m">
+                                <rect key="frame" x="204" y="541" width="467" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="kc2-B3-DdJ">
+                                    <rect key="frame" x="2" y="2" width="463" height="63"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wf9-1h-T2l">
+                                            <rect key="frame" x="4" y="31" width="455" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="KmW-kk-AK7">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="DiK-XK-S0g"/>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="buildPicker:" target="XfG-lQ-9wD" id="IwR-po-4H7"/>
+                                            </connections>
+                                        </popUpButton>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWN-Ez-xJo">
+                                            <rect key="frame" x="299" y="1" width="163" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mE-kp-xrj">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clickDownloadButton:" target="XfG-lQ-9wD" id="3qt-eh-kSI"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HAn-mF-z4K">
+                                            <rect key="frame" x="434" y="10" width="22" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b3t-q7-buC">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <segue destination="1EZ-zF-qTS" kind="popover" popoverAnchorView="HAn-mF-z4K" popoverBehavior="t" preferredEdge="maxY" id="rFo-G9-JzR"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGJ-yW-K6W">
+                                            <rect key="frame" x="125" y="1" width="162" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dTl-aJ-fjZ">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -686,6 +705,7 @@
                         <outlet property="cautionImage" destination="zXL-3o-0Wq" id="2tc-AI-SvW"/>
                         <outlet property="debugCheckbox" destination="Wu4-dd-Hr4" id="PTc-ad-wLV"/>
                         <outlet property="downloadButton" destination="LWN-Ez-xJo" id="8Tb-AG-PcA"/>
+                        <outlet property="downloadCheckbox" destination="HAn-mF-z4K" id="GF1-Gy-21D"/>
                         <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
                         <outlet property="phoneComboBox" destination="2d7-eQ-bCS" id="aSh-yK-6gN"/>
@@ -1885,17 +1905,17 @@ Please choose one of the supported devices from "Test Runner" menu and click "St
             <point key="canvasLocation" x="1259" y="146"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="ho4-Ml-Rym">
+        <scene sceneID="hCp-PY-ze2">
             <objects>
-                <viewController id="Fzd-fW-W4C" sceneMemberID="viewController">
-                    <view key="view" id="JPz-gQ-5tw">
-                        <rect key="frame" x="0.0" y="0.0" width="193" height="44"/>
+                <viewController id="1EZ-zF-qTS" sceneMemberID="viewController">
+                    <view key="view" id="Gis-73-tZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="164" height="58"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4WA-AF-Tik">
-                                <rect key="frame" x="8" y="-6" width="179" height="46"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j02-Vo-dpu">
+                                <rect key="frame" x="5" y="0.0" width="161" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Identify directory to copy the build after downloading." id="UxM-nB-nnN">
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Check it to automatically download the app before each test run " id="7ga-V8-aZh">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1904,9 +1924,9 @@ Please choose one of the supported devices from "Test Runner" menu and click "St
                         </subviews>
                     </view>
                 </viewController>
-                <customObject id="uvC-aT-BDl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="DzE-AS-YId" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063.5" y="-658"/>
+            <point key="canvasLocation" x="-517" y="358"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aqb-Dj-fNI">
