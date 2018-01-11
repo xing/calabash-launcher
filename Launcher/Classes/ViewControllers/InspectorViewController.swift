@@ -15,10 +15,15 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     var parentElementIndex: Int!
     var isParentView = false
     var retryCount = 0
-    private let temporaryScreenshotPath = "/tmp/screenshot_0.png"
-    private let defaultGestureRecognizerAccessibilityLabel = "defaultImage"
-    private let customGestureRecognizerAccessibilityLabel = "customImage"
-    private let elementInspectorPath = "/tmp/get_all_elements_inspector.txt"
+    
+    enum InspectorResources {
+        static let temporaryScreenshotPath = "/tmp/screenshot_0.png"
+        static let defaultGestureRecognizerAccessibilityLabel = "defaultImage"
+        static let customGestureRecognizerAccessibilityLabel = "customImage"
+        static let elementInspectorPath = "/tmp/get_all_elements_inspector.txt"
+        static let cloneInfoPath = "/tmp/clone_info.txt"
+    }
+
     
     @IBOutlet var startDeviceButton: NSButton!
     @IBOutlet var getElementsButton: NSButton!
@@ -94,7 +99,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             }
         }
         
-        if gestureRecognizableView.accessibilityLabel() == defaultGestureRecognizerAccessibilityLabel {
+        if gestureRecognizableView.accessibilityLabel() == InspectorResources.defaultGestureRecognizerAccessibilityLabel {
             timer.invalidate()
             coordinatesMarker.isHidden = true
             syncScreen()
@@ -141,7 +146,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
             }
 
             waitingForFile(withName: filePath, numberOfRetries: numberOfRetries) {
-
+                
                 guard let streamReader = StreamReader(path: filePath) else { return }
                 defer { streamReader.close() }
                 while let urlLine = streamReader.nextLine() {
@@ -178,7 +183,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
     
     @IBAction func getElementsButton(_ sender: Any) {
-        try? fileManager.removeItem(atPath: elementInspectorPath)
+        try? fileManager.removeItem(atPath: InspectorResources.elementInspectorPath)
         getElements()
         getElementsFromFile()
     }
@@ -237,7 +242,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     }
     
     func startDevice() {
-        try? fileManager.removeItem(atPath: temporaryScreenshotPath)
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
         
         if let launchPath = Constants.FilePaths.Bash.startDevice {
             let outputStream = CommandTextOutputStream()
@@ -259,7 +264,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         }
 
         let numberOfRetries = 9_999
-        waitingForFile(withName: temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
             self.getScreenProcs()
             DispatchQueue.main.async {
                 self.outputInTheMainTextView(string: "Simulator is ready to use")
@@ -271,14 +276,14 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     @objc func getScreenProcsLoop() {
         syncScreen()
         let numberOfRetries = 50
-        waitingForFile(withName: temporaryScreenshotPath, numberOfRetries: numberOfRetries, enableSpinner: false) {
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries, enableSpinner: false) {
             self.changeScreenshot()
             self.enableAllElements()
         }
     }
     
     func syncScreen() {
-        try? fileManager.removeItem(atPath: temporaryScreenshotPath)
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
         DispatchQueue.global(qos: .background).async {
             CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
         }
@@ -286,14 +291,14 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     func getScreenProcs() {
         let numberOfRetries = 40
-        waitingForFile(withName: temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
-            let imageURL = URL(fileURLWithPath: self.temporaryScreenshotPath)
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
+            let imageURL = URL(fileURLWithPath: InspectorResources.temporaryScreenshotPath)
             let image = NSImage(contentsOfFile: imageURL.path)
             DispatchQueue.main.async {
                 self.gestureRecognizableView.image = image
             }
-            self.gestureRecognizableView.setAccessibilityLabel(self.customGestureRecognizerAccessibilityLabel)
-            try? self.fileManager.removeItem(atPath: self.temporaryScreenshotPath)
+            self.gestureRecognizableView.setAccessibilityLabel(InspectorResources.customGestureRecognizerAccessibilityLabel)
+            try? self.fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
             self.enableAllElements()
         }
     }
@@ -302,17 +307,17 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = #imageLiteral(resourceName: "click_image.png")
         }
-        gestureRecognizableView.setAccessibilityLabel(defaultGestureRecognizerAccessibilityLabel)
+        gestureRecognizableView.setAccessibilityLabel(InspectorResources.defaultGestureRecognizerAccessibilityLabel)
         timer.invalidate()
     }
     
     func changeScreenshot() {
-        let imageURL = URL(fileURLWithPath: temporaryScreenshotPath)
+        let imageURL = URL(fileURLWithPath: InspectorResources.temporaryScreenshotPath)
         let image = NSImage(contentsOfFile: imageURL.path)
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = image
         }
-        try? fileManager.removeItem(atPath: temporaryScreenshotPath)
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
     }
     
     func getElementsFromFile() {
@@ -320,9 +325,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         var previousOutput = ""
         outputText.string = ""
         let numberOfRetries = 70
-        waitingForFile(withName: elementInspectorPath, numberOfRetries: numberOfRetries) {
+        waitingForFile(withName: InspectorResources.elementInspectorPath, numberOfRetries: numberOfRetries) {
             DispatchQueue.main.async {
-                guard let streamReader = StreamReader(path: self.elementInspectorPath) else { return }
+                guard let streamReader = StreamReader(path: InspectorResources.elementInspectorPath) else { return }
                 defer { streamReader.close() }
                 while let urlLine = streamReader.nextLine() {
 
@@ -408,9 +413,23 @@ extension InspectorViewController: NSOutlineViewDelegate {
         let selectedIndex = outlineView.selectedRow
         
         guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
-        let filePath4 = "/tmp/localized.txt"
         localizedTextField.stringValue = ""
-        try? fileManager.removeItem(atPath: filePath4)
         elementTextField.stringValue = feedItem
+        
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.checkDuplicates ?? "", arguments: [feedItem]).execute()
+        waitingForFile(withName: InspectorResources.cloneInfoPath, numberOfRetries: 30, enableSpinner: false) {
+            guard let streamReader = StreamReader(path: InspectorResources.cloneInfoPath) else { return }
+            defer {
+                streamReader.close()
+                try? self.fileManager.removeItem(atPath: InspectorResources.cloneInfoPath)
+            }
+            guard let urlLine = streamReader.nextLine(), urlLine == "false" else { return }
+            SharedElement.shared.stringValue = feedItem
+            DispatchQueue.main.async {
+                self.cloneButton.isHidden = false
+                self.cloneLabel.stringValue = "The Element is not unique".localized
+                self.cloneLabel.textColor = .red
+            }
+        }
     }
 }
