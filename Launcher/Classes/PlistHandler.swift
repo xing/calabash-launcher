@@ -1,12 +1,10 @@
 import Foundation
 
-class PlistOperations {
+class PlistHandler {
     let plistPath: String
     let fileManager = FileManager.default
-    let dictionaryKey: String
     
-    public init(forKey key: String, defaultPlistPath path: String = "/CalabashLauncherSettings.plist") {
-        dictionaryKey = key
+    public init(path: String = Constants.FilePaths.InternalResources.defaultPlist) {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
         plistPath = documentDirectory.appending(path)
         
@@ -33,22 +31,22 @@ class PlistOperations {
         someData.write(toFile: plistPath, atomically: true)
     }
     
-    private func read() -> [NSDictionary] {
+    private func read(forKey key: String) -> [NSDictionary] {
         guard
             fileManager.fileExists(atPath: plistPath),
             let dictionary = NSDictionary(contentsOfFile: plistPath) else { return [] }
 
-        return dictionary.mutableArrayValue(forKey: dictionaryKey).flatMap { element -> NSDictionary? in
+        return dictionary.mutableArrayValue(forKey: key).flatMap { element -> NSDictionary? in
             guard let dictionary = element as? NSDictionary else { return nil }
             return dictionary
         }
     }
     
-    func readValues() -> [String] {
-        return read().flatMap { $0.allValues } as? [String] ?? []
+    func readValues(forKey key: String) -> [String] {
+        return read(forKey: key).flatMap { $0.allValues } as? [String] ?? []
     }
     
-    func readKeys() -> [String] {
-        return read().flatMap { $0.allKeys } as? [String] ?? []
+    func readKeys(forKey key: String) -> [String] {
+        return read(forKey: key).flatMap { $0.allKeys } as? [String] ?? []
     }
 }

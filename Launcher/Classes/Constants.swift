@@ -14,6 +14,10 @@ enum Constants {
 
     enum Keys {
         static let linkInfo = "linksInfo"
+        static let cucumberProfileInfo = "cucumberProfileInfo"
+        static let additionalFieldInfo = "additionalInfo"
+        static let pathToBuildInfo = "pathToBuildInfo"
+        static let commandFieldInfo = "commandFieldInfo"
     }
     
     enum FilePaths {
@@ -45,6 +49,9 @@ enum Constants {
         }
         enum Ruby {
             static let helpers = main.path(forResource: "helpers", ofType: .ruby)
+        }
+        enum InternalResources {
+            static let defaultPlist = "/CalabashLauncherSettings.plist"
         }
     }
     

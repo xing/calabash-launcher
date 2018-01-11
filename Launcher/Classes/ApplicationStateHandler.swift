@@ -13,8 +13,6 @@ class ApplicationStateHandler {
         case language = "testLanguage"
         case tag = "testTag"
         case debugState = "debugCheckboxState"
-        case cucumberProfile = "cucumberProfile"
-        case additionalRunParameters = "additionalRunParameters"
         case deviceIP = "deviceIP"
         case bundleID = "bundleID"
         case downloadCheckbox = "downloadCheckbox"
@@ -98,24 +96,6 @@ class ApplicationStateHandler {
         }
         set {
             defaults.set(newValue, forKey: .downloadCheckbox)
-        }
-    }
-    
-    var cucumberProfile: String? {
-        get {
-            return defaults.string(forKey: .cucumberProfile)
-        }
-        set {
-            defaults.set(newValue, forKey: .cucumberProfile)
-        }
-    }
-    
-    var additionalRunParameters: String? {
-        get {
-            return defaults.string(forKey: .additionalRunParameters)
-        }
-        set {
-            defaults.set(newValue, forKey: .additionalRunParameters)
         }
     }
     

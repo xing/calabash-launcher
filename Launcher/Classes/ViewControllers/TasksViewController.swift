@@ -25,7 +25,7 @@ class TasksViewController: NSViewController {
     
     let localization = Localization()
     let deviceCollector = DeviceCollector()
-    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
+    let plistHandler = PlistHandler()
     var textViewPrinter: TextViewPrinter!
     @objc dynamic var isRunning = false
     let applicationStateHandler = ApplicationStateHandler()
@@ -124,8 +124,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickDownloadButton(_ sender: Any) {
+        guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
+
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
-        guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
         
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
@@ -225,7 +226,7 @@ class TasksViewController: NSViewController {
     @IBAction func startTask(_ sender:AnyObject) {
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         if downloadCheckbox.state == .on, downloadCheckbox.isEnabled {
-            guard let url = URL(string: plistOperations.readKeys()[buildPicker.indexOfSelectedItem]) else { return }
+            guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
             CommandsController().downloadApp(from: url, textView: textView)
         }
         runScript()
@@ -395,7 +396,7 @@ class TasksViewController: NSViewController {
     
     func populateBuildPicker() {
         buildPicker.removeAllItems()
-        linkInfo = plistOperations.readValues()
+        linkInfo = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
         buildPicker.addItems(withTitles: linkInfo)
         buildPicker.addItem(withTitle: Constants.Strings.useLocalBuild)
 
@@ -437,7 +438,7 @@ class TasksViewController: NSViewController {
         
         arguments.append(calabashFolderPath)
         
-        if let cucumberProfile = applicationStateHandler.cucumberProfile, !cucumberProfile.isEmpty {
+        if let cucumberProfile = plistHandler.readValues(forKey: Constants.Keys.cucumberProfileInfo).first, !cucumberProfile.isEmpty {
             arguments.append("-p \(cucumberProfile)")
         }
         
@@ -448,11 +449,14 @@ class TasksViewController: NSViewController {
             arguments.append("")
         }
         
-        if let additionalRunParameter = applicationStateHandler.additionalRunParameters, !additionalRunParameter.isEmpty {
+        if let additionalRunParameter = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first, !additionalRunParameter.isEmpty {
             arguments.append("export \(additionalRunParameter)")
         } else {
             arguments.append("")
         }
+        
+        let commandToExecute = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
+        arguments.append(commandToExecute)
         
         if let deviceIP = applicationStateHandler.deviceIP,
             let bundleID = applicationStateHandler.bundleID,
