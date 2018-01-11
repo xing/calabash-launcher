@@ -246,9 +246,11 @@ class TasksViewController: NSViewController {
         applicationStateHandler.downloadCheckbox = downloadCheckbox.stringValue
         if downloadCheckbox.state == .on, downloadCheckbox.isEnabled {
             guard let url = URL(string: plistHandler.readKeys(forKey: Constants.Keys.linkInfo)[buildPicker.indexOfSelectedItem]) else { return }
-            CommandsController().downloadApp(from: url, textView: textView)
+            DispatchQueue.global(qos: .background).async {
+                CommandsController().downloadApp(from: url, textView: self.textView)
+                self.runScript()
+            }
         }
-        runScript()
     }
     
     @IBAction func textField(_ sender: Any) {
@@ -438,22 +440,26 @@ class TasksViewController: NSViewController {
     }
     
     func runScript() {
-        if isDeviceListEmpty {
-            phoneComboBox.highlight(true)
-            cautionImage.isHidden = false
-            let previousOutput = textView.string
-            textView.string = "\(previousOutput)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
-            return
-        } else {
-            cautionImage.isHidden = true
+        DispatchQueue.main.async {
+            if self.isDeviceListEmpty {
+                self.phoneComboBox.highlight(true)
+                self.cautionImage.isHidden = false
+                let previousOutput = self.textView.string
+                self.textView.string = "\(previousOutput)\n\(Constants.Strings.noDevicesConnected) \(Constants.Strings.installSimulatorOrPluginDevice)"
+                return
+            } else {
+                self.cautionImage.isHidden = true
+            }
         }
         
         var arguments: [String] = []
         
-        if debugCheckbox.state == .on {
-            arguments.append("DEBUG=1")
-        } else {
-            arguments.append("DEBUG=0")
+        DispatchQueue.main.async {
+            if self.debugCheckbox.state == .on {
+                arguments.append("DEBUG=1")
+            } else {
+                arguments.append("DEBUG=0")
+            }
         }
         
         arguments.append("DEVICE_TARGET=\(applicationStateHandler.phoneUDID ?? "")")
@@ -464,11 +470,13 @@ class TasksViewController: NSViewController {
             arguments.append("-p \(cucumberProfile)")
         }
         
-        // We still need an arugment to be passed, otherwise bash variable order will be spoiled
-        if !tagPicker.stringValue.isEmpty {
-            arguments.append("--t @\(tagPicker.stringValue)")
-        } else {
-            arguments.append("")
+        DispatchQueue.main.async {
+            // We still need an arugment to be passed, otherwise bash variable order will be spoiled
+            if !self.tagPicker.stringValue.isEmpty {
+                arguments.append("--t @\(self.tagPicker.stringValue)")
+            } else {
+                arguments.append("")
+            }
         }
         
         if let additionalRunParameter = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first, !additionalRunParameter.isEmpty {
@@ -480,23 +488,27 @@ class TasksViewController: NSViewController {
         let commandToExecute = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
         arguments.append(commandToExecute)
         
-        if let deviceIP = applicationStateHandler.deviceIP,
-            let bundleID = applicationStateHandler.bundleID,
-            physicalDeviceRadioButton.state == .on,
+        DispatchQueue.main.async {
+            if let deviceIP = self.applicationStateHandler.deviceIP,
+                let bundleID = self.applicationStateHandler.bundleID,
+                self.physicalDeviceRadioButton.state == .on,
             !deviceIP.isEmpty {
-            arguments.append("export DEVICE_ENDPOINT=http://\(deviceIP):\(Constants.CalabashData.port)")
-            arguments.append("export BUNDLE_ID=\(bundleID)")
-        } else if physicalDeviceRadioButton.state == .on {
-            textViewPrinter.printToTextView(Constants.Strings.wrongDeviceSetup)
-            textViewPrinter.printToTextView("\n")
-            return
+                arguments.append("export DEVICE_ENDPOINT=http://\(deviceIP):\(Constants.CalabashData.port)")
+                arguments.append("export BUNDLE_ID=\(bundleID)")
+            } else if self.physicalDeviceRadioButton.state == .on {
+                self.textViewPrinter.printToTextView(Constants.Strings.wrongDeviceSetup)
+                self.textViewPrinter.printToTextView("\n")
+                return
+            }
         }
         
-        buildButton.isEnabled = false
+        DispatchQueue.main.async {
+            self.buildButton.isEnabled = false
         
-        isRunning = true
-        spinner.startAnimation(self)
-        progressBar.startAnimation(self)
+            self.isRunning = true
+            self.spinner.startAnimation(self)
+            self.progressBar.startAnimation(self)
+        }
         
         if let launchPath = Constants.FilePaths.Bash.buildScript {
             let outputStream = CommandTextOutputStream()
@@ -505,7 +517,6 @@ class TasksViewController: NSViewController {
                     self.textViewPrinter.printToTextView(text)
                 }
             }
-            DispatchQueue.global(qos: .background).async {
                 self.commandExecutor = CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream)
                 self.commandExecutor?.execute()
                 
@@ -515,7 +526,6 @@ class TasksViewController: NSViewController {
                     self.progressBar.stopAnimation(self)
                     self.isRunning = false
                 }
-            }
         }
     }
     

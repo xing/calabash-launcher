@@ -591,15 +591,15 @@
                                 <rect key="frame" x="21" y="59" width="1224" height="468"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="HuI-bt-NDk">
-                                    <rect key="frame" x="1" y="1" width="1222" height="466"/>
+                                    <rect key="frame" x="1" y="1" width="1207" height="466"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" linkDetection="YES" dataDetection="YES" dashSubstitution="YES" textReplacement="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="QWs-YP-tY6">
-                                            <rect key="frame" x="0.0" y="0.0" width="1222" height="466"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1207" height="466"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.074509803920000006" green="0.84705882349999995" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="1222" height="466"/>
+                                            <size key="minSize" width="1207" height="466"/>
                                             <size key="maxSize" width="1373" height="10000000"/>
                                             <color key="insertionPointColor" red="0.074509803921568626" green="0.84705882352941175" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                         </textView>
@@ -611,7 +611,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RE2-jl-f8t">
-                                    <rect key="frame" x="1207" y="1" width="16" height="466"/>
+                                    <rect key="frame" x="1208" y="1" width="15" height="466"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -698,10 +698,13 @@
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGJ-yW-K6W">
                                             <rect key="frame" x="125" y="1" width="162" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dTl-aJ-fjZ">
+                                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dTl-aJ-fjZ">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="clickInstallButton:" target="XfG-lQ-9wD" id="aeS-j8-mfJ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -719,6 +722,7 @@
                         <outlet property="downloadCheckbox" destination="HAn-mF-z4K" id="GF1-Gy-21D"/>
                         <outlet property="eraseSimulatorButton" destination="xmk-Af-lsy" id="DSw-42-84y"/>
                         <outlet property="getDeviceButton" destination="xZC-Bd-bFC" id="2c2-L8-wWw"/>
+                        <outlet property="installButton" destination="jGJ-yW-K6W" id="QMj-X6-8k8"/>
                         <outlet property="languagePopUpButton" destination="2Uw-cW-J8s" id="2xN-8X-SVx"/>
                         <outlet property="phoneComboBox" destination="2d7-eQ-bCS" id="aSh-yK-6gN"/>
                         <outlet property="physicalDeviceRadioButton" destination="V9k-ER-WQ4" id="Hfb-yT-T5x"/>
@@ -852,11 +856,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="prg-h9-vN6">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xfg-QU-paq">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -911,14 +915,14 @@
                                 <rect key="frame" x="9" y="42" width="420" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="69F-Ax-yx7">
-                                    <rect key="frame" x="1" y="1" width="418" height="568"/>
+                                    <rect key="frame" x="1" y="1" width="403" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="GVN-mL-6hQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="418" height="568"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="403" height="568"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="418" height="568"/>
+                                            <size key="minSize" width="403" height="568"/>
                                             <size key="maxSize" width="899" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -951,7 +955,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YKc-Xf-nPO">
-                                    <rect key="frame" x="403" y="1" width="16" height="568"/>
+                                    <rect key="frame" x="404" y="1" width="15" height="568"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1077,11 +1081,11 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="65t-gM-Mzo">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="G8Q-yt-oSe">
-                                    <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1215,9 +1219,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="miniSystem"/>
                                 </buttonCell>
-                                <connections>
-                                    <segue destination="Fzd-fW-W4C" kind="popover" popoverAnchorView="iQR-XO-9Zh" popoverBehavior="t" preferredEdge="maxY" id="1GZ-I6-cHr"/>
-                                </connections>
                             </button>
                             <box fixedFrame="YES" title="Execute Comand Before Run:" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-wv-L0G">
                                 <rect key="frame" x="250" y="226" width="611" height="68"/>

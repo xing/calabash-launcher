@@ -19,9 +19,7 @@ class CommandsController {
         let filePath = path.absoluteString.replacingOccurrences(of: "file://", with: "")
         let pathToMoveBuild = plistHandler.readValues(forKey: Constants.Keys.pathToBuildInfo).first ?? ""
         
-        DispatchQueue.global(qos: .background).async {
-            CommandExecutor(launchPath: launchPath, arguments: [url.absoluteString, filePath, pathToMoveBuild], outputStream: outputStream).execute()
-        }
+        CommandExecutor(launchPath: launchPath, arguments: [url.absoluteString, filePath, pathToMoveBuild], outputStream: outputStream).execute()
     }
     
     func installApp(textView: NSTextView, deviceType: String) {
