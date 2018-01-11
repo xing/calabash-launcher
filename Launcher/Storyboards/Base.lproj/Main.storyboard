@@ -544,63 +544,6 @@
                                 </view>
                                 <font key="titleFont" metaFont="systemSemibold" size="13"/>
                             </box>
-                            <box fixedFrame="YES" title="Build Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="kDV-el-u4m">
-                                <rect key="frame" x="204" y="541" width="467" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="kc2-B3-DdJ">
-                                    <rect key="frame" x="2" y="2" width="463" height="49"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wf9-1h-T2l">
-                                            <rect key="frame" x="4" y="11" width="327" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" alternateImage="NSActionTemplate" borderStyle="borderAndBezel" inset="2" id="ETz-v2-y63">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="iSW-q2-iUM"/>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <action selector="clickPhoneChooser:" target="XfG-lQ-9wD" id="1ae-pA-gHq"/>
-                                            </connections>
-                                        </popUpButton>
-                                        <box fixedFrame="YES" title="Language Picker:" translatesAutoresizingMaskIntoConstraints="NO" id="BBv-e5-cZl">
-                                            <rect key="frame" x="3" y="6" width="336" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <view key="contentView" id="i4x-Ev-A0f">
-                                                <rect key="frame" x="2" y="2" width="332" height="35"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uw-cW-J8s">
-                                                        <rect key="frame" x="4" y="5" width="149" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="5AW-QL-40l">
-                                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="menu"/>
-                                                            <menu key="menu" id="Y6o-wI-hJv"/>
-                                                        </popUpButtonCell>
-                                                        <connections>
-                                                            <action selector="languagePopUp:" target="XfG-lQ-9wD" id="kkZ-oo-qv6"/>
-                                                        </connections>
-                                                    </popUpButton>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-K0-HKy">
-                                                        <rect key="frame" x="161" y="1" width="166" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="push" title="Switch Language" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEq-29-y9Q">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="languageSwitchButton:" target="XfG-lQ-9wD" id="Mlj-dz-EMF"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </view>
-                                            <font key="titleFont" metaFont="systemSemibold" size="13"/>
-                                        </box>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" metaFont="systemSemibold" size="13"/>
-                            </box>
                             <box fixedFrame="YES" title="Which test to execute:" translatesAutoresizingMaskIntoConstraints="NO" id="9FK-fe-VNv">
                                 <rect key="frame" x="204" y="628" width="467" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
