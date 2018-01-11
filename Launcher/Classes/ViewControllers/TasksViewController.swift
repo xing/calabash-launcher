@@ -250,6 +250,10 @@ class TasksViewController: NSViewController {
                 CommandsController().downloadApp(from: url, textView: self.textView)
                 self.runScript()
             }
+        } else {
+            DispatchQueue.global(qos: .background).async {
+                self.runScript()
+            }
         }
     }
     
