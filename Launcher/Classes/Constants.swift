@@ -14,6 +14,10 @@ enum Constants {
 
     enum Keys {
         static let linkInfo = "linksInfo"
+        static let cucumberProfileInfo = "cucumberProfileInfo"
+        static let additionalFieldInfo = "additionalInfo"
+        static let pathToBuildInfo = "pathToBuildInfo"
+        static let commandFieldInfo = "commandFieldInfo"
     }
     
     enum FilePaths {
@@ -25,6 +29,9 @@ enum Constants {
             static let flash = main.path(forResource: "flash", ofType: .bash)
             static let appDownload = main.path(forResource: "app_download", ofType: .bash)
             static let checkSimulatorType = main.path(forResource: "check_sim_type", ofType: .bash)
+            static let eraseSimulator = main.path(forResource: "erase_simulator", ofType: .bash)
+            static let appInstall = main.path(forResource: "app_install", ofType: .bash)
+            static let checkDuplicates = main.path(forResource: "check_for_duplicates", ofType: .bash)
             
             // Interactive Ruby Shell
             static let createIRBSession = main.path(forResource: "create_irb_session", ofType: .bash)
@@ -43,6 +50,9 @@ enum Constants {
         }
         enum Ruby {
             static let helpers = main.path(forResource: "helpers", ofType: .ruby)
+        }
+        enum InternalResources {
+            static let defaultPlist = "/CalabashLauncherSettings.plist"
         }
     }
     

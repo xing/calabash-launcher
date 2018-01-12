@@ -2,7 +2,7 @@ import AppKit
 
 class SettingsViewController: NSViewController {
     let applicationStateHandler = ApplicationStateHandler()
-    let plistOperations = PlistOperations(forKey: Constants.Keys.linkInfo)
+    let plistHandler = PlistHandler()
     var pathChanged = false
     var hasWarnings = false
     var singleLinkData: [String: String] = [:]
@@ -22,6 +22,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var proceedButton: NSButton!
     @IBOutlet weak var additionalRunParameters: NSTextField!
+    @IBOutlet weak var appPathField: NSTextField!
+    @IBOutlet weak var commandField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +38,31 @@ class SettingsViewController: NSViewController {
             (linkField4, linkDescriptionField4)
         ]
         
-        if let cucumberProfile = applicationStateHandler.cucumberProfile {
+        if let cucumberProfile = plistHandler.readValues(forKey: Constants.Keys.cucumberProfileInfo).first {
             cucumberProfileField.stringValue = cucumberProfile
         }
         
-        let linkArray = plistOperations.readKeys()
-        let linkDescriptionArray = plistOperations.readValues()
+        if let additionalParameters = plistHandler.readValues(forKey: Constants.Keys.additionalFieldInfo).first {
+            additionalRunParameters.stringValue = additionalParameters
+        }
+        
+        if let pathToBuild = plistHandler.readValues(forKey: Constants.Keys.pathToBuildInfo).first {
+            appPathField.stringValue = pathToBuild
+        }
+        
+        if let command = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first {
+            commandField.stringValue = command
+        }
+        
+        let linkKeys = plistHandler.readKeys(forKey: Constants.Keys.linkInfo)
+        let linkValues = plistHandler.readValues(forKey: Constants.Keys.linkInfo)
 
-        for (index, element) in linkArray.enumerated() {
+        for (index, element) in linkKeys.enumerated() {
             elements[index].0.stringValue = String(describing: element)
         }
 
-        for (index, element) in linkDescriptionArray.enumerated() {
+        for (index, element) in linkValues.enumerated() {
             elements[index].1.stringValue = String(describing: element)
-        }
-        
-        if let additionalParameters = applicationStateHandler.additionalRunParameters {
-            additionalRunParameters.stringValue = additionalParameters
         }
     }
     
@@ -60,38 +70,54 @@ class SettingsViewController: NSViewController {
         self.dismiss(true)
     }
     
+    @IBAction func clickResetToDefaults(_ sender: Any) {
+        plistHandler.removePlist()
+        AppHandler().restartApplication()
+    }
+    
     @IBAction func clickSaveButton(_ sender: Any) {
         var linkData: [String: Any] = [Constants.Keys.linkInfo : []]
         linkData[Constants.Keys.linkInfo] = [:]
         hasWarnings = false
         var warningState = false
-        var existingItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
+        var existingLinkItems = linkData[Constants.Keys.linkInfo] as? [[String: String]] ?? []
         
         for element in elements {
             (singleLinkData, warningState) = getLinkDataFrom(linkField: element.0, linkDescriptionField: element.1)
 
             if !warningState {
-                existingItems.append(singleLinkData)
+                existingLinkItems.append(singleLinkData)
             } else {
                 hasWarnings = true
             }
         }
         
         if hasWarnings {
-            existingItems = [[:]]
+            existingLinkItems = [[:]]
         } else {
-            linkData[Constants.Keys.linkInfo] = existingItems
-            plistOperations.create(from: linkData)
+            linkData[Constants.Keys.linkInfo] = existingLinkItems
         }
         
-        applicationStateHandler.cucumberProfile = cucumberProfileField.stringValue
-        applicationStateHandler.additionalRunParameters = additionalRunParameters.stringValue
+        let cucumberProfileData = appendToDictionary(using: cucumberProfileField.stringValue, for: Constants.Keys.cucumberProfileInfo)
+        let additionalFieldData = appendToDictionary(using: additionalRunParameters.stringValue, for: Constants.Keys.additionalFieldInfo)
+        let pathToBuildFieldData = appendToDictionary(using: appPathField.stringValue, for: Constants.Keys.pathToBuildInfo)
+        let commandsFieldData = appendToDictionary(using: commandField.stringValue, for: Constants.Keys.commandFieldInfo)
+        
+        var resultingDictionary: [String: Any] = [:]
+        
+        resultingDictionary.append(dictionary: linkData)
+        resultingDictionary.append(dictionary: cucumberProfileData)
+        resultingDictionary.append(dictionary: additionalFieldData)
+        resultingDictionary.append(dictionary: pathToBuildFieldData)
+        resultingDictionary.append(dictionary: commandsFieldData)
+        
+        plistHandler.create(from: resultingDictionary)
         
         // Reload build picker to get new elements
         if
             let tabViewController = NSApplication.shared.mainWindow?.contentViewController as? NSTabViewController,
             let tasksViewController = tabViewController.childViewControllers.first as? TasksViewController {
-            tasksViewController.getValuesForBuildPicker()
+            tasksViewController.populateBuildPicker()
         }
         
         // Restart app after new path is available. Close Settings and save settings otherwise.
@@ -131,13 +157,23 @@ class SettingsViewController: NSViewController {
     }
     
     func emptyPathHandling() {
-        if applicationStateHandler.filePath == nil, let controller = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "pathWarning")) as? NSViewController {
+        if applicationStateHandler.filePath == nil, let controller = storyboard?.instantiateController(withIdentifier: .pathWarning) as? NSViewController {
             presentViewControllerAsModalWindow(controller)
             proceedButton.isHidden = false
         } else {
             self.dismiss(true)
         }
     }
-
+    
+    func appendToDictionary(using value: String, for key: String) -> [String : Any] {
+        var data: [String: Any] = [key : []]
+        data[key] = [:]
+        
+        var existingItems = data[key] as? [[String: String]] ?? []
+        
+        existingItems.append([key : value])
+        data[key] = existingItems
+        return data
+    }
 }
 

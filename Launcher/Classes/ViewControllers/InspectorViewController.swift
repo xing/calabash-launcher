@@ -11,10 +11,19 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     var parentCollection: [String] = []
     var filteredParentCollection: [String] = []
     var timer = Timer()
-    var elementIndex:Int!
-    var parentElementIndex:Int!
-    var isParentView:Bool = false
-    var retryCount:Int = 0
+    var elementIndex: Int!
+    var parentElementIndex: Int!
+    var isParentView = false
+    var retryCount = 0
+    
+    enum InspectorResources {
+        static let temporaryScreenshotPath = "/tmp/screenshot_0.png"
+        static let defaultGestureRecognizerAccessibilityLabel = "defaultImage"
+        static let customGestureRecognizerAccessibilityLabel = "customImage"
+        static let elementInspectorPath = "/tmp/get_all_elements_inspector.txt"
+        static let cloneInfoPath = "/tmp/clone_info.txt"
+    }
+
     
     @IBOutlet var startDeviceButton: NSButton!
     @IBOutlet var getElementsButton: NSButton!
@@ -68,100 +77,95 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         outputText.alignment = NSTextAlignment.left
         gestureRecognizableView.addGestureRecognizer(gestureRecognizer)
         coordinatesMarker.isHidden = true
-        self.getElementsButton.isEnabled = true
-        self.startDeviceButton.isEnabled = true
-        self.gestureRecognizer.isEnabled = true
-        self.cloneButton.isHidden = true
+        getElementsButton.isEnabled = true
+        startDeviceButton.isEnabled = true
+        gestureRecognizer.isEnabled = true
+        cloneButton.isHidden = true
         textViewPrinter = TextViewPrinter(textView: outputText)
     }
 
     @IBAction func doubleClickedItem(_ sender: NSOutlineView) {
-        if let item = sender.item(atRow: sender.clickedRow) as? String {
-            CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
-        }
+        guard let item = sender.item(atRow: sender.clickedRow) as? String else { return }
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.flash ?? "", arguments: [item]).execute()
     }
     
     @IBAction func gestureRecognizer(_ sender: Any) {
         // Show dialog window if booted Simulator is incorrect (should be iPhone 6,7 or 8).
         DispatchQueue.global(qos: .background).async {
-            guard let controller = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "wrongSimulatorWindow")) as? NSViewController,
+            guard let controller = self.storyboard?.instantiateController(withIdentifier: .wrongSimulator) as? NSViewController,
                 !self.commandsController.isSimulatorCorrect else { return }
             DispatchQueue.main.async {
                 self.presentViewControllerAsModalWindow(controller)
             }
         }
         
-        if gestureRecognizableView.accessibilityLabel() == "defaultImage" {
+        if gestureRecognizableView.accessibilityLabel() == InspectorResources.defaultGestureRecognizerAccessibilityLabel {
             timer.invalidate()
             coordinatesMarker.isHidden = true
             syncScreen()
             getScreenProcs()
-            timer = .scheduledTimer(timeInterval: 5.5, target: self, selector: #selector(self.getScreenProcsLoop), userInfo: nil, repeats: true);
+            timer = .scheduledTimer(timeInterval: 5.5, target: self, selector: #selector(getScreenProcsLoop), userInfo: nil, repeats: true);
         } else {
             let coordinates = gestureRecognizer.location(in: gestureRecognizableView)
-            self.coordinatesMarker.isHidden = false
-            self.coordinatesMarker.isHighlighted = true
+            coordinatesMarker.isHidden = false
+            coordinatesMarker.isHighlighted = true
             let convertedClickPoint = self.gestureRecognizableView.convert(coordinates, to: self.view)
-            self.coordinatesMarker.frame = NSRect(x: convertedClickPoint.x - self.coordinatesMarker.frame.size.width/2 + 1, y: convertedClickPoint.y - self.coordinatesMarker.frame.size.height/2 - 6, width: self.coordinatesMarker.frame.size.width, height: self.coordinatesMarker.frame.size.height)
+            let markerFrame = NSRect(
+                x: convertedClickPoint.x - coordinatesMarker.frame.size.width / 2 + 1,
+                y: convertedClickPoint.y - coordinatesMarker.frame.size.height / 2 - 6,
+                width: coordinatesMarker.frame.size.width,
+                height: coordinatesMarker.frame.size.height)
+            coordinatesMarker.frame = markerFrame
             uiElements = []
             parentCollection = []
-            var parent_trigger = 0
+            var parentTrigger = 0
             SharedElement.shared.coordinates = []
             SharedElement.shared.coordinates.append(coordinates.x.description)
             SharedElement.shared.coordinates.append(coordinates.y.description)
-            try? fileManager.removeItem(atPath: "/tmp/element_array.txt")
-            self.disableAllElements()
+            let filePath = "/tmp/element_array.txt"
+            try? fileManager.removeItem(atPath: filePath)
+            disableAllElements()
             getElementsByOffset([coordinates.x.description, coordinates.y.description])
 
-            let filePath = "/tmp/element_array.txt"
+            let numberOfRetries = 990
 
-            waitingForFile(fileName: "/tmp/element_array.txt", numberOfRetries: 990) {
+            func handleURLLine(_ line: String) {
+                if line == "==========" {
+                    parentTrigger = 2
+                    return
+                }
 
-                if let aStreamReader = StreamReader(path: filePath) {
-                    defer {
-                        aStreamReader.close()
+                switch parentTrigger {
+                case 0:
+                    uiElements.append(line)
+                case 2:
+                    parentCollection.append(line)
+                default:
+                    return
+                }
+            }
+
+            waitingForFile(withName: filePath, numberOfRetries: numberOfRetries) {
+                
+                guard let streamReader = StreamReader(path: filePath) else { return }
+                defer { streamReader.close() }
+                while let urlLine = streamReader.nextLine() {
+                    handleURLLine(urlLine)
+                }
+
+                if self.uiElements.isEmpty {
+                    sleep(1)
+                    guard let streamReader = StreamReader(path: filePath) else { return }
+                    defer { streamReader.close() }
+                    while let urlLine = streamReader.nextLine() {
+                        handleURLLine(urlLine)
                     }
-                    while let url_line = aStreamReader.nextLine() {
+                }
 
-                        if url_line == "==========" {
-                            parent_trigger = 2
-                            continue
-                        }
-
-                        if parent_trigger == 0 {
-                            self.uiElements.append(url_line)
-                        } else if parent_trigger == 2 {
-                            self.parentCollection.append(url_line)
-                        }
-                    }
-
-                    if self.uiElements == [] {
-                        sleep(1)
-                        if let aStreamReader = StreamReader(path: filePath) {
-                            defer {
-                                aStreamReader.close()
-                            }
-                            while let url_line = aStreamReader.nextLine() {
-
-                                if url_line == "==========" {
-                                    parent_trigger = 2
-                                    continue
-                                }
-
-                                if parent_trigger == 0 {
-                                    self.uiElements.append(url_line)
-                                } else if parent_trigger == 2 {
-                                    self.parentCollection.append(url_line)
-                                }
-                            }
-                        }
-                    }
-
-                    self.getScreenProcs()
-                    self.enableAllElements()
-                    DispatchQueue.main.async {
-                        self.outlineView.reloadData()
-                    }
+                self.getScreenProcs()
+                self.enableAllElements()
+                DispatchQueue.main.async {
+                    self.outlineView.reloadData()
                 }
             }
         }
@@ -179,33 +183,26 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
 
     
     @IBAction func getElementsButton(_ sender: Any) {
-        try? fileManager.removeItem(atPath: "/tmp/get_all_elements_inspector.txt")
+        try? fileManager.removeItem(atPath: InspectorResources.elementInspectorPath)
         getElements()
         getElementsFromFile()
     }
     
     func fileIsNotEmpty(filePath: String) -> Bool {
-        if filePath.range(of: "txt") == nil {
+        if !filePath.contains("txt") {
             return true
         } else {
-            var found = false
-            if let aStreamReader = StreamReader(path: filePath) {
-                defer {
-                    aStreamReader.close()
-                }
-                if aStreamReader.nextLine() != nil {
-                    found = true
-                }
-            }
-            return found
+            guard let streamReader = StreamReader(path: filePath) else { return false }
+            defer { streamReader.close() }
+            return streamReader.nextLine() != nil
         }
     }
     
-    func waitingForFile(fileName: String, numberOfRetries: Int, enableSpinner:Bool = true,completion: @escaping () -> Void) {
+    func waitingForFile(withName fileName: String, numberOfRetries: Int, enableSpinner: Bool = true, completion: @escaping () -> Void) {
         if enableSpinner {
-            self.disableAllElements()
+            disableAllElements()
         }
-        guard FileManager.default.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName) else {
+        guard fileManager.fileExists(atPath: fileName) && fileIsNotEmpty(filePath: fileName) else {
             if numberOfRetries == retryCount {
                 retryCount = 0
                 DispatchQueue.main.async {
@@ -215,10 +212,9 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 stopImageRefresh()
                 return
             }
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.1,
-                                                              execute: { [weak self] in
-                                                                self?.waitingForFile(fileName: fileName, numberOfRetries: numberOfRetries, enableSpinner: enableSpinner, completion: completion)
-            })
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
+                self?.waitingForFile(withName: fileName, numberOfRetries: numberOfRetries, enableSpinner: enableSpinner, completion: completion)
+            }
             retryCount += 1
             return
         }
@@ -226,26 +222,27 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         completion()
     }
     
-    func getElementsByOffset(_ arguments:[String]) {
+    func getElementsByOffset(_ arguments: [String]) {
         CommandExecutor(launchPath: Constants.FilePaths.Bash.elementsByOffset ?? "", arguments: arguments).execute()
     }
     
     func getElements() {
-        var arguments: [String] = []
-        if let filePath = self.applicationStateHandler.filePath {
+        let arguments: [String]
+        if let filePath = applicationStateHandler.filePath {
             arguments = [filePath.absoluteString]
+        } else {
+            arguments = []
         }
         CommandExecutor(launchPath: Constants.FilePaths.Bash.elements ?? "", arguments: arguments).execute()
     }
     
 
     func outputInTheMainTextView(string: String) {
-        let previousOutput = self.outputText.string
-        self.outputText.string = previousOutput + "\n" + string
+        outputText.string.append("\n\(string)")
     }
     
     func startDevice() {
-        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
         
         if let launchPath = Constants.FilePaths.Bash.startDevice {
             let outputStream = CommandTextOutputStream()
@@ -255,18 +252,20 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                     self.textViewPrinter.printToTextView(text)
                 }
             }
-            var arguments: [String] = []
-            if let phoneUDID = self.applicationStateHandler.phoneUDID {
+            let arguments: [String]
+            if let phoneUDID = applicationStateHandler.phoneUDID {
                 arguments = [phoneUDID]
+            } else {
+                arguments = []
             }
             DispatchQueue.global(qos: .background).async {
                 CommandExecutor(launchPath: launchPath, arguments: arguments, outputStream: outputStream).execute()
             }
         }
-        
-        self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 9999) {
-            
-        self.getScreenProcs()
+
+        let numberOfRetries = 9_999
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
+            self.getScreenProcs()
             DispatchQueue.main.async {
                 self.outputInTheMainTextView(string: "Simulator is ready to use")
             }
@@ -276,28 +275,30 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     
     @objc func getScreenProcsLoop() {
         syncScreen()
-        waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 50, enableSpinner: false) {
+        let numberOfRetries = 50
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries, enableSpinner: false) {
             self.changeScreenshot()
             self.enableAllElements()
         }
     }
     
     func syncScreen() {
-        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
         DispatchQueue.global(qos: .background).async {
             CommandExecutor(launchPath: Constants.FilePaths.Bash.screen ?? "", arguments: []).execute()
         }
     }
     
     func getScreenProcs() {
-        self.waitingForFile(fileName: "/tmp/screenshot_0.png", numberOfRetries: 40) {
-            let imageURL = URL(fileURLWithPath: "/tmp/screenshot_0.png")
+        let numberOfRetries = 40
+        waitingForFile(withName: InspectorResources.temporaryScreenshotPath, numberOfRetries: numberOfRetries) {
+            let imageURL = URL(fileURLWithPath: InspectorResources.temporaryScreenshotPath)
             let image = NSImage(contentsOfFile: imageURL.path)
             DispatchQueue.main.async {
                 self.gestureRecognizableView.image = image
             }
-            self.gestureRecognizableView.setAccessibilityLabel("customImage")
-            try? self.fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+            self.gestureRecognizableView.setAccessibilityLabel(InspectorResources.customGestureRecognizerAccessibilityLabel)
+            try? self.fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
             self.enableAllElements()
         }
     }
@@ -306,41 +307,38 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = #imageLiteral(resourceName: "click_image.png")
         }
-        self.gestureRecognizableView.setAccessibilityLabel("defaultImage")
+        gestureRecognizableView.setAccessibilityLabel(InspectorResources.defaultGestureRecognizerAccessibilityLabel)
         timer.invalidate()
     }
     
     func changeScreenshot() {
-        let imageURL = URL(fileURLWithPath: "/tmp/screenshot_0.png")
+        let imageURL = URL(fileURLWithPath: InspectorResources.temporaryScreenshotPath)
         let image = NSImage(contentsOfFile: imageURL.path)
         DispatchQueue.main.async {
             self.gestureRecognizableView.image = image
         }
-        try? fileManager.removeItem(atPath: "/tmp/screenshot_0.png")
+        try? fileManager.removeItem(atPath: InspectorResources.temporaryScreenshotPath)
     }
     
     func getElementsFromFile() {
-        self.disableAllElements()
-        let filePath = "/tmp/get_all_elements_inspector.txt"
+        disableAllElements()
         var previousOutput = ""
-        self.outputText.string = ""
-        self.waitingForFile(fileName: filePath, numberOfRetries: 70) {
+        outputText.string = ""
+        let numberOfRetries = 70
+        waitingForFile(withName: InspectorResources.elementInspectorPath, numberOfRetries: numberOfRetries) {
             DispatchQueue.main.async {
-                if let aStreamReader = StreamReader(path: filePath) {
-                    defer {
-                        aStreamReader.close()
-                    }
-                    while let url_line = aStreamReader.nextLine() {
-                        
-                        self.outputText.string = previousOutput + url_line + "\n"
-                        
-                        previousOutput = self.outputText.string
-                    }
+                guard let streamReader = StreamReader(path: InspectorResources.elementInspectorPath) else { return }
+                defer { streamReader.close() }
+                while let urlLine = streamReader.nextLine() {
+
+                    self.outputText.string = "\(previousOutput)\(urlLine)\n"
+
+                    previousOutput = self.outputText.string
                 }
-                self.enableAllElements()
-                if self.outputText.string.isEmpty {
-                    self.outputInTheMainTextView(string: "The simulator seams to be not ready to use. Please use 'Start Simulator' button to start it properly")
-                }
+            }
+            self.enableAllElements()
+            if self.outputText.string.isEmpty {
+                self.outputInTheMainTextView(string: "The simulator seams to be not ready to use. Please use 'Start Simulator' button to start it properly".localized)
             }
         }
     }
@@ -392,13 +390,13 @@ extension InspectorViewController: NSOutlineViewDelegate {
         var view: NSTableCellView?
 
         if !isParentView {
-            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedCell"), owner: self) as? NSTableCellView
+            view = outlineView.makeView(withIdentifier: .feedCell, owner: self) as? NSTableCellView
             if let textField = view?.textField {
                 textField.textColor = NSColor.yellow
                 textField.stringValue = item as! String
             }
         } else {
-            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FeedItemCell"), owner: self) as? NSTableCellView
+            view = outlineView.makeView(withIdentifier: .feedItemCell, owner: self) as? NSTableCellView
             if let textField = view?.textField {
                 textField.textColor = NSColor.cyan
                 textField.stringValue = item as! String
@@ -408,17 +406,30 @@ extension InspectorViewController: NSOutlineViewDelegate {
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        self.cloneButton.isHidden = true
-        self.cloneLabel.stringValue = ""
+        cloneButton.isHidden = true
+        cloneLabel.stringValue = ""
         guard let outlineView = notification.object as? NSOutlineView else { return }
         
         let selectedIndex = outlineView.selectedRow
         
-        if let feedItem = outlineView.item(atRow: selectedIndex) as? String {
-            let filePath4 = "/tmp/localized.txt"
-            self.localizedTextField.stringValue = ""
-            try? fileManager.removeItem(atPath: filePath4)
-            self.elementTextField.stringValue = feedItem
+        guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
+        localizedTextField.stringValue = ""
+        elementTextField.stringValue = feedItem
+        
+        CommandExecutor(launchPath: Constants.FilePaths.Bash.checkDuplicates ?? "", arguments: [feedItem]).execute()
+        waitingForFile(withName: InspectorResources.cloneInfoPath, numberOfRetries: 30, enableSpinner: false) {
+            guard let streamReader = StreamReader(path: InspectorResources.cloneInfoPath) else { return }
+            defer {
+                streamReader.close()
+                try? self.fileManager.removeItem(atPath: InspectorResources.cloneInfoPath)
+            }
+            guard let urlLine = streamReader.nextLine(), urlLine == "false" else { return }
+            SharedElement.shared.stringValue = feedItem
+            DispatchQueue.main.async {
+                self.cloneButton.isHidden = false
+                self.cloneLabel.stringValue = "The Element is not unique".localized
+                self.cloneLabel.textColor = .red
+            }
         }
     }
 }
