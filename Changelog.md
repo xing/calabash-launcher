@@ -1,3 +1,14 @@
+# 1.2
+
+## Added
+
+- Added possibility to have predifined settings for the launcher by using .plist
+- Added possibility to download app automatically for every run by clicking the checkbox
+- Added Install button to install the app
+- Added Erase Simulator button
+- Redesign for the main view
+- Bug fixes
+
 # 1.1
 
 ## Added
