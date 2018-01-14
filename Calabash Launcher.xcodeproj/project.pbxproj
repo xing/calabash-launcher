@@ -22,8 +22,6 @@
 		D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E21B4B1F96B0470044169A /* RegexHandler.swift */; };
 		D7E995B81FAFB1D600318741 /* check_sim_type.command in Resources */ = {isa = PBXBuildFile; fileRef = D7E995B71FAFB1D600318741 /* check_sim_type.command */; };
 		ED06A0E21E850CA70092C96E /* BashOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED06A0E11E850CA70092C96E /* BashOutput.swift */; };
-		ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; };
-		ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED1762DC1F975B4500C84290 /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED2183DB1F8D0B5800E59DCC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */; };
 		ED2C34781E16C969006AF7B4 /* send_to_irb.command in Resources */ = {isa = PBXBuildFile; fileRef = ED2C34771E16C969006AF7B4 /* send_to_irb.command */; };
 		ED399A461DBA0447000FA4AA /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = ED399A451DBA0447000FA4AA /* console.command */; };
@@ -48,8 +46,8 @@
 		ED9472961E37BD3E00FE2982 /* get_uniq_elements.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */; };
 		ED9AC7541FB5E12200886E06 /* get_physical_device.command in Resources */ = {isa = PBXBuildFile; fileRef = ED9AC7531FB5E12100886E06 /* get_physical_device.command */; };
 		EDB433361DD49AF5001BABEC /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB433351DD49AF5001BABEC /* InspectorViewController.swift */; };
-		EDBC4AE32002C8A6000E4D63 /* erase_simulator.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */; };
 		EDBC4AE120024CD3000E4D63 /* app_install.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE020024CD3000E4D63 /* app_install.command */; };
+		EDBC4AE32002C8A6000E4D63 /* erase_simulator.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */; };
 		EDBC88071DFEE8A6004CB840 /* kill_process.command in Resources */ = {isa = PBXBuildFile; fileRef = EDBC88061DFEE8A6004CB840 /* kill_process.command */; };
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
 		EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */; };
@@ -72,7 +70,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ED1762E11F975B7000C84290 /* CommandsCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3B944B6E200B609F00DC30B0 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		5D1A40361F98FBE60055F57F /* SharedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedElement.swift; sourceTree = "<group>"; };
 		5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Constants.swift"; sourceTree = "<group>"; };
 		5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserInterfaceItemIdentifier+Constants.swift"; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 		D7E21B4B1F96B0470044169A /* RegexHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexHandler.swift; sourceTree = "<group>"; };
 		D7E995B71FAFB1D600318741 /* check_sim_type.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_sim_type.command; sourceTree = "<group>"; };
 		ED06A0E11E850CA70092C96E /* BashOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BashOutput.swift; sourceTree = "<group>"; };
-		ED1762DC1F975B4500C84290 /* CommandsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = "<group>"; };
 		ED2183DA1F8D0B5800E59DCC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED2C34771E16C969006AF7B4 /* send_to_irb.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = send_to_irb.command; sourceTree = "<group>"; };
 		ED399A451DBA0447000FA4AA /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
@@ -121,8 +118,8 @@
 		ED9472951E37BD3E00FE2982 /* get_uniq_elements.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_uniq_elements.command; sourceTree = "<group>"; };
 		ED9AC7531FB5E12100886E06 /* get_physical_device.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_physical_device.command; sourceTree = "<group>"; };
 		EDB433351DD49AF5001BABEC /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
-		EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erase_simulator.command; sourceTree = "<group>"; };
 		EDBC4AE020024CD3000E4D63 /* app_install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_install.command; sourceTree = "<group>"; };
+		EDBC4AE22002C8A6000E4D63 /* erase_simulator.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erase_simulator.command; sourceTree = "<group>"; };
 		EDBC88061DFEE8A6004CB840 /* kill_process.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_process.command; sourceTree = "<group>"; };
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
 		EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPrinter.swift; sourceTree = "<group>"; };
@@ -144,13 +141,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED1762E01F975B7000C84290 /* CommandsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B944B6D200B608700DC30B0 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				3B944B6E200B609F00DC30B0 /* Package.swift */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
 		D74D80861F993BAC0049A84F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +272,7 @@
 		EDD303971F8F88400042E27F /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
-				EDD645CE1F975789009E9D8C /* Frameworks */,
+				3B944B6D200B608700DC30B0 /* Package */,
 				EDD303981F8F88AB0042E27F /* Storyboards */,
 				ED4C14E91DB29FB700A1190E /* Info.plist */,
 				EDD303961F8F879C0042E27F /* Assets */,
@@ -283,14 +287,6 @@
 				ED4C14E61DB29FB700A1190E /* Main.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		EDD645CE1F975789009E9D8C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ED1762DC1F975B4500C84290 /* CommandsCore.framework */,
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		FD1047061F90AB2100A89D1C /* Controllers */ = {
