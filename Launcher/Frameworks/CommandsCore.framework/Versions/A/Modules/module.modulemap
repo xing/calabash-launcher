@@ -1,4 +1,0 @@
-framework module CommandsCore {
-    header "CommandsCore-Swift.h"
-    requires objc
-}
