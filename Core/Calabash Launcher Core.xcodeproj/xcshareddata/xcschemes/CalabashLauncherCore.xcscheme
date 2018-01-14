@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED4C14DC1DB29FB700A1190E"
-               BuildableName = "Calabash Launcher.app"
-               BlueprintName = "Calabash Launcher"
-               ReferencedContainer = "container:Calabash Launcher.xcodeproj">
+               BlueprintIdentifier = "Calabash Launcher Core::CalabashLauncherCore"
+               BuildableName = "CalabashLauncherCore.framework"
+               BlueprintName = "CalabashLauncherCore"
+               ReferencedContainer = "container:Calabash Launcher Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,15 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED4C14DC1DB29FB700A1190E"
-            BuildableName = "Calabash Launcher.app"
-            BlueprintName = "Calabash Launcher"
-            ReferencedContainer = "container:Calabash Launcher.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -56,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED4C14DC1DB29FB700A1190E"
-            BuildableName = "Calabash Launcher.app"
-            BlueprintName = "Calabash Launcher"
-            ReferencedContainer = "container:Calabash Launcher.xcodeproj">
+            BlueprintIdentifier = "Calabash Launcher Core::CalabashLauncherCore"
+            BuildableName = "CalabashLauncherCore.framework"
+            BlueprintName = "CalabashLauncherCore"
+            ReferencedContainer = "container:Calabash Launcher Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -74,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED4C14DC1DB29FB700A1190E"
-            BuildableName = "Calabash Launcher.app"
-            BlueprintName = "Calabash Launcher"
-            ReferencedContainer = "container:Calabash Launcher.xcodeproj">
+            BlueprintIdentifier = "Calabash Launcher Core::CalabashLauncherCore"
+            BuildableName = "CalabashLauncherCore.framework"
+            BlueprintName = "CalabashLauncherCore"
+            ReferencedContainer = "container:Calabash Launcher Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
