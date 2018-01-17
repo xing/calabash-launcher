@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B425A60200B9F6600A096AA /* CalabashLauncherCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; };
-		3B425A61200B9F6600A096AA /* CalabashLauncherCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3BE07758200D4FEB00F1577C /* CalabashLauncherCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		3BE07759200D4FEB00F1577C /* CalabashLauncherCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1A40361F98FBE60055F57F /* SharedElement.swift */; };
 		5D272E7F1FB98BC200E957DE /* NSStoryboard+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */; };
 		5D70B6471FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */; };
@@ -65,24 +65,14 @@
 		FD4D0F351F8D086100EAD142 /* ApplicationStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D0F341F8D086100EAD142 /* ApplicationStateHandler.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3B425A6B200BA39300A096AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ED4C14D51DB29FB700A1190E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3B425A67200BA38600A096AA;
-			remoteInfo = Bootstrap;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		3B425A62200B9F6600A096AA /* Embed Frameworks */ = {
+		3BE0775A200D4FEB00F1577C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3B425A61200B9F6600A096AA /* CalabashLauncherCore.framework in Embed Frameworks */,
+				3BE07759200D4FEB00F1577C /* CalabashLauncherCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,10 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B425A58200B9D7E00A096AA /* calabash_launcher_core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash_launcher_core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CalabashLauncherCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7EF089200BA8B3004CB814 /* bootstrap.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = bootstrap.sh; sourceTree = "<group>"; };
-		3B944B7F200B831B00DC30B0 /* CommandsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D1A40361F98FBE60055F57F /* SharedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedElement.swift; sourceTree = "<group>"; };
 		5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Constants.swift"; sourceTree = "<group>"; };
 		5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserInterfaceItemIdentifier+Constants.swift"; sourceTree = "<group>"; };
@@ -157,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B425A60200B9F6600A096AA /* CalabashLauncherCore.framework in Frameworks */,
+				3BE07758200D4FEB00F1577C /* CalabashLauncherCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,8 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */,
-				3B425A58200B9D7E00A096AA /* calabash_launcher_core.framework */,
-				3B944B7F200B831B00DC30B0 /* CommandsCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,12 +339,11 @@
 				ED4C14D91DB29FB700A1190E /* Sources */,
 				ED4C14DA1DB29FB700A1190E /* Frameworks */,
 				ED4C14DB1DB29FB700A1190E /* Resources */,
-				3B425A62200B9F6600A096AA /* Embed Frameworks */,
+				3BE0775A200D4FEB00F1577C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3B425A6C200BA39300A096AA /* PBXTargetDependency */,
 			);
 			name = "Calabash Launcher";
 			productName = "Calabash Launcher";
@@ -474,14 +459,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3B425A6C200BA39300A096AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3B425A67200BA38600A096AA /* Bootstrap */;
-			targetProxy = 3B425A6B200BA39300A096AA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ED4C14E61DB29FB700A1190E /* Main.storyboard */ = {
@@ -642,10 +619,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Launcher/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -666,10 +640,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Launcher/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
