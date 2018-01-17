@@ -12,13 +12,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/q231950/commands.git", .exact("0.0.6")),
-    ],
+        ],
     targets: [
         .target(
             name: "CalabashLauncherCore",
             dependencies: ["CommandsCore"])
-    //    ,
-    //    path: ".",
-    //    sources:["Core/Classes"])
     ]
 )
