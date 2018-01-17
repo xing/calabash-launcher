@@ -8,7 +8,7 @@
 # Scope
 
 - We plan on providing Android support in [version 3.0](https://github.com/xing/calabash-launcher/milestone/3).
-- We **do not** plan on adding support to actually write Calabash tests.
+- We **do not** plan on adding support to actually write Calabash tests as part of Calabash Launcher.
 
 ## Inspiration
 
