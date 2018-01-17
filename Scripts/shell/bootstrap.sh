@@ -10,7 +10,7 @@
 cd ${SOURCE_ROOT}/Core
 
 # Fetch new version if available and desired by the package manifest
-#swift package --disable-sandbox update
+swift package --disable-sandbox update
 
 # Build so the dependencies can be used in the Calabash Launcher (via Calabash Launcher Core)
 swift build --disable-sandbox
