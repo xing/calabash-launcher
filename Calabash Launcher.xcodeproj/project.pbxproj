@@ -314,23 +314,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-		3B425A67200BA38600A096AA /* Bootstrap */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = ./Scripts/shell/bootstrap.sh;
-			buildConfigurationList = 3B425A68200BA38600A096AA /* Build configuration list for PBXLegacyTarget "Bootstrap" */;
-			buildPhases = (
-			);
-			buildToolPath = sh;
-			buildWorkingDirectory = "";
-			dependencies = (
-			);
-			name = Bootstrap;
-			passBuildSettingsInEnvironment = 1;
-			productName = Bootstrap;
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		ED4C14DC1DB29FB700A1190E /* Calabash Launcher */ = {
 			isa = PBXNativeTarget;
@@ -380,7 +363,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3B425A67200BA38600A096AA /* Bootstrap */,
 				ED4C14DC1DB29FB700A1190E /* Calabash Launcher */,
 			);
 		};
@@ -472,39 +454,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3B425A69200BA38600A096AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3B425A6A200BA38600A096AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		ED4C14EA1DB29FB700A1190E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -656,15 +605,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3B425A68200BA38600A096AA /* Build configuration list for PBXLegacyTarget "Bootstrap" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3B425A69200BA38600A096AA /* Debug */,
-				3B425A6A200BA38600A096AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		ED4C14D81DB29FB700A1190E /* Build configuration list for PBXProject "Calabash Launcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
