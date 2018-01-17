@@ -7,8 +7,9 @@
 
 # Scope
 
-**TBD**
+- We plan on providing Android support in [version 3.0](https://github.com/xing/calabash-launcher/milestone/3).
+- We **do not** plan on adding support to actually write Calabash tests.
 
 ## Inspiration
 
-This project is inspired by **TBD** at [XING](https://www.xing.com) and aims to **TBD**.
+This project is inspired by the open source community and is developed at [XING](https://www.xing.com). It aims to make running Calabash tests on macOS easier and more accessible.
