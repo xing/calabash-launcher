@@ -33,14 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3B7512EB200D505B0000F74B /* PBXContainerItemProxy */ = {
+		3B5B279E200FD96D001C1541 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Commands::CommandsCore";
 			remoteInfo = CommandsCore;
 		};
-		3B7512EC200D505B0000F74B /* PBXContainerItemProxy */ = {
+		3B5B279F200FD96E001C1541 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -301,12 +301,12 @@
 		OBJ_44 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Commands::CommandsCore" /* CommandsCore */;
-			targetProxy = 3B7512EB200D505B0000F74B /* PBXContainerItemProxy */;
+			targetProxy = 3B5B279E200FD96D001C1541 /* PBXContainerItemProxy */;
 		};
 		OBJ_60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Calabash Launcher Core::CalabashLauncherCore" /* CalabashLauncherCore */;
-			targetProxy = 3B7512EC200D505B0000F74B /* PBXContainerItemProxy */;
+			targetProxy = 3B5B279F200FD96E001C1541 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
