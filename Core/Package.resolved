@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Commands",
+        "repositoryURL": "https://github.com/q231950/commands.git",
+        "state": {
+          "branch": null,
+          "revision": "35ac92d67bf89fe0f868cb83fc7a9531cd827a1b",
+          "version": "0.0.6"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
