@@ -239,7 +239,9 @@ class TasksViewController: NSViewController {
     }
     
     @IBAction func clickTagPicker(_ sender: Any) {
-        applicationStateHandler.tag = tagPicker.stringValue
+        if !tagPicker.stringValue.isEmpty {
+            applicationStateHandler.tag = tagPicker.stringValue
+        }
     }
     
     @IBAction func startTask(_ sender:AnyObject) {
