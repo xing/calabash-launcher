@@ -458,7 +458,7 @@ class TasksViewController: NSViewController {
         
         var arguments: [String] = []
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             if self.debugCheckbox.state == .on {
                 arguments.append("DEBUG=1")
             } else {
@@ -474,7 +474,7 @@ class TasksViewController: NSViewController {
             arguments.append("-p \(cucumberProfile)")
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             // We still need an arugment to be passed, otherwise bash variable order will be spoiled
             if !self.tagPicker.stringValue.isEmpty {
                 arguments.append("--t @\(self.tagPicker.stringValue)")
@@ -492,7 +492,7 @@ class TasksViewController: NSViewController {
         let commandToExecute = plistHandler.readValues(forKey: Constants.Keys.commandFieldInfo).first ?? ""
         arguments.append(commandToExecute)
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             if let deviceIP = self.applicationStateHandler.deviceIP,
                 let bundleID = self.applicationStateHandler.bundleID,
                 self.physicalDeviceRadioButton.state == .on,
