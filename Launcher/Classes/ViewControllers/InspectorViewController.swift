@@ -352,7 +352,7 @@ extension InspectorViewController: NSOutlineViewDataSource {
             return uiElements.count
         }
 
-        let currentChildIndex = uiElements.index(of: item as! String)!
+        guard let currentChildIndex = uiElements.index(of: item as! String) else { return 0 }
         isParentView = true
 
         var calculatedChildIndex = -1
