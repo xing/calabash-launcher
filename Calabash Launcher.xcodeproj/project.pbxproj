@@ -42,6 +42,8 @@
 		ED7045071DD6202400272059 /* get_elements_by_offset.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7045061DD6202400272059 /* get_elements_by_offset.command */; };
 		ED7278961FA78E050022505E /* app_download.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7278951FA78E050022505E /* app_download.command */; };
 		ED7764841FF78033007E85AE /* check_for_duplicates.command in Resources */ = {isa = PBXBuildFile; fileRef = ED7764831FF78033007E85AE /* check_for_duplicates.command */; };
+		ED79E920201378A8002A315E /* CommandsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED79E921201378A8002A315E /* CommandsCore.framework */; };
+		ED79E922201378B1002A315E /* CommandsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED79E921201378A8002A315E /* CommandsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED85D2ED1F94D8A000E5E2D8 /* change_sim_language.command in Resources */ = {isa = PBXBuildFile; fileRef = ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */; };
 		ED85D2F01F950A9400E5E2D8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */; };
 		ED9472941E365F9D00FE2982 /* ElementConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */; };
@@ -72,6 +74,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				ED79E922201378B1002A315E /* CommandsCore.framework in Embed Frameworks */,
 				3BE07759200D4FEB00F1577C /* CalabashLauncherCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -116,6 +119,7 @@
 		ED7045061DD6202400272059 /* get_elements_by_offset.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_elements_by_offset.command; sourceTree = "<group>"; };
 		ED7278951FA78E050022505E /* app_download.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = app_download.command; sourceTree = "<group>"; };
 		ED7764831FF78033007E85AE /* check_for_duplicates.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_for_duplicates.command; sourceTree = "<group>"; };
+		ED79E921201378A8002A315E /* CommandsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommandsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED85D2EC1F94D8A000E5E2D8 /* change_sim_language.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sim_language.command; sourceTree = "<group>"; };
 		ED85D2EF1F950A9400E5E2D8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		ED9472931E365F9C00FE2982 /* ElementConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConstructorViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED79E920201378A8002A315E /* CommandsCore.framework in Frameworks */,
 				3BE07758200D4FEB00F1577C /* CalabashLauncherCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +168,7 @@
 		3B944B7D200B831B00DC30B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED79E921201378A8002A315E /* CommandsCore.framework */,
 				3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */,
 			);
 			name = Frameworks;
