@@ -5,7 +5,7 @@ jobs:
       xcode: "9.2.0"
       steps:
         - checkout
-        # - run:
-        #   name: Run Danger
-        #   command: bundle exec danger
-        #   when: always
+        - run:
+          name: Run Danger
+          command: bundle exec danger
+          when: always
