@@ -352,7 +352,7 @@ extension InspectorViewController: NSOutlineViewDataSource {
             return uiElements.count
         }
 
-        let currentChildIndex = uiElements.index(of: item as! String)!
+        guard let elementItem = item as? String, let currentChildIndex = uiElements.index(of: elementItem) else { return 0 }
         isParentView = true
 
         var calculatedChildIndex = -1
@@ -391,15 +391,15 @@ extension InspectorViewController: NSOutlineViewDelegate {
 
         if !isParentView {
             view = outlineView.makeView(withIdentifier: .feedCell, owner: self) as? NSTableCellView
-            if let textField = view?.textField {
+            if let textField = view?.textField, let elementItem = item as? String {
                 textField.textColor = NSColor.yellow
-                textField.stringValue = item as! String
+                textField.stringValue = elementItem
             }
         } else {
             view = outlineView.makeView(withIdentifier: .feedItemCell, owner: self) as? NSTableCellView
-            if let textField = view?.textField {
+            if let textField = view?.textField, let elementItem = item as? String {
                 textField.textColor = NSColor.cyan
-                textField.stringValue = item as! String
+                textField.stringValue = elementItem
             }
         }
         return view
