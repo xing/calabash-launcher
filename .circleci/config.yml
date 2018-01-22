@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+          command: bundle install
+      - run:
           name: Run Danger
           command: bundle exec danger
           when: always
