@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BE07758200D4FEB00F1577C /* CalabashLauncherCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		3BE07759200D4FEB00F1577C /* CalabashLauncherCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B425A5C200B9DCE00A096AA /* CalabashLauncherCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5D1A40371F98FBE60055F57F /* SharedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1A40361F98FBE60055F57F /* SharedElement.swift */; };
 		5D272E7F1FB98BC200E957DE /* NSStoryboard+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D272E7E1FB98BC200E957DE /* NSStoryboard+Constants.swift */; };
 		5D70B6471FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B6461FEBB40700EE767D /* NSUserInterfaceItemIdentifier+Constants.swift */; };
