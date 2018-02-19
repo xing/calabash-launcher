@@ -205,6 +205,7 @@ class SettingsViewController: NSViewController {
             let url = panel.urls.first
             self?.fileBrowser.url = url
             self?.applicationStateHandler.filePath = url
+            self?.pathChanged = true
         }
     }
 
