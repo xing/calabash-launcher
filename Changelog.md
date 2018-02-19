@@ -1,3 +1,11 @@
+# 2.0
+
+## Added
+
+## Miscellaneous
+
+- Improved UX of "invalid path for test folder" dialog
+
 # 1.2
 
 ## Added
