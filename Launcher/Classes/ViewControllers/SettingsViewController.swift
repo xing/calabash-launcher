@@ -20,14 +20,12 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var linkDescriptionField4: NSTextField!
     @IBOutlet weak var warningField: NSTextField!
     @IBOutlet weak var saveButton: NSButton!
-    @IBOutlet weak var proceedButton: NSButton!
     @IBOutlet weak var additionalRunParameters: NSTextField!
     @IBOutlet weak var appPathField: NSTextField!
     @IBOutlet weak var commandField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        proceedButton.isHidden = true
         if let filePath = applicationStateHandler.filePath {
             self.fileBrowser.url = filePath
         }
@@ -64,10 +62,6 @@ class SettingsViewController: NSViewController {
         for (index, element) in linkValues.enumerated() {
             elements[index].1.stringValue = String(describing: element)
         }
-    }
-    
-    @IBAction func clickProceedButton(_ sender: Any) {
-        self.dismiss(true)
     }
     
     @IBAction func clickResetToDefaults(_ sender: Any) {
@@ -157,11 +151,29 @@ class SettingsViewController: NSViewController {
     }
     
     func emptyPathHandling() {
-        if applicationStateHandler.filePath == nil, let controller = storyboard?.instantiateController(withIdentifier: .pathWarning) as? NSViewController {
-            presentViewControllerAsModalWindow(controller)
-            proceedButton.isHidden = false
-        } else {
-            self.dismiss(true)
+        guard
+            applicationStateHandler.filePath == nil,
+            let window = view.window else {
+                self.dismiss(true)
+                return
+        }
+
+        let userInfo: [String: Any] = [
+            NSLocalizedDescriptionKey: "The path to the test folder is not set or is incorrect.".localized,
+            NSLocalizedRecoverySuggestionErrorKey: "Please choose the path to your calabash test folder.".localized,
+            NSLocalizedRecoveryOptionsErrorKey: ["Choose Test Folder…".localized, "Close Anyway".localized]
+        ]
+        let error = NSError(domain: "calabash", code: 0, userInfo: userInfo)
+        let alert = NSAlert(error: error)
+        alert.beginSheetModal(for: window) { [weak self] response in
+            switch response {
+            case .alertFirstButtonReturn:
+                self?.showOpenPanel()
+            case .alertSecondButtonReturn:
+                self?.dismiss(true)
+            default:
+                print("(Unhandled option)")
+            }
         }
     }
     
@@ -175,5 +187,26 @@ class SettingsViewController: NSViewController {
         data[key] = existingItems
         return data
     }
+
+    private func showOpenPanel() {
+        guard let window = view.window else { return }
+
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.resolvesAliases = true
+        panel.title = "Choose a path".localized
+        panel.prompt = "Choose".localized
+        panel.beginSheetModal(for: window) { [weak self] result in
+            panel.orderOut(self)
+            guard result ==  NSApplication.ModalResponse.OK else { return }
+
+            let url = panel.urls.first
+            self?.fileBrowser.url = url
+            self?.applicationStateHandler.filePath = url
+        }
+    }
+
 }
 
