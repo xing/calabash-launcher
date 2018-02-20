@@ -4,10 +4,10 @@ class LocalizationHandler {
     
     let applicationStateHandler = ApplicationStateHandler()
     
-    func getKey(forString: String) -> [String] {
+    func getKeys(for string: String) -> [String] {
         
         guard
-            let value = parseResponse(response: forString),
+            let value = parseResponse(string),
             let filePath = applicationStateHandler.filePath?.appendingPathComponent("build/Calabash.app/Frameworks/XNGLocalizedString.framework/en.lproj/Localizable.strings"),
             let stringsDict = NSDictionary(contentsOf: filePath) as? [String: String]
         else { return [] }
@@ -15,7 +15,7 @@ class LocalizationHandler {
         return stringsDict.keysForValue(value: value)
     }
     
-    private func parseResponse(response: String) -> String? {
+    func parseResponse(_ response: String) -> String? {
         return RegexHandler().matches(for: "\\marked:'(.*?)\\\'", in: response).last
     }
     
