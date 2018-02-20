@@ -56,6 +56,7 @@
 		EDC06B7C1DB40E7800379878 /* get_tags.command in Resources */ = {isa = PBXBuildFile; fileRef = EDC06B7B1DB40E7800379878 /* get_tags.command */; };
 		EDC4C6331F9A1DC000EAE830 /* TextViewPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */; };
 		EDC551E61DB36F0C00293935 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC551E51DB36F0C00293935 /* StreamReader.swift */; };
+		EDCB7FA8203B26DC00063078 /* LocalizationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB7FA7203B26DC00063078 /* LocalizationHandler.swift */; };
 		EDCDF5661E1AA3ED00738F91 /* helpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5651E1AA3ED00738F91 /* helpers.rb */; };
 		EDCDF5681E1AAC9F00738F91 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = EDCDF5671E1AAC9F00738F91 /* Gemfile */; };
 		EDEBE3861E0BD2D60069B9BC /* clicked_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEBE3851E0BD2D60069B9BC /* clicked_2.png */; };
@@ -132,6 +133,7 @@
 		EDC06B7B1DB40E7800379878 /* get_tags.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = get_tags.command; sourceTree = "<group>"; };
 		EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPrinter.swift; sourceTree = "<group>"; };
 		EDC551E51DB36F0C00293935 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
+		EDCB7FA7203B26DC00063078 /* LocalizationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHandler.swift; sourceTree = "<group>"; };
 		EDCDF5651E1AA3ED00738F91 /* helpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = helpers.rb; sourceTree = "<group>"; };
 		EDCDF5671E1AAC9F00738F91 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		EDEBE3851E0BD2D60069B9BC /* clicked_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicked_2.png; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				D7E21B4B1F96B0470044169A /* RegexHandler.swift */,
 				EDC4C6321F9A1DC000EAE830 /* TextViewPrinter.swift */,
 				D71FD8671F9E6C140091FD30 /* AppHandler.swift */,
+				EDCB7FA7203B26DC00063078 /* LocalizationHandler.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				ED51B7181F8FC2F500759547 /* PlistHandler.swift in Sources */,
 				D71FD8681F9E6C140091FD30 /* AppHandler.swift in Sources */,
 				ED51B71A1F90BE5300759547 /* PathWarningViewController.swift in Sources */,
+				EDCB7FA8203B26DC00063078 /* LocalizationHandler.swift in Sources */,
 				5D948C921F8F4FC40001BC50 /* Constants.swift in Sources */,
 				D7E21B4C1F96B0470044169A /* RegexHandler.swift in Sources */,
 			);
