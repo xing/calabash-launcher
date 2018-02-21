@@ -38,4 +38,16 @@ class LocalizationHandler {
         return letterCount
     }
     
+    func getAllFiles(for type: String) -> [String] {
+        guard let path = applicationStateHandler.filePath?.absoluteString,
+            let enumerator:FileManager.DirectoryEnumerator = fileManager.enumerator(atPath: path.replacingOccurrences(of: "file://", with: "")) else { return [] }
+        var filePaths = [""]
+        while let element = enumerator.nextObject() as? String {
+            if element.hasSuffix(type) {
+                filePaths.append(element)
+            }
+        }
+        return filePaths
+    }
+    
 }
