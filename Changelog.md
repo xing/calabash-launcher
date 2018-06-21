@@ -1,3 +1,9 @@
+# 1.3
+
+## Added
+
+- Added support for getting a localization key for .strings and .json files from the project.
+
 # 1.2
 
 ## Added
