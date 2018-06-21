@@ -21,7 +21,8 @@ class LocalizationHandler {
         return localizationKeys(for: string).formattedLocalizationKeys
     }
     
-    /// Also the header docs could show the priority of keysForLocalizedStrings over keysForJson.
+    /// Returns localization keys for a given value
+    /// localizedStringKeys has a priority, if any keys will be found in localizedStrings the function will immediately return
     func localizationKeys(for value: String) -> [String] {
         guard let value = parseResponse(value) else { return [] }
         
@@ -34,18 +35,19 @@ class LocalizationHandler {
         }
     }
     
-    /// Can we add at least some header documentation (with an example) of what this does?
+    /// This function parses the string and return everything that is between 'marked:' and the last quote.
+    /// For example "XNGButton marked:'Login'" will return "Login" string.
     func parseResponse(_ response: String) -> String? {
         return RegexHandler().matches(for: "\\marked:'(.*?)\\\'", in: response).last
     }
     
-    /// what
+    /// This transfer dictionary from [String: Any] to [String: String]
     func filterDictionary(_ dictionary: [String: Any]) -> [String: String] {
-        let letterCount: [String: String] = dictionary.reduce(into: [:]) { dict, item in
+        let dictionaryWithStrings: [String: String] = dictionary.reduce(into: [:]) { dict, item in
             guard let value = item.value as? String else { return }
             dict[item.key] = value
         }
-        return letterCount
+        return dictionaryWithStrings
     }
     
     func localizedStringKeys(for value: String) -> [String] {
