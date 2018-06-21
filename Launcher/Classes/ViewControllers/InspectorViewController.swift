@@ -414,7 +414,7 @@ extension InspectorViewController: NSOutlineViewDelegate {
         
         guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
         
-        let localizedText = LocalizationHandler().getKeys(for: feedItem)
+        let localizedText = LocalizationHandler().keys(for: feedItem)
         localizedTextField.stringValue = localizedText.minimalDescription
         elementTextField.stringValue = feedItem
         
