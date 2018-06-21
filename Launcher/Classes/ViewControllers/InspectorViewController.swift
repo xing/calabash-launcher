@@ -414,8 +414,14 @@ extension InspectorViewController: NSOutlineViewDelegate {
         
         guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
         
-        let localizedText = LocalizationHandler().keys(for: feedItem)
-        localizedTextField.stringValue = localizedText.minimalDescription
+        let localizedText = localizationHandler.keys(for: feedItem)
+        
+        if localizedText.minimalDescription != "" {
+            localizedTextField.stringValue = localizedText.minimalDescription
+        } else {
+            localizedTextField.stringValue = "No localization was found"
+        }
+        
         elementTextField.stringValue = feedItem
         
         CommandExecutor(launchPath: Constants.FilePaths.Bash.checkDuplicates ?? "", arguments: [feedItem]).execute()
