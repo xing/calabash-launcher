@@ -5,6 +5,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     let applicationStateHandler = ApplicationStateHandler()
     var textViewPrinter: TextViewPrinter!
     let commandsController = CommandsController()
+    let localizationHandler = LocalizationHandler()
     @objc dynamic var isRunning = false
     let fileManager = FileManager.default
     var uiElements: [String] = []

@@ -4,6 +4,13 @@ class LocalizationHandler {
     
     let applicationStateHandler = ApplicationStateHandler()
     let fileManager = FileManager.default
+    var jsonFilePaths: [String] = []
+    var localizedStringsFilePaths: [String] = []
+    
+    init() {
+        jsonFilePaths = allFiles(withFileExtension: "json")
+        localizedStringsFilePaths = allFiles(withFileExtension: "strings")
+    }
     
     func keys(for string: String) -> [String] {
         guard let value = parseResponse(string) else { return [] }
@@ -30,7 +37,6 @@ class LocalizationHandler {
     }
     
     func keysForLocalizedStrings(value: String) -> [String] {
-        let localizedStringsFilePaths = allFiles(withFileExtension: "strings")
         var resultingKeys: [String] = []
         
         localizedStringsFilePaths.forEach() { path in
@@ -45,7 +51,6 @@ class LocalizationHandler {
     
     func keysForJson(value: String) -> [String] {
         var resultingKeys: [String] = []
-        let jsonFilePaths = allFiles(withFileExtension: "json")
         
         jsonFilePaths.forEach() { path in
             var jsonResults: [String: Any] = [:]
