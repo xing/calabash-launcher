@@ -41,7 +41,7 @@ class LocalizationHandler {
         return RegexHandler().matches(for: "\\marked:'(.*?)\\\'", in: response).last
     }
     
-    /// This transfer dictionary from [String: Any] to [String: String]
+    /// Transfers dictionary from [String: Any] to [String: String]
     func filterDictionary(_ dictionary: [String: Any]) -> [String: String] {
         let dictionaryWithStrings: [String: String] = dictionary.reduce(into: [:]) { dict, item in
             guard let value = item.value as? String else { return }
