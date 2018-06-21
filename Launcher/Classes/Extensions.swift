@@ -65,15 +65,9 @@ extension Dictionary where Key == String {
 
 extension Dictionary where Value: Equatable {
     /// Returns all keys mapped to the specified value.
-    func keysForValue(value: Value) -> [Key] {
+    func keysForValue(_ value: Value) -> [Key] {
         return flatMap { (key: Key, val: Value) -> Key? in
             value == val ? key : nil
         }
-    }
-}
-
-extension Sequence {
-    var minimalDescription: String {
-        return map { "\($0)" }.joined(separator: " / ")
     }
 }
