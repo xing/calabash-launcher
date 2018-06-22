@@ -5,6 +5,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
     let applicationStateHandler = ApplicationStateHandler()
     var textViewPrinter: TextViewPrinter!
     let commandsController = CommandsController()
+    let localizationHandler = LocalizationHandler()
     @objc dynamic var isRunning = false
     let fileManager = FileManager.default
     var uiElements: [String] = []
@@ -416,7 +417,15 @@ extension InspectorViewController: NSOutlineViewDelegate {
         let selectedIndex = outlineView.selectedRow
         
         guard let feedItem = outlineView.item(atRow: selectedIndex) as? String else { return }
-        localizedTextField.stringValue = ""
+        
+        let localizedText = localizationHandler.formattedKeys(for: feedItem)
+        
+        if localizedText.isEmpty == false {
+            localizedTextField.stringValue = localizedText
+        } else {
+            localizedTextField.stringValue = "No localization was found"
+        }
+        
         elementTextField.stringValue = feedItem
         
         CommandExecutor(launchPath: Constants.FilePaths.Bash.checkDuplicates ?? "", arguments: [feedItem]).execute()

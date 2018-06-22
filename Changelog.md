@@ -2,6 +2,8 @@
 
 ## Added
 
+- Added support for getting a localization key for .strings and .json files from the project.
+
 ## Miscellaneous
 
 - Improved UX of "invalid path for test folder" dialog

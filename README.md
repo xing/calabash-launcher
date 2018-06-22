@@ -22,7 +22,7 @@ It supports:
 
 - Device element highlighting
 - Accessing an element's address
-- Accessing an element's localized object
+- Accessing an element's localized object (by reading all .strings and .json files in the project)
 - The visual representation of the device
 
 ## Project Status
