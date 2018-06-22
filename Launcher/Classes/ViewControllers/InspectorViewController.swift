@@ -337,8 +337,11 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
                 }
             }
             self.enableAllElements()
-            if self.outputText.string.isEmpty {
-                self.outputInTheMainTextView(string: "The simulator seams to be not ready to use. Please use 'Start Simulator' button to start it properly".localized)
+            
+            DispatchQueue.main.async {
+                if self.outputText.string.isEmpty {
+                    self.outputInTheMainTextView(string: "The simulator seams to be not ready to use. Please use 'Start Simulator' button to start it properly".localized)
+                }
             }
         }
     }
