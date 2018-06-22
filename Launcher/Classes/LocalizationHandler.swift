@@ -84,7 +84,10 @@ class LocalizationHandler {
                 guard let _jsonDictionary = jsonDictionary[key] as? [String: Any] else { return nil }
                 return _jsonDictionary
             }.flatMap { $0 }
-            return Dictionary(uniqueKeysWithValues: tuples)
+            
+            return Dictionary.init(tuples, uniquingKeysWith: { first, _ in
+                return first
+            })
         }
 
         let dictionaries = jsonDictionaries(from: jsonFilePaths)
