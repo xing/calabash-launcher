@@ -325,7 +325,7 @@ class InspectorViewController: NSViewController, NSTableViewDataSource {
         var previousOutput = ""
         outputText.string = ""
         let numberOfRetries = 70
-        waitingForFile(withName: InspectorResources.elementInspectorPath, numberOfRetries: numberOfRetries) {
+        waitingForFile(withName: InspectorResources.elementInspectorPath, numberOfRetries: numberOfRetries, enableSpinner: false) {
             DispatchQueue.main.async {
                 guard let streamReader = StreamReader(path: InspectorResources.elementInspectorPath) else { return }
                 defer { streamReader.close() }
