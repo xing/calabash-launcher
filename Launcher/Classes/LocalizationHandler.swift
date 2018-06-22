@@ -62,25 +62,25 @@ class LocalizationHandler {
     func jsonKeys(for value: String) -> [String] {
         var resultingKeys: [String] = []
         
-        jsonFilePaths.forEach { path in
-            var jsonResults: [String: Any] = [:]
-            
-            if let path = applicationStateHandler.filePath?.appendingPathComponent(path),
+        jsonFilePaths.compactMap { path -> NSDictionary? in
+            guard let path = applicationStateHandler.filePath?.appendingPathComponent(path),
                 let data = try? Data(contentsOf: path, options: .mappedIfSafe),
-                let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary,
-                let jsonKeys = jsonResult?.allKeys
-            {
-                jsonKeys.forEach { key in
-                    if let jsonDictionary = jsonResult?[key] as? [String: Any] {
-                        jsonResults.append(dictionary: jsonDictionary )
-                    }
-                }
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves),
+                let jsonDictionary = jsonObject as? NSDictionary else { return nil }
+            return jsonDictionary
+            }.forEach { jsonDictionary in
+                let jsonKeys = jsonDictionary.allKeys
+                
+                let jsonResults = jsonKeys.compactMap { key -> [String: Any]? in
+                    guard let _jsonDictionary = jsonDictionary[key] as? [String: Any] else { return nil }
+                    return _jsonDictionary
+                    }.flatMap { $0 }
                 
                 let resultDictionary = filterDictionary(jsonResults)
                 
                 resultingKeys.append(contentsOf: resultDictionary.keysForValue(value))
-            }
         }
+        
         return resultingKeys
     }
     
