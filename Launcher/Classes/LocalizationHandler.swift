@@ -85,7 +85,7 @@ class LocalizationHandler {
                 return _jsonDictionary
             }.flatMap { $0 }
             
-            return Dictionary.init(tuples, uniquingKeysWith: { first, _ in
+            return Dictionary(tuples, uniquingKeysWith: { first, _ in
                 return first
             })
         }
