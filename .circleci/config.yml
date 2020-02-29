@@ -7,7 +7,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "ce:14:7b:f9:4b:ac:dd:89:ad:1a:db:2e:08:43:4a:41"
+            - "43:a6:1a:8f:d6:4d:9a:6a:9c:42:ff:86:28:87:9e:a9"
       - checkout
       - run:
           name: Set Ruby Version
