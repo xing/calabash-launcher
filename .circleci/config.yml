@@ -5,6 +5,9 @@ jobs:
       xcode: "11.3.1"
     shell: /bin/bash --login -eo pipefail
     steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "ce:14:7b:f9:4b:ac:dd:89:ad:1a:db:2e:08:43:4a:41"
       - checkout
       - run:
           name: Set Ruby Version
